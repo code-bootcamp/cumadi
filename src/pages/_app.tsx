@@ -3,11 +3,15 @@ import { Global } from '@emotion/react'
 import { globalStyles } from '@/common/styles/globalStyles'
 import { RecoilRoot } from 'recoil'
 
+// Antd theme override
+import '../../public/antd.min.css'
+import antdTheme from '@/common/styles/theme'
+
 export default function App({ Component, pageProps }: AppProps) {
-  return (
+  return antdTheme(
     <RecoilRoot>
       <Global styles={globalStyles} />
       <Component {...pageProps} />
-    </RecoilRoot>
+    </RecoilRoot>,
   )
 }

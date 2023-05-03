@@ -39,3 +39,6 @@ tsconfig.json
 # linter, formatter
 .eslintrc.js
 .prettierrc
+
+# antd css file
+public/antd.min.css
