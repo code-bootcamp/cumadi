@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@apollo/client": "^3.7.13",
