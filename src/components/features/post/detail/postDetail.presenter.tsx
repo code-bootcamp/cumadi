@@ -3,6 +3,7 @@ import * as S from './postDetail.styles'
 import { LikeOutlined } from '@ant-design/icons'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
+import { MyTag } from '@/components/common/customComponent.styles'
 
 export default function PostDetailUI() {
   return (
@@ -12,8 +13,10 @@ export default function PostDetailUI() {
         <S.PostTitle>{postItem[0].title}</S.PostTitle>
         <S.PostSubTitle>부제목</S.PostSubTitle>
         <S.PostTagWapper>
-          <S.PostTag>태그</S.PostTag>
-          <S.PostTag>태그</S.PostTag>
+          <MyTag isChecked={true}>태그</MyTag>
+          <MyTag isChecked={true}>태그</MyTag>
+          <MyTag isChecked={true}>태그</MyTag>
+          <MyTag isChecked={true}>태그</MyTag>
         </S.PostTagWapper>
 
         <S.Header>
@@ -37,7 +40,7 @@ export default function PostDetailUI() {
 
         <S.LikeWrapper>
           <S.Like>
-            관심을 주세요! <LikeOutlined />
+            <img src="/images/heart-outlined.svg" />
           </S.Like>
         </S.LikeWrapper>
       </div>

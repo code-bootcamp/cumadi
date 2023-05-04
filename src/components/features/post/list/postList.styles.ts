@@ -1,10 +1,11 @@
 import { breakPoints } from '@/common/styles/media';
 import styled from '@emotion/styled';
+import { Card } from 'antd';
 
 export const Footer = styled.footer`
   width: 100%;
   min-height: 20rem;
-  box-shadow: 0 0 5px 0 var(--color-gray-3) inset;
+  background-color: var(--color-gray-3);
 `;
 
 export const Container = styled.div`
@@ -24,11 +25,12 @@ export const FooterTitle = styled.div`
 `;
 
 export const Body = styled.div`
-  width: 84rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 84rem;
+  margin: 3rem 0;
 
   @media ${breakPoints.tablet} {
     width: 65rem;
@@ -37,4 +39,10 @@ export const Body = styled.div`
   @media ${breakPoints.mobile} {
     width: 50rem;
   }
+`;
+
+export const StyledCard = styled(Card)`
+  width: 27rem;
+  border: 1px solid var(--color-gray-3);
+  cursor: pointer;
 `;

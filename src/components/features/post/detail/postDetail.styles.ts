@@ -97,4 +97,5 @@ export const Like = styled.div`
   border-radius: 1rem;
   box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem var(--color-gray-4);
   font-weight: bold;
+  cursor: pointer;
 `

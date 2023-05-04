@@ -1,21 +1,56 @@
-import * as S from './Footer.styles'
-import { postItem } from '@/common/dummyData/post'
+import { Avatar, Card } from 'antd';
+import * as S from './Footer.styles';
+import { postItem } from '@/common/dummyData/post';
+import { FlexColumnContainer } from '@/components/common/customComponent.styles';
+import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles';
+import { TruncatedText } from '@/common/styles/UI/util.styles';
+import { InfoSectionContainer } from '@/components/common/customComponent.styles';
+import { ProfileContainer } from '@/components/common/customComponent.styles';
+import { ProfileTextDataContainer } from '@/components/common/customComponent.styles';
+import { ReactionContainer } from '@/components/common/customComponent.styles';
+import { ReactionsContainer } from '@/components/common/customComponent.styles';
+import { Colors } from '@/common/styles/colors';
 
 export default function LayoutFooterUI() {
   return (
     <S.Footer>
       <S.Container>
-        <S.FooterTitler>이 포스트들은 어때요?</S.FooterTitler>
+        <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
           {postItem.map(el => (
-            <>
-              <S.CardTitle>{el.title}</S.CardTitle>
-              <S.CardTitle>{el.name}</S.CardTitle>
-              <S.CardTitle>{el.price}</S.CardTitle>
-            </>
+            <Card style={{ width: 400, border: 'unset' }} cover={<img alt="example" src={el.image} />}>
+              <FlexColumnContainer gap={'0.5rem'}>
+                <BodyTextSm color={Colors.primary} weight={600}>
+                  카테고리명
+                </BodyTextSm>
+                <BodyTextLg>{el.title}</BodyTextLg>
+                <BodyText color={Colors.gray1}>
+                  <TruncatedText lines={4}>{el.contents}</TruncatedText>
+                </BodyText>
+                <InfoSectionContainer>
+                  <ProfileContainer>
+                    <Avatar>E</Avatar>
+                    <ProfileTextDataContainer>
+                      <BodyTextSm weight={600}>{el.name}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                    </ProfileTextDataContainer>
+                  </ProfileContainer>
+                  <ReactionsContainer>
+                    <ReactionContainer>
+                      <img src="images/heart-outlined.svg" alt="관심 수" />
+                      <span>3</span>
+                    </ReactionContainer>
+                    <ReactionContainer>
+                      <img src="images/comment-outlined.svg" alt="덧글 수" />
+                      <span>3</span>
+                    </ReactionContainer>
+                  </ReactionsContainer>
+                </InfoSectionContainer>
+              </FlexColumnContainer>
+            </Card>
           ))}
         </S.Body>
       </S.Container>
     </S.Footer>
-  )
+  );
 }
