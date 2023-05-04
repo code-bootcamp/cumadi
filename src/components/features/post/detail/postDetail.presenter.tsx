@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { postItem } from '@/common/dummyData/post'
 import * as S from './postDetail.styles'
 import { LikeOutlined } from '@ant-design/icons'
