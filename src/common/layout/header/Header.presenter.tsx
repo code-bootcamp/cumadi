@@ -13,7 +13,7 @@ export default function LayoutHeaderUI() {
         <S.LoginMenu>
           <BasicButton movePage={'/my'} name={'마이페이지'} />
           <BasicButton movePage={`/signup`} name={'회원가입'} />
-          <BasicButton movePage={'/login'} name={'로그인'} isMain={true} />
+          <BasicButton movePage={'/login'} name={'로그인'} type="primary" />
         </S.LoginMenu>
       </S.Container>
     </S.Header>

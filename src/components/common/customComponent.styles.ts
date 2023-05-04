@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button, Tag } from 'antd'
+import { Button, Card, Tag } from 'antd'
 import { Colors } from '@/common/styles/colors'
 
 // Ant design Overrides
@@ -14,7 +14,7 @@ export const MyTag = styled(Tag)<{ isChecked: boolean }>`
   color: ${props => (props.isChecked ? Colors.white : Colors.black)};
   border-radius: 1.5rem;
   border: 1px solid var(--color-gray-3);
-  /* border: unset; */
+  border: unset;
   background-color: ${props => (props.isChecked ? Colors.primary : 'unset')};
   cursor: pointer;
 `
@@ -48,6 +48,13 @@ export const HorizontalCardLg = styled(HorizontalCard)`
 
 export const HorizontalCardSm = styled(HorizontalCard)`
   height: 6.5rem;
+`
+
+export const ElevatedCard = styled.div`
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0px 0px 8px 2px rgba(217, 217, 217, 0.6);
+  border-radius: 1rem;
 `
 
 // Customization styles

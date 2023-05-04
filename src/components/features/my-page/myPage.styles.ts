@@ -1,4 +1,5 @@
 import { breakPoints } from '@/common/styles/media'
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 
 export const Container = styled.section`
@@ -16,6 +17,10 @@ export const Container = styled.section`
 
 // **** 아바타 상단
 export const AvatarWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
   margin: 3rem 0;
 `
 
@@ -33,27 +38,17 @@ export const Introduction = styled.div`
 `
 
 // ****
-export const Move = styled.div`
+export const Move = styled(ElevatedCard)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  margin: 1rem;
-  font-size: 1rem;
-  color: var(--color-black);
-  border: 1px solid var(--color-gray-2);
-  border-radius: 1rem;
   cursor: pointer;
 `
 
-export const MoveDeleteUser = styled.div`
+export const MoveDeleteUser = styled(ElevatedCard)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  margin: 1rem;
   font-size: 1rem;
   color: var(--color-error-red);
-  border: 1px solid var(--color-gray-2);
-  border-radius: 1rem;
 `

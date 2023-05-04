@@ -49,6 +49,7 @@ export const Profile = styled.div`
 export const LoginMenu = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 `
 
 export const LoginButton = styled.button`

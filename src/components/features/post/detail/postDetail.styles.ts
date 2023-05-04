@@ -1,4 +1,5 @@
 import { breakPoints } from '@/common/styles/media'
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 
 export const Container = styled.section`
@@ -19,6 +20,7 @@ export const Container = styled.section`
 export const PostTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
 `
 
 export const PostSubTitle = styled.div`
@@ -91,11 +93,7 @@ export const LikeWrapper = styled.div`
   margin: 1rem 0;
 `
 
-export const Like = styled.div`
-  padding: 1rem;
-  border: 1px solid var(--color-gray-2);
-  border-radius: 1rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem var(--color-gray-4);
+export const Like = styled(ElevatedCard)`
   font-weight: bold;
   cursor: pointer;
 `
