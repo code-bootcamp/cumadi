@@ -114,7 +114,7 @@ export const globalStyles = css`
   @font-face {
     font-family: 'Pretendard';
     src: url('/fonts/Pretendard-SemiBold.woff') format('woff');
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
   }
 
@@ -125,15 +125,20 @@ export const globalStyles = css`
     font-style: normal;
   }
 `
-export const BodyTextSm = styled.span`
+export const BodyTextSm = styled.span<{ color?: string; weight?: number }>`
   font-size: 12px;
+  font-weight: ${props => props.weight};
+  color: ${props => props.color};
 `
 
-export const BodyText = styled.span`
+export const BodyText = styled.span<{ color?: string; weight?: number }>`
   font-size: 14px;
+  font-weight: ${props => props.weight};
+  color: ${props => props.color};
 `
 
-export const BodyTextLg = styled.span`
+export const BodyTextLg = styled.span<{ color?: string; weight?: number }>`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: ${props => (props.weight ? props.weight : 600)};
+  color: ${props => props.color};
 `
