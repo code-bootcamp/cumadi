@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* TODO: Add PostsList inside body/main */}
-      <main>Hello world!!!!!!!!</main>
+      <main>Hello world~!!!!!!!!</main>
     </>
   )
 }
