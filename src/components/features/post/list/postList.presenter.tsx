@@ -1,20 +1,20 @@
-import { Avatar } from 'antd';
+import { Avatar } from 'antd'
 
-import * as S from './postList.styles';
-import { postItem } from '@/common/dummyData/post';
-import { FlexColumnContainer } from '@/components/common/customComponent.styles';
-import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles';
-import { TruncatedText } from '@/common/styles/UI/util.styles';
-import { InfoSectionContainer } from '@/components/common/customComponent.styles';
-import { ProfileContainer } from '@/components/common/customComponent.styles';
-import { ProfileTextDataContainer } from '@/components/common/customComponent.styles';
-import { ReactionContainer } from '@/components/common/customComponent.styles';
-import { ReactionsContainer } from '@/components/common/customComponent.styles';
-import { Colors } from '@/common/styles/colors';
-import { useMoveToPage } from '@/common/hooks/useMoveToPage';
+import * as S from './postList.styles'
+import { postItem } from '@/common/dummyData/post'
+import { FlexColumnContainer } from '@/components/common/customComponent.styles'
+import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
+import { TruncatedText } from '@/common/styles/UI/util.styles'
+import { InfoSectionContainer } from '@/components/common/customComponent.styles'
+import { ProfileContainer } from '@/components/common/customComponent.styles'
+import { ProfileTextDataContainer } from '@/components/common/customComponent.styles'
+import { ReactionContainer } from '@/components/common/customComponent.styles'
+import { ReactionsContainer } from '@/components/common/customComponent.styles'
+import { Colors } from '@/common/styles/colors'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function PostListUI() {
-  const { onClickMoveToPage } = useMoveToPage();
+  const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
@@ -51,5 +51,5 @@ export default function PostListUI() {
         </S.StyledCard>
       ))}
     </S.Body>
-  );
+  )
 }

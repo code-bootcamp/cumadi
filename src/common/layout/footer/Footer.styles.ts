@@ -1,11 +1,11 @@
-import { breakPoints } from '@/common/styles/media';
-import styled from '@emotion/styled';
+import { breakPoints } from '@/common/styles/media'
+import styled from '@emotion/styled'
 
 export const Footer = styled.footer`
   width: 100%;
   min-height: 20rem;
   box-shadow: 0 0 5px 0 var(--color-gray-3) inset;
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -14,14 +14,14 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   padding-top: 2rem;
-`;
+`
 
 export const FooterTitle = styled.div`
   margin: 3rem 0;
   color: var(--color-black);
   font-size: 2rem;
   font-weight: bold;
-`;
+`
 
 export const Body = styled.div`
   width: 84rem;
@@ -37,4 +37,4 @@ export const Body = styled.div`
   @media ${breakPoints.mobile} {
     width: 50rem;
   }
-`;
+`

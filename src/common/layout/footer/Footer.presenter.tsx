@@ -1,15 +1,15 @@
-import { Avatar, Card } from 'antd';
-import * as S from './Footer.styles';
-import { postItem } from '@/common/dummyData/post';
-import { FlexColumnContainer } from '@/components/common/customComponent.styles';
-import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles';
-import { TruncatedText } from '@/common/styles/UI/util.styles';
-import { InfoSectionContainer } from '@/components/common/customComponent.styles';
-import { ProfileContainer } from '@/components/common/customComponent.styles';
-import { ProfileTextDataContainer } from '@/components/common/customComponent.styles';
-import { ReactionContainer } from '@/components/common/customComponent.styles';
-import { ReactionsContainer } from '@/components/common/customComponent.styles';
-import { Colors } from '@/common/styles/colors';
+import { Avatar, Card } from 'antd'
+import * as S from './Footer.styles'
+import { postItem } from '@/common/dummyData/post'
+import { FlexColumnContainer } from '@/components/common/customComponent.styles'
+import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
+import { TruncatedText } from '@/common/styles/UI/util.styles'
+import { InfoSectionContainer } from '@/components/common/customComponent.styles'
+import { ProfileContainer } from '@/components/common/customComponent.styles'
+import { ProfileTextDataContainer } from '@/components/common/customComponent.styles'
+import { ReactionContainer } from '@/components/common/customComponent.styles'
+import { ReactionsContainer } from '@/components/common/customComponent.styles'
+import { Colors } from '@/common/styles/colors'
 
 export default function LayoutFooterUI() {
   return (
@@ -52,5 +52,5 @@ export default function LayoutFooterUI() {
         </S.Body>
       </S.Container>
     </S.Footer>
-  );
+  )
 }

@@ -41,7 +41,8 @@ export default function AntdTestPage() {
       카드 (포스트)
       <Card
         style={{ width: 400, border: 'unset' }}
-        cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}>
+        cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
+      >
         <FlexColumnContainer gap={'0.5rem'}>
           <BodyTextSm color={Colors.primary} weight={600}>
             카테고리명
@@ -82,7 +83,8 @@ export default function AntdTestPage() {
       카드 (시리즈)
       <Card
         style={{ width: 400, border: 'unset' }}
-        cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}>
+        cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
+      >
         <FlexColumnContainer gap={'0.5rem'}>
           <BodyTextSm color={Colors.primary} weight={600}>
             카테고리명

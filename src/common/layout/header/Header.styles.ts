@@ -1,5 +1,5 @@
-import { breakPoints } from '@/common/styles/media';
-import styled from '@emotion/styled';
+import { breakPoints } from '@/common/styles/media'
+import styled from '@emotion/styled'
 
 export const Header = styled.header`
   width: 100%;
@@ -9,7 +9,7 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid var(--color-gray-600);
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -28,13 +28,13 @@ export const Container = styled.div`
     width: 40rem;
     justify-content: space-around;
   }
-`;
+`
 
 // **** 헤더 왼쪽
 export const Logo = styled.img`
   width: 2.8rem;
   cursor: pointer;
-`;
+`
 
 // **** 헤더 오른쪽
 export const Profile = styled.div`
@@ -44,12 +44,12 @@ export const Profile = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`;
+`
 
 export const LoginMenu = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 export const LoginButton = styled.button`
   padding: 0.5rem;
@@ -62,4 +62,4 @@ export const LoginButton = styled.button`
   &:hover {
     color: var(--main-color);
   }
-`;
+`

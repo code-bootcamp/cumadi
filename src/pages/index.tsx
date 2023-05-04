@@ -1,7 +1,7 @@
-import { MyTag } from '@/components/common/customComponent.styles';
-import PostList from '@/components/features/post/list/postList.container';
-import Head from 'next/head';
-import * as S from './index.styles';
+import { MyTag } from '@/components/common/customComponent.styles'
+import PostList from '@/components/features/post/list/postList.container'
+import Head from 'next/head'
+import * as S from './index.styles'
 export default function Home() {
   return (
     <>
@@ -26,5 +26,5 @@ export default function Home() {
         <PostList />
       </S.Main>
     </>
-  );
+  )
 }

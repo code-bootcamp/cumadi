@@ -9,7 +9,8 @@ const antdTheme = (node: JSX.Element) => (
         token: {
           colorPrimary: Colors.primary,
         },
-      }}>
+      }}
+    >
       <ConfigProvider
         theme={{
           token: {
@@ -23,7 +24,8 @@ const antdTheme = (node: JSX.Element) => (
             colorBorder: Colors.gray4,
             colorTextPlaceholder: Colors.gray2,
           },
-        }}>
+        }}
+      >
         {node}
       </ConfigProvider>
     </ConfigProvider>
