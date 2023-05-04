@@ -1,24 +1,9 @@
-import { useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
 import { Form, Input, Select } from 'antd'
 import * as S from './newPost.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
+import { NewPostUIProps } from './newPost.types'
 
-const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
-  ssr: false,
-})
-
-export default function NewPostUI() {
-  const ref = useRef<any>(null)
-  const [content, setContent] = useState<string>('')
-
-  const handleSubmitForm = (values: any) => {
-    setContent(ref.current.getInstance().getHTML())
-    const postData = { ...values, content }
-    console.log(postData)
-    // TODO: Feed postData into API
-  }
-
+export default function NewPostUI({ handleSubmitForm, DynamicImportEditor, editorRef }: NewPostUIProps) {
   return (
     <S.Container>
       <S.TitleWrapper>
@@ -42,7 +27,7 @@ export default function NewPostUI() {
           />
         </Form.Item>
         <Form.Item>
-          <DynamicImportEditor editorRef={ref} content="" />
+          <DynamicImportEditor editorRef={editorRef} content="" />
         </Form.Item>
         <Form.Item>
           <S.ButtonWrapper>
