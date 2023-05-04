@@ -19,19 +19,26 @@ const { TextArea } = Input
 export default function AntdTestPage() {
   return (
     <div style={{ backgroundColor: '#D9D9D9', padding: '4rem' }}>
-      <MyButton type="primary">MyButton</MyButton>
-      <MyButton>MyButton</MyButton>
-      <MyButton disabled>MyButton</MyButton>
-
+      버튼
+      <MyButton type="primary">button-primary-md</MyButton>
+      <MyButton>button-secondary-md</MyButton>
+      <MyButton disabled>button-disabled-md</MyButton>
+      <br />
+      <MyButton size="large" type="primary">
+        button-primary-lg
+      </MyButton>
+      <MyButton size="large">button-secondary-lg</MyButton>
+      <MyButton size="large" disabled>
+        button-disabled-lg
+      </MyButton>
       <br />
       <br />
-
+      태그 (전체 포스트 리스트 등 카테고리류에 사용)
       <MyTag isChecked={true}>Tag checked</MyTag>
       <MyTag isChecked={false}>Tag unchecked</MyTag>
-
       <br />
       <br />
-
+      카드 (포스트)
       <Card
         style={{ width: 400, border: 'unset' }}
         cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}>
@@ -70,10 +77,9 @@ export default function AntdTestPage() {
           </InfoSectionContainer>
         </FlexColumnContainer>
       </Card>
-
       <br />
       <br />
-
+      카드 (시리즈)
       <Card
         style={{ width: 400, border: 'unset' }}
         cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}>
@@ -88,10 +94,9 @@ export default function AntdTestPage() {
           </InfoSectionContainer>
         </FlexColumnContainer>
       </Card>
-
       <br />
       <br />
-
+      카드 (상세페이지)
       <HorizontalCardLg>
         <img
           className="horizontal-card-cover"
@@ -125,10 +130,9 @@ export default function AntdTestPage() {
           </InfoSectionContainer>
         </FlexColumnContainer>
       </HorizontalCardLg>
-
       <br />
       <br />
-
+      카드 (장바구니)
       <HorizontalCardSm>
         <img
           className="horizontal-card-cover"
@@ -147,20 +151,17 @@ export default function AntdTestPage() {
           </PriceContainer>
         </div>
       </HorizontalCardSm>
-
       <br />
       <br />
-
+      인풋 (1줄)
       <Input type="primary" placeholder="hi" />
-
       <br />
       <br />
-
+      텍스트에리어 (여러줄)
       <TextArea />
-
       <br />
       <br />
-
+      선택 드롭다운
       <Select
         options={[
           { value: 'jack', label: 'Jack' },
@@ -169,10 +170,9 @@ export default function AntdTestPage() {
           { value: 'disabled', label: 'Disabled', disabled: true },
         ]}
       />
-
       <br />
       <br />
-
+      체크박스
       <Checkbox>Checkbox</Checkbox>
     </div>
   )
