@@ -27,12 +27,9 @@ export default function SeriesListUI() {
               {el.categories}
             </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
-            <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{el.contents}</TruncatedText>
-            </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
-                <Avatar>E</Avatar>
+                <Avatar>A</Avatar>
                 <ProfileTextDataContainer>
                   <BodyTextSm weight={600}>{el.name}</BodyTextSm>
                   <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
@@ -40,7 +37,7 @@ export default function SeriesListUI() {
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
-                  <Rate value={el.star} />
+                  <Rate disabled value={el.star} />
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>

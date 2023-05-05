@@ -9,6 +9,7 @@ export const seriesItem = [
     name: '개발자 A',
     introduction: '개발세발 개발자',
     price: 3000,
+    createDate: '2020.05.05',
     star: 4,
     posts: {
       first: {
@@ -47,6 +48,7 @@ export const seriesItem = [
     categories: '개발',
     name: '코린이',
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
+    createDate: '2020.05.05',
     star: 2,
   },
   {
@@ -55,6 +57,7 @@ export const seriesItem = [
     categories: '개발',
     name: '왕백수',
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
+    createDate: '2020.05.05',
     star: 5,
   },
   {
@@ -63,6 +66,7 @@ export const seriesItem = [
     name: 'Z',
     categories: '개발',
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
+    createDate: '2020.05.05',
     star: 1,
   },
 ]
