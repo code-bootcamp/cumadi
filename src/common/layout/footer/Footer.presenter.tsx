@@ -37,11 +37,11 @@ export default function LayoutFooterUI() {
                   </ProfileContainer>
                   <ReactionsContainer>
                     <ReactionContainer>
-                      <img src="images/heart-outlined.svg" alt="관심 수" />
+                      <img src="/images/heart-outlined.svg" alt="관심 수" />
                       <span>3</span>
                     </ReactionContainer>
                     <ReactionContainer>
-                      <img src="images/comment-outlined.svg" alt="덧글 수" />
+                      <img src="/images/comment-outlined.svg" alt="덧글 수" />
                       <span>3</span>
                     </ReactionContainer>
                   </ReactionsContainer>
