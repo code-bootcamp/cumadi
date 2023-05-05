@@ -2,7 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react'
 import MyProfileSettingsUI from './myProfileSettings.presenter'
 
 export default function MyProfileSettings() {
-  // **** 프로필 더미 데이터
+  // **** 작성자, 자기소개 더미 데이터
   const [writer, setWriter] = useState('작성자')
   const [introduction, setIntroduction] = useState('개발새발 개발자')
 
