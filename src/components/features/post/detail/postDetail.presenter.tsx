@@ -1,11 +1,13 @@
 import { postItem } from '@/common/dummyData/post'
 import * as S from './postDetail.styles'
-import { LikeOutlined } from '@ant-design/icons'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
 import { MyTag } from '@/components/common/customComponent.styles'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function PostDetailUI() {
+  const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Container>
       {/* 포스트 본문 */}
@@ -28,7 +30,8 @@ export default function PostDetailUI() {
             </S.Info>
           </S.AvatarWrapper>
           <S.PostUpdateBtnWrapper>
-            <button>수정</button>
+            <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
+            <button onClick={onClickMoveToPage('/post/12312/edit')}>수정</button>
             <button>삭제</button>
           </S.PostUpdateBtnWrapper>
         </S.Header>
