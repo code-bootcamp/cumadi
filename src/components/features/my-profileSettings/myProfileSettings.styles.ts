@@ -15,10 +15,17 @@ export const AvatarWrapper = styled.div`
 export const AvatarImg = styled.img`
   width: 7rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 `
-export const EditImg = styled.img`
+
+export const EditImg1 = styled.img`
+  cursor: pointer;
+`
+
+export const EditImg2 = styled.img`
   width: 1rem;
   color: var(--color-gray-2);
+  cursor: pointer;
 `
 
 export const Writer = styled.div`

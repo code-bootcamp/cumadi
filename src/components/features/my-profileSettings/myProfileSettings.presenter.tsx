@@ -6,14 +6,15 @@ export default function MyProfileSettingsUI(props: any) {
       <S.ProfileSettingTitle>프로필 수정</S.ProfileSettingTitle>
       <S.ProfileSettingBody>
         <S.AvatarWrapper>
-          <S.AvatarImg src="/images/avatar.png" />
+          <S.AvatarImg src="/images/avatar.png" onClick={props.onClickImage} />
+          <input style={{ display: 'none' }} type="file" onChange={props.onChangeImageFile} ref={props.fileRef} />
           <S.Writer>
-            개발자
-            <img src="/images/edit.svg" alt="편집 아이콘" />
+            {props.isEdit1 ? <S.BasicInput defaultValue={props.writer} /> : props.writer}
+            {props.isEdit1 ? '' : <S.EditImg1 src="/images/edit.svg" alt="편집 아이콘" onClick={props.onClickEdit1} />}
           </S.Writer>
           <S.Introduction>
-            개발새발 개발자
-            <S.EditImg src="/images/edit.svg" alt="편집 아이콘" />
+            {props.isEdit2 ? <S.BasicInput defaultValue={props.introduction} /> : props.introduction}
+            {props.isEdit2 ? '' : <S.EditImg2 src="/images/edit.svg" alt="편집 아이콘" onClick={props.onClickEdit2} />}
           </S.Introduction>
         </S.AvatarWrapper>
         <S.InputWrapper>

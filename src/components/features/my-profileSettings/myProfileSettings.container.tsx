@@ -1,15 +1,26 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import MyProfileSettingsUI from './myProfileSettings.presenter'
 
 export default function MyProfileSettings() {
+  // **** 프로필 더미 데이터
+  const [writer, setWriter] = useState('작성자')
+  const [introduction, setIntroduction] = useState('개발새발 개발자')
+
   // **** 상태
   const [password, setPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
+
+  // ** 파일 태그
+  const fileRef = useRef<HTMLInputElement>(null)
 
   // ** 유효성 검사
   const [showPresentPassword, setShowPresentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showCheckPassword, setShowCheckPassword] = useState(false)
+
+  // ** 자기소개 편집 버튼 상태
+  const [isEdit1, setIsEdit1] = useState(false)
+  const [isEdit2, setIsEdit2] = useState(false)
 
   // **** PlayGround
   // const [resetUserPassword] = useMutation(RESET_USER_PASSWORD)
@@ -41,6 +52,24 @@ export default function MyProfileSettings() {
     // }
   }
 
+  // **** 이미지 파일 업로드
+  const onClickImage = () => {
+    fileRef.current?.click()
+  }
+
+  const onChangeImageFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+  }
+
+  // **** 편집버튼 활성화
+  const onClickEdit1 = () => {
+    setIsEdit1(true)
+  }
+
+  const onClickEdit2 = () => {
+    setIsEdit2(true)
+  }
+
   return (
     <MyProfileSettingsUI
       password={password}
@@ -52,8 +81,17 @@ export default function MyProfileSettings() {
       onClickShowPresentPassword={onClickShowPresentPassword}
       onClickShowNewPassword={onClickShowNewPassword}
       onClickShowCheckPassword={onClickShowCheckPassword}
+      onClickImage={onClickImage}
+      onClickEdit1={onClickEdit1}
+      onClickEdit2={onClickEdit2}
       onChangePassword={onChangePassword}
       onChangePasswordCheck={onChangePasswordCheck}
+      onChangeImageFile={onChangeImageFile}
+      fileRef={fileRef}
+      writer={writer}
+      introduction={introduction}
+      isEdit1={isEdit1}
+      isEdit2={isEdit2}
     />
   )
 }
