@@ -9,6 +9,7 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid var(--color-gray-3);
+  z-index: 99;
 `
 
 export const Container = styled.div`
