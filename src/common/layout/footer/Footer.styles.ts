@@ -1,9 +1,10 @@
+import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 
 export const Footer = styled.footer`
   width: 100%;
   min-height: 20rem;
-  background-color: var(--color-gray-3);
+  box-shadow: 0 0 5px 0 var(--color-gray-3) inset;
 `
 
 export const Container = styled.div`
@@ -15,20 +16,25 @@ export const Container = styled.div`
   padding-top: 2rem;
 `
 
-export const FooterTitler = styled.div`
+export const FooterTitle = styled.div`
+  margin: 3rem 0;
   color: var(--color-black);
   font-size: 2rem;
   font-weight: bold;
 `
 
 export const Body = styled.div`
-  color: var(--color-black);
-  font-size: 2rem;
-  font-weight: bold;
-`
+  width: 84rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 
-export const CardTitle = styled.div`
-  color: var(--color-black);
-  font-size: 0.5rem;
-  font-weight: bold;
+  @media ${breakPoints.tablet} {
+    width: 65rem;
+  }
+
+  @media ${breakPoints.mobile} {
+    width: 50rem;
+  }
 `

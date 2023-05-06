@@ -4,12 +4,11 @@ import styled from '@emotion/styled'
 export const Header = styled.header`
   width: 100%;
   height: 4.5rem;
-  background-color: var(--color-gray-3);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--color-gray-600);
+  border-bottom: 1px solid var(--color-gray-3);
 `
 
 export const Container = styled.div`
@@ -17,17 +16,15 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 103rem;
+  width: 83rem;
   font-size: 1rem;
 
   @media ${breakPoints.tablet} {
-    width: 80rem;
-    justify-content: space-around;
+    width: 55rem;
   }
 
   @media ${breakPoints.mobile} {
-    width: 50rem;
-    justify-content: space-around;
+    width: 40rem;
   }
 `
 
@@ -50,6 +47,7 @@ export const Profile = styled.div`
 export const LoginMenu = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 `
 
 export const LoginButton = styled.button`

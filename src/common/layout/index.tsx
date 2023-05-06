@@ -16,14 +16,27 @@ interface ILayoutProps {
   children: JSX.Element
 }
 
+const HIDDEN_FOOTER = [
+  '/login',
+  '/signup',
+  '/my',
+  '/my/posts',
+  '/my/series',
+  '/my/highlight',
+  '/my/paymentHistory',
+  '/my/profileSettings',
+]
+
 export default function Layout(props: ILayoutProps) {
   const router = useRouter()
+
+  const isHiddenFooter = HIDDEN_FOOTER.includes(router.asPath)
 
   return (
     <>
       <LayoutHeader />
       <Body>{props.children}</Body>
-      <LayoutFooter />
+      {!isHiddenFooter && <LayoutFooter />}
     </>
   )
 }
