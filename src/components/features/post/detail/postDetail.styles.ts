@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 export const Container = styled.section`
   width: 74rem;
   padding: 1rem;
+  position: relative;
   /* background-color: yellowgreen; */
 
   @media ${breakPoints.tablet} {
@@ -91,6 +92,12 @@ export const LikeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
+`
+
+export const SaveTextBtn = styled.button`
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: var(--color-primary);
 `
 
 export const Like = styled(ElevatedCard)`

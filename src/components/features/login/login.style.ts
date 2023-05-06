@@ -5,15 +5,14 @@ export const LoginSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  /* background-color: var(--color-gray-2); */
+  width: 100%;
+  height: 100%;
 `
 
 export const Wrapper = styled.div`
   width: 50rem;
   height: 50rem;
-  margin: 1rem auto;
+  margin-top: 8rem;
   padding: 5rem;
   background-color: var(--color-gray-3);
 `
