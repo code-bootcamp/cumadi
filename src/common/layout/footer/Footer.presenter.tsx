@@ -1,4 +1,5 @@
 import { Avatar, Card } from 'antd'
+
 import * as S from './Footer.styles'
 import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
@@ -21,7 +22,7 @@ export default function LayoutFooterUI() {
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
           {postItem.map(el => (
-            <Card
+            <S.StyledCard
               style={{ width: 400, border: 'unset' }}
               cover={<img alt="example" src={el.image} />}
               onClick={onClickMoveToPage(`/post/${el.id}`)}>
@@ -53,7 +54,7 @@ export default function LayoutFooterUI() {
                   </ReactionsContainer>
                 </InfoSectionContainer>
               </FlexColumnContainer>
-            </Card>
+            </S.StyledCard>
           ))}
         </S.Body>
       </S.Container>
