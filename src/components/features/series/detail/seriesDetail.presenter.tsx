@@ -4,6 +4,7 @@ import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
 import { Tag } from 'antd'
 import { BodyText } from '@/common/styles/globalStyles'
+import { MyTag } from '@/components/common/customComponent.styles'
 
 export default function SeriesDetailUI() {
   return (
@@ -13,7 +14,7 @@ export default function SeriesDetailUI() {
         <S.PostSubTitle>{seriesItem[0].introduction}</S.PostSubTitle>
         <S.PostTagWapper>
           <S.Category>{seriesItem[0].categories}</S.Category>
-          <Tag>주간 2위</Tag>
+          <S.TopTag>주간 2위</S.TopTag>
         </S.PostTagWapper>
         <S.Header>
           <S.AvatarWrapper>
@@ -30,8 +31,8 @@ export default function SeriesDetailUI() {
         </S.Header>
         <S.PriceWrapper>
           <S.Sell>판매가 : <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
-          <Tag>장바구니에 담기</Tag>
-          <Tag>바로 구매하기</Tag>
+          <S.PackTag>장바구니에 담기</S.PackTag>
+          <MyTag isChecked={true}>바로 구매하기</MyTag>
         </S.PriceWrapper>
         
         <div style={{ marginBottom: "30px"}}>2개의 포스트 마지막 업데이트 {seriesItem[0].createDate}</div>

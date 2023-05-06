@@ -2,6 +2,7 @@ import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
+import { Tag } from 'antd'
 
 export const Container = styled.section`
   width: 74rem;
@@ -154,3 +155,20 @@ export const PostIntro = styled.div`
   margin-bottom: 1.3rem;
 `
 
+export const PackTag = styled(Tag)`
+  padding: 0.5rem 1rem;
+  color: ${Colors.black};
+  border-radius: 1.5rem;
+  border-color: ${Colors.black};
+  background-color: ${Colors.white};
+  cursor: pointer;
+`
+
+export const TopTag = styled(Tag)`
+  padding: 0.02rem 0.5rem;
+  color: ${Colors.black};
+  border-radius: 1.5rem;
+  border-color: ${Colors.primary};
+  background-color: ${Colors.muted};
+  cursor: pointer;
+`
