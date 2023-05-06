@@ -1,10 +1,8 @@
 import { seriesItem } from '@/common/dummyData/series'
 import * as S from './seriesDetail.styles'
-import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
-import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
-import { Tag } from 'antd'
-import { BodyText } from '@/common/styles/globalStyles'
 import { MyTag } from '@/components/common/customComponent.styles'
+import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
+import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
 
 export default function SeriesDetailUI() {
   return (
@@ -61,15 +59,10 @@ export default function SeriesDetailUI() {
             
           </S.DescriptionWrapper>
         </S.PostWrapper>
-        <S.LikeWrapper>
-          <S.Like>
-            <img src="/images/heart-outlined.svg" />
-          </S.Like>
-        </S.LikeWrapper>
       </div>
       {/* 포스트 댓글 */}
-      <PostAnswerList />
-      <PostAnswerWrite />
+      <SeriesAnswerList />
+      <SeriesAnswerWrite />
     </S.Container>
   )
 }
