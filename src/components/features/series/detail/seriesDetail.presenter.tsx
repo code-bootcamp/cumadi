@@ -35,7 +35,7 @@ export default function SeriesDetailUI() {
           <MyTag isChecked={true}>바로 구매하기</MyTag>
         </S.PriceWrapper>
         
-        <div style={{ marginBottom: "30px"}}>2개의 포스트 마지막 업데이트 {seriesItem[0].createDate}</div>
+        <div style={{ marginBottom: "30px"}}>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></div>
         <S.PostWrapper>
           <S.ImageWrapper>
             <S.Image src={seriesItem[0].posts?.first.image} />
@@ -57,7 +57,8 @@ export default function SeriesDetailUI() {
             <S.PostName>{seriesItem[0].posts?.second.title}</S.PostName>
             <S.PostName2>{seriesItem[0].posts?.second.intro}</S.PostName2>
             <S.PostIntro>{seriesItem[0].posts?.second.contents}</S.PostIntro>
-            <S.PostIntro>{seriesItem[0].posts?.second.createDate}</S.PostIntro>
+            <S.Date>{seriesItem[0].posts?.second.createDate}</S.Date>
+            
           </S.DescriptionWrapper>
         </S.PostWrapper>
         <S.LikeWrapper>

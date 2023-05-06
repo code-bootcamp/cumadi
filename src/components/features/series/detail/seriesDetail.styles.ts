@@ -172,3 +172,13 @@ export const TopTag = styled(Tag)`
   background-color: ${Colors.muted};
   cursor: pointer;
 `
+
+export const Update = styled.span`
+  color: ${Colors.gray1}
+`
+
+export const Date = styled.div`
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 1.3rem;
+`
