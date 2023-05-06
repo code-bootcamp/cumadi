@@ -111,3 +111,7 @@ export const Contents = styled.div`
   font-size: 1rem;
   color: 1px solid var(--color-gray-3);
 `
+
+export const UserRate = styled.div`
+  margin: 0.5rem 0 0 0.2rem;
+`

@@ -36,3 +36,8 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   padding-left: 20px;
 `
+
+export const CommentRate = styled.span`
+  margin-bottom: 0.2rem;
+  margin-left: 0.4rem;
+`

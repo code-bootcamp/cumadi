@@ -17,7 +17,10 @@ export default function SeriesAnswerListUI() {
                 <S.Writer>개발자A</S.Writer>
                 <S.CreatedAt>2020.05.01</S.CreatedAt>
               </S.Info>
-              <Rate />
+              <S.UserRate>
+                <Rate disabled value={5} />
+              </S.UserRate>
+              
             </S.AvatarWrapper>
             <S.PostUpdateBtnWrapper>
               <button>수정</button>
