@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { InputRef } from 'antd'
+import _ from 'lodash'
 import { newPostState, tagsState } from '@/common/store'
 import NewPostUI from './newPost.presenter'
 
@@ -14,7 +15,7 @@ export default function NewPost() {
   const router = useRouter()
 
   const [tags, setTags] = useRecoilState(tagsState)
-  const [, setPost] = useRecoilState(newPostState)
+  const [post, setPost] = useRecoilState(newPostState)
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
 
@@ -23,9 +24,6 @@ export default function NewPost() {
 
   useEffect(() => {
     if (tags.filter(item => item.includes(searchString)).length === 0) setIsAddTagOptionVisible(true)
-    return () => {
-      setIsAddTagOptionVisible(false)
-    }
   }, [searchString])
 
   const handleSearchChange = (value: string) => {
@@ -43,7 +41,18 @@ export default function NewPost() {
   }
 
   const handleSubmitForm = (values: any) => {
-    const postData = { ...values, content: editorRef.current.getInstance().getHTML() }
+    let filledValuesFromPost = { ...values }
+    if (post) {
+      for (const [key, value] of Object.entries(filledValuesFromPost)) {
+        if (!value) filledValuesFromPost[key as keyof typeof post] = post[key as keyof typeof post]
+      }
+    }
+
+    const postData = {
+      ...filledValuesFromPost,
+      contentHTML: editorRef.current.getInstance().getHTML(),
+      contentMarkdown: editorRef.current.getInstance().getMarkdown(),
+    }
     setPost(postData)
 
     // TODO: Feed postData into API
@@ -53,6 +62,7 @@ export default function NewPost() {
 
   return (
     <NewPostUI
+      post={post}
       tags={tags}
       handleSearchChange={handleSearchChange}
       isAddTagOptionVisible={isAddTagOptionVisible}

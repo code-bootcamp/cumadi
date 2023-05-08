@@ -1,6 +1,7 @@
 import { Editor } from '@toast-ui/react-editor'
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax'
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight'
+import '@toast-ui/editor/dist/i18n/ko-kr'
 import Prism from 'prismjs' // prism 테마 추가
 import '@toast-ui/editor/dist/toastui-editor.css'
 import 'tui-color-picker/dist/tui-color-picker.css'
@@ -21,7 +22,14 @@ export default function MarkdownEditorUI({ editorRef, content = '', toolbarItems
       useCommandShortcut={true}
       toolbarItems={toolbarItems}
       usageStatistics={false}
+      language="ko-KR"
       plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
+      // hooks={{
+      //   addImageBlobHook: async (blob, callback) => {
+      //     const url = await SERVER UPLOAD
+      //     callback(url, '')
+      //   },
+      // }}
     />
   )
 }
