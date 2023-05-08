@@ -18,7 +18,7 @@ export default function MyProfileSettings() {
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showCheckPassword, setShowCheckPassword] = useState(false)
 
-  // ** 자기소개 편집 버튼 상태
+  // ** 편집 버튼 상태
   const [isEdit1, setIsEdit1] = useState(false)
   const [isEdit2, setIsEdit2] = useState(false)
 

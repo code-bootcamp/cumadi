@@ -79,6 +79,7 @@ export const Error = styled.div`
   font-size: 1rem;
   color: ${props => props.color};
 `
+
 export const ClickBt = styled.div`
   cursor: pointer;
   display: flex;

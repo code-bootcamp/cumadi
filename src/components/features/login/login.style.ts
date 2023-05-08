@@ -7,15 +7,14 @@ export const LoginSection = styled.section`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  /* background-color: var(--color-gray-2); */
 `
 
 export const Wrapper = styled.div`
+  /* background-color: Yellowgreen; */
   width: 50rem;
   height: 50rem;
   margin: 1rem auto;
   padding: 5rem;
-  background-color: var(--color-gray-3);
 `
 
 // ** 로그인 타이틀
@@ -36,7 +35,7 @@ export const BasicInput = styled.input`
   width: 100%;
   height: 1.4rem;
   padding: 2rem 1rem;
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--color-gray-3);
   border-radius: 1rem;
   margin: 0.4rem 0;
 `
