@@ -8,7 +8,8 @@ export const Header = styled.header`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--color-gray-600);
+  border-bottom: 1px solid var(--color-gray-3);
+  z-index: 99;
 `
 
 export const Container = styled.div`
@@ -21,12 +22,10 @@ export const Container = styled.div`
 
   @media ${breakPoints.tablet} {
     width: 55rem;
-    justify-content: space-between;
   }
 
   @media ${breakPoints.mobile} {
     width: 40rem;
-    justify-content: space-around;
   }
 `
 

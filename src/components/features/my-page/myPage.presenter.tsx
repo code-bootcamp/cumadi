@@ -17,8 +17,12 @@ export default function MyPageUI() {
         <div>내가 쓴 포스트</div>
         <RightOutlined />
       </S.Move>
+      <S.Move onClick={onClickMoveToPage('./my/series')}>
+        <div>내가 쓴 시리즈</div>
+        <RightOutlined />
+      </S.Move>
       <S.Move onClick={onClickMoveToPage('./my/paymentHistory')}>
-        <div>내가 구매한 시리즈</div>
+        <div>결제내역(구매한 시리즈)</div>
         <RightOutlined />
       </S.Move>
       <S.Move onClick={onClickMoveToPage('./my/highlight')}>

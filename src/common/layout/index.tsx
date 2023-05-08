@@ -16,7 +16,17 @@ interface ILayoutProps {
   children: JSX.Element
 }
 
-const HIDDEN_FOOTER = ['/login', '/signup']
+const HIDDEN_FOOTER = [
+  '/login',
+  '/signup',
+  '/my',
+  '/my/posts',
+  '/my/series',
+  '/my/highlight',
+  '/my/paymentHistory',
+  '/my/profileSettings',
+  '/post/stats',
+]
 
 export default function Layout(props: ILayoutProps) {
   const router = useRouter()
