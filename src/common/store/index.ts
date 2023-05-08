@@ -22,6 +22,11 @@ export const memoPostDetail = atom({
   default: [],
 })
 
+export const newPost = atom({
+  key: 'newPost',
+  default: {},
+})
+
 // export const restoreAccessTokenLoadable = selector({
 //   key: 'restoreAccessTokenLoadable',
 //   get: async () => {

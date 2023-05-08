@@ -8,7 +8,7 @@ export const Container = styled.section`
   padding: 0 12.5rem;
 
   @media ${breakPoints.tablet} {
-    width: 44rem;
+    width: 100%;
   }
 
   @media ${breakPoints.mobile} {
@@ -32,6 +32,10 @@ export const PostForm = styled(Form)`
 `
 
 export const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   width: 100%;
-  margin-top: 4rem;
+  margin: 0 auto;
+  margin-top: 3rem;
 `
