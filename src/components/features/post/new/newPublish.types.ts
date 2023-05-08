@@ -1,6 +1,6 @@
+import { ChangeEvent, ForwardRefExoticComponent, RefAttributes, RefObject } from 'react'
 import { TextAreaProps } from 'antd/es/input'
 import { TextAreaRef } from 'antd/es/input/TextArea'
-import { ChangeEvent, ForwardRefExoticComponent, RefAttributes, RefObject } from 'react'
 
 export interface NewPublishUIProps {
   fileRef: RefObject<HTMLInputElement>

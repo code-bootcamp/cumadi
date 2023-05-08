@@ -2,9 +2,9 @@ import { ChangeEvent, useRef, useState } from 'react'
 import { Input } from 'antd'
 import NewPublishUI from './newPublish.presenter'
 import { useRecoilState } from 'recoil'
-import { newPost } from '@/common/store'
+import { newPostState } from '@/common/store'
 
-const series = [
+const dummyDataSeries = [
   { id: '', title: '시리즈 없음' },
   { id: '1', title: 'series 1' },
   { id: '2', title: 'series 2' },
@@ -12,7 +12,7 @@ const series = [
 ]
 
 export default function NewPublish() {
-  const [post] = useRecoilState(newPost)
+  const [post] = useRecoilState(newPostState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
 
@@ -52,7 +52,7 @@ export default function NewPublish() {
       handleSubmitForm={handleSubmitForm}
       handleClickUploadHandler={handleClickUploadHandler}
       handleChangeFile={handleChangeFile}
-      series={series}
+      series={dummyDataSeries}
     />
   )
 }

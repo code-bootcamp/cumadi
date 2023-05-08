@@ -1,8 +1,8 @@
 import { Divider, Form, Input, Select } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 import * as S from './newPost.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { NewPostUIProps } from './newPost.types'
-import { PlusOutlined } from '@ant-design/icons'
 
 export default function NewPostUI(props: NewPostUIProps) {
   return (
@@ -30,14 +30,14 @@ export default function NewPostUI(props: NewPostUIProps) {
                     <Divider style={{ margin: '0.5rem 0' }} />
                     <div style={{ padding: '0 0.5rem 0.25rem' }}>
                       <MyButton type="text" icon={<PlusOutlined />} onClick={props.handleClickAddTag}>
-                        {props.searchString} 태그 추가하기
+                        #{props.searchString} 추가하기
                       </MyButton>
                     </div>
                   </>
                 ) : null}
               </>
             )}
-            options={props.tags.map(tag => ({ label: tag, value: tag }))}
+            options={props.tags.map(tag => ({ label: `#${tag}`, value: tag }))}
           />
         </Form.Item>
 

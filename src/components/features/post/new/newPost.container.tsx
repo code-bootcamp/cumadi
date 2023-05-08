@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
-import NewPostUI from './newPost.presenter'
-import { InputRef } from 'antd'
-import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
-import { newPost } from '@/common/store'
+import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
+import { InputRef } from 'antd'
+import { newPostState, tagsState } from '@/common/store'
+import NewPostUI from './newPost.presenter'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
@@ -13,10 +13,11 @@ const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEd
 export default function NewPost() {
   const router = useRouter()
 
-  const [, setPost] = useRecoilState(newPost)
-  const [tags, setTags] = useState(['jack', 'lucy'])
+  const [tags, setTags] = useRecoilState(tagsState)
+  const [, setPost] = useRecoilState(newPostState)
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
+
   const inputRef = useRef<InputRef>(null)
   const editorRef = useRef<any>(null)
 
@@ -35,7 +36,6 @@ export default function NewPost() {
     e.preventDefault()
     setTags([...tags, searchString])
     setSearchString('')
-    console.log(tags, searchString)
 
     setTimeout(() => {
       inputRef.current?.focus()
