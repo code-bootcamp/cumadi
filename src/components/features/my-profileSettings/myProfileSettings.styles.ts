@@ -55,7 +55,7 @@ export const ProfileSettingBody = styled.div`
 
 // **** 오른쪽 비밀번호 수정
 export const InputWrapper = styled.div`
-  width: 23rem;
+  width: 26rem;
 `
 
 export const BasicInput = styled.input`

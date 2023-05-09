@@ -20,23 +20,10 @@ export default function MyProfileSettingsUI(props: any) {
         </S.AvatarWrapper>
         <S.InputWrapper>
           <S.BasicInput onChange={props.onChangePresentPassword} type="password" placeholder="현재 비밀번호를 입력해 주세요." />
-          {props.showPresentPassword ? (
-            <S.ClickBt onClick={props.onClickShowPresentPassword}></S.ClickBt>
-          ) : (
-            <S.ClickBt onClick={props.onClickShowPresentPassword}></S.ClickBt>
-          )}
           <S.BasicInput onChange={props.onChangeNewPassword} type="password" placeholder="새 비밀번호를 입력해주세요." />
-          {props.showNewPassword ? (
-            <S.ClickBt onClick={props.onClickShowNewPassword}></S.ClickBt>
-          ) : (
-            <S.ClickBt onClick={props.onClickShowNewPassword}></S.ClickBt>
-          )}
+          <S.Error color="red">{props.newPasswordError}</S.Error>
           <S.BasicInput onChange={props.onChangePasswordCheck} type="password" placeholder="새 비밀번호를 확인해주세요." />
-          {props.newPassword !== props.passwordCheck ? (
-            <S.Error color="red">비밀번호가 일치하지 않습니다.</S.Error>
-          ) : (
-            <S.Error color="#086021e0">비밀번호가 일치합니다.</S.Error>
-          )}
+          <S.Error color="red">{props.checkPasswordError}</S.Error>
           <S.SaveButton type="primary">저장하기</S.SaveButton>
         </S.InputWrapper>
       </S.ProfileSettingBody>
