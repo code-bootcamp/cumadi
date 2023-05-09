@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostDetailUI from './postDetail.presenter'
 import { useRecoilState } from 'recoil'
 import { memoPostDetail } from '@/common/store'
