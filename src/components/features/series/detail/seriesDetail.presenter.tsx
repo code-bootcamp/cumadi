@@ -39,7 +39,7 @@ export default function SeriesDetailUI() {
           </S.ButtonWrapper>
         </S.PriceWrapper>
         
-        <div style={{ marginBottom: "30px"}}>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></div>
+        <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
         <S.PostWrapper>
           <S.ImageWrapper>
             <S.Image src={seriesItem[0].posts?.first.image} />

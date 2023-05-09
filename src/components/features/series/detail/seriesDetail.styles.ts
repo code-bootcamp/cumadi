@@ -187,3 +187,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
 `
+
+export const PostCount = styled.div`
+  margin-top: 2.5rem;
+`
