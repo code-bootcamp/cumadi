@@ -32,14 +32,17 @@ export default function NewSeries() {
   }
 
   const handleSubmitForm = (values: any) => {
-    console.log(values)
+    console.log(values);
   }
 
   return (
     <NewSeriesUI
       handleSubmitForm={handleSubmitForm}
+      handleChangeFile={handleChangeFile}
       handleClickUploadHandler={handleClickUploadHandler}
       posts={dummyDataPosts}
+      thumbnailUrl={thumbnailUrl}
+      fileRef={fileRef}
     />
   )
 }
