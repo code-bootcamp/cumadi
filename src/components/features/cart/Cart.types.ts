@@ -1,4 +1,4 @@
-export interface ICartProps {
+export interface ICartUIProps {
   postItem: {
     id: string;
     name: string;
@@ -8,13 +8,21 @@ export interface ICartProps {
     price: number;
     createDate: string;
   }[];
-}
-
-export interface ICartUIProps {
+  productList: {
+    id: string;
+    name: string;
+    title: string;
+    contents: string;
+    image: string;
+    price: number;
+    createDate: string;
+  }[];
   checkList: any[];
   onClickCheckAll: () => void;
   onClickCheckList: (list: IList) => void;
   totalPrice: number;
+  onClickRemoveList: (id: string) => void;
+  onClickPayment: () => void;
 }
 
 export interface IList {

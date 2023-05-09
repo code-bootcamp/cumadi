@@ -34,12 +34,22 @@ export const AllCheckTitle = styled.span`
   font-weight: 500;
 `;
 
+// 나중에 적용!!!
+export const CheckListWrapper = styled.div`
+  /* height: 52rem; */
+`;
+
 export const CardWrapper = styled.div`
   display: inline-flex;
   gap: 1rem;
   width: 100%;
   margin: 0.5rem 0;
   align-items: center;
+`;
+
+export const BookImage = styled.img`
+  width: 1rem;
+  margin-right: 0.5rem;
 `;
 
 export const TotalPriceWrapper = styled.div`
