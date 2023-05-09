@@ -59,8 +59,12 @@ export const InputWrapper = styled.div`
 `
 
 export const BasicInput = styled.input`
-  margin-bottom: 0.5rem;
-  border: 1px solid var(--color-gray-2);
+  width: 100%;
+  height: 1.4rem;
+  padding: 1rem 1rem;
+  border: 1px solid var(--color-gray-3);
+  border-radius: 0.5rem;
+  margin: 0.4rem 0;
 `
 
 export const ErrorMessage = styled.div`
