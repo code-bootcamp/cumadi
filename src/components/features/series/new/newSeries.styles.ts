@@ -1,6 +1,6 @@
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
-import { Form } from 'antd'
+import { Form, Switch } from 'antd'
 
 export const Container = styled.section`
   width: 100%;
@@ -55,4 +55,13 @@ export const ThumbnailUploadHandler = styled.div<{ backgroundUrl?: string }>`
   background-image: url(${props => props.backgroundUrl});
   background-size: 100%;
   background-position: center;
+`
+
+export const PriceToggle = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const PriceSwitch = styled(Switch)`
+  margin: 0 10px 0 10px;
 `

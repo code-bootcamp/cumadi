@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import NewSeriesUI from './newSeries.presenter'
+import { useRouter } from 'next/router'
 
 const dummyDataPosts = [
     { id: '1', title: '포스트1' },
@@ -9,7 +10,8 @@ const dummyDataPosts = [
 
 export default function NewSeries() {
   const fileRef = useRef<HTMLInputElement>(null)
-  const [thumbnailUrl, setThumbnailUrl] = useState<string>() 
+  const [thumbnailUrl, setThumbnailUrl] = useState<string>()
+  const router = useRouter();
   
   const handleClickUploadHandler = () => {
     fileRef.current?.click()
@@ -33,6 +35,8 @@ export default function NewSeries() {
 
   const handleSubmitForm = (values: any) => {
     console.log(values);
+    alert("시리즈 작성이 완료되었습니다.")
+    router.push("/");
   }
 
   return (
