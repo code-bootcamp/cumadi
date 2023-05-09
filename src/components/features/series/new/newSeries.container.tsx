@@ -24,17 +24,14 @@ export default function NewSeries() {
   const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
 
-    if (!file) return
-
-    // TODO: try-catch with upload to Server
-
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = event => {
-      if (typeof event.target?.result === 'string') {
-        setThumbnailUrl(event.target?.result)
+    if (!file) return;
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = event => {
+        if (typeof event.target?.result === 'string') {
+          setThumbnailUrl(event.target?.result)
+        }
       }
-    }
   }
 
   const handleSubmitForm = (values: any) => {
