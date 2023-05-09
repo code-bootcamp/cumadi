@@ -1,6 +1,7 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import NewSeriesUI from './newSeries.presenter'
 import { useRouter } from 'next/router'
+import { Input } from 'antd'
 
 const dummyDataPosts = [
     { id: '1', title: '포스트1' },
@@ -12,7 +13,10 @@ export default function NewSeries() {
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const router = useRouter();
+  const [input, setInput] = useState(false);
   
+  const { TextArea } = Input;
+
   const handleClickUploadHandler = () => {
     fileRef.current?.click()
   }
@@ -47,6 +51,9 @@ export default function NewSeries() {
       posts={dummyDataPosts}
       thumbnailUrl={thumbnailUrl}
       fileRef={fileRef}
+      setInput={setInput}
+      input={input}
+      TextArea={TextArea}
     />
   )
 }

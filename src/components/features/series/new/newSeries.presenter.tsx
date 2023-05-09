@@ -1,12 +1,8 @@
-import { Form, Input, Select, Switch } from 'antd'
+import { Form, Input, Select } from 'antd'
 import * as S from './newSeries.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
-import TextArea from 'antd/es/input/TextArea';
-import { useState } from 'react';
 
 export default function NewSeriesUI(props : any) {
-  const [input, setInput] = useState(true);
-  console.log(input);
   return (
     <S.Container>
       <S.TitleWrapper>
@@ -35,7 +31,7 @@ export default function NewSeriesUI(props : any) {
         </Form.Item>
         <S.Name>소개</S.Name>
         <Form.Item name="intro" rules={[{ required: true, message: '시리즈 소개를 작성해주세요.' }]}>
-          <TextArea
+          <props.TextArea
             style={{ width: "100%", minHeight: "6rem" }}
             placeholder='좋은 소개글은 사람들의 이목을 끌어모아요!'
           />
@@ -63,12 +59,12 @@ export default function NewSeriesUI(props : any) {
         <S.PriceToggle>
           <S.Name>포스트 가격</S.Name>
           <S.PriceSwitch
-            checked={input}
+            checked={props.input}
             onChange={() => {
-              setInput(!input);
+              props.setInput(!props.input);
             }}
           />
-          {input ? <div>유료로 출간하기 (3,000원)</div> : <div>무료로 출간하기</div>}
+          {props.input ? <div>유료로 출간하기 (3,000원)</div> : <div>무료로 출간하기</div>}
         </S.PriceToggle>
         <Form.Item>
           <S.ButtonWrapper>
