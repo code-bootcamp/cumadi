@@ -18,7 +18,7 @@ export default function SignUpUI(props: ISignUpProps) {
           <S.ErrorMessage>{props.emailError}</S.ErrorMessage>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.BasicInput onChange={props.onChangeName} type="text" placeholder="이름을 입력해주세요." />
+          <S.BasicInput onChange={props.onChangeName} type="text" placeholder="닉네임을 입력해주세요." />
           <S.ErrorMessage>{props.nameError}</S.ErrorMessage>
         </S.InputWrapper>
         <S.InputWrapper>

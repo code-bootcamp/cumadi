@@ -26,14 +26,15 @@ export default function Login() {
   // **** 값이 있다면, 유효성 검사 메시지 지우기
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
-    if (!/^\w+@\w+\.[a-zA-Z]{2,3}$/.test(event.target.value)) setEmailError('이메일을 올바르게 입력해 주세요.')
+    const regex = /^\w+@\w+\.[a-zA-Z]{2,3}$/
+    if (event.target.value && !regex.test(event.target.value)) setEmailError('올바른 이메일 형식이 아닙니다.')
     else setEmailError('')
   }
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)
     const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/
-    if (!regex.test(event.target.value))
+    if (event.target.value && !regex.test(event.target.value))
       setPasswordError('영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.')
     else setPasswordError('')
   }
