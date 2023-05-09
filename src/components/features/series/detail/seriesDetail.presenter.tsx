@@ -1,6 +1,6 @@
 import { seriesItem } from '@/common/dummyData/series'
 import * as S from './seriesDetail.styles'
-import { MyTag } from '@/components/common/customComponent.styles'
+import { MyButton } from '@/components/common/customComponent.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
 
@@ -29,8 +29,14 @@ export default function SeriesDetailUI() {
         </S.Header>
         <S.PriceWrapper>
           <S.Sell>판매가 : <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
-          <S.PackTag>장바구니에 담기</S.PackTag>
-          <MyTag isChecked={true}>바로 구매하기</MyTag>
+          <S.ButtonWrapper>
+            <MyButton>
+              장바구니에 담기
+            </MyButton>
+            <MyButton type="primary" htmlType="submit">
+              바로 구매하기
+            </MyButton>
+          </S.ButtonWrapper>
         </S.PriceWrapper>
         
         <div style={{ marginBottom: "30px"}}>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></div>

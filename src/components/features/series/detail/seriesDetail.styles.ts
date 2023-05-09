@@ -182,3 +182,8 @@ export const Date = styled.div`
   color: gray;
   margin-bottom: 1.3rem;
 `
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`
