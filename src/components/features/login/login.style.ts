@@ -68,6 +68,8 @@ export const LoginBtn = styled.button`
 `
 
 export const KakoLoginBtn = styled.button`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 2.5rem;
   margin: 0.4rem 0;
@@ -76,6 +78,29 @@ export const KakoLoginBtn = styled.button`
   color: var(--color-black);
   font-weight: bold;
   background-color: #fee500;
+`
+
+export const googleBtn = styled.button`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.5rem;
+  margin: 0.4rem 0;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-gray-3);
+  border-radius: 1rem;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+`
+export const logo = styled.img`
+  width: 2rem;
+  height: 2rem;
+`
+
+export const temp = styled.div`
+  width: 2rem;
+  height: 2rem;
 `
 
 export const SignupWrapper = styled.span`
