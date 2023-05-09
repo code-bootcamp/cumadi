@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Button } from 'antd'
-import Input from 'antd/es/input/Input'
+// import Input from 'antd/es/input/Input'
 
 export const ProfileSettingTitle = styled.h1`
   font-size: 2rem;
@@ -58,7 +58,7 @@ export const InputWrapper = styled.div`
   width: 23rem;
 `
 
-export const BasicInput = styled(Input)`
+export const BasicInput = styled.input`
   margin-bottom: 0.5rem;
   border: 1px solid var(--color-gray-2);
 `
