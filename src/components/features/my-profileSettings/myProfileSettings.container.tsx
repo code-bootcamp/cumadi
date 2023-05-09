@@ -4,10 +4,11 @@ import MyProfileSettingsUI from './myProfileSettings.presenter'
 export default function MyProfileSettings() {
   // **** 작성자, 자기소개 더미 데이터
   const [writer, setWriter] = useState('작성자')
-  const [introduction, setIntroduction] = useState('개발새발 개발자')
+  const [intro, setIntro] = useState('개발새발 개발자')
 
   // **** 상태
-  const [password, setPassword] = useState('')
+  const [presentPassword, setPresentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
   const [passwordCheck, setPasswordCheck] = useState('')
 
   // ** 파일 태그
@@ -18,15 +19,16 @@ export default function MyProfileSettings() {
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showCheckPassword, setShowCheckPassword] = useState(false)
 
-  // ** 편집 버튼 상태
-  const [isEdit1, setIsEdit1] = useState(false)
-  const [isEdit2, setIsEdit2] = useState(false)
+  // ** 프로필 편집 버튼 클릭 여부
+  const [showInputWriter, setShowInputWriter] = useState(false)
+  const [showInputIntro, setShowInputIntro] = useState(false)
 
   // **** PlayGround
   // const [resetUserPassword] = useMutation(RESET_USER_PASSWORD)
 
   // **** 값이 있다면, 유효성 검사 메시지 지우기
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)
+  const onChangePresentPassword = (event: ChangeEvent<HTMLInputElement>) => setPresentPassword(event.target.value)
+  const onChangeNewPassword = (event: ChangeEvent<HTMLInputElement>) => setNewPassword(event.target.value)
   const onChangePasswordCheck = (event: ChangeEvent<HTMLInputElement>) => setPasswordCheck(event.target.value)
   const onClickShowPresentPassword = () => setShowPresentPassword(prev => !prev)
   const onClickShowNewPassword = () => setShowNewPassword(prev => !prev)
@@ -61,18 +63,18 @@ export default function MyProfileSettings() {
     const file = event.target.files?.[0]
   }
 
-  // **** 편집버튼 활성화
-  const onClickEdit1 = () => {
-    setIsEdit1(true)
+  // **** 프로필 편집버튼 활성화
+  const onClickInputWriter = () => {
+    setShowInputWriter(true)
   }
 
-  const onClickEdit2 = () => {
-    setIsEdit2(true)
+  const onClickInputIntro = () => {
+    setShowInputIntro(true)
   }
 
   return (
     <MyProfileSettingsUI
-      password={password}
+      newPassword={newPassword}
       passwordCheck={passwordCheck}
       showPresentPassword={showPresentPassword}
       showNewPassword={showNewPassword}
@@ -82,16 +84,17 @@ export default function MyProfileSettings() {
       onClickShowNewPassword={onClickShowNewPassword}
       onClickShowCheckPassword={onClickShowCheckPassword}
       onClickImage={onClickImage}
-      onClickEdit1={onClickEdit1}
-      onClickEdit2={onClickEdit2}
-      onChangePassword={onChangePassword}
+      onClickInputWriter={onClickInputWriter}
+      onClickInputIntro={onClickInputIntro}
+      onChangePresentPassword={onChangePresentPassword}
+      onChangeNewPassword={onChangeNewPassword}
       onChangePasswordCheck={onChangePasswordCheck}
       onChangeImageFile={onChangeImageFile}
       fileRef={fileRef}
       writer={writer}
-      introduction={introduction}
-      isEdit1={isEdit1}
-      isEdit2={isEdit2}
+      intro={intro}
+      showInputWriter={showInputWriter}
+      showInputIntro={showInputIntro}
     />
   )
 }

@@ -26,15 +26,15 @@ export default function SignUp() {
   // **** 값이 있다면, 유효성 검사 메시지 지우기
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
-    if (event.target.value && !/^\w+@\w+\.[a-zA-Z]{2,10}$/.test(event.target.value))
-      setEmailError('올바른 이메일 형식이 아닙니다.')
+    const regex = /^\w+@\w+\.[a-zA-Z]{2,10}$/
+    if (event.target.value && !regex.test(event.target.value)) setEmailError('올바른 이메일 형식이 아닙니다.')
     else setEmailError('')
   }
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
-    if (event.target.value && !/^[ㄱ-ㅎ가-힣A-Za-z\d]{2,10}$/.test(event.target.value))
-      setNameError('닉네임은 비어있을 수 없어요!(2~10글자)')
+    const regex = /^[ㄱ-ㅎ가-힣A-Za-z\d]{2,10}$/
+    if (event.target.value && !regex.test(event.target.value)) setNameError('닉네임은 비어있을 수 없어요!(2~10글자)')
     else setNameError('')
   }
 
