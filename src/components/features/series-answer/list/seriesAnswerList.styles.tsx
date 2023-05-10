@@ -15,7 +15,7 @@ export const Container = styled.section`
   }
 `
 
-// **** 덧글 리스트 상단
+// 덧글 리스트 상단
 export const CommentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@ export const CommentCount = styled.div`
   color: var(--color-gray-2);
 `
 
-// **** 덧글 리스트 컨테이너
+// 덧글 리스트 컨테이너
 export const CommentListWrapper = styled.div`
   display: flex;
   flex-direction: column;

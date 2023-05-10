@@ -1,12 +1,12 @@
 import { seriesItem } from '@/common/dummyData/series'
 import * as S from './seriesDetail.styles'
-import { MyButton } from '@/components/common/customComponent.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
+import BasicButton from '@/components/common/buttons/basic'
+import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
+import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
 
-export default function SeriesDetailUI(props) {
-  console.log(seriesItem[0])
-  console.log(seriesItem[1])
+export default function SeriesDetailUI() {
   return (
     <S.Container>
       <div>
@@ -25,23 +25,21 @@ export default function SeriesDetailUI(props) {
             </S.Info>
           </S.AvatarWrapper>
           <S.PostUpdateBtnWrapper>
-            <button>수정</button>
-            <button>삭제</button>
+            <S.SeriesButton>수정</S.SeriesButton>
+            <S.SeriesButton>삭제</S.SeriesButton>
           </S.PostUpdateBtnWrapper>
         </S.Header>
         <S.PriceWrapper>
           <S.Sell>판매가 : <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
           <S.ButtonWrapper>
-            <MyButton>
-              장바구니에 담기
-            </MyButton>
-            <MyButton type="primary" htmlType="submit">
-              바로 구매하기
-            </MyButton>
+            <BasicButton movePage={'/login'} name={'장바구니에 담기'} />
+            <BasicButton movePage={'/login'} name={'바로 구매하기'} type="primary" />
           </S.ButtonWrapper>
         </S.PriceWrapper>
-        
-        <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
+        <S.PostsSub>
+          <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
+          <S.NewPostsButton>새포스트</S.NewPostsButton>
+        </S.PostsSub>
         <S.PostWrapper>
           <S.ImageWrapper>
             <S.Image src={seriesItem[0].posts?.first.image} />
@@ -51,7 +49,19 @@ export default function SeriesDetailUI(props) {
             <S.PostName>{seriesItem[0].posts?.first.title}</S.PostName>
             <S.PostName2>{seriesItem[0].posts?.first.intro}</S.PostName2>
             <S.PostIntro>{seriesItem[0].posts?.first.contents}</S.PostIntro>
-            <S.PostIntro>{seriesItem[0].posts?.first.createDate}</S.PostIntro>
+            <S.PostsSub>
+              <S.PostIntro>{seriesItem[0].posts?.first.createDate}</S.PostIntro>
+              <ReactionsContainer>
+                <ReactionContainer>
+                  <HeartOutlined />
+                  <span>14</span>
+                </ReactionContainer>
+                <ReactionContainer>
+                  <CommentOutlined />
+                  <span>10</span>
+                </ReactionContainer>
+              </ReactionsContainer>
+            </S.PostsSub>
           </S.DescriptionWrapper>
         </S.PostWrapper>
         <S.PostWrapper>
@@ -63,7 +73,19 @@ export default function SeriesDetailUI(props) {
             <S.PostName>{seriesItem[0].posts?.second.title}</S.PostName>
             <S.PostName2>{seriesItem[0].posts?.second.intro}</S.PostName2>
             <S.PostIntro>{seriesItem[0].posts?.second.contents}</S.PostIntro>
-            <S.Date>{seriesItem[0].posts?.second.createDate}</S.Date>
+            <S.PostsSub>
+              <S.PostIntro>{seriesItem[0].posts?.second.createDate}</S.PostIntro>
+              <ReactionsContainer>
+                <ReactionContainer>
+                  <HeartOutlined />
+                  <span>3</span>
+                </ReactionContainer>
+                <ReactionContainer>
+                  <CommentOutlined />
+                  <span>1</span>
+                </ReactionContainer>
+              </ReactionsContainer>
+            </S.PostsSub>
             
           </S.DescriptionWrapper>
         </S.PostWrapper>

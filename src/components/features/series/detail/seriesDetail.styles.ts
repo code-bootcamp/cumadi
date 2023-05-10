@@ -42,7 +42,7 @@ export const PostTag = styled.span`
   margin-right: 1rem;
 `
 
-// **** 게시판 헤더
+// 게시판 헤더
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
@@ -51,7 +51,6 @@ export const Header = styled.div`
   padding: 1rem 0;
 `
 
-// ** 게시판 헤더 - 프로필이미지, 이름, 생성일
 export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -111,7 +110,8 @@ export const Price = styled.span`
 
 export const PostWrapper = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-top: 0.6rem;
+  width: 100%;
 `
 
 export const ImageWrapper = styled.div`
@@ -121,13 +121,19 @@ export const ImageWrapper = styled.div`
 export const Image = styled.img`
   width: 20rem;
   height: 15rem;
-  margin-bottom: 20px;
-  border-radius: 20px 0 0 20px;
+  margin-top: 1rem;
+  border-radius: 1rem 0 0 1rem;
 `
 
 export const DescriptionWrapper = styled.div`
-  padding-left: 25px;
-  padding-top: 30px;
+  padding: 1.8rem 0 0 1.5rem;
+  width: 100%;
+`
+
+export const PostsSub = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 
 export const PostCategory = styled.div`
@@ -150,7 +156,7 @@ export const PostName2 = styled.div`
 `
 
 export const PostIntro = styled.div`
-  font-size: 12px;
+  font-size: 0.8rem;
   color: gray;
   margin-bottom: 1.3rem;
 `
@@ -190,4 +196,12 @@ export const ButtonWrapper = styled.div`
 
 export const PostCount = styled.div`
   margin-top: 2.5rem;
+`
+
+export const NewPostsButton = styled.div`
+  margin-top: 2.5rem;
+`
+
+export const SeriesButton = styled.button`
+  font-size: 0.8rem;
 `
