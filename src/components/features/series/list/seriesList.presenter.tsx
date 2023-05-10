@@ -3,8 +3,7 @@ import { Avatar } from 'antd'
 import * as S from './seriesList.styles'
 
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
-import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
-import { TruncatedText } from '@/common/styles/UI/util.styles'
+import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
 import { ProfileContainer } from '@/components/common/customComponent.styles'
 import { ProfileTextDataContainer } from '@/components/common/customComponent.styles'
@@ -26,7 +25,11 @@ export default function SeriesListUI() {
             <BodyTextSm color={Colors.primary} weight={600}>
               {el.categories}
             </BodyTextSm>
-            <BodyTextLg>{el.title}</BodyTextLg>
+            <InfoSectionContainer>
+              <BodyTextLg>{el.title}</BodyTextLg>
+              <S.Price>무료</S.Price>
+            </InfoSectionContainer>
+            
             <InfoSectionContainer>
               <ProfileContainer>
                 <Avatar>A</Avatar>

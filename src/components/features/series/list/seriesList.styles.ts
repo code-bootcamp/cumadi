@@ -1,3 +1,4 @@
+import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 import { Card } from 'antd'
@@ -45,4 +46,9 @@ export const StyledCard = styled(Card)`
   width: 27rem;
   border: 1px solid var(--color-gray-3);
   cursor: pointer;
+`
+
+export const Price = styled.div`
+  font-size: 0.9rem;
+  color: ${Colors.gray1};
 `
