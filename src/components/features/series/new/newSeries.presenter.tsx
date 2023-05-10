@@ -17,7 +17,7 @@ export default function NewSeriesUI(props : any) {
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">
           <div>
-            <S.ThumbnailUploadHandler onClick={props.handleClickUploadHandler} backgroundUrl={props.thumbnailUrl}>
+            <S.ThumbnailUploadHandler onClick={props.handleClickUßloadHandler} backgroundUrl={props.thumbnailUrl}>
               <MyButton>썸네일 업로드</MyButton>
             </S.ThumbnailUploadHandler>
             <input
@@ -39,21 +39,26 @@ export default function NewSeriesUI(props : any) {
         <S.Name>카테고리</S.Name>
         <Form.Item name="category" rules={[{ required: true, message: '카테고리를 정해주세요.' }]}>
           <Select
-            placeholder="카테고리"
-            style={{ width: '100%' }}
-            options={[
-              { value: '개발', label: '개발' },
-              { value: '에세이', label: '에세이' },
-              { value: '독서', label: '독서' },
-            ]}
-          />
+              placeholder="카테고리"
+              style={{ width: '100%' }}
+              options={[
+                { value: '개발', label: '개발' },
+                { value: '에세이', label: '에세이' },
+                { value: '독서', label: '독서' },
+              ]}
+            />
         </Form.Item>
         <S.Name>포스트 추가하기</S.Name>
         <Form.Item name="posts" rules={[{ required: true, message: '포스트를 추가해주세요.' }]}>
           <Select
-            placeholder="포스트 선택하기"
-            style={{ width: '100%' }}
-            options={props.posts.map((posts: { title: any; id: any }) => ({ label: posts.title, value: posts.id }))}
+            placeholder="포스트 추가하기"
+            mode="multiple"
+            showArrow
+            tagRender={props.tagRender}
+            style={{
+              width: '100%',
+            }}
+            options={props.options}
           />
         </Form.Item>
         <S.PriceToggle>

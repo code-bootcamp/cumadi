@@ -1,13 +1,36 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import NewSeriesUI from './newSeries.presenter'
 import { useRouter } from 'next/router'
-import { Input } from 'antd'
+import { Input, Tag, Select } from 'antd'
 
-const dummyDataPosts = [
-    { id: '1', title: '포스트1' },
-    { id: '2', title: '포스트2' },
-    { id: '3', title: '포스트3' },
-  ]
+const options = [
+  { value: '포스트 1' },
+  { value: '포스트 2' },
+  { value: '포스트 3' },
+  { value: '포스트 4' },
+  { value: '포스트 5' },
+  { value: '포스트 6' },
+]
+
+const tagRender = (props) => {
+  const { label, closable, onClose } = props;
+  const onPreventMouseDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+  return (
+    <Tag
+      onMouseDown={onPreventMouseDown}
+      closable={closable}
+      onClose={onClose}
+      style={{
+        marginRight: 3,
+      }}
+    >
+      {label}
+    </Tag>
+  );
+};
 
 export default function NewSeries() {
   const fileRef = useRef<HTMLInputElement>(null)
@@ -45,12 +68,13 @@ export default function NewSeries() {
       handleSubmitForm={handleSubmitForm}
       handleChangeFile={handleChangeFile}
       handleClickUploadHandler={handleClickUploadHandler}
-      posts={dummyDataPosts}
+      options={options}
       thumbnailUrl={thumbnailUrl}
       fileRef={fileRef}
       setInput={setInput}
       input={input}
       TextArea={TextArea}
+      tagRender={tagRender}
     />
   )
 }
