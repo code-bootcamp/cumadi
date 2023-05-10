@@ -18,7 +18,7 @@ export default function SeriesAnswerWriteUI() {
         <div>
           <span>0</span> / 100
         </div>
-        <BasicButton movePage={'/login'} name={'댓글 작성하기'} type="primary" />
+        <BasicButton movePage={'/login'} name={'리뷰 작성하기'} type="primary" />
       </S.ButtonWrapper>
     </S.Container>
   )

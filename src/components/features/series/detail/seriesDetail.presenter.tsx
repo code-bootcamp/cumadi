@@ -4,7 +4,9 @@ import { MyButton } from '@/components/common/customComponent.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
 
-export default function SeriesDetailUI() {
+export default function SeriesDetailUI(props) {
+  console.log(seriesItem[0])
+  console.log(seriesItem[1])
   return (
     <S.Container>
       <div>
