@@ -108,7 +108,7 @@ export const SNSWrapper = styled.div`
 `
 
 export const KakaoBtn = styled.button`
-  margin-right: 0.3rem;
+  margin-right: 0.4rem;
 `
 
 export const GoogleBtn = styled.button``
