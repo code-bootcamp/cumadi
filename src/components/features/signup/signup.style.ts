@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Input } from 'antd'
 
 // **** 로그인 메뉴
 export const SignUpSection = styled.section`
@@ -7,7 +8,6 @@ export const SignUpSection = styled.section`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  /* background-color: var(--color-gray-2); */
 `
 
 export const Wrapper = styled.div`
@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
   height: 50rem;
   margin: 1rem auto;
   padding: 5rem;
-  /* background-color: Yellowgreen; */
 `
 
 // 로그인 타이틀
@@ -35,14 +34,12 @@ export const LoginSubTitle = styled.p`
 export const InputWrapper = styled.div`
   width: 100%;
   margin-top: 1rem;
-  /* background-color: Yellowgreen; */
 `
 
-export const BasicInput = styled.input`
+export const BasicInput = styled(Input)`
   width: 100%;
   height: 1.4rem;
   padding: 2rem 1rem;
-  border: 1px solid var(--color-gray-3);
   border-radius: 1rem;
   margin: 0.4rem 0;
 `

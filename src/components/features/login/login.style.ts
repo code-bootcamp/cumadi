@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Input } from 'antd'
 
 // **** 로그인 레이아웃
 export const LoginSection = styled.section`
@@ -10,7 +11,6 @@ export const LoginSection = styled.section`
 `
 
 export const Wrapper = styled.div`
-  /* background-color: Yellowgreen; */
   width: 50rem;
   height: 50rem;
   margin: 1rem auto;
@@ -31,7 +31,7 @@ export const LoginSubTitle = styled.p`
 `
 
 // **** 로그인 입력
-export const BasicInput = styled.input`
+export const BasicInput = styled(Input)`
   width: 100%;
   height: 1.4rem;
   padding: 2rem 1rem;
@@ -57,10 +57,11 @@ export const LoginCheckText = styled.span`
 
 // **** 로그인 버튼
 export const LoginBtn = styled.button`
+  display: flex;
   width: 100%;
   height: 2.5rem;
   margin: 0.4rem 0;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   border-radius: 1rem;
   font-weight: bold;
   color: var(--color-white);
@@ -93,9 +94,14 @@ export const googleBtn = styled.button`
   color: black;
   background-color: white;
 `
-export const logo = styled.img`
+export const kakaoLogo = styled.img`
   width: 2rem;
   height: 2rem;
+`
+
+export const googleLogo = styled.img`
+  width: 1.7rem;
+  height: 1.7rem;
 `
 
 export const temp = styled.div`

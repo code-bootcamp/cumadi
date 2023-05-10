@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
-import { Button } from 'antd'
-// import Input from 'antd/es/input/Input'
+import { Button, Input } from 'antd'
 
 export const ProfileSettingTitle = styled.h1`
   font-size: 2rem;
@@ -58,11 +57,10 @@ export const InputWrapper = styled.div`
   width: 26rem;
 `
 
-export const BasicInput = styled.input`
+export const BasicInput = styled(Input)`
   width: 100%;
   height: 1.4rem;
   padding: 1rem 1rem;
-  border: 1px solid var(--color-gray-3);
   border-radius: 0.5rem;
   margin: 0.4rem 0;
 `
@@ -82,11 +80,4 @@ export const SaveButton = styled(Button)`
 export const Error = styled.div`
   font-size: 1rem;
   color: ${props => props.color};
-`
-
-export const ClickBt = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `

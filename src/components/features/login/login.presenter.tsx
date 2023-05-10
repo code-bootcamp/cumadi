@@ -22,12 +22,12 @@ export default function LoginUI(props: ILoginPresenter) {
         </S.LoginCheck>
         <S.LoginBtn onClick={props.onClickLogIn}>로그인</S.LoginBtn>
         <S.KakoLoginBtn>
-          <S.logo src="/images/kakao-logo.png" />
+          <S.kakaoLogo src="/images/kakao-logo.png" />
           카카오 계정으로 로그인
           <S.temp />
         </S.KakoLoginBtn>
         <S.googleBtn>
-          <S.logo src="/images/googlo-logo.png" />
+          <S.googleLogo src="/images/googlo-logo.png" />
           구글 계정으로 로그인
           <S.temp />
         </S.googleBtn>
