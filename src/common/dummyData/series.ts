@@ -11,6 +11,7 @@ export const seriesItem = [
     price: 3000,
     createDate: '2020.05.05',
     star: 4,
+    sell: 5,
     posts: {
       first: {
         categories: '개발',
@@ -51,6 +52,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 2,
+    sell: 4,
   },
   {
     id: 'E9vUv0E0ibc0X55kVVLr',
@@ -60,6 +62,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 5,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -69,6 +72,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -78,6 +82,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -87,6 +92,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -96,6 +102,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -105,6 +112,7 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
   {
     id: 'R9vUv0E0ibc0X55kVVLr',
@@ -114,5 +122,6 @@ export const seriesItem = [
     thumbnail: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     createDate: '2020.05.05',
     star: 1,
+    sell: 0,
   },
 ]
