@@ -6,6 +6,7 @@ export const Footer = styled.footer`
   width: 100%;
   min-height: 20rem;
   box-shadow: 0 0 5px 0 var(--color-gray-3) inset;
+  margin-bottom: 1rem;
 `
 
 export const Container = styled.div`

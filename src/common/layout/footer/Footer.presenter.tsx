@@ -21,7 +21,7 @@ export default function LayoutFooterUI() {
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {postItem.map(el => (
+          {postItem.slice(0, 6).map(el => (
             <S.StyledCard
               style={{ width: 400, border: 'unset' }}
               cover={<img alt="example" src={el.image} />}

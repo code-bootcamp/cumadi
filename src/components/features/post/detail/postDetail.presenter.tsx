@@ -2,11 +2,12 @@ import { postItem } from '@/common/dummyData/post'
 import * as S from './postDetail.styles'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
-import { MyButton, MyTag } from '@/components/common/customComponent.styles'
+import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
+import { IPostDetailUIProps } from './postDetail.types'
 
-export default function PostDetailUI(props: any) {
+export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -36,7 +37,7 @@ export default function PostDetailUI(props: any) {
             <S.PostUpdateBtnWrapper>
               <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
               <button onClick={onClickMoveToPage('/post/12312/edit')}>수정</button>
-              <button>삭제</button>
+              <button onClick={props.onClickDelete}>삭제</button>
             </S.PostUpdateBtnWrapper>
           </S.Header>
 
@@ -45,6 +46,7 @@ export default function PostDetailUI(props: any) {
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
+
           <div onMouseUp={props.onMouseUpContents}>{postItem[0].contents}</div>
 
           {/* <S.LikeWrapper>
