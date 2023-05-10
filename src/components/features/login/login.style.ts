@@ -100,3 +100,20 @@ export const SNSLogin = styled.div`
   display: flex;
   justify-content: center;
 `
+
+export const SNSWrapper = styled.div`
+  margin-top: 0.4rem;
+  display: flex;
+  justify-content: center;
+`
+
+export const KakaoBtn = styled.button`
+  margin-right: 0.3rem;
+`
+
+export const GoogleBtn = styled.button``
+
+export const Logo = styled.img`
+  width: 3rem;
+  height: 3rem;
+`

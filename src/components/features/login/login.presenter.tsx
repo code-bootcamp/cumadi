@@ -27,6 +27,14 @@ export default function LoginUI(props: ILoginPresenter) {
         </S.SignupWrapper>
         <S.Line />
         <S.SNSLogin>SNS 계정으로 로그인</S.SNSLogin>
+        <S.SNSWrapper>
+          <S.KakaoBtn>
+            <S.Logo src="/images/kakaoLogo.png" />
+          </S.KakaoBtn>
+          <S.GoogleBtn>
+            <S.Logo src="/images/googleLogo.png" />
+          </S.GoogleBtn>
+        </S.SNSWrapper>
       </S.Wrapper>
     </S.LoginSection>
   )
