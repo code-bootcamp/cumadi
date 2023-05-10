@@ -6,6 +6,7 @@ import { InputRef } from 'antd'
 import _ from 'lodash'
 import { newPostState, tagsState } from '@/common/store'
 import NewPostUI from './newPost.presenter'
+import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
@@ -21,6 +22,8 @@ export default function NewPost() {
 
   const inputRef = useRef<InputRef>(null)
   const editorRef = useRef<any>(null)
+
+  useConfirmBeforeReroute()
 
   useEffect(() => {
     if (tags.filter(item => item.includes(searchString)).length === 0) setIsAddTagOptionVisible(true)
