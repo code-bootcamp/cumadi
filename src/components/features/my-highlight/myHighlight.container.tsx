@@ -14,15 +14,12 @@ export default function MyHighlight() {
   }
 
   // **** 저장된 메모 단일 삭제
-  const onClickDeleteMemo = (event: any) => {
-    console.log(event.currentTarget.id)
-  }
+  const onClickDeleteMemo = (event: any) => {}
 
   useEffect(() => {
     const savedLocalTexts = JSON.parse(localStorage?.getItem('savedTexts') || '[]')
     setSavedTextsHighlight(savedLocalTexts)
   }, [])
-  console.log(savedTextsHighlight)
 
   return (
     <MyHighlightUI

@@ -7,16 +7,11 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 
 import path from 'path'
-// import { readFile } from 'fs/promises'
 
 export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   const filePath = path.join(process.cwd(), 'data', 'posts', `best-react-practices.md`)
-  console.log(filePath)
-  // const post = getPostData(slug)
-  // const data = readFile(filePath, 'utf-8')
-  // console.log(data) //
 
   return (
     <>
