@@ -38,7 +38,7 @@ export default function SeriesDetailUI() {
         </S.PriceWrapper>
         <S.PostsSub>
           <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
-          <S.NewPostsButton>새포스트</S.NewPostsButton>
+          <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
         <S.PostWrapper>
           <S.ImageWrapper>

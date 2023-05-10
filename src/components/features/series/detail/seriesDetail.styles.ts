@@ -2,7 +2,7 @@ import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
-import { Tag } from 'antd'
+import { Button, Tag } from 'antd'
 
 export const Container = styled.section`
   width: 74rem;
@@ -198,8 +198,12 @@ export const PostCount = styled.div`
   margin-top: 2.5rem;
 `
 
-export const NewPostsButton = styled.div`
+export const NewPostsButton = styled(Button)`
   margin-top: 2.5rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  width: 9rem;
 `
 
 export const SeriesButton = styled.button`
