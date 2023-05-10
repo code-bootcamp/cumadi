@@ -6,7 +6,6 @@ export const Container = styled.section`
   width: 74rem;
   padding: 1rem;
   position: relative;
-  /* background-color: yellowgreen; */
 
   @media ${breakPoints.tablet} {
     width: 44rem;
