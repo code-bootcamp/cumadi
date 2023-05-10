@@ -204,6 +204,7 @@ export const NewPostsButton = styled(Button)`
   font-weight: bold;
   font-size: 0.8rem;
   width: 9rem;
+  height: 1.8rem;
 `
 
 export const SeriesButton = styled.button`
