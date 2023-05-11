@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostDetailUI from './postDetail.presenter'
 import { useRecoilState } from 'recoil'
 import { memoPostDetail } from '@/common/store'
@@ -17,8 +17,6 @@ export default function PostDetail() {
       setDragText(selectedText)
     }
   }
-  // console.log('==========포스트 상세 드래그 한 것들==========')
-  // console.log(dragText)
 
   // **** localStorage.setItem로 드래그한 텍스트 저장
   const handleSaveText = () => {

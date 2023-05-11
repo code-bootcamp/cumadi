@@ -7,19 +7,18 @@ export default function MyHighlightUI(props: any) {
     <S.Container>
       <S.NoteTitle>내 노트목록</S.NoteTitle>
       <S.Body>
-        {props.savedTextsHighlight.map((el: any) => (
-          <S.Card>
-            <S.CardTop>
-              <S.CardTopHeader>
-                <S.CardTitle>포스트 제목</S.CardTitle>
-              </S.CardTopHeader>
-              <S.CardContents>{el}</S.CardContents>
-            </S.CardTop>
-            <S.CardBottom>
+        {props.savedTextsHighlight.map((element: any, index: number) => (
+          <S.List>
+            <S.ListTop>
               <MyTag isChecked={false}>카테고리</MyTag>
-              <MyButton type="primary">삭제</MyButton>
-            </S.CardBottom>
-          </S.Card>
+              <MyButton type="primary" id={`${index}`} onClick={props.onClickDeleteMemo}>
+                삭제
+              </MyButton>
+            </S.ListTop>
+            <S.ListBottom>
+              <S.ListContents>{element}</S.ListContents>
+            </S.ListBottom>
+          </S.List>
         ))}
       </S.Body>
       <PaginationHighlight />
