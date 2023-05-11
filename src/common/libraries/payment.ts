@@ -3,6 +3,8 @@ declare const window: typeof globalThis & {
 };
 
 export const purchaseProduct = (product: any, price: number, router: any) => {
+  // console.log(product); // [{…}, {…}, {…}, ...]
+
   const IMP = window.IMP;
   IMP.init("imp06164883"); // 코드캠프 계정으로 변경 예정
 

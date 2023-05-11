@@ -7,6 +7,6 @@ export interface IPurchaseUIProps {
     image: string;
     price: number;
     createDate: string;
-  };
+  }[];
   onClickPayment: () => void;
 }

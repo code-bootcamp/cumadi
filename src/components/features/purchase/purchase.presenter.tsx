@@ -27,8 +27,8 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
             <HorizontalCardSm>
               <img
                 className="horizontal-card-cover"
-                src={props.checkList.image}
-                alt={`${props.checkList.title} 이미지`}
+                src={props.checkList[0].image}
+                alt={`${props.checkList[0].title} 이미지`}
               />
               <div
                 className="horizontal-card-body"
@@ -37,23 +37,23 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
                 <FlexColumnContainer gap={"0.5rem"}>
                   <BodyTextLg>
                     <S.BookImage src="/images/book.svg" />
-                    {props.checkList.title}
+                    {props.checkList[0].title}
                   </BodyTextLg>
                   <InfoSectionContainer>
                     <BodyTextSm color={Colors.gray1}>
-                      {props.checkList.name}
+                      {props.checkList[0].name}
                     </BodyTextSm>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
                 <PriceContainer>
-                  <BodyTextLg>{`${props.checkList.price.toLocaleString()}원`}</BodyTextLg>
+                  <BodyTextLg>{`${props.checkList[0].price.toLocaleString()}원`}</BodyTextLg>
                 </PriceContainer>
               </div>
             </HorizontalCardSm>
           </S.CardWrapper>
         </S.CheckListWrapper>
         <S.TotalPriceWrapper>
-          <S.TotalPrice>{`총 ${props.checkList.price.toLocaleString()}원`}</S.TotalPrice>
+          <S.TotalPrice>{`총 ${props.checkList[0].price.toLocaleString()}원`}</S.TotalPrice>
           <MyButton type="primary" onClick={props.onClickPayment}>
             선택한 시리즈 결제하기
           </MyButton>
