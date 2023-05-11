@@ -14,7 +14,6 @@ export const Container = styled.section`
   }
 `
 
-// **** 댓글 작성
 export const AvatarWrapper = styled.div`
   display: flex;
   align-items: center;
