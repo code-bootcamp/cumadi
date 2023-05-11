@@ -16,6 +16,7 @@ export default function Cart() {
   const [productList, setProductList] = useState(postItem); // 상품리스트 배열
 
   useEffect(() => {
+    localStorage.setItem("carts", JSON.stringify(postItem)); //  localStorage에 장바구니 상품들을 저장(임시)
     let sumPrice = 0;
     for (let i = 0; i < checkList.length; i++) {
       sumPrice += checkList[i].price;
