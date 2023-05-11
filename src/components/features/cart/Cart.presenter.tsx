@@ -1,16 +1,16 @@
 // import { postItem } from "@/common/dummyData/post";
-import { ICartUIProps } from "./Cart.types";
-import * as S from "./Cart.styles";
-import { Checkbox } from "antd";
+import { ICartUIProps } from './Cart.types'
+import * as S from './Cart.styles'
+import { Checkbox } from 'antd'
 import {
   HorizontalCardSm,
   FlexColumnContainer,
   InfoSectionContainer,
   PriceContainer,
-} from "@/components/common/customComponent.styles";
-import { BodyTextLg, BodyTextSm } from "@/common/styles/globalStyles";
-import { Colors } from "@/common/styles/colors";
-import { MyButton } from "@/components/common/customComponent.styles";
+} from '@/components/common/customComponent.styles'
+import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
+import { Colors } from '@/common/styles/colors'
+import { MyButton } from '@/components/common/customComponent.styles'
 
 export default function CartUI(props: ICartUIProps) {
   return (
@@ -25,26 +25,19 @@ export default function CartUI(props: ICartUIProps) {
           <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
         </S.AllCheckWrapper>
         <S.CheckListWrapper>
-          {props.productList.map((list) => (
+          {props.productList.map(list => (
             <S.CardWrapper key={list.id} className="card-wrapper">
               <Checkbox
                 type="checkbox"
                 onChange={() => {
-                  props.onClickCheckList(list);
+                  props.onClickCheckList(list)
                 }}
                 checked={props.checkList.includes(list)}
               />
               <HorizontalCardSm>
-                <img
-                  className="horizontal-card-cover"
-                  src={list.image}
-                  alt={`${list.title} 이미지`}
-                />
-                <div
-                  className="horizontal-card-body"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <FlexColumnContainer gap={"0.5rem"}>
+                <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
+                <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
+                  <FlexColumnContainer gap={'0.5rem'}>
                     <BodyTextLg>
                       <S.BookImage src="/images/book.svg" />
                       {list.title}
@@ -60,9 +53,8 @@ export default function CartUI(props: ICartUIProps) {
               </HorizontalCardSm>
               <MyButton
                 onClick={() => {
-                  props.onClickRemoveList(list.id);
-                }}
-              >
+                  props.onClickRemoveList(list.id)
+                }}>
                 삭제
               </MyButton>
             </S.CardWrapper>
@@ -76,5 +68,5 @@ export default function CartUI(props: ICartUIProps) {
         </S.TotalPriceWrapper>
       </S.Body>
     </>
-  );
+  )
 }

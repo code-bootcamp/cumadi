@@ -1,5 +1,5 @@
-import { breakPoints } from "@/common/styles/media";
-import styled from "@emotion/styled";
+import { breakPoints } from '@/common/styles/media'
+import styled from '@emotion/styled'
 
 export const Body = styled.section`
   display: inline-flex;
@@ -22,22 +22,22 @@ export const Body = styled.section`
       padding: 0.5rem;
     }
   }
-`;
+`
 
 export const AllCheckWrapper = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
-`;
+`
 
 export const AllCheckTitle = styled.span`
   font-weight: 500;
-`;
+`
 
 // 나중에 적용!!!
 export const CheckListWrapper = styled.div`
   /* height: 52rem; */
-`;
+`
 
 export const CardWrapper = styled.div`
   display: inline-flex;
@@ -45,12 +45,12 @@ export const CardWrapper = styled.div`
   width: 100%;
   margin: 0.5rem 0;
   align-items: center;
-`;
+`
 
 export const BookImage = styled.img`
   width: 1rem;
   margin-right: 0.5rem;
-`;
+`
 
 export const TotalPriceWrapper = styled.div`
   display: inline-flex;
@@ -59,9 +59,9 @@ export const TotalPriceWrapper = styled.div`
   border-top: 1px solid var(--color-primary);
   align-items: center;
   justify-content: end;
-`;
+`
 
 export const TotalPrice = styled.div`
   font-size: 1.5rem;
   font-weight: 600;
-`;
+`
