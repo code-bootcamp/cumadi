@@ -55,9 +55,8 @@ export const ListRate = styled.div`
 export const CommentList = styled.div`
   align-items: center;
   width: 100%;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-2);
 `
+
 export const CommentListNoTitle = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
@@ -115,3 +114,9 @@ export const Contents = styled.div`
 export const UserRate = styled.div`
   margin: 0.5rem 0 0 0.2rem;
 `
+
+export const LastWrapper = styled.div`
+  margin: 1.3rem 0;
+  border-bottom: 1px solid var(--color-gray-2);
+`
+
