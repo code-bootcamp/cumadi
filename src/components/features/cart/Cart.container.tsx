@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { IList } from "./Cart.types";
 import CartUI from "./Cart.presenter";
 import { postItem } from "@/common/dummyData/post";
+import { useRouter } from "next/router";
+import { purchaseProduct } from "@/common/libraries/payment";
 
 // postItem 이 로컬스토리지에 저장된 데이터가 담긴 배열 => 최초
 // checkList 가 빈배열 => 최종 결제할 데이터가 담긴 배열 => 최종 로컬스토리지에서 다시 저장될 배열?
 // productList 는 로컬스토리지에 저장된 데이터가 담긴 배열 => 삭제, 구매 등 목록에서 삭제될때 변경되는 배열
 
 export default function Cart() {
+  const router = useRouter();
   const [totalPrice, setTotalPrice] = useState(0); // 최종 결제 금액
   const [checkList, setCheckList] = useState<Array<any>>([]); // 체크리스트 배열
   const [productList, setProductList] = useState(postItem); // 상품리스트 배열
@@ -72,6 +75,7 @@ export default function Cart() {
       alert("시리즈를 선택해주세요.");
       return;
     }
+    purchaseProduct(checkList, totalPrice, router);
   };
 
   return (

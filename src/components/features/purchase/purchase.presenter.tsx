@@ -10,10 +10,12 @@ import {
 import { BodyTextLg, BodyTextSm } from "@/common/styles/globalStyles";
 import { Colors } from "@/common/styles/colors";
 import { MyButton } from "@/components/common/customComponent.styles";
+import Script from "next/script";
 
 export default function PurchaseUI(props: IPurchaseUIProps) {
   return (
     <>
+      <Script src="https://cdn.iamport.kr/v1/iamport.js" />
       <S.Body>
         <S.AllCheckWrapper>
           <Checkbox type="checkbox" checked />

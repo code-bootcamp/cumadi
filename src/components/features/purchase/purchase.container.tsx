@@ -1,5 +1,7 @@
 import { useState } from "react";
 import PurchaseUI from "./purchase.presenter";
+import { useRouter } from "next/router";
+import { purchaseProduct } from "@/common/libraries/payment";
 
 // 시리즈 상세페이지에서 바로구매를 클릭했을 때 불러온 해당 시리즈 데이터 => 페이지단에서 fetch 여부 확인
 const seriesItem = {
@@ -14,11 +16,14 @@ const seriesItem = {
 };
 
 export default function Purchase() {
+  const router = useRouter();
   const [checkList] = useState(seriesItem); // 체크리스트 object
 
   console.log(checkList);
 
-  const onClickPayment = () => {};
+  const onClickPayment = () => {
+    purchaseProduct(checkList, checkList.price, router);
+  };
 
   return <PurchaseUI checkList={checkList} onClickPayment={onClickPayment} />;
 }
