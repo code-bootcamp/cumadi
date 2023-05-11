@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { IList } from './Cart.types'
 import CartUI from './Cart.presenter'
 import { postItem } from '@/common/dummyData/post'
+import { Modal } from 'antd'
 
 // postItem 이 로컬스토리지에 저장된 데이터가 담긴 배열 => 최초
 // checkList 가 빈배열 => 최종 결제할 데이터가 담긴 배열 => 최종 로컬스토리지에서 다시 저장될 배열?
@@ -48,22 +49,19 @@ export default function Cart() {
   const onClickRemoveList = (id: string) => {
     // console.log(id); // 아이디 로그 잘 찍힘
     // console.log(checkList.length); //  []  =>  length는 0
-
-    if (checkList.length === 1) {
-      if (checkList.some(item => item.id === id)) {
-        const result = productList.filter(list => list.id !== id)
-        // console.log(result); // 장바구니 배열이 8개에서 => 7개로 변경됨 => 나중에는 []
+    Modal.confirm({
+      content: '삭제하시겠습니까?',
+      okText: '확인',
+      cancelText: '취소',
+      onOk() {
+        const result = productList.filter(list => list.id !== id) // 클릭한 상품의 id가 아닌 상품을 다시 장바구니로 저장
         setProductList(result)
-        setCheckList([])
-        alert('선택한 상품이 삭제되었습니다.')
-      } else {
-        alert('체크한 상품에 해당하는 삭제가능합니다.')
-      }
-    } else if (checkList.length === 0) {
-      alert('삭제할 상품을 선택해주세요.')
-    } else {
-      alert('삭제할 상품을 한개만 선택해주세요.')
-    }
+        setCheckList([]) //  체크리스트 초기화 => 리렌더
+      },
+      onCancel() {
+        return
+      },
+    })
   }
   console.log(productList)
 
