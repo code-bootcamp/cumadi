@@ -40,55 +40,35 @@ export default function SeriesDetailUI() {
           <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
           <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
-        <S.PostWrapper>
-          <S.ImageWrapper>
-            <S.Image src={seriesItem[0].posts?.first.image} />
-          </S.ImageWrapper>
-          <S.DescriptionWrapper>
-            <S.PostCategory>{seriesItem[0].posts?.first.categories}</S.PostCategory>
-            <S.PostName>{seriesItem[0].posts?.first.title}</S.PostName>
-            <S.PostName2>{seriesItem[0].posts?.first.intro}</S.PostName2>
-            <S.PostIntro>{seriesItem[0].posts?.first.contents}</S.PostIntro>
-            <S.PostsSub>
-              <S.PostIntro>{seriesItem[0].posts?.first.createDate}</S.PostIntro>
-              <ReactionsContainer>
-                <ReactionContainer>
-                  <HeartOutlined />
-                  <span>14</span>
-                </ReactionContainer>
-                <ReactionContainer>
-                  <CommentOutlined />
-                  <span>10</span>
-                </ReactionContainer>
-              </ReactionsContainer>
-            </S.PostsSub>
-          </S.DescriptionWrapper>
-        </S.PostWrapper>
-        <S.PostWrapper>
-          <S.ImageWrapper>
-            <S.Image src={seriesItem[0].posts?.first.image} />
-          </S.ImageWrapper>
-          <S.DescriptionWrapper>
-            <S.PostCategory>{seriesItem[0].posts?.second.categories}</S.PostCategory>
-            <S.PostName>{seriesItem[0].posts?.second.title}</S.PostName>
-            <S.PostName2>{seriesItem[0].posts?.second.intro}</S.PostName2>
-            <S.PostIntro>{seriesItem[0].posts?.second.contents}</S.PostIntro>
-            <S.PostsSub>
-              <S.PostIntro>{seriesItem[0].posts?.second.createDate}</S.PostIntro>
-              <ReactionsContainer>
-                <ReactionContainer>
-                  <HeartOutlined />
-                  <span>3</span>
-                </ReactionContainer>
-                <ReactionContainer>
-                  <CommentOutlined />
-                  <span>1</span>
-                </ReactionContainer>
-              </ReactionsContainer>
-            </S.PostsSub>
-            
-          </S.DescriptionWrapper>
-        </S.PostWrapper>
+        
+          {seriesItem[0].posts?.map(el => 
+          <S.PostWrapper>
+            <S.ImageWrapper>
+              <S.Image src={el.image} />
+            </S.ImageWrapper>
+            <S.DescriptionWrapper>
+              <S.PostCategory>{el.categories}</S.PostCategory>
+              <S.PostName>{el.title}</S.PostName>
+              <S.PostName2>{el.intro}</S.PostName2>
+              <S.PostIntro>{el.contents}</S.PostIntro>
+              <S.PostsSub>
+                <S.PostIntro>{el.createDate}</S.PostIntro>
+                <ReactionsContainer>
+                  <ReactionContainer>
+                    <HeartOutlined />
+                    <span>{el.pickedcount}</span>
+                  </ReactionContainer>
+                  <ReactionContainer>
+                    <CommentOutlined />
+                    <span>{el.comment}</span>
+                  </ReactionContainer>
+                </ReactionsContainer>
+              </S.PostsSub>
+            </S.DescriptionWrapper>
+          </S.PostWrapper>
+        )}
+          
+        
       </div>
       {/* 포스트 댓글 */}
       <SeriesAnswerList />
