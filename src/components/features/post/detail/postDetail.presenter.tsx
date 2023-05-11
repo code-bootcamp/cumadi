@@ -1,10 +1,12 @@
-import { postItem } from '@/common/dummyData/post'
+import { Select } from 'antd'
+
 import * as S from './postDetail.styles'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
+import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
+import { postItem } from '@/common/dummyData/post'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { IPostDetailUIProps } from './postDetail.types'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
@@ -41,12 +43,27 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
             </S.PostUpdateBtnWrapper>
           </S.Header>
 
+          {/* 시리즈에 속해있는지 여부 */}
+          <S.PostInSeries>
+            <S.TitleOfPostInSeries>
+              <img src="/images/book.svg" alt="시리즈북 아이콘" />
+              개발자 A의 고군분투
+            </S.TitleOfPostInSeries>
+            <S.PostInSeriesSelect
+              defaultValue="개발자로 살아남는 방법"
+              // style={{ width: 120 }}
+              options={[
+                { value: '개발자로 살아남는 방법', label: '개발자로 살아남는 방법' },
+                { value: '금쪽이는 왜 블로그 만드냐', label: '금쪽이는 왜 블로그 만드냐' },
+              ]}
+            />
+          </S.PostInSeries>
+
           <S.ImageWrapper>
             <S.Image src={postItem[0].image} />
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
-
           <div onMouseUp={props.onMouseUpContents}>{postItem[0].contents}</div>
 
           {/* <S.LikeWrapper>

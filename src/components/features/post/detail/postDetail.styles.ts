@@ -1,6 +1,7 @@
 import { breakPoints } from '@/common/styles/media'
 import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
+import { Select } from 'antd'
 
 export const Container = styled.section`
   width: 74rem;
@@ -73,6 +74,31 @@ export const PostUpdateBtnWrapper = styled.div`
   display: flex;
   gap: 1rem;
   color: var(--color-gray-2);
+`
+
+// **** 포스트가 시리즈에 속해있는지 여부
+export const PostInSeries = styled.div`
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  border: 1px solid var(--color-gray-2);
+  border-radius: 1rem;
+  font-weight: bold;
+  background-color: var(--color-white);
+
+  div {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+`
+
+export const TitleOfPostInSeries = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`
+
+export const PostInSeriesSelect = styled(Select)`
+  width: 100%;
 `
 
 export const ImageWrapper = styled.div`
