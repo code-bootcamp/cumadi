@@ -25,8 +25,7 @@ export const PostTitle = styled.div`
 `
 
 export const PostSubTitle = styled.div`
-  font-size: 1.5rem;
-  color: var(--color-gray-2);
+  font-size: 1.2rem;
 `
 
 export const PostTagWapper = styled.div`
@@ -58,11 +57,12 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10px;
+  margin-left: 0.6rem;
 `
 export const Writer = styled.div``
 export const CreatedAt = styled.div`
   color: #bdbdbd;
+  font-size: 0.8rem;
 `
 
 export const PostUpdateBtnWrapper = styled.div`
@@ -181,7 +181,7 @@ export const Update = styled.span`
 `
 
 export const Date = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   color: gray;
   margin-bottom: 1.3rem;
 `

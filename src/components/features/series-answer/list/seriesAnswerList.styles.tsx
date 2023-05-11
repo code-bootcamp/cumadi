@@ -19,7 +19,7 @@ export const Container = styled.section`
 export const CommentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 2rem 0 0.5rem 0;
   border-bottom: 1px solid var(--color-gray-2);
 `
 

@@ -14,7 +14,7 @@ export default function SeriesDetailUI() {
     <S.Container>
       <div>
         <S.PostTitle>{seriesItem[0].title}</S.PostTitle>
-        <S.PostSubTitle>{seriesItem[0].introduction}</S.PostSubTitle>
+        <S.PostSubTitle>힘들지만 재미썽!</S.PostSubTitle>
         <S.PostTagWapper>
           <S.Category>{seriesItem[0].categories}</S.Category>
           <S.TopTag>주간 2위</S.TopTag>
@@ -24,7 +24,7 @@ export default function SeriesDetailUI() {
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
               <S.Writer>{seriesItem[0].name}</S.Writer>
-              <S.CreatedAt>{seriesItem[0].createDate}</S.CreatedAt>
+              <S.CreatedAt>{seriesItem[0].introduction}</S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
           <S.PostUpdateBtnWrapper>
@@ -33,14 +33,15 @@ export default function SeriesDetailUI() {
           </S.PostUpdateBtnWrapper>
         </S.Header>
         <S.PriceWrapper>
-          <S.Sell>판매가 : <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
+          <S.Sell>판매가 · <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
           <S.ButtonWrapper>
             <BasicButton movePage={'/login'} name={'장바구니에 담기'} />
             <BasicButton movePage={'/login'} name={'바로 구매하기'} type="primary" />
           </S.ButtonWrapper>
         </S.PriceWrapper>
         <S.PostsSub>
-          <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
+          
+          <S.PostCount>{seriesItem[0].posts?.length}개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
           <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
         {seriesItem[0].posts?.map(el => 
