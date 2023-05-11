@@ -3,10 +3,10 @@ import styled from '@emotion/styled'
 
 export const Container = styled.section`
   width: 74rem;
-  padding: 1rem;
+  margin-top: 3rem;
 
   @media ${breakPoints.tablet} {
-    width: 44rem;
+    width: 42rem;
   }
 
   @media ${breakPoints.mobile} {
@@ -16,9 +16,10 @@ export const Container = styled.section`
 
 // **** 덧글 리스트 상단
 export const CommentWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
   border-bottom: 1px solid var(--color-gray-2);
 `
 

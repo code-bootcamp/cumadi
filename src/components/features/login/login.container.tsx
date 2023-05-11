@@ -50,8 +50,6 @@ export default function Login() {
     //       },
     //     })
     //     const accessToken = result.data?.loginUser.accessToken
-    //     console.log('=========받아온 JWT토큰=========')
-    //     console.log(accessToken)
     //     // 2. accessToken을 globalState에 저장하기
     //     if (!accessToken) {
     //       Modal.error({ content: '로그인에 실패했습니다. 다시 시도해주세요.' })

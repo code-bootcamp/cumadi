@@ -13,7 +13,7 @@ export const LoginSection = styled.section`
 export const Wrapper = styled.div`
   width: 50rem;
   height: 50rem;
-  margin: 1rem auto;
+  margin-top: 8rem;
   padding: 5rem;
 `
 
