@@ -1,7 +1,5 @@
 import { Avatar } from 'antd'
-
 import * as S from './seriesList.styles'
-
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'

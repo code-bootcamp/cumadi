@@ -18,7 +18,6 @@ export const Container = styled.section`
   }
 `
 
-// 본문 내용
 export const PostTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
@@ -42,7 +41,6 @@ export const PostTag = styled.span`
   margin-right: 1rem;
 `
 
-// 게시판 헤더
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
@@ -67,7 +65,6 @@ export const CreatedAt = styled.div`
   color: #bdbdbd;
 `
 
-// ** 게시판 헤더 - 오른쪽
 export const PostUpdateBtnWrapper = styled.div`
   text-align: center;
   cursor: pointer;

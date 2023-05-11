@@ -43,8 +43,7 @@ export default function SeriesDetailUI() {
           <S.PostCount>2개의 포스트 <S.Update>마지막 업데이트 {seriesItem[0].createDate}</S.Update></S.PostCount>
           <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
-        
-          {seriesItem[0].posts?.map(el => 
+        {seriesItem[0].posts?.map(el => 
           <S.PostWrapper>
             <S.ImageWrapper>
               <S.Image src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />
@@ -70,10 +69,7 @@ export default function SeriesDetailUI() {
             </S.DescriptionWrapper>
           </S.PostWrapper>
         )}
-          
-        
       </div>
-      {/* 포스트 댓글 */}
       <SeriesAnswerList />
       <SeriesAnswerWrite />
     </S.Container>
