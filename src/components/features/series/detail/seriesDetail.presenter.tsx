@@ -5,8 +5,11 @@ import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.conta
 import BasicButton from '@/components/common/buttons/basic'
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function SeriesDetailUI() {
+  const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Container>
       <div>
@@ -44,7 +47,7 @@ export default function SeriesDetailUI() {
           {seriesItem[0].posts?.map(el => 
           <S.PostWrapper>
             <S.ImageWrapper>
-              <S.Image src={el.image} />
+              <S.Image src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />
             </S.ImageWrapper>
             <S.DescriptionWrapper>
               <S.PostCategory>{el.categories}</S.PostCategory>
