@@ -18,6 +18,7 @@ export const Container = styled.section`
 export const AvatarWrapper = styled.div`
   display: flex;
   align-items: center;
+  padding-bottom: 0.4rem;
 `
 export const Avatar = styled.img`
   width: 3rem;
