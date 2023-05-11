@@ -26,26 +26,33 @@ export default function SignUp() {
   // **** 값이 있다면, 유효성 검사 메시지 지우기
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
-    if (!/^\w+@\w+\.[a-zA-Z]{2,10}$/.test(event.target.value)) setEmailError('이메일은 필수 입력입니다.')
+    const regex = /^\w+@\w+\.[a-zA-Z]{2,10}$/
+    if (event.target.value && !regex.test(event.target.value)) setEmailError('올바른 이메일 형식이 아닙니다.')
     else setEmailError('')
   }
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
-    if (!/^[ㄱ-ㅎ가-힣]{1,10}$/.test(event.target.value)) setNameError('이름은 필수 입력입니다.(2~10글자)')
+    const regex = /^[ㄱ-ㅎ가-힣A-Za-z\d]{2,10}$/
+    if (event.target.value && !regex.test(event.target.value)) setNameError('닉네임은 비어있을 수 없어요!(2~10글자)')
     else setNameError('')
   }
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)
-    if (!/^\w[a-zA-Z0-9]{7,16}$/.test(event.target.value))
-      setPasswordError('비밀번호는 필수 입력입니다.(문자, 숫자, 최소 8글자~최대16글자)')
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/
+    if (event.target.value && !regex.test(event.target.value))
+      setPasswordError('영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.')
     else setPasswordError('')
+
+    if (checkPassword && checkPassword !== event.target.value) setCheckPasswordError('비밀번호가 일치하지 않습니다.')
+    else setCheckPasswordError('')
   }
 
   const onChangeCheckPassword = (event: ChangeEvent<HTMLInputElement>) => {
     setCheckPassword(event.target.value)
-    if (!/^\w[a-zA-Z0-9]{7,16}$/.test(event.target.value)) setCheckPasswordError('비밀번호는 필수 입력입니다.')
+
+    if (event.target.value && password !== event.target.value) setCheckPasswordError('비밀번호가 일치하지 않습니다.')
     else setCheckPasswordError('')
   }
 

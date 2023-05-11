@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
-import { Button } from 'antd'
-import Input from 'antd/es/input/Input'
+import { Button, Input } from 'antd'
 
 export const ProfileSettingTitle = styled.h1`
   font-size: 2rem;
@@ -15,10 +14,17 @@ export const AvatarWrapper = styled.div`
 export const AvatarImg = styled.img`
   width: 7rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 `
-export const EditImg = styled.img`
+
+export const EditImg1 = styled.img`
+  cursor: pointer;
+`
+
+export const EditImg2 = styled.img`
   width: 1rem;
   color: var(--color-gray-2);
+  cursor: pointer;
 `
 
 export const Writer = styled.div`
@@ -48,12 +54,15 @@ export const ProfileSettingBody = styled.div`
 
 // **** 오른쪽 비밀번호 수정
 export const InputWrapper = styled.div`
-  width: 23rem;
+  width: 26rem;
 `
 
 export const BasicInput = styled(Input)`
-  margin-bottom: 0.5rem;
-  border: 1px solid var(--color-gray-2);
+  width: 100%;
+  height: 1.4rem;
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.4rem 0;
 `
 
 export const ErrorMessage = styled.div`
@@ -71,10 +80,4 @@ export const SaveButton = styled(Button)`
 export const Error = styled.div`
   font-size: 1rem;
   color: ${props => props.color};
-`
-export const ClickBt = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `

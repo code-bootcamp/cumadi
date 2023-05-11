@@ -21,12 +21,20 @@ export default function LoginUI(props: ILoginPresenter) {
           <S.LoginCheckText>로그인 상태 유지</S.LoginCheckText>
         </S.LoginCheck>
         <S.LoginBtn onClick={props.onClickLogIn}>로그인</S.LoginBtn>
-        <S.KakoLoginBtn>카카오 계정으로 로그인</S.KakoLoginBtn>
-        <S.LoginBtn>구글 계정으로 로그인</S.LoginBtn>
         <S.SignupWrapper>
           아직 계정이 없으신가요?
           <S.SignupPageMoveSpan onClick={onClickMoveToPage(`/signup`)}>회원가입</S.SignupPageMoveSpan>
         </S.SignupWrapper>
+        <S.Line />
+        <S.SNSLogin>SNS 계정으로 로그인</S.SNSLogin>
+        <S.SNSWrapper>
+          <S.KakaoBtn>
+            <S.Logo src="/images/kakaoLogo.png" />
+          </S.KakaoBtn>
+          <S.GoogleBtn>
+            <S.Logo src="/images/googleLogo.png" />
+          </S.GoogleBtn>
+        </S.SNSWrapper>
       </S.Wrapper>
     </S.LoginSection>
   )
