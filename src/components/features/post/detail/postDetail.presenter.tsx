@@ -2,12 +2,17 @@ import { postItem } from '@/common/dummyData/post'
 import * as S from './postDetail.styles'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
-import { MyButton, MyTag } from '@/components/common/customComponent.styles'
+import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+
+import path from 'path'
+
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 
 export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
+
+  const filePath = path.join(process.cwd(), 'data', 'posts', `best-react-practices.md`)
 
   return (
     <>
@@ -39,6 +44,22 @@ export default function PostDetailUI(props: any) {
               <button>삭제</button>
             </S.PostUpdateBtnWrapper>
           </S.Header>
+
+          {/* 시리즈에 속해있는지 여부 */}
+          <S.PostInSeries>
+            <S.TitleOfPostInSeries>
+              <img src="/images/book.svg" alt="시리즈북 아이콘" />
+              개발자 A의 고군분투
+            </S.TitleOfPostInSeries>
+            <S.PostInSeriesSelect
+              defaultValue="개발자로 살아남는 방법"
+              // style={{ width: 120 }}
+              options={[
+                { value: '개발자로 살아남는 방법', label: '개발자로 살아남는 방법' },
+                { value: '금쪽이는 왜 블로그 만드냐', label: '금쪽이는 왜 블로그 만드냐' },
+              ]}
+            />
+          </S.PostInSeries>
 
           <S.ImageWrapper>
             <S.Image src={postItem[0].image} />

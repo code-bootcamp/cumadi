@@ -1,6 +1,7 @@
 import * as S from './postAnswerList.styles'
+import { IPostAnswerListUIProps } from './postAnswerList.types'
 
-export default function PostAnswerListUI() {
+export default function PostAnswerListUI(props: IPostAnswerListUIProps) {
   return (
     <S.Container>
       <S.CommentWrapper>

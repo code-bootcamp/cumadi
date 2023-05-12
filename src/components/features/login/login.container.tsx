@@ -26,13 +26,16 @@ export default function Login() {
   // **** 값이 있다면, 유효성 검사 메시지 지우기
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
-    if (!/^\w+@\w+\.[a-zA-Z]{2,3}$/.test(event.target.value)) setEmailError('이메일이 올바르지 않습니다')
+    const regex = /^\w+@\w+\.[a-zA-Z]{2,3}$/
+    if (event.target.value && !regex.test(event.target.value)) setEmailError('올바른 이메일 형식이 아닙니다.')
     else setEmailError('')
   }
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value)
-    if (!/^\w[a-zA-Z0-9]{7,16}$/.test(event.target.value)) setPasswordError('비밀번호가 올바르지 않습니다')
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/
+    if (event.target.value && !regex.test(event.target.value))
+      setPasswordError('영문+숫자+특수문자 조합 8~16자리의 비밀번호를 입력해 주세요.')
     else setPasswordError('')
   }
 
@@ -47,8 +50,6 @@ export default function Login() {
     //       },
     //     })
     //     const accessToken = result.data?.loginUser.accessToken
-    //     console.log('=========받아온 JWT토큰=========')
-    //     console.log(accessToken)
     //     // 2. accessToken을 globalState에 저장하기
     //     if (!accessToken) {
     //       Modal.error({ content: '로그인에 실패했습니다. 다시 시도해주세요.' })

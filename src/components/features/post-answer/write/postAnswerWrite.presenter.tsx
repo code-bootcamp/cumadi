@@ -1,7 +1,8 @@
-import BasicButton from '@/components/common/buttons/basic'
 import * as S from './postAnswerWrite.styles'
+import BasicButton from '@/components/common/buttons/basic'
+import { IPostAnserWriteUIProps } from './postAnswerWrite.types'
 
-export default function PostAnswerWriteUI() {
+export default function PostAnswerWriteUI(props: IPostAnserWriteUIProps) {
   return (
     <S.Container>
       <S.AvatarWrapper>
