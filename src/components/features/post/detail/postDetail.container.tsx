@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from 'react'
+import PostDetailUI from './postDetail.presenter'
 import { Modal } from 'antd'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
-import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 
-import PostDetailUI from './postDetail.presenter'
 import { memoPostDetail } from '@/common/store'
 import { DELETE_POST, FETCH_POST, FETCH_POST2, TOGGLE_POST_PICK } from './postDetail.queries'
 

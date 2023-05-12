@@ -37,7 +37,6 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.43.9",
-    "react-toc": "^3.1.0",
     "recoil": "^0.7.7",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",

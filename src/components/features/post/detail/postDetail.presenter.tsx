@@ -5,9 +5,11 @@ import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { postItem } from '@/common/dummyData/post'
+
+import { IPostDetailUIProps } from './postDetail.types'
+
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { IPostDetailUIProps } from './postDetail.types'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
