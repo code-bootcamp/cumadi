@@ -16,56 +16,62 @@ export default function CartUI(props: ICartUIProps) {
   return (
     <>
       <S.Body>
-        <S.AllCheckWrapper>
-          <Checkbox
-            type="checkbox"
-            checked={props.checkList.length === props.productList.length}
-            onChange={props.onClickCheckAll}
-          />
-          <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
-        </S.AllCheckWrapper>
-        <S.CheckListWrapper>
-          {props.productList.map(list => (
-            <S.CardWrapper key={list.id} className="card-wrapper">
+        {props.productList.length === 0 ? (
+          <S.EmptyCart>장바구니에 담긴 상품이 없습니다</S.EmptyCart>
+        ) : (
+          <>
+            <S.AllCheckWrapper>
               <Checkbox
                 type="checkbox"
-                onChange={() => {
-                  props.onClickCheckList(list)
-                }}
-                checked={props.checkList.includes(list)}
+                checked={props.checkList.length === props.productList.length}
+                onChange={props.onClickCheckAll}
               />
-              <HorizontalCardSm>
-                <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
-                <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FlexColumnContainer gap={'0.5rem'}>
-                    <BodyTextLg>
-                      <S.BookImage src="/images/book.svg" />
-                      {list.title}
-                    </BodyTextLg>
-                    <InfoSectionContainer>
-                      <BodyTextSm color={Colors.gray1}>{list.name}</BodyTextSm>
-                    </InfoSectionContainer>
-                  </FlexColumnContainer>
-                  <PriceContainer>
-                    <BodyTextLg>{`${list.price.toLocaleString()}원`}</BodyTextLg>
-                  </PriceContainer>
-                </div>
-              </HorizontalCardSm>
-              <MyButton
-                onClick={() => {
-                  props.onClickRemoveList(list.id)
-                }}>
-                삭제
+              <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
+            </S.AllCheckWrapper>
+            <S.CheckListWrapper>
+              {props.productList.map(list => (
+                <S.CardWrapper key={list.id} className="card-wrapper">
+                  <Checkbox
+                    type="checkbox"
+                    onChange={() => {
+                      props.onClickCheckList(list)
+                    }}
+                    checked={props.checkList.includes(list)}
+                  />
+                  <HorizontalCardSm>
+                    <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
+                    <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
+                      <FlexColumnContainer gap={'0.5rem'}>
+                        <BodyTextLg>
+                          <S.BookImage src="/images/book.svg" />
+                          {list.title}
+                        </BodyTextLg>
+                        <InfoSectionContainer>
+                          <BodyTextSm color={Colors.gray1}>{list.name}</BodyTextSm>
+                        </InfoSectionContainer>
+                      </FlexColumnContainer>
+                      <PriceContainer>
+                        <BodyTextLg>{`${list.price.toLocaleString()}원`}</BodyTextLg>
+                      </PriceContainer>
+                    </div>
+                  </HorizontalCardSm>
+                  <MyButton
+                    onClick={() => {
+                      props.onClickRemoveList(list.id)
+                    }}>
+                    삭제
+                  </MyButton>
+                </S.CardWrapper>
+              ))}
+            </S.CheckListWrapper>
+            <S.TotalPriceWrapper>
+              <S.TotalPrice>{`총 ${props.totalPrice.toLocaleString()}원`}</S.TotalPrice>
+              <MyButton type="primary" onClick={props.onClickPayment}>
+                선택한 시리즈 결제하기
               </MyButton>
-            </S.CardWrapper>
-          ))}
-        </S.CheckListWrapper>
-        <S.TotalPriceWrapper>
-          <S.TotalPrice>{`총 ${props.totalPrice.toLocaleString()}원`}</S.TotalPrice>
-          <MyButton type="primary" onClick={props.onClickPayment}>
-            선택한 시리즈 결제하기
-          </MyButton>
-        </S.TotalPriceWrapper>
+            </S.TotalPriceWrapper>
+          </>
+        )}
       </S.Body>
     </>
   )

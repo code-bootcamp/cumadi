@@ -24,6 +24,14 @@ export const Body = styled.section`
   }
 `
 
+export const EmptyCart = styled.div`
+  height: 52rem;
+  margin: auto;
+  color: var(--color-gray-2);
+  font-size: 1.5rem;
+  line-height: 52rem;
+`
+
 export const AllCheckWrapper = styled.div`
   display: flex;
   gap: 1rem;
