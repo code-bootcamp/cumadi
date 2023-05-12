@@ -42,7 +42,7 @@ export const Name = styled.div`
   line-height: 3rem;
 `
 
-export const Thumbnail = styled.div<{ backgroundUrl?: string }>`
+export const Thumbnail = styled.div<{ thumbnail?: string }>`
   width: 100%;
   height: 12.5rem;
   display: flex;
@@ -52,7 +52,7 @@ export const Thumbnail = styled.div<{ backgroundUrl?: string }>`
   border-radius: 0.25rem;
   cursor: pointer;
   background: #D9D9D9;
-  background-image: url(${props => props.backgroundUrl});
+  background-image: url(${props => props.thumbnail});
   background-size: 100%;
   background-position: center;
 `

@@ -17,11 +17,11 @@ export default function NewSeriesUI(props : any) {
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">
         <Form.Item name="title" rules={[{ required: true, message: '썸네일을 추가해주세요.' }]}>
-            <S.Thumbnail onClick={props.handleClickUploadThumbnail} backgroundUrl={props.thumbnailUrl}>
+            <S.Thumbnail onClick={props.handleClickUploadThumbnail} thumbnail={props.thumbnail}>
               <MyButton>썸네일 업로드</MyButton>
             </S.Thumbnail>
             <input
-              ref={props.fileRef}
+              ref={props.imgRef}
               type="file"
               style={{ display: 'none' }}
               onChange={props.handleChangeFile}

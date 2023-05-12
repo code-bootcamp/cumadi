@@ -33,26 +33,25 @@ const tagRender = (props: any) => {
 };
 
 export default function NewSeries() {
+  const imgRef = useRef<HTMLInputElement>(null)
+  const [thumbnail, setThumbnail] = useState<string>()
   const router = useRouter();
-  const imaRef = useRef<HTMLInputElement>(null)
-  const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [input, setInput] = useState(false);
   
   const { TextArea } = Input;
 
   const handleClickUploadThumbnail = () => {
-    imaRef.current?.click()
+    imgRef.current?.click()
   }
 
   const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
-
     if (!file) return;
-      const fileReader = new FileReader()
-      fileReader.readAsDataURL(file)
-      fileReader.onload = event => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = event => {
         if (typeof event.target?.result === 'string') {
-          setThumbnailUrl(event.target?.result)
+          setThumbnail(event.target?.result)
         }
       }
   }
@@ -69,8 +68,8 @@ export default function NewSeries() {
       handleChangeFile={handleChangeFile}
       handleClickUploadThumbnail={handleClickUploadThumbnail}
       options={options}
-      thumbnailUrl={thumbnailUrl}
-      imageRef={imageRef}
+      thumbnail={thumbnail}
+      imgRef={imgRef}
       setInput={setInput}
       input={input}
       TextArea={TextArea}
