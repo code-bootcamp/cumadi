@@ -5,7 +5,9 @@ import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-export default function PostDetailUI(props: IPostDetailUIProps) {
+import path from 'path'
+
+export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
