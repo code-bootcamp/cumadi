@@ -2,26 +2,45 @@ import { useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { InputRef } from 'antd'
+import { Form, InputRef } from 'antd'
 import _ from 'lodash'
-import { newPostState, tagsState } from '@/common/store'
-import NewPostUI from './newPost.presenter'
+import { postFormState, tagsState } from '@/common/store'
+import PostFormUI from './postForm.presenter'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
+import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
 })
 
-export default function NewPost() {
+interface IPostFormProps {
+  isEditMode: boolean
+}
+
+interface IPost {
+  id: string
+  name: string
+  title: string
+  contents: string
+  image: string
+  price: number
+  createDate: string
+}
+
+export default function PostForm({ isEditMode }: IPostFormProps) {
   const router = useRouter()
+  console.log(router.query.postId)
 
   const [tags, setTags] = useRecoilState(tagsState)
-  const [post, setPost] = useRecoilState(newPostState)
+  const [post, setPost] = useRecoilState(postFormState)
+  const [editingPost, setEditingPost] = useState<IPost>()
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
 
   const inputRef = useRef<InputRef>(null)
   const editorRef = useRef<any>(null)
+
+  const { postForm } = useFillPostFormsFromRouter()
 
   useConfirmBeforeReroute()
 
@@ -53,18 +72,17 @@ export default function NewPost() {
 
     const postData = {
       ...filledValuesFromPost,
-      contentHTML: editorRef.current.getInstance().getHTML(),
-      contentMarkdown: editorRef.current.getInstance().getMarkdown(),
+      contents: editorRef.current.getInstance().getMarkdown(),
     }
     setPost(postData)
 
     // TODO: Feed postData into API
-
-    router.push('new/publish')
+    router.query.postId ? router.push(`/post/${router.query.postId}/edit/publish`) : router.push('new/publish')
   }
 
   return (
-    <NewPostUI
+    <PostFormUI
+      isEditMode={isEditMode}
       post={post}
       tags={tags}
       handleSearchChange={handleSearchChange}
@@ -74,6 +92,7 @@ export default function NewPost() {
       handleSubmitForm={handleSubmitForm}
       DynamicImportEditor={DynamicImportEditor}
       editorRef={editorRef}
+      form={postForm}
     />
   )
 }

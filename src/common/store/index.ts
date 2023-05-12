@@ -24,8 +24,8 @@ export const memoPostDetail = atom({
 })
 
 // **** 출판 전 포스트 정보
-export const newPostState = atom({
-  key: 'newPostState',
+export const postFormState = atom({
+  key: 'postFormState',
   default: {},
 })
 

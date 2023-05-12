@@ -1,5 +1,5 @@
-import NewPost from '@/components/features/post/new/newPost.container'
+import PostForm from '@/components/features/post/create/postForm.container'
 
-export default function NewPostPage() {
-  return <NewPost />
+export default function PostFormPage() {
+  return <PostForm isEditMode={false} />
 }

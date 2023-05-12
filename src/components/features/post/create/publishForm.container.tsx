@@ -1,8 +1,9 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import { Input } from 'antd'
-import NewPublishUI from './newPublish.presenter'
+import PublishFormUI from './publishForm.presenter'
 import { useRecoilState } from 'recoil'
-import { newPostState } from '@/common/store'
+import { postFormState } from '@/common/store'
+import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 
 const dummyDataSeries = [
   { id: '', title: '시리즈 없음' },
@@ -11,10 +12,12 @@ const dummyDataSeries = [
   { id: '3', title: 'series 3' },
 ]
 
-export default function NewPublish() {
-  const [post] = useRecoilState(newPostState)
+export default function PublishForm() {
+  const [post] = useRecoilState(postFormState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
+
+  const { publishForm } = useFillPostFormsFromRouter()
 
   const { TextArea } = Input
 
@@ -45,14 +48,15 @@ export default function NewPublish() {
   }
 
   return (
-    <NewPublishUI
+    <PublishFormUI
       fileRef={fileRef}
-      thumbnailUrl={thumbnailUrl}
+      thumbnailUrl={post.image ? post.image : thumbnailUrl}
       TextArea={TextArea}
       handleSubmitForm={handleSubmitForm}
       handleClickUploadHandler={handleClickUploadHandler}
       handleChangeFile={handleChangeFile}
       series={dummyDataSeries}
+      form={publishForm}
     />
   )
 }

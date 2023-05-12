@@ -1,17 +1,17 @@
 import { Form, Select } from 'antd'
-import * as S from './newPost.styles'
+import * as S from './postForm.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
-import { ThumbnailUploadHandler } from './newPublish.styles'
-import { NewPublishUIProps } from './newPublish.types'
+import { ThumbnailUploadHandler } from './publishForm.styles'
+import { PublishFormUIProps } from './publishForm.types'
 
-export default function NewPublishUI(props: NewPublishUIProps) {
+export default function PublishFormUI(props: PublishFormUIProps) {
   return (
     <S.Container>
       <S.TitleWrapper>
         <S.Title>포스트 미리보기</S.Title>
       </S.TitleWrapper>
 
-      <S.PostForm onFinish={props.handleSubmitForm}>
+      <S.MyForm onFinish={props.handleSubmitForm} form={props.form}>
         <h4>썸네일</h4>
         <Form.Item name="thumbnail">
           <div>
@@ -52,7 +52,7 @@ export default function NewPublishUI(props: NewPublishUIProps) {
             </MyButton>
           </S.ButtonWrapper>
         </Form.Item>
-      </S.PostForm>
+      </S.MyForm>
     </S.Container>
   )
 }

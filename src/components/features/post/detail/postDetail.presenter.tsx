@@ -35,7 +35,7 @@ export default function PostDetailUI(props: any) {
             </S.AvatarWrapper>
             <S.PostUpdateBtnWrapper>
               <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
-              <button onClick={onClickMoveToPage('/post/12312/edit')}>수정</button>
+              <button onClick={onClickMoveToPage(`/post/${postItem[0].id}/edit`)}>수정</button>
               <button>삭제</button>
             </S.PostUpdateBtnWrapper>
           </S.Header>

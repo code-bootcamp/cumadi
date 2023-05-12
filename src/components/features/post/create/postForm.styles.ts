@@ -26,7 +26,7 @@ export const Title = styled.h2`
   margin-bottom: 2rem;
 `
 
-export const PostForm = styled(Form)`
+export const MyForm = styled(Form)`
   display: flex;
   flex-direction: column;
 `
