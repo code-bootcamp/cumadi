@@ -33,7 +33,6 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
   const [tags, setTags] = useRecoilState(tagsState)
   const [post, setPost] = useRecoilState(postFormState)
-  const [editingPost, setEditingPost] = useState<IPost>()
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
 
