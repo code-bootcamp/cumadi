@@ -12,9 +12,9 @@ const options = [
   { value: '포스트 6' },
 ]
 
-const tagRender = (props) => {
+const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
-  const onPreventMouseDown = (event) => {
+  const onPreventMouseDown = (event: any) => {
     event.preventDefault();
     event.stopPropagation();
   };
@@ -33,15 +33,15 @@ const tagRender = (props) => {
 };
 
 export default function NewSeries() {
-  const fileRef = useRef<HTMLInputElement>(null)
-  const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const router = useRouter();
+  const imaRef = useRef<HTMLInputElement>(null)
+  const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [input, setInput] = useState(false);
   
   const { TextArea } = Input;
 
-  const handleClickUploadHandler = () => {
-    fileRef.current?.click()
+  const handleClickUploadThumbnail = () => {
+    imaRef.current?.click()
   }
 
   const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -67,10 +67,10 @@ export default function NewSeries() {
     <NewSeriesUI
       handleSubmitForm={handleSubmitForm}
       handleChangeFile={handleChangeFile}
-      handleClickUploadHandler={handleClickUploadHandler}
+      handleClickUploadThumbnail={handleClickUploadThumbnail}
       options={options}
       thumbnailUrl={thumbnailUrl}
-      fileRef={fileRef}
+      imageRef={imageRef}
       setInput={setInput}
       input={input}
       TextArea={TextArea}

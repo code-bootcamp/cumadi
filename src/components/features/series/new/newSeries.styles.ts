@@ -31,7 +31,7 @@ export const PostForm = styled(Form)`
 
 export const ButtonWrapper = styled.section`
   width: 100%;
-  margin-top: 4rem;
+  margin-top: 3rem;
 `
 
 export const Name = styled.div`
@@ -42,7 +42,7 @@ export const Name = styled.div`
   line-height: 3rem;
 `
 
-export const ThumbnailUploadHandler = styled.div<{ backgroundUrl?: string }>`
+export const Thumbnail = styled.div<{ backgroundUrl?: string }>`
   width: 100%;
   height: 12.5rem;
   display: flex;

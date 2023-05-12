@@ -16,10 +16,10 @@ export default function NewSeriesUI(props : any) {
         </Form.Item>
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">
-          <div>
-            <S.ThumbnailUploadHandler onClick={props.handleClickUßloadHandler} backgroundUrl={props.thumbnailUrl}>
+        <Form.Item name="title" rules={[{ required: true, message: '썸네일을 추가해주세요.' }]}>
+            <S.Thumbnail onClick={props.handleClickUploadThumbnail} backgroundUrl={props.thumbnailUrl}>
               <MyButton>썸네일 업로드</MyButton>
-            </S.ThumbnailUploadHandler>
+            </S.Thumbnail>
             <input
               ref={props.fileRef}
               type="file"
@@ -27,7 +27,7 @@ export default function NewSeriesUI(props : any) {
               onChange={props.handleChangeFile}
               accept="image/*"
             />
-          </div>
+        </Form.Item>
         </Form.Item>
         <S.Name>소개</S.Name>
         <Form.Item name="intro" rules={[{ required: true, message: '시리즈 소개를 작성해주세요.' }]}>
