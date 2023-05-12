@@ -11,12 +11,14 @@ import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { seriesItem } from '@/common/dummyData/series'
 import { Rate } from 'antd';
+import ViewTypesMenu from '../../viewtypes/viewTypes'
 
 export default function SeriesListUI() {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
+      <ViewTypesMenu post={false} />
       {seriesItem.map(el => (
         <S.StyledCard cover={<img alt="example" src={el.thumbnail} onClick={onClickMoveToPage(`/series/${el.id}`)} />}>
           <FlexColumnContainer gap={'0.5rem'}>

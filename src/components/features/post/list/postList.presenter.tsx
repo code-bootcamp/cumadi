@@ -12,12 +12,14 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import ViewTypesMenu from '../../viewtypes/viewTypes'
 
 export default function PostListUI() {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
+      <ViewTypesMenu post={true} />
       {postItem.map(el => (
         <S.StyledCard cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />}>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.id}`)}>
