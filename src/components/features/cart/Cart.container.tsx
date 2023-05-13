@@ -46,6 +46,22 @@ export default function Cart() {
   console.log(checkList) // ***** 체크리스트 배열이 정확하게 담김을 확인 완료!! (개별선택시에도, 올체크선택시에도)
   console.log(totalPrice)
 
+  const onClickRemoveChecked = () => {
+    Modal.confirm({
+      content: '선택한 상품을 삭제하시겠습니까?',
+      okText: '확인',
+      cancelText: '취소',
+      onOk() {
+        const result = productList.filter(cartList => {
+          return !checkList.some(checkeditem => cartList.id === checkeditem.id)
+        })
+        setProductList(result) // 체크하지 않은 상품리스트
+        setCheckList([]) // 체크리스트 초기화
+        // console.log(result)
+      },
+    })
+  }
+
   const onClickRemoveList = (id: string) => {
     // console.log(id); // 아이디 로그 잘 찍힘
     // console.log(checkList.length); //  []  =>  length는 0
@@ -80,6 +96,7 @@ export default function Cart() {
       totalPrice={totalPrice}
       onClickCheckAll={onClickCheckAll}
       onClickCheckList={onClickCheckList}
+      onClickRemoveChecked={onClickRemoveChecked}
       onClickRemoveList={onClickRemoveList}
       onClickPayment={onClickPayment}
     />

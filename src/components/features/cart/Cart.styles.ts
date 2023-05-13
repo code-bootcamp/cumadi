@@ -34,11 +34,12 @@ export const EmptyCart = styled.div`
 
 export const AllCheckWrapper = styled.div`
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
 `
 
 export const AllCheckTitle = styled.span`
+  margin-left: 1rem;
   font-weight: 500;
 `
 
