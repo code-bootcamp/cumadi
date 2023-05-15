@@ -40,7 +40,13 @@ export default function MyPostsUI(props: any) {
         {props.data?.fetchPostsOfMine.map(el => (
           <S.StyledCard
             key={el.postId}
-            cover={<img alt="example" src={el.image} />}
+            cover={
+              <S.CardThumbnailImg
+                src={'/images/no-image.jpeg'}
+                alt="포스트 썸네일 이미지"
+                onClick={onClickMoveToPage(`/post/${el.postId}`)}
+              />
+            }
             onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>

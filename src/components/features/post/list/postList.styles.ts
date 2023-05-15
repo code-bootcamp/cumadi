@@ -53,3 +53,9 @@ export const StyledCard = styled(Card)`
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 `
+
+export const CardThumbnailImg = styled.img`
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+`

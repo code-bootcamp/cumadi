@@ -25,7 +25,13 @@ export default function PostListUI(props: any) {
       {props.data?.fetchPosts.map(el => (
         <S.StyledCard
           key={el.postId}
-          cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.postId}`)} />}>
+          cover={
+            <S.CardThumbnailImg
+              src={'/images/no-image.jpeg'}
+              alt="포스트 썸네일 이미지"
+              onClick={onClickMoveToPage(`/post/${el.postId}`)}
+            />
+          }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
               카테고리명
