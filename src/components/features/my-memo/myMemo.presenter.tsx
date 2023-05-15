@@ -1,15 +1,8 @@
 import * as S from './myMemo.styles'
-import PaginationHighlight from '@/components/common/pagination/PaginationMyHighlight/PaginationMyHighlight.container'
+import PaginationMemo from '@/components/common/pagination/PaginationMyMemo/PaginationMyMemo.container'
 import { MyButton, MyTag } from '@/components/common/customComponent.styles'
 
-// interface IMyMemoUIProps {
-//   data: any
-//   onClickDeleteMemo: () => void
-// }
-
 export default function MyMemoUI(props: any) {
-  console.log(props.data?.fetchPostMemos)
-
   return (
     <S.Container>
       <S.NoteTitle>내 노트목록</S.NoteTitle>
@@ -28,7 +21,7 @@ export default function MyMemoUI(props: any) {
           </S.List>
         ))}
       </S.Body>
-      <PaginationHighlight />
+      <PaginationMemo />
     </S.Container>
   )
 }
