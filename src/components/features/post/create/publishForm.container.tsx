@@ -1,13 +1,14 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Input, message } from 'antd'
 import { useRecoilState } from 'recoil'
-import { postFormState } from '@/common/store'
+import { accessTokenState, postFormState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import PublishFormUI from './publishForm.presenter'
 import { IPublishFormProps } from './publishForm.types'
 import { useMutation } from '@apollo/client'
 import { CREATE_POST } from './postForm.queries'
 import { useRouter } from 'next/router'
+import { IMutation, IMutationCreatePostArgs } from '@/common/types/generated/types'
 
 const dummyDataSeries = [
   { id: '', title: '시리즈 없음' },
@@ -23,10 +24,10 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [messageApi] = message.useMessage()
 
-  const [createPost] = useMutation(CREATE_POST, {
+  const [createPost] = useMutation<Pick<IMutation, 'createPost'>, IMutationCreatePostArgs>(CREATE_POST, {
     context: {
       headers: {
-        authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+        authorization: typeof window !== undefined ? `Bearer ${window.localStorage.getItem('accessToken')}` : '',
         'Content-Type': 'application/json',
       },
     },
