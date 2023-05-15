@@ -13,26 +13,32 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-export default function PostListUI() {
+interface IPostListUIProps {
+  data?: any
+}
+
+export default function PostListUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
-      {postItem.map(el => (
-        <S.StyledCard cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />}>
-          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.id}`)}>
+      {props.data?.fetchPosts.map(el => (
+        <S.StyledCard
+          key={el.postId}
+          cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.postId}`)} />}>
+          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
               카테고리명
             </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{el.contents}</TruncatedText>
+              <TruncatedText lines={4}>{el.content}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
                 <Avatar>E</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{el.name}</BodyTextSm>
+                  <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                   <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>

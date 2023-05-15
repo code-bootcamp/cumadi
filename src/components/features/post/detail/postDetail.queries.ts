@@ -4,15 +4,13 @@ import { gql } from '@apollo/client'
 export const FETCH_POST = gql`
   query fetchPost($postId: ID!) {
     fetchPost(postId: $postId) {
-      _id
-      writer
+      postId
       title
-      subTitle
-      contents
-      tag
-      category
-      likeCount
-      images
+      content
+      user {
+        userId
+        nickname
+      }
     }
   }
 `

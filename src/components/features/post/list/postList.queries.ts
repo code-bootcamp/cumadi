@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client'
 
+// 전체 포스트들 조회
 export const FETCH_POSTS = gql`
-  query fechPosts($page: Int) {
-    fechPosts(page: $page) {
-      _id
-      writer
-      contents
-      tag
-      category
-      likeCount
-      images
+  query fetchPosts {
+    fetchPosts {
+      postId
+      title
+      content
+      user {
+        nickname
+      }
     }
   }
 `

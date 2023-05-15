@@ -11,17 +11,22 @@ import { DELETE_POST, FETCH_POST, FETCH_POST2, TOGGLE_POST_PICK } from './postDe
 export default function PostDetail() {
   const router = useRouter()
   const postId = String(router.query.postId)
+  console.log('postId======================================')
+  console.log(postId)
 
   // **** 상태
   const [dragText, setDragText] = useState<string | undefined>('') // 드래그한 값
   const [savedTexts, setSavedTexts] = useRecoilState(memoPostDetail) // 드래그한 거 저장
 
   // **** PlayGround
-  // const { data } = useQuery(FETCH_POST, {
-  //   variables: { postId },
-  // })
+  const { data } = useQuery(FETCH_POST, {
+    variables: { postId: String(router.query.postId) },
+  })
   // const [deletePost] = useMutation(DELETE_POST)
   // const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
+
+  console.log('====================================포스트 데이터')
+  console.log(data)
 
   // **** 상품 삭제
   const onClickDelete = async () => {
@@ -94,11 +99,11 @@ export default function PostDetail() {
 
   return (
     <PostDetailUI
-    // data={data}
-    // onClickDelete={onClickDelete}
-    // onClickPick={onClickPick}
-    // onMouseUpContents={onMouseUpContents}
-    // handleSaveText={handleSaveText}
+      data={data}
+      // onClickDelete={onClickDelete}
+      // onClickPick={onClickPick}
+      // onMouseUpContents={onMouseUpContents}
+      // handleSaveText={handleSaveText}
     />
   )
 }

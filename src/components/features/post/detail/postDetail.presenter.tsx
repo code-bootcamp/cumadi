@@ -14,6 +14,9 @@ export default function PostDetailUI(props: any) {
 
   const filePath = path.join(process.cwd(), 'data', 'posts', `best-react-practices.md`)
 
+  // console.log('===============상세 데이터')
+  // console.log(props.data)
+
   return (
     <>
       {/* 포스트 본문 */}
