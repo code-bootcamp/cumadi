@@ -58,12 +58,13 @@ export default function Login() {
         return
       }
       setAccessToken(accessToken)
-      // 3. LocalStorage에 토큰 저장 (임시로 사용, 나중에 지울예정)
-      localStorage.setItem('accessToken', accessToken)
-      // 4. 로그인 성공 페이지로 이동하기
+
+      // 3. 로그인 성공 페이지로 이동하기
       Modal.success({ content: '로그인 되었습니다' })
+
       // 로그인 체크
       setCheckLogin(true)
+
       void router.push('/')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })

@@ -1,41 +1,44 @@
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValueLoadable } from 'recoil'
 import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, fromPromise } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { createUploadLink } from 'apollo-upload-client'
-import { accessTokenState } from '@/common/store'
+import { accessTokenState, restoreAccessTokenLoadable } from '@/common/store'
 import { getAccessToken } from '@/common/libraries/getAccessToken'
-
 import { IApolloSettingProps } from './apollo.types'
 
 const GLOBAL_STATE = new InMemoryCache()
 
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
+  const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable)
 
   useEffect(() => {
-    void getAccessToken().then(newAccessToken => {
-      if (newAccessToken) setAccessToken(newAccessToken)
+    void restoreAccessToken.toPromise().then(newAccessToken => {
+      setAccessToken(newAccessToken ?? '')
     })
   }, [])
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    if (graphQLErrors) {
+    // 1. 에러를 캐치
+    if (typeof graphQLErrors !== 'undefined') {
       for (const err of graphQLErrors) {
+        // 1-2. 해당 에러가 토큰만료 에러인지 체크(UNAUTHENTICATED)
         if (err.extensions.code === 'UNAUTHENTICATED') {
           return fromPromise(
+            // 2. refreshToken으로 accessToken을 재발급 받기
             getAccessToken().then(newAccessToken => {
-              if (newAccessToken) setAccessToken(newAccessToken)
+              setAccessToken(newAccessToken ?? '')
 
-              if (typeof newAccessToken !== 'string') return
+              // 3. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken}`,
+                  Authorization: `Bearer ${newAccessToken}`, // 3-2. 토큰만 새걸로 바꿔치기
                 },
               })
             }),
-          ).flatMap(() => forward(operation))
+          ).flatMap(() => forward(operation)) // 3-3. 방금 수정한 쿼리 재요청하기
         }
       }
     }

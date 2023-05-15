@@ -1,17 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
-import { useRecoilState } from 'recoil'
-import { checkLoginState } from '../store'
+import { useRecoilState, useRecoilValueLoadable } from 'recoil'
+import { checkLoginState, restoreAccessTokenLoadable } from '../store'
 
 export const useAuth = () => {
   const router = useRouter()
-  const [checkLogin, setCheckLogin] = useRecoilState(checkLoginState)
-  useEffect((): any => {
-    if (!localStorage.getItem('accessToken')) {
-      setCheckLogin(false)
-      Modal.error({ content: '로그인이 필요합니다' })
-      router.push('/login')
-    } else setCheckLogin(true)
+  const [, setCheckLogin] = useRecoilState(checkLoginState)
+  const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable)
+
+  useEffect(() => {
+    void restoreAccessToken.toPromise().then(newAccessToken => {
+      if (newAccessToken === undefined) {
+        setCheckLogin(false)
+        Modal.error({ content: '로그인이 필요합니다' })
+        router.push('/login')
+      } else setCheckLogin(true)
+    })
   }, [])
 }
