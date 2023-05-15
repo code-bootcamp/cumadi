@@ -8,7 +8,7 @@ import { DELETE_POST_MEMO, FETCH_POST_MEMOS } from './myMemo.queries'
 export default function MyMemo() {
   // **** PlayGround
   const { data } = useQuery(FETCH_POST_MEMOS)
-  const { deletePostMemo } = useMutation(DELETE_POST_MEMO)
+  const [deletePostMemo] = useMutation(DELETE_POST_MEMO)
 
   // **** 저장된 메모 단일 삭제
   const onClickDeleteMemo = async (event: MouseEvent<HTMLButtonElement>) => {
