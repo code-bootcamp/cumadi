@@ -5,8 +5,6 @@ import { MyButton } from '@/components/common/customComponent.styles'
 import { PostFormUIProps } from './postForm.types'
 
 export default function PostFormUI(props: PostFormUIProps) {
-  console.log('hello', props.post.title)
-
   return (
     <S.Container>
       <S.TitleWrapper>

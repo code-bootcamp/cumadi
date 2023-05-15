@@ -1,5 +1,18 @@
 import { ComponentType, MutableRefObject } from 'react'
 import { MarkdownEditorProps } from '@/components/common/markdownEditor/markdownEditor.types'
+export interface IPostFormProps {
+  isEditMode: boolean
+}
+
+export interface IPost {
+  id: string
+  name: string
+  title: string
+  contents: string
+  image: string
+  price: number
+  createDate: string
+}
 
 export interface PostFormUIProps {
   isEditMode: boolean

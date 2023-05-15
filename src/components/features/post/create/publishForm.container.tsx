@@ -1,9 +1,10 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import { Input } from 'antd'
-import PublishFormUI from './publishForm.presenter'
 import { useRecoilState } from 'recoil'
 import { postFormState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
+import PublishFormUI from './publishForm.presenter'
+import { IPublishFormProps } from './publishForm.types'
 
 const dummyDataSeries = [
   { id: '', title: '시리즈 없음' },
@@ -12,7 +13,7 @@ const dummyDataSeries = [
   { id: '3', title: 'series 3' },
 ]
 
-export default function PublishForm() {
+export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const [post] = useRecoilState(postFormState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
@@ -49,6 +50,7 @@ export default function PublishForm() {
 
   return (
     <PublishFormUI
+      isEditMode={isEditMode}
       fileRef={fileRef}
       thumbnailUrl={post.image ? post.image : thumbnailUrl}
       TextArea={TextArea}

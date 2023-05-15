@@ -25,13 +25,13 @@ export const memoPostDetail = atom({
 
 // **** 출판 전 포스트 정보
 export const postFormState = atom({
-  key: 'postFormState',
+  key: `postFormState/${v1()}`,
   default: {},
 })
 
 // **** 태그 정보
 export const tagsState = atom({
-  key: 'tagsState',
+  key: `tagsState/${v1()}`,
   default: tags,
 })
 

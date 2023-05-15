@@ -8,28 +8,14 @@ import { postFormState, tagsState } from '@/common/store'
 import PostFormUI from './postForm.presenter'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
+import { IPostFormProps } from './postForm.types'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
 })
 
-interface IPostFormProps {
-  isEditMode: boolean
-}
-
-interface IPost {
-  id: string
-  name: string
-  title: string
-  contents: string
-  image: string
-  price: number
-  createDate: string
-}
-
 export default function PostForm({ isEditMode }: IPostFormProps) {
   const router = useRouter()
-  console.log(router.query.postId)
 
   const [tags, setTags] = useRecoilState(tagsState)
   const [post, setPost] = useRecoilState(postFormState)
