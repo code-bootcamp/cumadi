@@ -16,7 +16,6 @@ export default function Home() {
         <link rel="icon" href="/images/logo.svg" />
       </Head>
       {/* TODO: Add PostsList inside body/main */}
-      <main>Hello world~!!!!!!!!</main>
       <S.Main>
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
