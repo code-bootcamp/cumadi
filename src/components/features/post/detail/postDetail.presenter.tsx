@@ -11,6 +11,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
   const PostDetail = props.data?.fetchPost
+  const isWriterUser = PostDetail?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
 
   return (
     <>
@@ -36,11 +37,14 @@ export default function PostDetailUI(props: any) {
                 <S.CreatedAt>{postItem[0].createDate}</S.CreatedAt>
               </S.Info>
             </S.AvatarWrapper>
-            <S.PostUpdateBtnWrapper>
-              <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
-              <button onClick={onClickMoveToPage(`/post/${postItem[0].id}/edit`)}>수정</button>
-              <button onClick={props.onClickDelete}>삭제</button>
-            </S.PostUpdateBtnWrapper>
+
+            {isWriterUser && (
+              <S.PostUpdateBtnWrapper>
+                <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
+                <button onClick={onClickMoveToPage(`/post/${postItem[0].id}/edit`)}>수정</button>
+                <button onClick={props.onClickDelete}>삭제</button>
+              </S.PostUpdateBtnWrapper>
+            )}
           </S.Header>
 
           {/* 시리즈에 속해있는지 여부 */}

@@ -1,5 +1,16 @@
 import { gql } from '@apollo/client'
 
+// **** 로그인한 유저정보 조회
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      userId
+      email
+      nickname
+    }
+  }
+`
+
 // **** 포스트 조회
 export const FETCH_POST = gql`
   query fetchPost($postId: String!) {

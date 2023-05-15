@@ -6,7 +6,14 @@ import { useRecoilState } from 'recoil'
 import { useMutation, useQuery } from '@apollo/client'
 
 import { memoPostDetail } from '@/common/store'
-import { CREATE_POST_MEMO, DELETE_POST, FETCH_POST, FETCH_POST2, TOGGLE_POST_PICK } from './postDetail.queries'
+import {
+  CREATE_POST_MEMO,
+  DELETE_POST,
+  FETCH_POST,
+  FETCH_POST2,
+  FETCH_USER_LOGGED_IN,
+  TOGGLE_POST_PICK,
+} from './postDetail.queries'
 
 export default function PostDetail() {
   const router = useRouter()
@@ -17,6 +24,7 @@ export default function PostDetail() {
   const [savedTexts, setSavedTexts] = useRecoilState(memoPostDetail) // 드래그한 거 저장
 
   // **** PlayGround
+  const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
   const { data } = useQuery(FETCH_POST, {
     variables: { postId },
   })
@@ -111,6 +119,7 @@ export default function PostDetail() {
 
   return (
     <PostDetailUI
+      loginData={loginData}
       data={data}
       onClickDelete={onClickDelete}
       onMouseUpContentMemo={onMouseUpContentMemo}
