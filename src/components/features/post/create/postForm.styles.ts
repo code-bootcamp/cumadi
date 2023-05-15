@@ -6,14 +6,6 @@ export const Container = styled.section`
   width: 100%;
   height: 100%;
   padding: 0 12.5rem;
-
-  @media ${breakPoints.tablet} {
-    width: 100%;
-  }
-
-  @media ${breakPoints.mobile} {
-    width: 100%;
-  }
 `
 
 export const TitleWrapper = styled.section`
