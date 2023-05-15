@@ -94,9 +94,3 @@ export const Body = styled.div`
     width: 50rem;
   }
 `
-
-export const StyledCard = styled(Card)`
-  width: 27rem;
-  border: 1px solid var(--color-gray-3);
-  cursor: pointer;
-`

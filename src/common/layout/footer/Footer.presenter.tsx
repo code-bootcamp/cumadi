@@ -2,7 +2,7 @@ import { Avatar, Card } from 'antd'
 
 import * as S from './Footer.styles'
 import { postItem } from '@/common/dummyData/post'
-import { FlexColumnContainer } from '@/components/common/customComponent.styles'
+import { FlexColumnContainer, StyledCard, StyledCardCover } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -22,9 +22,9 @@ export default function LayoutFooterUI() {
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
           {postItem.slice(0, 6).map(el => (
-            <S.StyledCard
+            <StyledCard
               style={{ width: 400, border: 'unset' }}
-              cover={<img alt="example" src={el.image} />}
+              cover={<StyledCardCover alt="example" src={el.image} />}
               onClick={onClickMoveToPage(`/post/${el.id}`)}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
@@ -54,7 +54,7 @@ export default function LayoutFooterUI() {
                   </ReactionsContainer>
                 </InfoSectionContainer>
               </FlexColumnContainer>
-            </S.StyledCard>
+            </StyledCard>
           ))}
         </S.Body>
       </S.Container>

@@ -2,7 +2,12 @@ import { Avatar } from 'antd'
 
 import * as S from './myPosts.styles'
 import { postItem } from '@/common/dummyData/post'
-import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
+import {
+  FlexColumnContainer,
+  MyTag,
+  StyledCardCover,
+  StyledCardOutlined,
+} from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -38,7 +43,9 @@ export default function MyPostsUI() {
       </S.BtnWrapper>
       <S.Body>
         {postItem.map(el => (
-          <S.StyledCard cover={<img alt="example" src={el.image} />} onClick={onClickMoveToPage(`/post/${el.id}`)}>
+          <StyledCardOutlined
+            cover={<StyledCardCover alt="example" src={el.image} />}
+            onClick={onClickMoveToPage(`/post/${el.id}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
                 카테고리명
@@ -67,7 +74,7 @@ export default function MyPostsUI() {
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </S.StyledCard>
+          </StyledCardOutlined>
         ))}
       </S.Body>
     </>

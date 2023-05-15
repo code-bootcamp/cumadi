@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import * as S from './index.styles'
-import { MyTag } from '@/components/common/customComponent.styles'
+import { MyTag, MyTagSecondary } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
@@ -29,10 +29,10 @@ export default function Home() {
             </MyTag>
           </S.TagWrapper>
           <S.TagWrapper>
-            <MyTag isChecked={true}>전체</MyTag>
-            <MyTag isChecked={false}>개발</MyTag>
-            <MyTag isChecked={false}>에세이</MyTag>
-            <MyTag isChecked={false}>독서</MyTag>
+            <MyTagSecondary isChecked={true}>전체</MyTagSecondary>
+            <MyTagSecondary isChecked={false}>개발</MyTagSecondary>
+            <MyTagSecondary isChecked={false}>에세이</MyTagSecondary>
+            <MyTagSecondary isChecked={false}>독서</MyTagSecondary>
           </S.TagWrapper>
         </S.TitleWrapper>
         <PostList />
