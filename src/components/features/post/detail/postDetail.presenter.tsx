@@ -17,8 +17,8 @@ export default function PostDetailUI(props: any) {
     <>
       {/* 포스트 본문 */}
       <S.Container>
-        {/* 좋아요, 저장 */}
-        <SideNavigation handleSaveText={props.handleSaveText} />
+        {/* 좋아요, 메모 저장 */}
+        <SideNavigation onClickMemoSave={props.onClickMemoSave} />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
           <S.PostSubTitle>부제목</S.PostSubTitle>
