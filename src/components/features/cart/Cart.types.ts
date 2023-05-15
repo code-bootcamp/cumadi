@@ -1,13 +1,5 @@
 export interface ICartUIProps {
-  postItem: {
-    id: string
-    name: string
-    title: string
-    contents: string
-    image: string
-    price: number
-    createDate: string
-  }[]
+  isChecked: (list: IList) => boolean
   productList: {
     id: string
     name: string
@@ -18,13 +10,12 @@ export interface ICartUIProps {
     createDate: string
   }[]
   checkList: any[]
+  totalPrice: number
   onClickCheckAll: () => void
   onClickCheckList: (list: IList) => void
-  totalPrice: number
   onClickRemoveChecked: () => void
   onClickRemoveList: (id: string) => void
   onClickPayment: () => void
-  isChecked: (list: IList) => boolean
 }
 
 export interface IList {

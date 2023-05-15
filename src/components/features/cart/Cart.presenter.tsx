@@ -1,4 +1,3 @@
-// import { postItem } from "@/common/dummyData/post";
 import { ICartUIProps } from './Cart.types'
 import * as S from './Cart.styles'
 import { Checkbox } from 'antd'
