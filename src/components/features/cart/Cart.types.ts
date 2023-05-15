@@ -24,6 +24,7 @@ export interface ICartUIProps {
   onClickRemoveChecked: () => void
   onClickRemoveList: (id: string) => void
   onClickPayment: () => void
+  isChecked: (list: IList) => boolean
 }
 
 export interface IList {

@@ -16,7 +16,7 @@ export default function CartUI(props: ICartUIProps) {
   return (
     <>
       <S.Body>
-        {props.productList.length === 0 ? (
+        {props.productList && props.productList.length === 0 ? (
           <S.EmptyCart>장바구니에 담긴 상품이 없습니다</S.EmptyCart>
         ) : (
           <>
@@ -41,7 +41,7 @@ export default function CartUI(props: ICartUIProps) {
                     onChange={() => {
                       props.onClickCheckList(list)
                     }}
-                    checked={props.checkList.includes(list)}
+                    checked={props.isChecked(list)}
                   />
                   <HorizontalCardSm>
                     <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />

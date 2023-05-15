@@ -11,9 +11,12 @@ import { Modal } from 'antd'
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0) // 최종 결제 금액
   const [checkList, setCheckList] = useState<Array<any>>([]) // 체크리스트 배열
-  const [productList, setProductList] = useState(postItem) // 상품리스트 배열
+  const [productList, setProductList] = useState<Array<any>>([]) // 상품리스트 배열
 
   useEffect(() => {
+    const result = JSON.parse(localStorage.getItem('carts') || '[]')
+    setProductList(result)
+
     let sumPrice = 0
     for (let i = 0; i < checkList.length; i++) {
       sumPrice += checkList[i].price
@@ -30,21 +33,26 @@ export default function Cart() {
   }
 
   const onClickCheckList = (list: IList) => {
-    // console.log(list);
-    // console.log(checkList); // 최초 []
+    // console.log(list)
+    // console.log(checkList) // 최초 []
 
     if (checkList.every(item => item.id !== list.id)) {
-      // console.log(checkList); // 렌더링 후에 들어가기 때문에 클릭해제시 배열이 담겨있는 상태로 로그가 찍힘
+      // console.log(checkList) // 렌더링 후에 들어가기 때문에 클릭해제시 배열이 담겨있는 상태로 로그가 찍힘
       setCheckList([...checkList, list])
     } else {
       const result = checkList.filter(item => item.id !== list.id) // 체크박스 해제시 즉, 같은 체크박스 계속 클릭 시
-      // console.log(checkList);
+      // console.log(checkList)
       setCheckList(result)
     }
   }
 
   console.log(checkList) // ***** 체크리스트 배열이 정확하게 담김을 확인 완료!! (개별선택시에도, 올체크선택시에도)
   console.log(totalPrice)
+
+  // 현재 체크리스트에 해당 list id가 있다면 true, 없으면 false를 반환
+  const isChecked = (list: IList) => {
+    return checkList.some(item => item.id === list.id)
+  }
 
   const onClickRemoveChecked = () => {
     Modal.confirm({
@@ -57,6 +65,7 @@ export default function Cart() {
         })
         setProductList(result) // 체크하지 않은 상품리스트
         setCheckList([]) // 체크리스트 초기화
+        localStorage.setItem('carts', JSON.stringify(result)) // 새로고침시에도 삭제된 상품 제외하고 보여짐
         // console.log(result)
       },
     })
@@ -73,6 +82,7 @@ export default function Cart() {
         const result = productList.filter(list => list.id !== id) // 클릭한 상품의 id가 아닌 상품을 다시 장바구니로 저장
         setProductList(result)
         setCheckList([]) //  체크리스트 초기화 => 리렌더
+        localStorage.setItem('carts', JSON.stringify(result)) // 새로고침시에도 삭제된 상품 제외하고 보여짐
       },
       onCancel() {
         return
@@ -90,6 +100,7 @@ export default function Cart() {
 
   return (
     <CartUI
+      isChecked={isChecked}
       postItem={postItem}
       productList={productList}
       checkList={checkList}
