@@ -31,9 +31,8 @@ export default function LayoutFooterUI(props: any) {
                   alt="포스트 썸네일 이미지"
                   onClick={onClickMoveToPage(`/post/${el.postId}`)}
                 />
-              }
-              onClick={onClickMoveToPage(`/post/${el.id}`)}>
-              <FlexColumnContainer gap={'0.5rem'}>
+              }>
+              <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
                   카테고리명
                 </BodyTextSm>
