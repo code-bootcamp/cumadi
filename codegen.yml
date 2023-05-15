@@ -1,6 +1,6 @@
-schema: http://backendonline.codebootcamp.co.kr/graphql---
+schema: http://34.64.43.6:3000/graphql
 generates:
-  ./src/commons/types/generated/types.ts:
+  ./src/common/types/generated/types.ts:
     plugins:
       - typescript
     config:
