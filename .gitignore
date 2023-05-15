@@ -39,7 +39,7 @@ tsconfig.json
 # linter, formatter
 .eslintrc.js
 .prettierrc
-.yarn.lock
+yarn.lock
 
 # antd css file
 public/antd.min.css
