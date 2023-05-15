@@ -6,15 +6,15 @@ import { useRecoilState } from 'recoil'
 import LoginUI from './login.presenter'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from './login.queries'
-import { accessTokenState } from '@/common/store'
+import { accessTokenState, checkLoginState } from '@/common/store'
 
 export default function Login() {
   const router = useRouter()
-
   // **** 상태
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [, setAccessToken] = useRecoilState(accessTokenState)
+  const [checkLogin, setCheckLogin] = useRecoilState(checkLoginState)
 
   // ** 유효성 검사
   const [emailError, setEmailError] = useState('')
@@ -62,6 +62,8 @@ export default function Login() {
       localStorage.setItem('accessToken', accessToken)
       // 4. 로그인 성공 페이지로 이동하기
       Modal.success({ content: '로그인 되었습니다' })
+      // 로그인 체크
+      setCheckLogin(true)
       void router.push('/')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
