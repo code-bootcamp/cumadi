@@ -11,7 +11,5 @@ export default function PostList() {
   // **** PlayGround
   const { data, fetchMore } = useQuery(FETCH_POSTS)
 
-  console.log(data?.fetchPosts)
-
   return <PostListUI data={data} />
 }

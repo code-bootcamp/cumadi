@@ -13,7 +13,7 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-export default function LayoutFooterUI() {
+export default function LayoutFooterUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -21,8 +21,9 @@ export default function LayoutFooterUI() {
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {postItem.slice(0, 6).map(el => (
+          {props.data?.fetchPosts.slice(0, 6).map(el => (
             <S.StyledCard
+              key={el.postId}
               style={{ width: 400, border: 'unset' }}
               cover={<img alt="example" src={el.image} />}
               onClick={onClickMoveToPage(`/post/${el.id}`)}>
@@ -32,13 +33,13 @@ export default function LayoutFooterUI() {
                 </BodyTextSm>
                 <BodyTextLg>{el.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>
-                  <TruncatedText lines={4}>{el.contents}</TruncatedText>
+                  <TruncatedText lines={4}>{el.content}</TruncatedText>
                 </BodyText>
                 <InfoSectionContainer>
                   <ProfileContainer>
                     <Avatar>E</Avatar>
                     <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.name}</BodyTextSm>
+                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                       <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>

@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 // **** 포스트 조회
 export const FETCH_POST = gql`
-  query fetchPost($postId: ID!) {
+  query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
       postId
       title
@@ -16,7 +16,7 @@ export const FETCH_POST = gql`
 `
 
 export const FETCH_POST2 = gql`
-  query fetchPost($postId: ID!) {
+  query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
       _id
       __typename
@@ -27,14 +27,25 @@ export const FETCH_POST2 = gql`
 
 // **** 포스트 삭제
 export const DELETE_POST = gql`
-  mutation deletePost($postId: ID!) {
+  mutation deletePost($postId: String!) {
     deletePost(postId: $postId)
   }
 `
 
 // **** 포스트 좋아요
 export const TOGGLE_POST_PICK = gql`
-  mutation togglePostPick($postId: ID!) {
+  mutation togglePostPick($postId: String!) {
     togglePostPick(postId: $postId)
+  }
+`
+
+// **** 메모 저장
+export const CREATE_POST_MEMO = gql`
+  mutation createPostMemo($parse: String!) {
+    createPostMemo(parse: $parse) {
+      memoId
+      parse
+      createdAt
+    }
   }
 `

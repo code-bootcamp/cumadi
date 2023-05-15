@@ -1,21 +1,16 @@
-import { postItem } from '@/common/dummyData/post'
 import * as S from './postDetail.styles'
 import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
+import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
+import { postItem } from '@/common/dummyData/post'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-import path from 'path'
-
-import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
+// interface IPostDetailUIProps {}
 
 export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
-
-  const filePath = path.join(process.cwd(), 'data', 'posts', `best-react-practices.md`)
-
-  // console.log('===============상세 데이터')
-  // console.log(props.data)
+  const PostDetail = props.data?.fetchPost
 
   return (
     <>
@@ -24,7 +19,7 @@ export default function PostDetailUI(props: any) {
         {/* 좋아요, 저장 */}
         <SideNavigation handleSaveText={props.handleSaveText} />
         <div>
-          <S.PostTitle>{postItem[0].title}</S.PostTitle>
+          <S.PostTitle>{PostDetail?.title}</S.PostTitle>
           <S.PostSubTitle>부제목</S.PostSubTitle>
           <S.PostTagWapper>
             <MyTag isChecked={true}>태그</MyTag>
@@ -37,14 +32,14 @@ export default function PostDetailUI(props: any) {
             <S.AvatarWrapper>
               <S.Avatar src="/images/avatar.png" />
               <S.Info>
-                <S.Writer>{postItem[0].name}</S.Writer>
+                <S.Writer>{PostDetail?.user.nickname}</S.Writer>
                 <S.CreatedAt>{postItem[0].createDate}</S.CreatedAt>
               </S.Info>
             </S.AvatarWrapper>
             <S.PostUpdateBtnWrapper>
               <button onClick={onClickMoveToPage('/post/stats')}>통계</button>
               <button onClick={onClickMoveToPage(`/post/${postItem[0].id}/edit`)}>수정</button>
-              <button>삭제</button>
+              <button onClick={props.onClickDelete}>삭제</button>
             </S.PostUpdateBtnWrapper>
           </S.Header>
 
@@ -69,7 +64,7 @@ export default function PostDetailUI(props: any) {
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
-          <div onMouseUp={props.onMouseUpContents}>{postItem[0].contents}</div>
+          <div onMouseUp={props.onMouseUpContentMemo}>{PostDetail?.content}</div>
 
           {/* <S.LikeWrapper>
             <MyButton type="primary" onClick={props.handleSaveText}>
