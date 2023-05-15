@@ -11,51 +11,46 @@ import { IApolloSettingProps } from './apollo.types'
 const GLOBAL_STATE = new InMemoryCache()
 
 export default function ApolloSetting(props: IApolloSettingProps) {
-  // const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
 
-  // useEffect(() => {
-  //   void getAccessToken().then(newAccessToken => {
-  //     setAccessToken(newAccessToken)
-  //   })
-  // }, [])
+  useEffect(() => {
+    void getAccessToken().then(newAccessToken => {
+      if (newAccessToken) setAccessToken(newAccessToken)
+    })
+  }, [])
 
-  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-  //   if (graphQLErrors) {
-  //     for (const err of graphQLErrors) {
-  //       if (err.extensions.code === 'UNAUTHENTICATED') {
-  //         return fromPromise(
-  //           getAccessToken().then(newAccessToken => {
-  //             setAccessToken(newAccessToken)
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions.code === 'UNAUTHENTICATED') {
+          return fromPromise(
+            getAccessToken().then(newAccessToken => {
+              if (newAccessToken) setAccessToken(newAccessToken)
 
-  //             if (typeof newAccessToken !== 'string') return
-  //             operation.setContext({
-  //               headers: {
-  //                 ...operation.getContext().headers,
-  //                 Authorization: `Bearer ${newAccessToken}`,
-  //               },
-  //             })
-  //           }),
-  //         ).flatMap(() => forward(operation))
-  //       }
-  //     }
-  //   }
-  // })
+              if (typeof newAccessToken !== 'string') return
+              operation.setContext({
+                headers: {
+                  ...operation.getContext().headers,
+                  Authorization: `Bearer ${newAccessToken}`,
+                },
+              })
+            }),
+          ).flatMap(() => forward(operation))
+        }
+      }
+    }
+  })
 
-  // const uploadLink = createUploadLink({
-  //   uri: 'http://34.64.43.6:3000/graphql',
-  //   headers: { Authorization: `Bearer ${accessToken}` },
-  //   credentials: 'include',
-  // })
-
-  // const client = new ApolloClient({
-  //   link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
-  //   cache: GLOBAL_STATE,
-  //   connectToDevTools: true,
-  // })
+  const uploadLink = createUploadLink({
+    uri: 'http://34.64.43.6:3000/graphql',
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: 'include',
+  })
 
   const client = new ApolloClient({
-    uri: 'http://34.64.43.6:3000/graphql',
-    cache: new InMemoryCache(),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+    cache: GLOBAL_STATE,
+    connectToDevTools: true,
   })
 
   return (

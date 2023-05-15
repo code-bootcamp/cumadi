@@ -2,9 +2,7 @@ import { gql, GraphQLClient } from 'graphql-request'
 
 const RESTORE_ACCESS_TOKEN = gql`
   mutation restoreAccessToken {
-    restoreAccessToken {
-      accessToken
-    }
+    restoreAccessToken
   }
 `
 
@@ -14,7 +12,7 @@ export const getAccessToken = async () => {
       credentials: 'include',
     })
     const result = (await graphQLClient.request(RESTORE_ACCESS_TOKEN)) as any
-    const newAccessToken = result.restoreAccessToken.accessToken
+    const newAccessToken: string = result.restoreAccessToken
     return newAccessToken
   } catch (error) {
     if (error instanceof Error) console.log(error.message)
