@@ -1,4 +1,3 @@
-import { seriesItem } from '@/common/dummyData/series'
 import * as S from './seriesDetail.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
@@ -6,8 +5,9 @@ import BasicButton from '@/components/common/buttons/basic'
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { seriesItem } from '@/common/dummyData/series'
 
-export default function SeriesDetailUI() {
+export default function SeriesDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -35,7 +35,7 @@ export default function SeriesDetailUI() {
         <S.PriceWrapper>
           <S.Sell>판매가 · <S.Price>{seriesItem[0].price}</S.Price></S.Sell>
           <S.ButtonWrapper>
-            <BasicButton movePage={'/login'} name={'장바구니에 담기'} />
+            <S.CartButton onClick={props.handleItemToCart(seriesItem[0])}>장바구니에 담기</S.CartButton>
             <BasicButton movePage={'/login'} name={'바로 구매하기'} type="primary" />
           </S.ButtonWrapper>
         </S.PriceWrapper>

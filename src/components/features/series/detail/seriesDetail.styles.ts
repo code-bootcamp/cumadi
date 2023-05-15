@@ -207,3 +207,9 @@ export const NewPostsButton = styled(Button)`
 export const SeriesButton = styled.button`
   font-size: 0.8rem;
 `
+
+export const CartButton = styled(Button)`
+  padding: 1rem;
+  display: flex;
+  border-radius: 1rem;
+`
