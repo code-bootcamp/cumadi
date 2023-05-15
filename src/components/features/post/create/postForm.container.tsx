@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { Form, InputRef } from 'antd'
+import { InputRef } from 'antd'
 import _ from 'lodash'
 import { postFormState, tagsState } from '@/common/store'
 import PostFormUI from './postForm.presenter'
@@ -57,11 +57,10 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
     const postData = {
       ...filledValuesFromPost,
-      contents: editorRef.current.getInstance().getMarkdown(),
+      content: editorRef.current.getInstance().getMarkdown(),
     }
     setPost(postData)
 
-    // TODO: Feed postData into API
     router.query.postId ? router.push(`/post/${router.query.postId}/edit/publish`) : router.push('new/publish')
   }
 

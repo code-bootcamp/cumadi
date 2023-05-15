@@ -18,7 +18,8 @@ export const seriesItem = [
         categories: '개발',
         title: '개발자로 살아남는 방법1',
         intro: '제 포스트좀 봐줘용',
-        contents: '그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까',
+        content:
+          '그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까그러게 어떻게 살아가는게 좋을까',
         createDate: '2023.05.01',
         image: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
         pickedcount: 5,
@@ -28,7 +29,7 @@ export const seriesItem = [
         id: 'B9vUv0E0ibc0X55kVVLr',
         categories: '개발',
         title: '개발자로 살아남는 방법2',
-        contents: '그러게 어떻게 살아가는게 좋을까',
+        content: '그러게 어떻게 살아가는게 좋을까',
         createDate: '2023.05.03',
         image: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
         pickedcount: 2,
@@ -38,7 +39,7 @@ export const seriesItem = [
         id: 'B9vUv0E0ibc0X55kVVLr',
         categories: '개발',
         title: '개발자로 살아남는 방법3',
-        contents: '치킨집을 성공적으로 운영하는 방법',
+        content: '치킨집을 성공적으로 운영하는 방법',
         createDate: '2023.05.03',
         image: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
         pickedcount: 2,
@@ -49,16 +50,16 @@ export const seriesItem = [
       {
         name: '개발자 A',
         star: 5,
-        contents: "와! 유익해요!",
-        createDate: '2023.05.01'
+        content: '와! 유익해요!',
+        createDate: '2023.05.01',
       },
       {
         name: '개발자 B',
         star: 4,
-        contents: "와! 너무 비싸요!",
-        createDate: '2023.05.02'
-      }
-    ]
+        content: '와! 너무 비싸요!',
+        createDate: '2023.05.02',
+      },
+    ],
   },
   {
     id: 'W9vUv0E0ibc0X55kVVLr',

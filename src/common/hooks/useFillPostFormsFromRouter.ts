@@ -19,7 +19,7 @@ export const useFillPostFormsFromRouter = () => {
       postForm.setFieldsValue({
         title: postFromRouter.title,
         tags: postFromRouter.tags,
-        contents: postFromRouter.contents,
+        content: postFromRouter.content,
       })
       publishForm.setFieldsValue({
         thumbnail: postFromRouter.image,

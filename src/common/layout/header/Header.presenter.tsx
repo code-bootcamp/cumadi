@@ -18,7 +18,8 @@ export default function LayoutHeaderUI() {
         {/* <BasicButton movePage={'/login'} name={'로그인'} type="primary" /> */}
           {checkLogin ? <BasicButton movePage={'/my'} name={'마이페이지'} /> : ''}
           {checkLogin ? '' : <BasicButton movePage={`/signup`} name={'회원가입'} />}
-          {checkLogin ? <BasicButton movePage={'/'} name={'로그아웃'} type="primary" /> : <BasicButton movePage={'/login'} name={'로그인'} type="primary" />}
+          {checkLogin ? <BasicButton movePage={'/'} name={'로그아웃'} /> : <BasicButton movePage={'/login'} name={'로그인'} type="primary" />}
+          {checkLogin ? '' : <BasicButton movePage={`/post/new`} name={'새 포스트 작성하기'}  type="primary"/>}
         </S.LoginMenu>
       </S.Container>
     </S.Header>

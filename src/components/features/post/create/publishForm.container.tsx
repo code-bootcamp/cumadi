@@ -1,10 +1,13 @@
 import { ChangeEvent, useRef, useState } from 'react'
-import { Input } from 'antd'
+import { Input, message } from 'antd'
 import { useRecoilState } from 'recoil'
 import { postFormState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import PublishFormUI from './publishForm.presenter'
 import { IPublishFormProps } from './publishForm.types'
+import { useMutation } from '@apollo/client'
+import { CREATE_POST } from './postForm.queries'
+import { useRouter } from 'next/router'
 
 const dummyDataSeries = [
   { id: '', title: '시리즈 없음' },
@@ -14,9 +17,20 @@ const dummyDataSeries = [
 ]
 
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
+  const router = useRouter()
   const [post] = useRecoilState(postFormState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
+  const [messageApi] = message.useMessage()
+
+  const [createPost] = useMutation(CREATE_POST, {
+    context: {
+      headers: {
+        authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  })
 
   const { publishForm } = useFillPostFormsFromRouter()
 
@@ -42,10 +56,28 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     }
   }
 
-  const handleSubmitForm = (values: any) => {
+  const handleSubmitForm = async (values: any) => {
     // TODO: replace thumbnail:thumbnailUrl with actual server url
     const publishablePostData = { ...post, ...values }
-    alert(`submitting publish form with ${JSON.stringify(publishablePostData)}`)
+    try {
+      const result = await createPost({
+        variables: {
+          createPostInput: {
+            title: publishablePostData.title,
+            content: publishablePostData.content,
+            seriesId: publishablePostData.series,
+            tags: publishablePostData.tags,
+          },
+        },
+      })
+      messageApi.open({
+        type: 'success',
+        content: '포스트가 성공적으로 출간되었습니다.',
+      })
+      router.push(`/post/${result.data.createPost.postId}`)
+    } catch (error) {
+      if (error instanceof Error) alert(error.message)
+    }
   }
 
   return (
