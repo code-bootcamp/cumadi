@@ -33,7 +33,7 @@ export default function MySeriesUI() {
       </S.BtnWrapper>
       <S.Body>
         {postItem.map(el => (
-          <S.StyledCard cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />}>
+          <S.StyledCard cover={<img alt="example" src={el.image} />} onClick={onClickMoveToPage(`/post/${el.id}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
                 카테고리명

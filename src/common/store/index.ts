@@ -16,6 +16,12 @@ export const accessTokenState = atom({
   default: '',
 })
 
+// **** 포스트 상세 메모
+export const memoPostDetail = atom({
+  key: `memoPostDetail/${v1()}`,
+  default: [],
+})
+
 // export const restoreAccessTokenLoadable = selector({
 //   key: 'restoreAccessTokenLoadable',
 //   get: async () => {

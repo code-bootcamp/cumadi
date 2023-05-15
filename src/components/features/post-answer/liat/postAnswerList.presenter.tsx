@@ -1,8 +1,9 @@
 import * as S from './postAnswerList.styles'
+import { IPostAnswerListUIProps } from './postAnswerList.types'
 
-export default function PostAnswerListUI() {
+export default function PostAnswerListUI(props: IPostAnswerListUIProps) {
   return (
-    <>
+    <S.Container>
       <S.CommentWrapper>
         <S.CommentTitle>댓글</S.CommentTitle>
         <S.CommentCount>0개의 댓글</S.CommentCount>
@@ -22,6 +23,6 @@ export default function PostAnswerListUI() {
           <S.Contents>와! ddas유익해요</S.Contents>
         </S.CommentList>
       </S.CommentListWrapper>
-    </>
+    </S.Container>
   )
 }

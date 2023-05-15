@@ -1,4 +1,5 @@
 import { Avatar, Card } from 'antd'
+
 import * as S from './Footer.styles'
 import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
@@ -10,15 +11,21 @@ import { ProfileTextDataContainer } from '@/components/common/customComponent.st
 import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function LayoutFooterUI() {
+  const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Footer>
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {postItem.map(el => (
-            <Card style={{ width: 400, border: 'unset' }} cover={<img alt="example" src={el.image} />}>
+          {postItem.slice(0, 6).map(el => (
+            <S.StyledCard
+              style={{ width: 400, border: 'unset' }}
+              cover={<img alt="example" src={el.image} />}
+              onClick={onClickMoveToPage(`/post/${el.id}`)}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
                   카테고리명
@@ -47,7 +54,7 @@ export default function LayoutFooterUI() {
                   </ReactionsContainer>
                 </InfoSectionContainer>
               </FlexColumnContainer>
-            </Card>
+            </S.StyledCard>
           ))}
         </S.Body>
       </S.Container>

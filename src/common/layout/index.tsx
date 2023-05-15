@@ -25,6 +25,7 @@ const HIDDEN_FOOTER = [
   '/my/highlight',
   '/my/paymentHistory',
   '/my/profileSettings',
+  '/post/stats',
 ]
 
 export default function Layout(props: ILayoutProps) {

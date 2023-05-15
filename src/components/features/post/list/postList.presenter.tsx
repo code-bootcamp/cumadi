@@ -20,7 +20,7 @@ export default function PostListUI() {
     <S.Body>
       {postItem.map(el => (
         <S.StyledCard cover={<img alt="example" src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />}>
-          <FlexColumnContainer gap={'0.5rem'}>
+          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.id}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
               카테고리명
             </BodyTextSm>
