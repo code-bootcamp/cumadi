@@ -1,4 +1,5 @@
-import { atom, selector } from 'recoil'
+import { tags } from './../dummyData/tags'
+import { atom } from 'recoil'
 import { v1 } from 'uuid'
 
 // ** cf. https://velog.io/@sj_dev_js/Recoil-Duplicate-atom-key
@@ -20,6 +21,18 @@ export const accessTokenState = atom({
 export const memoPostDetail = atom({
   key: `memoPostDetail/${v1()}`,
   default: [],
+})
+
+// **** 출판 전 포스트 정보
+export const postFormState = atom({
+  key: `postFormState/${v1()}`,
+  default: {},
+})
+
+// **** 태그 정보
+export const tagsState = atom({
+  key: `tagsState/${v1()}`,
+  default: tags,
 })
 
 // export const restoreAccessTokenLoadable = selector({
