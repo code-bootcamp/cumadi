@@ -1,6 +1,6 @@
-import * as S from './PaginationMyHighlight.styles'
+import * as S from './PaginationMyMemo.styles'
 
-export default function PaginationHighlightUI(props: any) {
+export default function PaginationMemoUI(props: any) {
   return (
     <S.PageNationWrapper>
       <S.Page onClick={props.onClickPrevPage}>&lt; 이전</S.Page>
