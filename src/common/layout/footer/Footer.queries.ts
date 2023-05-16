@@ -7,6 +7,13 @@ export const FETCH_POSTS = gql`
       postId
       title
       content
+      series {
+        seriesId
+        title
+      }
+      tags {
+        name
+      }
       user {
         nickname
       }

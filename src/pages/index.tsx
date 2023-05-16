@@ -1,12 +1,16 @@
 import Head from 'next/head'
+import { useQuery } from '@apollo/client'
 
 import * as S from './index.styles'
 import { MyTag } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { FETCH_SERIES_CATEGORIES } from './index.queries'
 
 export default function Home() {
   const { onClickMoveToPage } = useMoveToPage()
+  const { data: categories } = useQuery(FETCH_SERIES_CATEGORIES)
+
   return (
     <>
       <Head>
@@ -29,10 +33,9 @@ export default function Home() {
             </MyTag>
           </S.TagWrapper>
           <S.TagWrapper>
-            <MyTag isChecked={true}>전체</MyTag>
-            <MyTag isChecked={false}>개발</MyTag>
-            <MyTag isChecked={false}>에세이</MyTag>
-            <MyTag isChecked={false}>독서</MyTag>
+            {categories?.fetchSeriesCategories?.map((category: any) => (
+              <MyTag isChecked={false}>{category.name}</MyTag>
+            ))}
           </S.TagWrapper>
         </S.TitleWrapper>
         <PostList />

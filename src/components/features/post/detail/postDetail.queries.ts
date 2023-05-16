@@ -22,6 +22,14 @@ export const FETCH_POST = gql`
         userId
         nickname
       }
+      tags {
+        tagId
+        name
+      }
+      series {
+        title
+        introduction
+      }
     }
   }
 `
@@ -52,8 +60,8 @@ export const TOGGLE_POST_PICK = gql`
 
 // **** 메모 저장
 export const CREATE_POST_MEMO = gql`
-  mutation createPostMemo($parse: String!) {
-    createPostMemo(parse: $parse) {
+  mutation createPostMemo($postId: String!, $parse: String!) {
+    createPostMemo(postId: $postId, parse: $parse) {
       memoId
       parse
       createdAt

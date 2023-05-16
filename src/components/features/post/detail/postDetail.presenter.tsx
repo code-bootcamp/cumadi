@@ -21,12 +21,12 @@ export default function PostDetailUI(props: any) {
         <SideNavigation onClickMemoSave={props.onClickMemoSave} />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
-          <S.PostSubTitle>부제목</S.PostSubTitle>
           <S.PostTagWapper>
-            <MyTag isChecked={true}>태그</MyTag>
-            <MyTag isChecked={true}>태그</MyTag>
-            <MyTag isChecked={true}>태그</MyTag>
-            <MyTag isChecked={true}>태그</MyTag>
+            {PostDetail?.tags.map(tag => (
+              <MyTag key={tag.tsgId} id={tag.tsgId} isChecked={true}>
+                {tag.name}
+              </MyTag>
+            ))}
           </S.PostTagWapper>
 
           <S.Header>
@@ -52,7 +52,7 @@ export default function PostDetailUI(props: any) {
           <S.PostInSeries>
             <S.TitleOfPostInSeries>
               <img src="/images/book.svg" alt="시리즈북 아이콘" />
-              개발자 A의 고군분투
+              {PostDetail?.series?.title}
             </S.TitleOfPostInSeries>
             <S.PostInSeriesSelect
               defaultValue="개발자로 살아남는 방법"

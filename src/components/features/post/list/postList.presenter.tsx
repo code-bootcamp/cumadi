@@ -1,7 +1,6 @@
 import { Avatar } from 'antd'
 
 import * as S from './postList.styles'
-import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -34,7 +33,7 @@ export default function PostListUI(props: any) {
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
-              카테고리명
+              {el.series?.title}
             </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>

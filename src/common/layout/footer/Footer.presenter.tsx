@@ -34,7 +34,7 @@ export default function LayoutFooterUI(props: any) {
               }>
               <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
-                  카테고리명
+                  {el.series?.title}
                 </BodyTextSm>
                 <BodyTextLg>{el.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>

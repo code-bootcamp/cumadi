@@ -18,7 +18,7 @@ export default function PostDetail() {
   const postId = String(router.query.postId)
 
   // **** 상태
-  const [dragText, setDragText] = useState('') // 드래그한 값
+  const [dragText, setDragText] = useState<string>('') // 드래그한 값
 
   // **** PlayGround
   const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
@@ -34,6 +34,7 @@ export default function PostDetail() {
     try {
       await deletePost({
         variables: { postId },
+        refetchQueries: [{ query: FETCH_POST }],
       })
       Modal.success({ content: '포스트가 삭제되었습니다.' })
       void router.push('/my/posts')
@@ -88,9 +89,10 @@ export default function PostDetail() {
   // **** 포스트 메모값 저장
   const onClickMemoSave = async () => {
     try {
-      const result = await createPostMemo({
+      await createPostMemo({
         variables: {
-          parse: dragText,
+          postId,
+          parse: String(dragText),
         },
       })
       Modal.success({ content: '메모 저장이 완료되었습니다!' })
