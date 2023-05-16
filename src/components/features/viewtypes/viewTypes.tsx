@@ -1,9 +1,15 @@
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './viewTypes.styles'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { MyTag } from '@/components/common/customComponent.styles'
 
 export default function ViewTypesMenu(props: any) {
-    const { onClickMoveToPage } = useMoveToPage()
+  const router = useRouter()
+
+  const handleClickMenu = (value: any) => () => {
+    router.push(value);
+  }
 
   return (
     <>
@@ -11,10 +17,10 @@ export default function ViewTypesMenu(props: any) {
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
           <div>검색창</div>
           <S.TagWrapper>
-            <MyTag isChecked={true} onClick={onClickMoveToPage('./')}>
+            <MyTag isChecked={true} onClick={handleClickMenu('./')}>
               포스트
             </MyTag>
-            <MyTag isChecked={false} onClick={onClickMoveToPage('./series')}>
+            <MyTag isChecked={false} onClick={handleClickMenu('./series')}>
               시리즈
             </MyTag>
           </S.TagWrapper>
