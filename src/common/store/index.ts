@@ -18,12 +18,6 @@ export const accessTokenState = atom({
   default: '',
 })
 
-// **** 로그인 여부 확인
-export const checkLoginState = atom({
-  key: `checkLoginState/${v1()}`,
-  default: false,
-})
-
 // **** 포스트 상세 메모
 export const memoPostDetail = atom({
   key: `memoPostDetail/${v1()}`,
