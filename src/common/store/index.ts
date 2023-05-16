@@ -1,5 +1,7 @@
-import { atom } from 'recoil'
+import { tags } from './../dummyData/tags'
+import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
+import { getAccessToken } from '../libraries/getAccessToken'
 
 // ** cf. https://velog.io/@sj_dev_js/Recoil-Duplicate-atom-key
 // [에러 해결] Recoil : Duplicate atom key
@@ -14,11 +16,6 @@ export const visitedPageState = atom({
 export const accessTokenState = atom({
   key: `accessTokenState/${v1()}`,
   default: '',
-})
-
-export const checkLoginState = atom({
-  key: `checkLoginState/${v1()}`,
-  default: false,
 })
 
 // **** 포스트 상세 메모
@@ -44,10 +41,10 @@ export const tagsState = atom({
   default: [],
 })
 
-// export const restoreAccessTokenLoadable = selector({
-//   key: 'restoreAccessTokenLoadable',
-//   get: async () => {
-//     const newAccessToken = await getAccessToken()
-//     return newAccessToken
-//   },
-// })
+export const restoreAccessTokenLoadable = selector({
+  key: 'restoreAccessTokenLoadable',
+  get: async () => {
+    const newAccessToken = await getAccessToken()
+    return newAccessToken
+  },
+})
