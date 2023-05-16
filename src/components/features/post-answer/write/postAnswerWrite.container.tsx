@@ -36,7 +36,6 @@ export default function PostAnswerWrite(props: any) {
       })
       setContents('')
       props.setIsReply(false)
-      console.log(result)
       Modal.success({ content: '답변 댓글이 등록되었습니다!' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
@@ -46,7 +45,7 @@ export default function PostAnswerWrite(props: any) {
   // **** 답변 수정
   const onClickUpdateAnswer = async () => {
     try {
-      const result1 = await updatePostQuestionAnswer({
+      const result = await updatePostQuestionAnswer({
         variables: {
           updatePostQuestionAnswerInput: {
             contents,
@@ -61,7 +60,6 @@ export default function PostAnswerWrite(props: any) {
         ],
       })
       setContents('')
-      console.log(result1)
       Modal.success({ content: '댓글 수정이 완료되었습니다' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })

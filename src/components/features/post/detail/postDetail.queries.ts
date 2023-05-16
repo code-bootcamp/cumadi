@@ -1,24 +1,33 @@
 import { gql } from '@apollo/client'
 
+// **** 로그인한 유저정보 조회
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      userId
+      email
+      nickname
+    }
+  }
+`
+
 // **** 포스트 조회
 export const FETCH_POST = gql`
-  query fetchPost($postId: ID!) {
+  query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
-      _id
-      writer
+      postId
       title
-      subTitle
-      contents
-      tag
-      category
-      likeCount
-      images
+      content
+      user {
+        userId
+        nickname
+      }
     }
   }
 `
 
 export const FETCH_POST2 = gql`
-  query fetchPost($postId: ID!) {
+  query fetchPost($postId: String!) {
     fetchPost(postId: $postId) {
       _id
       __typename
@@ -29,14 +38,25 @@ export const FETCH_POST2 = gql`
 
 // **** 포스트 삭제
 export const DELETE_POST = gql`
-  mutation deletePost($postId: ID!) {
+  mutation deletePost($postId: String!) {
     deletePost(postId: $postId)
   }
 `
 
 // **** 포스트 좋아요
 export const TOGGLE_POST_PICK = gql`
-  mutation togglePostPick($postId: ID!) {
+  mutation togglePostPick($postId: String!) {
     togglePostPick(postId: $postId)
+  }
+`
+
+// **** 메모 저장
+export const CREATE_POST_MEMO = gql`
+  mutation createPostMemo($parse: String!) {
+    createPostMemo(parse: $parse) {
+      memoId
+      parse
+      createdAt
+    }
   }
 `
