@@ -48,12 +48,13 @@ export default function SeriesDetail() {
   const { data } = useQuery(FETCH_SERIES, {
     variables: { seriesId },
   })
-
+  const my = (data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId ? true : false);
+  
   const [deleteSeries] = useMutation(DELETE_SERIES)
-
+  
   const onClickDelete = async () => {
     try {
-      if (data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId) {
+      if (my) {
         await deleteSeries({
           variables: { seriesId },
         })
@@ -70,6 +71,8 @@ export default function SeriesDetail() {
   return (
     <SeriesDetailUI
       data={data}
+      user={user}
+      my={my}
       onClickDelete={onClickDelete}
     />
   )

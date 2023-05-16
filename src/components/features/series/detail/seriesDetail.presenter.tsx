@@ -27,10 +27,14 @@ export default function SeriesDetailUI(props: any) {
               <S.CreatedAt>작성자 소개</S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
-          <S.PostUpdateBtnWrapper>
-            <S.SeriesButton>수정</S.SeriesButton>
-            <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
-          </S.PostUpdateBtnWrapper>
+            {props.my ? (
+              <S.PostUpdateBtnWrapper>
+                <S.SeriesButton>수정</S.SeriesButton>
+                <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
+              </S.PostUpdateBtnWrapper>
+            ) : (
+              <div></div>
+            )}
         </S.Header>
         <S.PriceWrapper>
           <S.Sell>판매가 · {props.data?.fetchSeries.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{props.data?.fetchSeries.price}원</S.Price>}</S.Sell>
