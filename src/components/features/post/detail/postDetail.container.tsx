@@ -29,7 +29,7 @@ export default function PostDetail() {
   // const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
   const [createPostMemo] = useMutation(CREATE_POST_MEMO)
 
-  // **** 상품 삭제
+  // **** 포스트 삭제
   const onClickDelete = async () => {
     try {
       await deletePost({
@@ -82,7 +82,6 @@ export default function PostDetail() {
   const onMouseUpContentMemo = async () => {
     if (!window.getSelection()?.toString().length) return
     const onMousUpText = String(window.getSelection()?.toString())
-    console.log(onMousUpText)
     setDragText(onMousUpText)
   }
 
@@ -94,7 +93,6 @@ export default function PostDetail() {
           parse: dragText,
         },
       })
-      console.log(result)
       Modal.success({ content: '메모 저장이 완료되었습니다!' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
