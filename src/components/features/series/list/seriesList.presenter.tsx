@@ -26,12 +26,13 @@ export default function SeriesListUI(props: any) {
             시리즈
           </MyTag>
         </S.TagWrapper>
-        <S.TagWrapper>
-          <MyTag isChecked={true}>전체</MyTag>
-          <MyTag isChecked={false}>개발</MyTag>
-          <MyTag isChecked={false}>에세이</MyTag>
-          <MyTag isChecked={false}>독서</MyTag>
-        </S.TagWrapper>
+        
+        {props.menu.map(el => {
+          <S.TagWrapper>
+            <MyTag isChecked={true}>{el.name}</MyTag>
+          </S.TagWrapper>
+        })}
+          
       </S.TitleWrapper>
       {props.data?.fetchSeriesAll.map(el => (
         <S.StyledCard cover={

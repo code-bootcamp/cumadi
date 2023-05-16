@@ -20,3 +20,12 @@ export const FETCH_SERIES_ALL = gql`
     }
   }
 `
+
+export const FETCH_SERIES_CATEGORIES = gql`
+  query fetchSeriesCategories {
+    fetchSeriesCategories {
+      categoryId
+      name
+    }
+  }
+`
