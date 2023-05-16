@@ -61,7 +61,7 @@ export default function SeriesDetail() {
         Modal.success({ content: '포스트가 삭제되었습니다.' })
         void router.push('/series')
       } else {
-        Modal.error({ content: '삭제할수없습니다.' })
+        Modal.error({ content: '일시적인 오류입니다. 다시 시도해주세요.' })
         return ;
       }
     } catch (error) {
@@ -71,7 +71,6 @@ export default function SeriesDetail() {
   return (
     <SeriesDetailUI
       data={data}
-      user={user}
       my={my}
       onClickDelete={onClickDelete}
     />
