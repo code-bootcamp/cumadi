@@ -13,6 +13,7 @@ export const useFillPostFormsFromRouter = () => {
 
   useEffect(() => {
     const postFromRouter = postItem.find(item => item.id === router.query.postId)
+    console.log('post from router', postFromRouter)
 
     if (postFromRouter) {
       setPost(postFromRouter)

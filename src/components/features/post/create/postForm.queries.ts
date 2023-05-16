@@ -9,3 +9,13 @@ export const CREATE_POST = gql`
     }
   }
 `
+
+export const UPDATE_POST = gql`
+  mutation updatePost($postId: String!, $updatePostInput: UpdatePostInput!) {
+    updatePost(updatePostInput: $updatePostInput) {
+      postId
+      title
+      content
+    }
+  }
+`
