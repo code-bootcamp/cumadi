@@ -29,7 +29,7 @@ export default function SeriesDetailUI(props: any) {
           </S.AvatarWrapper>
           <S.PostUpdateBtnWrapper>
             <S.SeriesButton>수정</S.SeriesButton>
-            <S.SeriesButton>삭제</S.SeriesButton>
+            <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
           </S.PostUpdateBtnWrapper>
         </S.Header>
         <S.PriceWrapper>
