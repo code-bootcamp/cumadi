@@ -21,15 +21,16 @@ export default function LayoutHeader() {
   // **** logout
   const onClickLogout = async () => {
     try {
-      // **** 토큰, 캐시 초기화
-      setAccessToken('')
-      client.clearStore()
-
       const result = await logout()
-      console.log(result)
 
-      Modal.success({ content: '로그아웃되었습니다.' })
-      void router.push('/login')
+      if (result.data.logoutUser) {
+        Modal.success({ content: '로그아웃되었습니다.' })
+
+        // **** 토큰, 캐시 초기화
+        setAccessToken('')
+        client.clearStore()
+        void router.push('/login')
+      }
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }

@@ -1,4 +1,5 @@
-import { useState, ChangeEvent } from 'react'
+import { useState } from 'react'
+import type { ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
 import { useRecoilState } from 'recoil'
@@ -57,6 +58,7 @@ export default function Login() {
         return
       }
       setAccessToken(accessToken)
+      localStorage.setItem('accessToken', accessToken) // localstorage 나중에 지울 예정
 
       // 3. 로그인 성공 페이지로 이동하기
       Modal.success({ content: '로그인 되었습니다' })
