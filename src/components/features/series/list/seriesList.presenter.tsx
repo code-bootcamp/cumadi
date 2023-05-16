@@ -1,6 +1,6 @@
 import { Avatar } from 'antd'
 import * as S from './seriesList.styles'
-import { FlexColumnContainer } from '@/components/common/customComponent.styles'
+import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
 import { ProfileContainer } from '@/components/common/customComponent.styles'
@@ -16,6 +16,23 @@ export default function SeriesListUI(props: any) {
 
   return (
     <S.Body>
+      <S.TitleWrapper>
+        <S.Title>내 맘대로. 내 입맛대로.</S.Title>
+        <S.TagWrapper>
+          <MyTag isChecked={false} onClick={onClickMoveToPage('./')}>
+            포스트
+          </MyTag>
+          <MyTag isChecked={true} onClick={onClickMoveToPage('./series')}>
+            시리즈
+          </MyTag>
+        </S.TagWrapper>
+        <S.TagWrapper>
+          <MyTag isChecked={true}>전체</MyTag>
+          <MyTag isChecked={false}>개발</MyTag>
+          <MyTag isChecked={false}>에세이</MyTag>
+          <MyTag isChecked={false}>독서</MyTag>
+        </S.TagWrapper>
+      </S.TitleWrapper>
       {props.data?.fetchSeriesAll.map(el => (
         <S.StyledCard cover={
           <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={onClickMoveToPage(`/series/${el.seriesId}`)} />}>

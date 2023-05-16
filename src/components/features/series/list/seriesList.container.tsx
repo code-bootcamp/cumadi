@@ -1,27 +1,6 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import SeriesListUI from "./seriesList.presenter";
-import { useEffect } from "react";
-
-const FETCH_SERIES_ALL = gql`
-  query fetchSeriesAll {
-    fetchSeriesAll {
-      seriesId
-      title
-      introduction
-      image
-      price
-      createdAt
-      category{
-        categoryId
-        name
-      }
-      user{
-        userId
-        nickname
-      }
-    }
-  }
-`
+import { FETCH_SERIES_ALL } from "./seriesList.query";
 
 export default function SeriesList() {
   const { data, refetch } = useQuery(FETCH_SERIES_ALL);
