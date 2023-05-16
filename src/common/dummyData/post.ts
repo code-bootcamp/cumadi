@@ -4,10 +4,13 @@ export const postItem = [
     name: '홀란드',
     title: '포근한 니트로 만드는 나만의 글씨, 봉봉메이드 니트레터링 클래스',
     contents:
-      '홀란드는 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus nulla blanditiis, ducimus sed suscipit atque neque consequatur cum eveniet nostrum quisquam alias distinctio et beatae tempore temporibus ab non iste.',
+      '<h1>dasdasdas</h1>홀란드는 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus nulla blanditiis, ducimus sed suscipit atque neque consequatur cum eveniet nostrum quisquam alias distinctio et beatae tempore temporibus ab non iste. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus nulla blanditiis, ducimus sed suscipit atque neque consequatur cum eveniet nostrum quisquam alias distinctio et beatae tempore temporibus ab non iste. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus nulla blanditiis, ducimus sed suscipit atque neque consequatur cum eveniet nostrum quisquam alias distinctio et beatae tempore temporibus ab non iste.',
     image: 'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
     price: 560000,
     createDate: '2023.04.01',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: '81x83ysiEHsHCBoeVh2O',
@@ -18,6 +21,9 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/ec0f0c15-aeec-43a3-a0c9-b649b0999f0a',
     price: 654000,
     createDate: '2023.04.02',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: 'gGFsFvhrKlvZpjLRfmNY',
@@ -27,7 +33,10 @@ export const postItem = [
       '제임슨은 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus nulla blanditiis, ducimus sed suscipit atque neque consequatur cum eveniet nostrum quisquam alias distinctio et beatae tempore temporibus ab non iste.',
     image: 'https://cdn.class101.net/images/a363a069-5aaf-40cb-822e-a2cab585c37e',
     price: 954000,
+    tags: ['tag3'],
     createDate: '2023.04.03',
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: 'vgrdHO9bLqNxDYt4Q7vZ',
@@ -38,6 +47,9 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/a363a069-5aaf-40cb-822e-a2cab585c37e',
     price: 123000,
     createDate: '2023.04.04',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: 'CNCwXwHP7FUip83z5VEH',
@@ -48,6 +60,9 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/38f79b22-4728-4c16-bee9-966fff07df3f',
     price: 456000,
     createDate: '2023.04.05',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: 'ndHkNPUpGPiF4nmqX0PL',
@@ -58,6 +73,9 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/132a560b-ba7f-4564-b5f5-709b934f5ddd',
     price: 789000,
     createDate: '2023.04.06',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: '4tVyp15jKUO6sfUvLnBc',
@@ -68,6 +86,9 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/9e7be50d-72f1-4c93-80d6-c6b95b42bd40',
     price: 101000,
     createDate: '2023.04.07',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
   {
     id: 'pHr0phFtcWhsgZhSVe9F',
@@ -78,5 +99,8 @@ export const postItem = [
     image: 'https://cdn.class101.net/images/864f377f-93d9-4520-94de-19ca142c432f',
     price: 359000,
     createDate: '2023.04.08',
+    tags: ['tag3'],
+    description: '포스트 소개입니당',
+    series: '',
   },
 ]

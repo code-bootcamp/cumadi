@@ -1,4 +1,5 @@
 import { Avatar, Card } from 'antd'
+
 import * as S from './Footer.styles'
 import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
@@ -10,28 +11,40 @@ import { ProfileTextDataContainer } from '@/components/common/customComponent.st
 import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-export default function LayoutFooterUI() {
+export default function LayoutFooterUI(props: any) {
+  const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <S.Footer>
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {postItem.map(el => (
-            <Card style={{ width: 400, border: 'unset' }} cover={<img alt="example" src={el.image} />}>
-              <FlexColumnContainer gap={'0.5rem'}>
+          {props.data?.fetchPosts.slice(0, 6).map(el => (
+            <S.StyledCard
+              key={el.postId}
+              style={{ width: 400, border: 'unset' }}
+              cover={
+                <S.CardThumbnailImg
+                  src={'/images/no-image.jpeg'}
+                  alt="포스트 썸네일 이미지"
+                  onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                />
+              }>
+              <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
                   카테고리명
                 </BodyTextSm>
                 <BodyTextLg>{el.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>
-                  <TruncatedText lines={4}>{el.contents}</TruncatedText>
+                  <TruncatedText lines={4}>{el.content}</TruncatedText>
                 </BodyText>
                 <InfoSectionContainer>
                   <ProfileContainer>
                     <Avatar>E</Avatar>
                     <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.name}</BodyTextSm>
+                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                       <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
@@ -47,7 +60,7 @@ export default function LayoutFooterUI() {
                   </ReactionsContainer>
                 </InfoSectionContainer>
               </FlexColumnContainer>
-            </Card>
+            </S.StyledCard>
           ))}
         </S.Body>
       </S.Container>
