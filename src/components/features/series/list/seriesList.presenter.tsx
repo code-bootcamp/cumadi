@@ -18,7 +18,7 @@ export default function SeriesListUI(props: any) {
     <S.Body>
       {props.data?.fetchSeriesAll.map(el => (
         <S.StyledCard cover={
-          <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={onClickMoveToPage(`/series/${el.id}`)} />}>
+          <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={onClickMoveToPage(`/series/${el.seriesId}`)} />}>
           <FlexColumnContainer gap={'0.5rem'}>
             <BodyTextSm color={Colors.primary} weight={600}>
               {el.category.name}
