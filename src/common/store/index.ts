@@ -1,4 +1,3 @@
-import { tags } from './../dummyData/tags'
 import { atom } from 'recoil'
 import { v1 } from 'uuid'
 
@@ -34,10 +33,15 @@ export const postFormState = atom({
   default: {},
 })
 
+export const tempPostIdState = atom({
+  key: `tempPostIdState/${v1()}`,
+  default: '',
+})
+
 // **** 태그 정보
 export const tagsState = atom({
   key: `tagsState/${v1()}`,
-  default: tags,
+  default: [],
 })
 
 // export const restoreAccessTokenLoadable = selector({

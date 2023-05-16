@@ -4,11 +4,14 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { InputRef } from 'antd'
 import _ from 'lodash'
-import { postFormState, tagsState } from '@/common/store'
+import { postFormState, tagsState, tempPostIdState } from '@/common/store'
 import PostFormUI from './postForm.presenter'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import { IPostFormProps } from './postForm.types'
+import { useMutation } from '@apollo/client'
+import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
+import { CREATE_POST, UPDATE_POST } from './postForm.queries'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
@@ -19,9 +22,26 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
   const [tags, setTags] = useRecoilState(tagsState)
   const [post, setPost] = useRecoilState(postFormState)
+  const [, setTempPostId] = useRecoilState(tempPostIdState)
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
 
+  const API_HEADERS = {
+    authorization: typeof window !== undefined ? `Bearer ${window.localStorage.getItem('accessToken')}` : '',
+    'Content-Type': 'application/json',
+  }
+
+  const [createPost] = useMutation<Pick<IMutation, 'createPost'>, IMutationCreatePostArgs>(CREATE_POST, {
+    context: {
+      headers: API_HEADERS,
+    },
+  })
+
+  const [updatePost] = useMutation<Pick<IMutation, 'updatePost'>, IMutationUpdatePostArgs>(UPDATE_POST, {
+    context: {
+      headers: API_HEADERS,
+    },
+  })
   const inputRef = useRef<InputRef>(null)
   const editorRef = useRef<any>(null)
 
@@ -47,7 +67,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
     }, 0)
   }
 
-  const handleSubmitForm = (values: any) => {
+  const handleSubmitForm = async (values: any) => {
     let filledValuesFromPost = { ...values }
     if (post) {
       for (const [key, value] of Object.entries(filledValuesFromPost)) {
@@ -59,9 +79,34 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
       ...filledValuesFromPost,
       content: editorRef.current.getInstance().getMarkdown(),
     }
-    setPost(postData)
 
-    router.query.postId ? router.push(`/post/${router.query.postId}/edit/publish`) : router.push('new/publish')
+    try {
+      setPost(postData)
+
+      if (isEditMode) {
+        const result = await updatePost({
+          variables: {
+            postId: router.query.postId as string,
+            updatePostInput: {
+              title: postData.title,
+              content: postData.content,
+              tags: postData.tags,
+            },
+          },
+        })
+        router.push(`/post/${result.data?.updatePost.postId}/edit/publish`)
+      } else {
+        const result = await createPost({
+          variables: {
+            createPostInput: { title: postData.title, content: postData.content, tags: postData.tags },
+          },
+        })
+        setTempPostId(result.data?.createPost.postId as string)
+        router.push('new/publish')
+      }
+    } catch (error) {
+      if (error instanceof Error) alert(error.message)
+    }
   }
 
   return (

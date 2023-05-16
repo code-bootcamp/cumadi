@@ -11,11 +11,11 @@ import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import '@toast-ui/editor/dist/toastui-editor.css'
 import { MarkdownEditorProps } from './markdownEditor.types'
 
-export default function MarkdownEditorUI({ editorRef, content = '', toolbarItems }: MarkdownEditorProps) {
+export default function MarkdownEditorUI({ editorRef, content, toolbarItems }: MarkdownEditorProps) {
   return (
     <Editor
       ref={editorRef}
-      initialValue={content || ' '}
+      initialValue={content}
       height="30rem"
       initialEditType="markdown"
       hideModeSwitch={true}

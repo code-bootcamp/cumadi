@@ -21,7 +21,7 @@ export default function PostDetailUI(props: any) {
         <SideNavigation onClickMemoSave={props.onClickMemoSave} />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
-          <S.PostSubTitle>부제목</S.PostSubTitle>
+          <S.PostSubTitle>{PostDetail?.description}</S.PostSubTitle>
           <S.PostTagWapper>
             <MyTag isChecked={true}>태그</MyTag>
             <MyTag isChecked={true}>태그</MyTag>

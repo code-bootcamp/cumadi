@@ -17,7 +17,7 @@ export interface IPost {
 export interface PostFormUIProps {
   isEditMode: boolean
   post: any
-  tags: string[]
+  tags: any[]
   handleSearchChange: (value: string) => void
   isAddTagOptionVisible: boolean
   handleClickAddTag: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void

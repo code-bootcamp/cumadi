@@ -13,19 +13,13 @@ export default function PostFormUI(props: PostFormUIProps) {
 
       <S.MyForm onFinish={props.handleSubmitForm} form={props.form}>
         <Form.Item name="title" rules={[{ required: props.post.title ? false : true, message: '제목을 적어주세요.' }]}>
-          <Input
-            type="primary"
-            placeholder="제목"
-            defaultValue={props.post ? props.post.title : ''}
-            value={props.post ? props.post.title : ''}
-          />
+          <Input type="primary" placeholder="제목" value={props.post ? props.post.title : ''} />
         </Form.Item>
 
         <Form.Item name="tags" rules={[{ required: props.post.tags ? false : true, message: '태그를 정해주세요.' }]}>
           <Select
             mode="multiple"
             placeholder="태그를 정해주세요."
-            defaultValue={props.post ? props.post.tags : null}
             allowClear
             onSearch={props.handleSearchChange}
             dropdownRender={menu => (
@@ -48,7 +42,10 @@ export default function PostFormUI(props: PostFormUIProps) {
         </Form.Item>
 
         <Form.Item>
-          <props.DynamicImportEditor editorRef={props.editorRef} content={props.post ? props.post.contents : ''} />
+          <props.DynamicImportEditor
+            editorRef={props.editorRef}
+            content={props.post.content ? props.post.content : ''}
+          />
         </Form.Item>
 
         <Form.Item>

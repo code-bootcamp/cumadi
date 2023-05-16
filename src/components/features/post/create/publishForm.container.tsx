@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Input, message } from 'antd'
 import { useRecoilState } from 'recoil'
-import { accessTokenState, postFormState } from '@/common/store'
+import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import PublishFormUI from './publishForm.presenter'
 import { IPublishFormProps } from './publishForm.types'
 import { useMutation } from '@apollo/client'
-import { CREATE_POST, UPDATE_POST } from './postForm.queries'
+import { UPDATE_POST } from './postForm.queries'
 import { useRouter } from 'next/router'
 import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
 
@@ -19,6 +19,7 @@ const dummyDataSeries = [
 
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const router = useRouter()
+  const [tempPostId] = useRecoilState(tempPostIdState)
   const [post] = useRecoilState(postFormState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
@@ -28,12 +29,6 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     authorization: typeof window !== undefined ? `Bearer ${window.localStorage.getItem('accessToken')}` : '',
     'Content-Type': 'application/json',
   }
-
-  const [createPost] = useMutation<Pick<IMutation, 'createPost'>, IMutationCreatePostArgs>(CREATE_POST, {
-    context: {
-      headers: API_HEADERS,
-    },
-  })
 
   const [updatePost] = useMutation<Pick<IMutation, 'updatePost'>, IMutationUpdatePostArgs>(UPDATE_POST, {
     context: {
@@ -68,18 +63,18 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const handleSubmitForm = async (values: any) => {
     // TODO: replace thumbnail:thumbnailUrl with actual server url
     const publishablePostData = { ...post, ...values }
+
     try {
       const postInput = {
         title: publishablePostData.title,
         content: publishablePostData.content,
         seriesId: publishablePostData.series,
-        tags: publishablePostData.tags,
+        tags: publishablePostData.tags.map((tag: { tagId: any }) => tag.tagId),
       }
       if (isEditMode) {
-        console.log('hello its edit', publishablePostData.id)
         const result = await updatePost({
           variables: {
-            postId: publishablePostData.id,
+            postId: publishablePostData.postId,
             updatePostInput: postInput,
           },
         })
@@ -89,16 +84,17 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
         })
         router.push(`/post/${result.data?.updatePost.postId}`)
       } else {
-        const result = await createPost({
+        const result = await updatePost({
           variables: {
-            createPostInput: postInput,
+            postId: tempPostId,
+            updatePostInput: postInput,
           },
         })
         messageApi.open({
           type: 'success',
           content: '포스트가 성공적으로 출간되었습니다.',
         })
-        router.push(`/post/${result.data?.createPost.postId}`)
+        router.push(`/post/${result.data?.updatePost.postId}`)
       }
     } catch (error) {
       if (error instanceof Error) alert(error.message)

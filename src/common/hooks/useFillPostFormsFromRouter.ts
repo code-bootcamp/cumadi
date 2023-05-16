@@ -1,34 +1,55 @@
-import { useEffect } from 'react'
+import { IQuery, IQueryFetchPostArgs } from './../types/generated/types'
+import { gql, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { Form } from 'antd'
-import { postFormState } from '../store'
-import { postItem } from '@/common/dummyData/post'
+import { postFormState, tempPostIdState } from '../store'
+
+export const FETCH_POST_WITH_DETAILS = gql`
+  query fetchPost($postId: String!) {
+    fetchPost(postId: $postId) {
+      postId
+      title
+      content
+      series {
+        seriesId
+        title
+      }
+      tags {
+        tagId
+        name
+      }
+    }
+  }
+`
 
 export const useFillPostFormsFromRouter = () => {
   const router = useRouter()
   const [postForm] = Form.useForm()
   const [publishForm] = Form.useForm()
-  const [, setPost] = useRecoilState(postFormState)
+  const [post, setPost] = useRecoilState(postFormState)
+  const [tempPostId] = useRecoilState(tempPostIdState)
 
-  useEffect(() => {
-    const postFromRouter = postItem.find(item => item.id === router.query.postId)
-    console.log('post from router', postFromRouter)
+  const { data } = useQuery<Pick<IQuery, 'fetchPost'>, IQueryFetchPostArgs>(FETCH_POST_WITH_DETAILS, {
+    variables: {
+      postId: router.query.postId ? (router.query.postId as string) : tempPostId,
+    },
+  })
 
-    if (postFromRouter) {
-      setPost(postFromRouter)
-      postForm.setFieldsValue({
-        title: postFromRouter.title,
-        tags: postFromRouter.tags,
-        content: postFromRouter.content,
-      })
-      publishForm.setFieldsValue({
-        thumbnail: postFromRouter.image,
-        description: postFromRouter.description,
-        series: postFromRouter.series,
-      })
-    }
-  }, [router.isReady])
+  const postFromRouter = data?.fetchPost
+  if (postFromRouter) {
+    setPost(postFromRouter)
+    postForm.setFieldsValue({
+      title: postFromRouter.title,
+      tags: postFromRouter.tags?.map(tag => tag.name),
+      content: postFromRouter.content,
+    })
+    publishForm.setFieldsValue({
+      // thumbnail: postFromRouter.image,
+      // description: postFromRouter.description,
+      series: postFromRouter.series,
+    })
+  }
 
   return { postForm, publishForm }
 }
