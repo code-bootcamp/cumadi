@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { breakPoints } from '@/common/styles/media'
 
 export const Container = styled.section`
-  width: 74rem;
+  width: auto;
 
   @media ${breakPoints.tablet} {
     width: 44rem;

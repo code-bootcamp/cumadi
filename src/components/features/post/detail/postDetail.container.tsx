@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import PostDetailUI from './postDetail.presenter'
 import { Modal } from 'antd'
+import { useState } from 'react'
+import PostDetailUI from './postDetail.presenter'
 import { useRouter } from 'next/router'
-import { useRecoilState } from 'recoil'
 import { useMutation, useQuery } from '@apollo/client'
 
-import { memoPostDetail } from '@/common/store'
-import { DELETE_POST, FETCH_POST, FETCH_POST2, TOGGLE_POST_PICK } from './postDetail.queries'
+import {
+  CREATE_POST_MEMO,
+  DELETE_POST,
+  FETCH_POST,
+  FETCH_POST2,
+  FETCH_USER_LOGGED_IN,
+  TOGGLE_POST_PICK,
+} from './postDetail.queries'
 
 export default function PostDetail() {
   const router = useRouter()
   const postId = String(router.query.postId)
 
   // **** 상태
-  const [dragText, setDragText] = useState<string | undefined>('') // 드래그한 값
-  const [savedTexts, setSavedTexts] = useRecoilState(memoPostDetail) // 드래그한 거 저장
+  const [dragText, setDragText] = useState('') // 드래그한 값
 
   // **** PlayGround
-  // const { data } = useQuery(FETCH_POST, {
-  //   variables: { postId },
-  // })
-  // const [deletePost] = useMutation(DELETE_POST)
+  const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
+  const { data } = useQuery(FETCH_POST, {
+    variables: { postId },
+  })
+  const [deletePost] = useMutation(DELETE_POST)
   // const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
+  const [createPostMemo] = useMutation(CREATE_POST_MEMO)
 
-  // **** 상품 삭제
+  // **** 포스트 삭제
   const onClickDelete = async () => {
     try {
       await deletePost({
-        variables: {
-          postId,
-        },
+        variables: { postId },
       })
-      Modal.success({ content: '상품이 삭제되었습니다.' })
-      void router.push('/')
+      Modal.success({ content: '포스트가 삭제되었습니다.' })
+      void router.push('/my/posts')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
@@ -74,31 +78,36 @@ export default function PostDetail() {
     }
   }
 
-  // **** onMouseUp 이벤트 헨들러로 드래그한 텍스트를 dragText 상태에 저장
-  // window.getSelection() : 마우스로 드래그하여 선택한 텍스트를 가져오기
-  const onMouseUpContents = () => {
-    const selectedText = window.getSelection()?.toString()
-    if (selectedText?.length !== 0) {
-      // let savedText: any = prompt('저장하시겠나요?', selectedText)
-      setDragText(selectedText)
-    }
+  // **** 포스트 메모값 전달 (cf. window.getSelection() : 마우스로 드래그하여 선택한 텍스트를 가져오기)
+  const onMouseUpContentMemo = async () => {
+    if (!window.getSelection()?.toString().length) return
+    const onMousUpText = String(window.getSelection()?.toString())
+    setDragText(onMousUpText)
   }
 
-  // **** localStorage.setItem로 드래그한 텍스트 저장
-  const handleSaveText = () => {
-    const savedTexts = JSON.parse(localStorage.getItem('savedTexts') || '[]')
-    savedTexts.push(dragText)
-    localStorage.setItem('savedTexts', JSON.stringify(savedTexts))
-    setSavedTexts(savedTexts)
+  // **** 포스트 메모값 저장
+  const onClickMemoSave = async () => {
+    try {
+      const result = await createPostMemo({
+        variables: {
+          parse: dragText,
+        },
+      })
+      Modal.success({ content: '메모 저장이 완료되었습니다!' })
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
+    }
   }
 
   return (
     <PostDetailUI
-    // data={data}
-    // onClickDelete={onClickDelete}
-    // onClickPick={onClickPick}
-    // onMouseUpContents={onMouseUpContents}
-    // handleSaveText={handleSaveText}
+      loginData={loginData}
+      data={data}
+      onClickDelete={onClickDelete}
+      onMouseUpContentMemo={onMouseUpContentMemo}
+      onClickMemoSave={onClickMemoSave}
+      // onClickPick={onClickPick}
+      // handleSaveText={handleSaveText}
     />
   )
 }

@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
-import PaginationMyHighlightUI from './PaginationMyHighlight.presenter'
+import PaginationMyMemoUI from './PaginationMyMemo.presenter'
 
-export default function PaginationHighlight(props: any) {
+export default function PaginationMemo(props: any) {
   // **** 상태
   const [startPage, setStartPage] = useState(1)
   const [activedPage, setActivedPage] = useState(1) // 페이지 색깔
@@ -32,7 +32,7 @@ export default function PaginationHighlight(props: any) {
   }
 
   return (
-    <PaginationMyHighlightUI
+    <PaginationMyMemoUI
       startPage={startPage}
       lastPage={lastPage}
       activedPage={activedPage}
