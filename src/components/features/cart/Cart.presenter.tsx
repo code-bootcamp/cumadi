@@ -6,18 +6,11 @@ import {
   FlexColumnContainer,
   InfoSectionContainer,
   PriceContainer,
-<<<<<<< HEAD
-} from "@/components/common/customComponent.styles";
-import { BodyTextLg, BodyTextSm } from "@/common/styles/globalStyles";
-import { Colors } from "@/common/styles/colors";
-import { MyButton } from "@/components/common/customComponent.styles";
-import Script from "next/script";
-=======
 } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { MyButton } from '@/components/common/customComponent.styles'
->>>>>>> main
+import Script from 'next/script'
 
 export default function CartUI(props: ICartUIProps) {
   return (

@@ -1,31 +1,12 @@
-<<<<<<< HEAD
-import { useState, useEffect } from "react";
-import { IList } from "./Cart.types";
-import CartUI from "./Cart.presenter";
-import { postItem } from "@/common/dummyData/post";
-import { useRouter } from "next/router";
-import { purchaseProduct } from "@/common/libraries/payment";
-=======
 import { Modal } from 'antd'
 import { useState, useEffect } from 'react'
 import { IList } from './Cart.types'
 import CartUI from './Cart.presenter'
->>>>>>> main
 
 // checkList 가 빈배열 => 최종 결제할 데이터가 담긴 배열 => 최초 []  =>  length는 0
 // productList 는 로컬스토리지에 저장된 데이터가 담긴 배열 => 삭제, 구매 등 목록에서 삭제될때 변경되는 배열
 
 export default function Cart() {
-<<<<<<< HEAD
-  const router = useRouter();
-  const [totalPrice, setTotalPrice] = useState(0); // 최종 결제 금액
-  const [checkList, setCheckList] = useState<Array<any>>([]); // 체크리스트 배열
-  const [productList, setProductList] = useState(postItem); // 상품리스트 배열
-
-  useEffect(() => {
-    localStorage.setItem("carts", JSON.stringify(postItem)); //  localStorage에 장바구니 상품들을 저장(임시)
-    let sumPrice = 0;
-=======
   const [totalPrice, setTotalPrice] = useState(0) // 최종 결제 금액
   const [checkList, setCheckList] = useState<Array<any>>([]) // 체크리스트 배열
   const [productList, setProductList] = useState<Array<any>>([]) // 상품리스트 배열
@@ -35,7 +16,6 @@ export default function Cart() {
     setProductList(result)
 
     let sumPrice = 0
->>>>>>> main
     for (let i = 0; i < checkList.length; i++) {
       sumPrice += checkList[i].price
     }
@@ -102,12 +82,7 @@ export default function Cart() {
       alert('시리즈를 선택해주세요.')
       return
     }
-<<<<<<< HEAD
-    purchaseProduct(checkList, totalPrice, router);
-  };
-=======
   }
->>>>>>> main
 
   return (
     <CartUI
