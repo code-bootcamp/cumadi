@@ -5,12 +5,12 @@ import { FETCH_SERIES_ALL, FETCH_SERIES_CATEGORIES } from "./seriesList.query";
 export default function SeriesList() {
   const { data, refetch } = useQuery(FETCH_SERIES_ALL);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
-  const menu = category.fetchSeriesCategories
+
   return (
     <>
         <SeriesListUI
+          category={category}
           data={data}
-          menu={menu}
         />
     </>
   ) 

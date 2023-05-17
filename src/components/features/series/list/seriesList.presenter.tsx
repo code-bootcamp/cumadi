@@ -13,7 +13,7 @@ import { Rate } from 'antd';
 
 export default function SeriesListUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
-
+  console.log(props.category)
   return (
     <S.Body>
       <S.TitleWrapper>
@@ -26,13 +26,13 @@ export default function SeriesListUI(props: any) {
             시리즈
           </MyTag>
         </S.TagWrapper>
-        
-        {props.menu.map(el => {
-          <S.TagWrapper>
-            <MyTag isChecked={true}>{el.name}</MyTag>
-          </S.TagWrapper>
-        })}
-          
+
+        <S.TagWrapper>
+          {props.category?.fetchSeriesCategories?.map((category: any) => (
+              <MyTag isChecked={false}>{category.name}</MyTag>
+          ))}
+        </S.TagWrapper>
+
       </S.TitleWrapper>
       {props.data?.fetchSeriesAll.map(el => (
         <S.StyledCard cover={
