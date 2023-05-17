@@ -1,5 +1,6 @@
 import { ComponentType, MutableRefObject } from 'react'
 import { MarkdownEditorProps } from '@/components/common/markdownEditor/markdownEditor.types'
+import { ISeries } from '@/common/types/generated/types'
 export interface IPostFormProps {
   isEditMode: boolean
 }
@@ -9,6 +10,8 @@ export interface IPost {
   name: string
   title: string
   contents: string
+  tags: string[]
+  series: any
   image: string
   price: number
   createDate: string

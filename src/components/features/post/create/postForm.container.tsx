@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { InputRef } from 'antd'
 import _ from 'lodash'
-import { postFormState, tagsState, tempPostIdState } from '@/common/store'
+import { accessTokenState, postFormState, tagsState, tempPostIdState } from '@/common/store'
 import PostFormUI from './postForm.presenter'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
@@ -25,9 +25,11 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   const [, setTempPostId] = useRecoilState(tempPostIdState)
   const [searchString, setSearchString] = useState('')
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
+  const [isRouterChangable, setIsRouterChangable] = useState(false)
+  const [accessToken] = useRecoilState(accessTokenState)
 
   const API_HEADERS = {
-    authorization: typeof window !== undefined ? `Bearer ${window.localStorage.getItem('accessToken')}` : '',
+    authorization: typeof window !== undefined ? `Bearer ${accessToken}` : '',
     'Content-Type': 'application/json',
   }
 
@@ -52,6 +54,16 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   useEffect(() => {
     if (tags.filter(item => item.includes(searchString)).length === 0) setIsAddTagOptionVisible(true)
   }, [searchString])
+
+  useEffect(() => {
+    if (isRouterChangable) {
+      if (isEditMode) router.push(`/post/${post.postId}/edit/publish`)
+      else router.push('new/publish')
+    }
+    return () => {
+      setIsRouterChangable(false)
+    }
+  }, [isRouterChangable])
 
   const handleSearchChange = (value: string) => {
     setSearchString(value)
@@ -82,9 +94,10 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
     try {
       setPost(postData)
+      setIsRouterChangable(true)
 
       if (isEditMode) {
-        const result = await updatePost({
+        await updatePost({
           variables: {
             postId: router.query.postId as string,
             updatePostInput: {
@@ -94,7 +107,8 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
             },
           },
         })
-        router.push(`/post/${result.data?.updatePost.postId}/edit/publish`)
+
+        // router.push(`/post/${result.data?.updatePost.postId}/edit/publish`)
       } else {
         const result = await createPost({
           variables: {
@@ -102,7 +116,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
           },
         })
         setTempPostId(result.data?.createPost.postId as string)
-        router.push('new/publish')
+        // router.push('new/publish')
       }
     } catch (error) {
       if (error instanceof Error) alert(error.message)

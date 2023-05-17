@@ -27,7 +27,13 @@ export const memoPostDetail = atom({
 // **** 출판 전 포스트 정보
 export const postFormState = atom({
   key: `postFormState/${v1()}`,
-  default: {},
+  default: {
+    postId: '',
+    title: '',
+    content: '',
+    series: '',
+    tags: [],
+  },
 })
 
 export const tempPostIdState = atom({

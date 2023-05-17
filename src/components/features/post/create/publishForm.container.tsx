@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Input, message } from 'antd'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import PublishFormUI from './publishForm.presenter'
@@ -20,13 +20,17 @@ const dummyDataSeries = [
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const router = useRouter()
   const [tempPostId] = useRecoilState(tempPostIdState)
-  const [post] = useRecoilState(postFormState)
+  const [post, setPost] = useRecoilState(postFormState)
   const fileRef = useRef<HTMLInputElement>(null)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [messageApi] = message.useMessage()
+  const [isRouterChangable, setIsRouterChangable] = useState(false)
+  const [accessToken] = useRecoilState(accessTokenState)
+  const resetPost = useResetRecoilState(postFormState)
+  const resetTempPostId = useResetRecoilState(tempPostIdState)
 
   const API_HEADERS = {
-    authorization: typeof window !== undefined ? `Bearer ${window.localStorage.getItem('accessToken')}` : '',
+    authorization: typeof window !== undefined ? `Bearer ${accessToken}` : '',
     'Content-Type': 'application/json',
   }
 
@@ -35,6 +39,15 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
       headers: API_HEADERS,
     },
   })
+
+  useEffect(() => {
+    if (isRouterChangable) {
+      router.push(`/post/${post.postId}`)
+    }
+    return () => {
+      setIsRouterChangable(false)
+    }
+  }, [isRouterChangable])
 
   const { publishForm } = useFillPostFormsFromRouter()
 
@@ -66,13 +79,11 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
 
     try {
       const postInput = {
-        title: publishablePostData.title,
-        content: publishablePostData.content,
         seriesId: publishablePostData.series,
-        tags: publishablePostData.tags.map((tag: { tagId: any }) => tag.tagId),
       }
+
       if (isEditMode) {
-        const result = await updatePost({
+        await updatePost({
           variables: {
             postId: publishablePostData.postId,
             updatePostInput: postInput,
@@ -82,20 +93,22 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
           type: 'success',
           content: '포스트가 성공적으로 수정되었습니다.',
         })
-        router.push(`/post/${result.data?.updatePost.postId}`)
       } else {
-        const result = await updatePost({
+        await updatePost({
           variables: {
             postId: tempPostId,
             updatePostInput: postInput,
           },
         })
+
         messageApi.open({
           type: 'success',
           content: '포스트가 성공적으로 출간되었습니다.',
         })
-        router.push(`/post/${result.data?.updatePost.postId}`)
       }
+      setIsRouterChangable(true)
+      resetPost()
+      resetTempPostId()
     } catch (error) {
       if (error instanceof Error) alert(error.message)
     }
