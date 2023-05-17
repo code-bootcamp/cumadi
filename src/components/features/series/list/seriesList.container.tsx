@@ -8,7 +8,7 @@ export default function SeriesList() {
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [seriesMenu, setSeriesMenu] = useState("");
   const [allSeries, setAllSeries] = useState(true);
-  const [countIndex, setCountIndex] = useState(0);
+  const [countIndex, setCountIndex] = useState(1000);
 
   const onClickAllSeries = () => {
     setSeriesMenu("");
