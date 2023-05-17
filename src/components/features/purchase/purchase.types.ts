@@ -1,12 +1,6 @@
+import { IQuery } from '@/common/types/generated/types'
+
 export interface IPurchaseUIProps {
-  checkList: {
-    id: string;
-    name: string;
-    title: string;
-    contents: string;
-    image: string;
-    price: number;
-    createDate: string;
-  }[];
-  onClickPayment: () => void;
+  data?: Pick<IQuery, 'fetchSeries'>
+  onClickPayment: () => void
 }

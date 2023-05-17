@@ -1,16 +1,16 @@
-import { IPurchaseUIProps } from "./purchase.types";
-import * as S from "./purchase.styles";
-import { Checkbox } from "antd";
+import { IPurchaseUIProps } from './purchase.types'
+import * as S from './purchase.styles'
+import { Checkbox } from 'antd'
 import {
   HorizontalCardSm,
   FlexColumnContainer,
   InfoSectionContainer,
   PriceContainer,
-} from "@/components/common/customComponent.styles";
-import { BodyTextLg, BodyTextSm } from "@/common/styles/globalStyles";
-import { Colors } from "@/common/styles/colors";
-import { MyButton } from "@/components/common/customComponent.styles";
-import Script from "next/script";
+} from '@/components/common/customComponent.styles'
+import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
+import { Colors } from '@/common/styles/colors'
+import { MyButton } from '@/components/common/customComponent.styles'
+import Script from 'next/script'
 
 export default function PurchaseUI(props: IPurchaseUIProps) {
   return (
@@ -27,38 +27,33 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
             <HorizontalCardSm>
               <img
                 className="horizontal-card-cover"
-                src={props.checkList[0].image}
-                alt={`${props.checkList[0].title} 이미지`}
+                src={props.data?.fetchSeries.image}
+                alt={`${props.data?.fetchSeries.title} 이미지`}
               />
-              <div
-                className="horizontal-card-body"
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <FlexColumnContainer gap={"0.5rem"}>
+              <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
+                <FlexColumnContainer gap={'0.5rem'}>
                   <BodyTextLg>
                     <S.BookImage src="/images/book.svg" />
-                    {props.checkList[0].title}
+                    {props.data?.fetchSeries.title}
                   </BodyTextLg>
                   <InfoSectionContainer>
-                    <BodyTextSm color={Colors.gray1}>
-                      {props.checkList[0].name}
-                    </BodyTextSm>
+                    <BodyTextSm color={Colors.gray1}>{props.data?.fetchSeries.user.nickname}</BodyTextSm>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
                 <PriceContainer>
-                  <BodyTextLg>{`${props.checkList[0].price.toLocaleString()}원`}</BodyTextLg>
+                  <BodyTextLg>{`${props.data?.fetchSeries.price?.toLocaleString()}원`}</BodyTextLg>
                 </PriceContainer>
               </div>
             </HorizontalCardSm>
           </S.CardWrapper>
         </S.CheckListWrapper>
         <S.TotalPriceWrapper>
-          <S.TotalPrice>{`총 ${props.checkList[0].price.toLocaleString()}원`}</S.TotalPrice>
+          <S.TotalPrice>{`총 ${props.data?.fetchSeries.price?.toLocaleString()}원`}</S.TotalPrice>
           <MyButton type="primary" onClick={props.onClickPayment}>
             선택한 시리즈 결제하기
           </MyButton>
         </S.TotalPriceWrapper>
       </S.Body>
     </>
-  );
+  )
 }
