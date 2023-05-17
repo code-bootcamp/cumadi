@@ -86,10 +86,13 @@ export const TagWrapper = styled.div`
   margin: 1rem 0;
 `
 
-export const TopTag = styled(Tag)`
+export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   padding: 0.02rem 0.5rem;
   color: ${Colors.primary};
   border-radius: 1.5rem;
   background-color: ${Colors.muted};
   cursor: pointer;
+  color: ${props => (props.isClicked ? Colors.white : Colors.black)};
+
+}
 `

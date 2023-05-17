@@ -8,15 +8,18 @@ export default function SeriesList() {
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [seriesMenu, setSeriesMenu] = useState("");
   const [allSeries, setAllSeries] = useState(true);
+  const [countIndex, setCountIndex] = useState(0);
 
   const onClickAllSeries = () => {
     setSeriesMenu("");
     setAllSeries(true);
+    setCountIndex(1000)
   }
 
-  const onClickCategory = (value: any) => () => {
+  const onClickCategory = (value: any, index: number) => () => {
     setSeriesMenu(value)
     setAllSeries(false);
+    setCountIndex(index);
   }
   const { data: menu } = useQuery(FETCH_SERIES_BY_CATEGORY, {
     variables: { categoryId: seriesMenu },
@@ -29,6 +32,8 @@ export default function SeriesList() {
           data={data}
           menu={menu}
           allSeries={allSeries}
+          seriesMenu={seriesMenu}
+          countIndex={countIndex}
           onClickCategory={onClickCategory}
           onClickAllSeries={onClickAllSeries}
         />

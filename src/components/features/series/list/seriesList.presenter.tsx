@@ -27,9 +27,12 @@ export default function SeriesListUI(props: any) {
         </S.TagWrapper>
 
         <S.TagWrapper>
-          <S.TopTag onClick={props.onClickAllSeries}>전체</S.TopTag>
-          {props.category?.fetchSeriesCategories?.map((category: any) => (
-              <S.TopTag onClick={props.onClickCategory(category.categoryId)}>{category.name}</S.TopTag>
+          <S.TopTag isClicked={props.allSeries ? true : false} onClick={props.onClickAllSeries}>전체</S.TopTag>
+          {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
+              <S.TopTag
+                onClick={props.onClickCategory(category.categoryId, index)}
+                isClicked={props.countIndex === index ? true : false}
+              >{category.name}</S.TopTag>
           ))}
         </S.TagWrapper>
 
