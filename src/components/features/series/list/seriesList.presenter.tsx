@@ -29,7 +29,7 @@ export default function SeriesListUI(props: any) {
 
         <S.TagWrapper>
           {props.category?.fetchSeriesCategories?.map((category: any) => (
-              <MyTag isChecked={false}>{category.name}</MyTag>
+              <S.TopTag onClick={props.onClickCategory(category.categoryId)}>{category.name}</S.TopTag>
           ))}
         </S.TagWrapper>
 

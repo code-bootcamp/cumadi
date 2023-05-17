@@ -1,7 +1,7 @@
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
-import { Card } from 'antd'
+import { Card, Tag } from 'antd'
 
 export const Footer = styled.footer`
   width: 100%;
@@ -84,4 +84,12 @@ export const Title = styled.div`
 export const TagWrapper = styled.div`
   font-weight: bold;
   margin: 1rem 0;
+`
+
+export const TopTag = styled(Tag)`
+  padding: 0.02rem 0.5rem;
+  color: ${Colors.primary};
+  border-radius: 1.5rem;
+  background-color: ${Colors.muted};
+  cursor: pointer;
 `
