@@ -88,11 +88,10 @@ export const TagWrapper = styled.div`
 
 export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   padding: 0.02rem 0.5rem;
-  color: ${Colors.primary};
   border-radius: 1.5rem;
-  background-color: ${Colors.muted};
+  border: none;
+  background-color: ${props => (props.isClicked ? Colors.muted : Colors.white)};
   cursor: pointer;
-  color: ${props => (props.isClicked ? Colors.white : Colors.black)};
-
+  color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
 }
 `
