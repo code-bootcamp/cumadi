@@ -11,6 +11,13 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  Upload: any;
+};
+
+export type ICreatePaymentInput = {
+  amount: Scalars['Int'];
+  impUid: Scalars['String'];
+  seriesList: Array<Scalars['String']>;
 };
 
 export type ICreatePostInput = {
@@ -25,6 +32,7 @@ export type ICreateSeriesInput = {
   image: Scalars['String'];
   introduction: Scalars['String'];
   paid: Scalars['Boolean'];
+  posts?: InputMaybe<Array<Scalars['String']>>;
   price: Scalars['Int'];
   title: Scalars['String'];
 };
@@ -49,15 +57,18 @@ export type IFetchStatisticsInput = {
 
 export type IMemo = {
   __typename?: 'Memo';
+  author: Scalars['String'];
   createdAt: Scalars['DateTime'];
   deletedAt: Scalars['DateTime'];
   memoId: Scalars['String'];
   parse: Scalars['String'];
+  title: Scalars['String'];
   user: IUser;
 };
 
 export type IMutation = {
   __typename?: 'Mutation';
+  createPaymentSeries: IPayment;
   createPost: IPost;
   createPostMemo: IMemo;
   createSeries: ISeries;
@@ -67,16 +78,25 @@ export type IMutation = {
   deletePost: Scalars['Boolean'];
   deletePostMemo: Scalars['Boolean'];
   deleteSeries: Scalars['Boolean'];
+  deleteSeriesInCart: Scalars['Boolean'];
   deleteSeriesReview: Scalars['Boolean'];
+  insertSeriesInCart: ISeries;
   loginUser: Scalars['String'];
   logoutUser: Scalars['Boolean'];
   resignUser: Scalars['Boolean'];
   restoreAccessToken: Scalars['String'];
+  togglePostPick: Scalars['Boolean'];
   updatePost: IPost;
   updateSeries: ISeries;
   updateSeriesReview: ISeriesReview;
   updateUser: IUser;
   updateUserPassword: Scalars['Boolean'];
+  uploadImage: Scalars['String'];
+};
+
+
+export type IMutationCreatePaymentSeriesArgs = {
+  createPaymentInput: ICreatePaymentInput;
 };
 
 
@@ -87,6 +107,7 @@ export type IMutationCreatePostArgs = {
 
 export type IMutationCreatePostMemoArgs = {
   parse: Scalars['String'];
+  postId: Scalars['String'];
 };
 
 
@@ -125,14 +146,29 @@ export type IMutationDeleteSeriesArgs = {
 };
 
 
+export type IMutationDeleteSeriesInCartArgs = {
+  seriesId: Scalars['String'];
+};
+
+
 export type IMutationDeleteSeriesReviewArgs = {
   reviewId: Scalars['String'];
+};
+
+
+export type IMutationInsertSeriesInCartArgs = {
+  seriesId: Scalars['String'];
 };
 
 
 export type IMutationLoginUserArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+
+export type IMutationTogglePostPickArgs = {
+  postId: Scalars['String'];
 };
 
 
@@ -163,6 +199,11 @@ export type IMutationUpdateUserPasswordArgs = {
   newPassword: Scalars['String'];
 };
 
+
+export type IMutationUploadImageArgs = {
+  file: Scalars['Upload'];
+};
+
 export enum IPayment_Status_Enum {
   Payment = 'PAYMENT'
 }
@@ -173,6 +214,14 @@ export type IPayment = {
   impUid: Scalars['String'];
   paymentId: Scalars['String'];
   status: IPayment_Status_Enum;
+  user: IUser;
+};
+
+export type IPaymentDetail = {
+  __typename?: 'PaymentDetail';
+  payment: IPayment;
+  paymentDetailId: Scalars['String'];
+  series: ISeries;
   user: IUser;
 };
 
@@ -190,6 +239,8 @@ export type IPost = {
 export type IQuery = {
   __typename?: 'Query';
   fetchFreeSeries: Array<ISeries>;
+  fetchLikeCountByPost: Scalars['Int'];
+  fetchPaymentDetailByUser: Array<IPaymentDetail>;
   fetchPost: IPost;
   fetchPostMemos: Array<IMemo>;
   fetchPostViewOfMine: Array<IStatistics>;
@@ -207,12 +258,19 @@ export type IQuery = {
   fetchSeriesCategory: ISeriesCategory;
   fetchSeriesReviews: Array<ISeriesReview>;
   fetchSeriesReviewsBySeries: Array<ISeriesReview>;
+  fetchShoppingCart: Array<ISeries>;
   fetchUserLoggedIn: IUser;
+  isVaildCreateReviewByUser: Scalars['Boolean'];
 };
 
 
 export type IQueryFetchFreeSeriesArgs = {
   categoryId?: InputMaybe<Scalars['String']>;
+};
+
+
+export type IQueryFetchLikeCountByPostArgs = {
+  postId?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -253,6 +311,11 @@ export type IQueryFetchSeriesCategoryArgs = {
 
 
 export type IQueryFetchSeriesReviewsBySeriesArgs = {
+  seriesId: Scalars['String'];
+};
+
+
+export type IQueryIsVaildCreateReviewByUserArgs = {
   seriesId: Scalars['String'];
 };
 
@@ -312,6 +375,7 @@ export type IUpdateSeriesInput = {
   image?: InputMaybe<Scalars['String']>;
   introduction?: InputMaybe<Scalars['String']>;
   paid?: InputMaybe<Scalars['Boolean']>;
+  posts?: InputMaybe<Array<Scalars['String']>>;
   price?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
@@ -334,6 +398,5 @@ export type IUser = {
   image: Scalars['String'];
   introduction: Scalars['String'];
   nickname: Scalars['String'];
-  posts: IPost;
   userId: Scalars['String'];
 };

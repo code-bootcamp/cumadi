@@ -9,27 +9,27 @@ import {
   PriceContainer,
 } from '@/components/common/customComponent.styles'
 import * as S from './myPaymentHistory.styles'
-import { postItem } from '@/common/dummyData/post'
+import { IMyPaymentHistoryUIProps } from './myPaymentHistory.types'
 
-export default function MyPaymentHistoryUI() {
+export default function MyPaymentHistoryUI(props: IMyPaymentHistoryUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
       <S.CheckListWrapper>
-        {postItem.map(el => (
-          <S.CardWrapper key={el.id} className="card-wrapper">
+        {props.data?.fetchPaymentDetailByUser.map(el => (
+          <S.CardWrapper key={el.paymentDetailId} className="card-wrapper">
             <HorizontalCardSm>
-              <img className="horizontal-card-cover" alt={`${el.title} 이미지`} src={el.image} />
+              <img className="horizontal-card-cover" alt={`${el.series.image} 이미지`} src={el.series.image} />
               <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                 <FlexColumnContainer gap={'0.5rem'}>
-                  <BodyTextLg>{el.title}</BodyTextLg>
+                  <BodyTextLg>{el.series.title}</BodyTextLg>
                   <InfoSectionContainer>
-                    <BodyTextSm color={Colors.gray1}>구매날짜</BodyTextSm>
+                    <BodyTextSm color={Colors.gray1}>{el.series.createdAt}</BodyTextSm>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
                 <PriceContainer>
-                  <BodyTextLg>{`${el.price.toLocaleString()}원`}</BodyTextLg>
+                  <BodyTextLg>{`${el.series.price?.toLocaleString()}원`}</BodyTextLg>
                 </PriceContainer>
               </div>
             </HorizontalCardSm>
