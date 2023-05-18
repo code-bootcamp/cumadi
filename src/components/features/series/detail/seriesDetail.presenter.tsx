@@ -1,14 +1,11 @@
-import { seriesItem } from '@/common/dummyData/series'
 import * as S from './seriesDetail.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
-import BasicButton from '@/components/common/buttons/basic'
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
-import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function SeriesDetailUI(props: any) {
-  const { onClickMoveToPage } = useMoveToPage()
+  const category = props.data?.fetchSeries.category.name;
 
   return (
     <S.Container>
@@ -46,29 +43,29 @@ export default function SeriesDetailUI(props: any) {
         </S.PriceWrapper>
         <S.PostsSub>
           
-          <S.PostCount>{seriesItem[0].posts?.length}개의 포스트 <S.Update>마지막 업데이트 {props.data?.fetchSeries.createdAt}</S.Update></S.PostCount>
+          <S.PostCount>{props.data?.fetchSeries.post?.length}개의 포스트 <S.Update>마지막 업데이트 {props.data?.fetchSeries.createdAt}</S.Update></S.PostCount>
           <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
-        {seriesItem[0].posts?.map(el => 
+        {props.data?.fetchSeries.post?.map(el => 
           <S.PostWrapper>
             <S.ImageWrapper>
-              <S.Image src={el.image} onClick={onClickMoveToPage(`/post/${el.id}`)} />
+              <S.Image src={'/images/no-image.jpeg'} />
             </S.ImageWrapper>
             <S.DescriptionWrapper>
-              <S.PostCategory>{el.categories}</S.PostCategory>
+              <S.PostCategory>{category}</S.PostCategory>
               <S.PostName>{el.title}</S.PostName>
-              <S.PostName2>{el.intro}</S.PostName2>
+              <S.PostName2>{el.description}</S.PostName2>
               <S.PostIntro>{el.contents}</S.PostIntro>
               <S.PostsSub>
-                <S.PostIntro>{el.createDate}</S.PostIntro>
+                <S.PostIntro>{el.createdAt}</S.PostIntro>
                 <ReactionsContainer>
                   <ReactionContainer>
                     <HeartOutlined />
-                    <span>{el.pickedcount}</span>
+                    {/* <span>{el.pickedcount}</span> */}
                   </ReactionContainer>
                   <ReactionContainer>
                     <CommentOutlined />
-                    <span>{el.comment}</span>
+                    {/* <span>{el.comment}</span> */}
                   </ReactionContainer>
                 </ReactionsContainer>
               </S.PostsSub>

@@ -46,6 +46,6 @@ export const restoreAccessTokenLoadable = selector({
 
 // **** 바로구매 시리즈 정보
 export const buyItemId = atom({
-  key: 'buyItemId',
+  key: `buyItemId/${v1()}`,
   default: '',
 })

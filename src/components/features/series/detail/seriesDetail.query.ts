@@ -18,6 +18,7 @@ export const FETCH_SERIES = gql`
       introduction
       price
       createdAt
+      updatedAt
       category {
         categoryId
         name
@@ -25,6 +26,19 @@ export const FETCH_SERIES = gql`
       user {
         userId
         nickname
+      }
+      post {
+        postId
+        title
+        content
+        image
+        description
+        createdAt
+        user{
+          userId
+          email
+          nickname
+        }
       }
     }
   }
