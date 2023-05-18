@@ -3,7 +3,7 @@ import NewSeriesUI from './newSeries.presenter'
 import { useRouter } from 'next/router'
 import { Input, Tag } from 'antd'
 import { useQuery } from '@apollo/client'
-import { FETCH_POSTS_OF_MINE } from './newSeries.query'
+import { FETCH_POSTS_OF_MINE, FETCH_SERIES_CATEGORIES } from './newSeries.query'
 
 const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
@@ -28,16 +28,20 @@ const tagRender = (props: any) => {
 export default function NewSeries() {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
-  const { TextArea } = Input
   const [thumbnail, setThumbnail] = useState<string>("")
   const [input, setInput] = useState(false)
   
+  const { TextArea } = Input
+  
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
+  const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
 
-  const options = post?.fetchPostsOfMine.map(e => {
-    return {value: e.title}
+  const postOptions = post?.fetchPostsOfMine.map(el => {
+    return { value: el.title }
   })
-  console.log(options)
+  const categoryOptions = category?.fetchSeriesCategories.map(el => {
+    return { value: el.name, label: el.name }
+  })
 
   const handleClickUploadThumbnail = () => {
     imgRef.current?.click()
@@ -71,7 +75,8 @@ export default function NewSeries() {
       handleSubmitForm={handleSubmitForm}
       handleChangeFile={handleChangeFile}
       handleClickUploadThumbnail={handleClickUploadThumbnail}
-      options={options}
+      postOptions={postOptions}
+      categoryOptions={categoryOptions}
       thumbnail={thumbnail}
       imgRef={imgRef}
       setInput={setInput}

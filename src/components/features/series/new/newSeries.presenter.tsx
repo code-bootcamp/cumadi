@@ -41,11 +41,7 @@ export default function NewSeriesUI(props : any) {
           <Select
               placeholder="카테고리"
               style={{ width: '100%' }}
-              options={[
-                { value: '개발', label: '개발' },
-                { value: '에세이', label: '에세이' },
-                { value: '독서', label: '독서' },
-              ]}
+              options={props.categoryOptions}
             />
         </Form.Item>
         <S.Name>포스트 추가하기</S.Name>
@@ -59,7 +55,7 @@ export default function NewSeriesUI(props : any) {
             style={{
               width: '100%',
             }}
-            options={props.options}
+            options={props.postOptions}
           />
         </Form.Item>
         <S.PriceToggle>
