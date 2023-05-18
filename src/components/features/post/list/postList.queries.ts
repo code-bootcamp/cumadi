@@ -14,9 +14,9 @@ export const FETCH_POSTS = gql`
       tags {
         name
       }
-      user {
-        nickname
-      }
+      # user {
+      #   nickname
+      # }
     }
   }
 `

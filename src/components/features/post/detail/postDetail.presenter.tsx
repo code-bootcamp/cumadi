@@ -18,12 +18,16 @@ export default function PostDetailUI(props: any) {
       {/* 포스트 본문 */}
       <S.Container>
         {/* 좋아요, 메모 저장 */}
-        <SideNavigation onClickMemoSave={props.onClickMemoSave} />
+        <SideNavigation
+          onClickMemoSave={props.onClickMemoSave}
+          onClickPick={props.onClickPick}
+          likeData={props.likeData}
+        />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
           <S.PostTagWapper>
-            {PostDetail?.tags.map(tag => (
-              <MyTag key={tag.tsgId} id={tag.tsgId} isChecked={true}>
+            {PostDetail?.tags.map((tag: any) => (
+              <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
                 {tag.name}
               </MyTag>
             ))}
@@ -70,15 +74,6 @@ export default function PostDetailUI(props: any) {
 
           {/* 포스트 본문 내용 */}
           <div onMouseUp={props.onMouseUpContentMemo}>{PostDetail?.content}</div>
-
-          {/* <S.LikeWrapper>
-            <MyButton type="primary" onClick={props.handleSaveText}>
-              저장
-            </MyButton>
-            <S.Like>
-              <img src="/images/heart-outlined.svg" />
-            </S.Like>
-          </S.LikeWrapper> */}
         </div>
         {/* 포스트 댓글 */}
         <PostAnswerList />

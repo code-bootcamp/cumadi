@@ -1,23 +1,21 @@
-import { breakPoints } from '@/common/styles/media'
-import { ElevatedCard } from '@/components/common/customComponent.styles'
-import { HeartFilled } from '@ant-design/icons'
+import { HeartFilled, HighlightOutlined } from '@ant-design/icons'
 import styled from '@emotion/styled'
 import { Button } from 'antd'
+
+import { breakPoints } from '@/common/styles/media'
 
 export const SideNav = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   position: fixed;
-  /* background-color: red; */
-  right: 2rem;
+  left: 2rem;
   top: 30rem;
-  width: 5rem;
-  padding: 2rem;
+  padding: 0.3rem;
   border: 1px solid var(--color-gray-2);
-  border-radius: 1rem;
+  border-radius: 5rem;
   z-index: 99;
 
   @media ${breakPoints.tablet} {
@@ -29,20 +27,17 @@ export const SideNav = styled.nav`
   }
 `
 
-export const Item = styled.div`
-  font-size: 2rem;
-  font-weight: 900;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--main-color);
-  }
+export const LikeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 `
 
 export const SavedButton = styled(Button)`
   font-size: 1.2rem;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   padding: 1rem;
   display: flex;
   border: 1px solid var(--color-gray-3);
@@ -51,7 +46,14 @@ export const SavedButton = styled(Button)`
 
 export const HeartIcon = styled(HeartFilled)`
   padding: 0 0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--color-primary);
+  cursor: pointer;
+`
+
+export const SaveIcon = styled(HighlightOutlined)`
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  color: var(--color-black);
   cursor: pointer;
 `

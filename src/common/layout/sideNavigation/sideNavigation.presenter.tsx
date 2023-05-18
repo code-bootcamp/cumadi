@@ -1,18 +1,22 @@
 import * as S from './sideNavigation.styles'
-import { BiSave } from 'react-icons/bi'
 
 interface Props {
   onClickMemoSave: () => void
+  onClickPick: () => void
+  likeData: any
 }
 
-export default function SideNavigation({ onClickMemoSave }: Props) {
+export default function SideNavigation({ onClickMemoSave, onClickPick, likeData }: Props) {
   return (
     <S.SideNav>
-      <S.SavedButton>
-        <S.HeartIcon />
-      </S.SavedButton>
+      <S.LikeWrapper>
+        <S.SavedButton onClick={onClickPick}>
+          <S.HeartIcon />
+        </S.SavedButton>
+        <p>{likeData?.fetchLikeCountByPost}</p>
+      </S.LikeWrapper>
       <S.SavedButton onClick={onClickMemoSave}>
-        <BiSave />
+        <S.SaveIcon />
       </S.SavedButton>
     </S.SideNav>
   )

@@ -51,10 +51,17 @@ export const DELETE_POST = gql`
   }
 `
 
-// **** 포스트 좋아요
+// **** 포스트 좋아요 생성
 export const TOGGLE_POST_PICK = gql`
   mutation togglePostPick($postId: String!) {
     togglePostPick(postId: $postId)
+  }
+`
+
+// **** 포스트 좋아요 조회
+export const FETCH_LIKE_COUNT_BY_POST = gql`
+  query fetchLikeCountByPost($postId: String!) {
+    fetchLikeCountByPost(postId: $postId)
   }
 `
 

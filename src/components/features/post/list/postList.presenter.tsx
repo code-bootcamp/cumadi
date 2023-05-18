@@ -43,7 +43,7 @@ export default function PostListUI(props: any) {
               <ProfileContainer>
                 <Avatar>E</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
+                  {/* <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm> */}
                   <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
