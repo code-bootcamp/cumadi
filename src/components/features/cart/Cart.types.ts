@@ -1,14 +1,15 @@
+import { IQuery } from '@/common/types/generated/types'
+
 export interface ICartUIProps {
-  isChecked: (list: IList) => boolean
-  productList: {
-    id: string
-    name: string
-    title: string
-    contents: string
-    image: string
-    price: number
-    createDate: string
-  }[]
+  data?: Pick<IQuery, 'fetchShoppingCart'>
+  ischecked: (list: IList) => boolean
+  // productList: {
+  //   seriesId: string
+  //   title: string
+  //   image: string
+  //   price: number
+  //   createAt: string
+  // }
   checkList: any[]
   totalPrice: number
   onClickCheckAll: () => void
@@ -19,11 +20,12 @@ export interface ICartUIProps {
 }
 
 export interface IList {
-  id: string
-  name: string
+  seriesId: string
   title: string
-  contents: string
   image: string
   price: number
   createDate: string
+  user: {
+    nickname: string
+  }
 }
