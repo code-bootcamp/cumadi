@@ -40,7 +40,7 @@ export default function SeriesDetailUI(props: any) {
           <S.Sell>판매가 · {props.data?.fetchSeries.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{props.data?.fetchSeries.price}원</S.Price>}</S.Sell>
           
           <S.ButtonWrapper>
-            <BasicButton movePage={'/login'} name={'장바구니에 담기'} />
+            <S.CartButton onClick={props.onClickCart}>장바구니에 담기</S.CartButton>
             <BasicButton movePage={'/login'} name={'바로 구매하기'} type="primary" />
           </S.ButtonWrapper>
         </S.PriceWrapper>

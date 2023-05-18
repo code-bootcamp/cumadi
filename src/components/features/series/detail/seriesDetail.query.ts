@@ -35,3 +35,11 @@ export const DELETE_SERIES = gql`
     deleteSeries(seriesId: $seriesId)
   }
 `
+
+export const INSERT_SERIES_IN_CART = gql`
+  mutation insertSeriesInCart($seriesId: String!) {
+    insertSeriesInCart(seriesId: $seriesId) {
+      seriesId
+    }
+  }
+`
