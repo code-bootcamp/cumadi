@@ -34,7 +34,7 @@ export default function LayoutFooterUI(props: any) {
               }>
               <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
-                  {el.series?.title}
+                  {el.series?.title ?? 'NO SERIES'}
                 </BodyTextSm>
                 <BodyTextLg>{el.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>
@@ -44,7 +44,7 @@ export default function LayoutFooterUI(props: any) {
                   <ProfileContainer>
                     <Avatar>E</Avatar>
                     <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
+                      {/* <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm> */}
                       <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
