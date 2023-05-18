@@ -9,31 +9,30 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { seriesItem } from '@/common/dummyData/series'
 import { Rate } from 'antd';
 
-export default function SeriesListUI() {
+export default function SeriesListUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
-      {seriesItem.map(el => (
-        <S.StyledCard cover={<img alt="example" src={el.thumbnail} onClick={onClickMoveToPage(`/series/${el.id}`)} />}>
+      {props.data?.fetchSeriesAll.map(el => (
+        <S.StyledCard cover={
+          <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={onClickMoveToPage(`/series/${el.seriesId}`)} />}>
           <FlexColumnContainer gap={'0.5rem'}>
             <BodyTextSm color={Colors.primary} weight={600}>
-              {el.categories}
+              {el.category.name}
             </BodyTextSm>
             <InfoSectionContainer>
               <BodyTextLg>{el.title}</BodyTextLg>
-              <S.Price>무료</S.Price>
+              {el.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{el.price}원</S.Price>}
             </InfoSectionContainer>
-            
             <InfoSectionContainer>
               <ProfileContainer>
-                <Avatar>A</Avatar>
+                <Avatar>{el.user.nickname[0]}</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{el.name}</BodyTextSm>
-                  <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                  <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
+                  <BodyTextSm color={Colors.gray1}>{el.createdAt}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
               <ReactionsContainer>
