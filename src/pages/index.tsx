@@ -1,15 +1,12 @@
 import Head from 'next/head'
-import { useQuery } from '@apollo/client'
 
 import * as S from './index.styles'
 import { MyTag } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { FETCH_SERIES_CATEGORIES } from './index.queries'
 
 export default function Home() {
   const { onClickMoveToPage } = useMoveToPage()
-  const { data: categories } = useQuery(FETCH_SERIES_CATEGORIES)
 
   return (
     <>
