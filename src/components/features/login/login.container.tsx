@@ -1,4 +1,5 @@
-import { useState, ChangeEvent } from 'react'
+import { useState } from 'react'
+import type { ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
 import { useRecoilState } from 'recoil'
@@ -6,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import LoginUI from './login.presenter'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from './login.queries'
-import { accessTokenState, checkLoginState } from '@/common/store'
+import { accessTokenState } from '@/common/store'
 
 export default function Login() {
   const router = useRouter()
@@ -14,7 +15,6 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [, setAccessToken] = useRecoilState(accessTokenState)
-  const [checkLogin, setCheckLogin] = useRecoilState(checkLoginState)
 
   // ** 유효성 검사
   const [emailError, setEmailError] = useState('')
@@ -58,12 +58,10 @@ export default function Login() {
         return
       }
       setAccessToken(accessToken)
-      // 3. LocalStorage에 토큰 저장 (임시로 사용, 나중에 지울예정)
-      localStorage.setItem('accessToken', accessToken)
-      // 4. 로그인 성공 페이지로 이동하기
+      localStorage.setItem('accessToken', accessToken) // localstorage 나중에 지울 예정
+
+      // 3. 로그인 성공 페이지로 이동하기
       Modal.success({ content: '로그인 되었습니다' })
-      // 로그인 체크
-      setCheckLogin(true)
       void router.push('/')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })

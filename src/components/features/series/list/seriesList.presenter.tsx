@@ -98,8 +98,6 @@ export default function SeriesListUI(props: any) {
           ))}
         </>
       )}
-      
-      
     </S.Body>
   )
 }
