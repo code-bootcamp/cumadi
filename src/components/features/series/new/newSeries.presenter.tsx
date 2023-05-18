@@ -55,6 +55,7 @@ export default function NewSeriesUI(props : any) {
             mode="multiple"
             showArrow
             tagRender={props.tagRender}
+            onChange={props.onCheckPost}
             style={{
               width: '100%',
             }}

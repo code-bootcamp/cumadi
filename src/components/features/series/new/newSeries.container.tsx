@@ -1,16 +1,9 @@
 import { ChangeEvent, useRef, useState } from 'react'
 import NewSeriesUI from './newSeries.presenter'
 import { useRouter } from 'next/router'
-import { Input, Tag, Select } from 'antd'
-
-const options = [
-  { value: '포스트 1' },
-  { value: '포스트 2' },
-  { value: '포스트 3' },
-  { value: '포스트 4' },
-  { value: '포스트 5' },
-  { value: '포스트 6' },
-]
+import { Input, Tag } from 'antd'
+import { useQuery } from '@apollo/client'
+import { FETCH_POSTS_OF_MINE } from './newSeries.query'
 
 const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
@@ -33,12 +26,18 @@ const tagRender = (props: any) => {
 };
 
 export default function NewSeries() {
+  const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
-  const [thumbnail, setThumbnail] = useState<string>()
-  const router = useRouter();
-  const [input, setInput] = useState(false);
+  const { TextArea } = Input
+  const [thumbnail, setThumbnail] = useState<string>("")
+  const [input, setInput] = useState(false)
   
-  const { TextArea } = Input;
+  const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
+
+  const options = post?.fetchPostsOfMine.map(e => {
+    return {value: e.title}
+  })
+  console.log(options)
 
   const handleClickUploadThumbnail = () => {
     imgRef.current?.click()
@@ -61,9 +60,14 @@ export default function NewSeries() {
     alert("시리즈 작성이 완료되었습니다.")
     router.push("/");
   }
+  
+  const onCheckPost = (value) => {
+    console.log(value);
+  }
 
   return (
     <NewSeriesUI
+      post={post}
       handleSubmitForm={handleSubmitForm}
       handleChangeFile={handleChangeFile}
       handleClickUploadThumbnail={handleClickUploadThumbnail}
@@ -74,6 +78,7 @@ export default function NewSeries() {
       input={input}
       TextArea={TextArea}
       tagRender={tagRender}
+      onCheckPost={onCheckPost}
     />
   )
 }
