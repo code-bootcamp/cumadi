@@ -1,7 +1,7 @@
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
-import { Card } from 'antd'
+import { Card, Tag } from 'antd'
 
 export const Footer = styled.footer`
   width: 100%;
@@ -43,12 +43,55 @@ export const Body = styled.div`
 `
 
 export const StyledCard = styled(Card)`
-  width: 27rem;
-  border: 1px solid var(--color-gray-3);
+  width: 25rem;
+  border: unset;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
 `
 
 export const Price = styled.div`
   font-size: 0.9rem;
   color: ${Colors.gray1};
+`
+
+export const CardThumbnailImg = styled.img`
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+`
+
+export const Main = styled.main`
+  min-height: 20rem;
+`
+
+export const TitleWrapper = styled.section`
+  margin: 1rem 0;
+  text-align: center;
+  width: 100%;
+`
+
+export const Title = styled.div`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+`
+
+export const TagWrapper = styled.div`
+  font-weight: bold;
+  margin: 1rem 0;
+`
+
+export const TopTag = styled(Tag)<{ isClicked: boolean }>`
+  padding: 0.02rem 0.5rem;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: ${props => (props.isClicked ? Colors.muted : Colors.white)};
+  cursor: pointer;
+  color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
+}
 `
