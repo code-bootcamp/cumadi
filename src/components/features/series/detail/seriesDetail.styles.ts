@@ -213,4 +213,3 @@ export const CartButton = styled(Button)`
   display: flex;
   border-radius: 1rem;
 `
-

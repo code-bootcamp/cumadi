@@ -41,7 +41,7 @@ export default function SeriesDetailUI(props: any) {
           
           <S.ButtonWrapper>
             <S.CartButton onClick={props.onClickCart}>장바구니에 담기</S.CartButton>
-            <BasicButton movePage={'/login'} name={'바로 구매하기'} type="primary" />
+            <S.CartButton onClick={props.onClickBuy} type="primary">바로 구매하기</S.CartButton>
           </S.ButtonWrapper>
         </S.PriceWrapper>
         <S.PostsSub>

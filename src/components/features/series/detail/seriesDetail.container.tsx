@@ -4,10 +4,13 @@ import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
 import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CART } from './seriesDetail.query'
+import { useRecoilState } from 'recoil'
+import { buyItemId } from '@/common/store'
 
 export default function SeriesDetail() {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
+  const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId);
 
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
   const { data } = useQuery(FETCH_SERIES, {variables: { seriesId }})
@@ -40,12 +43,18 @@ export default function SeriesDetail() {
     // 이미 장바구니에 담겼을때는?
   }
 
+  const onClickBuy = () => {
+    setBuySeriesId(seriesId)
+    void router.push('/purchase');
+  }
+
   return (
     <SeriesDetailUI
       data={data}
       isWriterData={isWriterData}
       onClickDelete={onClickDelete}
       onClickCart={onClickCart}
+      onClickBuy={onClickBuy}
     />
   )
 }
