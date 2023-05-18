@@ -8,16 +8,18 @@ interface Props {
 
 export default function SideNavigation({ onClickMemoSave, onClickPick, likeData }: Props) {
   return (
-    <S.SideNav>
-      <S.LikeWrapper>
-        <S.SavedButton onClick={onClickPick}>
-          <S.HeartIcon />
+    <S.sideNavWrapper>
+      <S.SideNav>
+        <S.LikeWrapper>
+          <S.SavedButton onClick={onClickPick}>
+            <S.HeartIcon />
+          </S.SavedButton>
+          <p>{likeData?.fetchLikeCountByPost}</p>
+        </S.LikeWrapper>
+        <S.SavedButton onClick={onClickMemoSave}>
+          <S.SaveIcon />
         </S.SavedButton>
-        <p>{likeData?.fetchLikeCountByPost}</p>
-      </S.LikeWrapper>
-      <S.SavedButton onClick={onClickMemoSave}>
-        <S.SaveIcon />
-      </S.SavedButton>
-    </S.SideNav>
+      </S.SideNav>
+    </S.sideNavWrapper>
   )
 }

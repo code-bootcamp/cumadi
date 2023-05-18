@@ -5,6 +5,7 @@ import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presen
 import { postItem } from '@/common/dummyData/post'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { getDate } from '@/common/libraries/utils'
 
 // interface IPostDetailUIProps {}
 
@@ -38,7 +39,7 @@ export default function PostDetailUI(props: any) {
               <S.Avatar src="/images/avatar.png" />
               <S.Info>
                 <S.Writer>{PostDetail?.user.nickname}</S.Writer>
-                <S.CreatedAt>{postItem[0].createDate}</S.CreatedAt>
+                <S.CreatedAt>{getDate(PostDetail?.createdAt)}</S.CreatedAt>
               </S.Info>
             </S.AvatarWrapper>
 

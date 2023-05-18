@@ -22,7 +22,7 @@ export default function LayoutFooterUI(props: any) {
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {props.data?.fetchPosts.slice(0, 6).map(el => (
+          {props.data?.fetchPosts.slice(0, 6).map((el: any) => (
             <S.StyledCard
               key={el.postId}
               style={{ width: 400, border: 'unset' }}

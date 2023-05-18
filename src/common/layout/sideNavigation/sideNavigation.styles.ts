@@ -4,6 +4,12 @@ import { Button } from 'antd'
 
 import { breakPoints } from '@/common/styles/media'
 
+export const sideNavWrapper = styled.div`
+  position: absolute;
+  left: -8rem;
+  top: 30rem;
+`
+
 export const SideNav = styled.nav`
   display: flex;
   flex-direction: column;
@@ -11,15 +17,11 @@ export const SideNav = styled.nav`
   align-items: center;
   gap: 1rem;
   position: fixed;
-  left: 2rem;
-  top: 30rem;
   padding: 0.3rem;
-  border: 1px solid var(--color-gray-2);
+  border: 1px solid var(--color-gray-3);
   border-radius: 5rem;
-  z-index: 99;
 
   @media ${breakPoints.tablet} {
-    width: 5rem;
   }
 
   @media ${breakPoints.mobile} {

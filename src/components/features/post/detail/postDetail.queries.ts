@@ -30,6 +30,7 @@ export const FETCH_POST = gql`
         title
         introduction
       }
+      createdAt
     }
   }
 `

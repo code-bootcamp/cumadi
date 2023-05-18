@@ -46,7 +46,6 @@ export const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #bdbdbd;
   padding: 1rem 0;
 `
 
