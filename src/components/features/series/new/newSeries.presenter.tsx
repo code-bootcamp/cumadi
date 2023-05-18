@@ -61,12 +61,12 @@ export default function NewSeriesUI(props : any) {
         <S.PriceToggle>
           <S.Name>포스트 가격</S.Name>
           <S.PriceSwitch
-            checked={props.input}
+            checked={props.isClickPrice}
             onChange={() => {
-              props.setInput(!props.input);
+              props.setIsClickPrice(!props.isClickPrice);
             }}
           />
-          {props.input ? <div>유료로 출간하기 (3,000원)</div> : <div>무료로 출간하기</div>}
+          {props.isClickPrice ? <div>유료로 출간하기 (3,000원)</div> : <div>무료로 출간하기</div>}
         </S.PriceToggle>
         <Form.Item>
           <S.ButtonWrapper>

@@ -28,19 +28,24 @@ const tagRender = (props: any) => {
 export default function NewSeries() {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
+
+  const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState<string>("")
-  const [input, setInput] = useState(false)
-  
+  const [introduction, setIntroduction] = useState("")
+  const [cateState, setCateState] = useState("")
+  const [postState, setPostState] = useState([]);
+  const [isClickPrice, setIsClickPrice] = useState(false)
+  // false일 경우 0원 true일 경우 3000
   const { TextArea } = Input
   
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
 
   const postOptions = post?.fetchPostsOfMine.map(el => {
-    return { value: el.title }
+    return { value: el.title, id: el.postId }
   })
   const categoryOptions = category?.fetchSeriesCategories.map(el => {
-    return { value: el.name, label: el.name }
+    return { value: el.name, label: el.name, id: el.categoryId }
   })
 
   const handleClickUploadThumbnail = () => {
@@ -64,24 +69,25 @@ export default function NewSeries() {
     alert("시리즈 작성이 완료되었습니다.")
     router.push("/");
   }
-  
+
   const onCheckPost = (value) => {
-    console.log(value);
+    // console.log(postOptions.filter(el => el.value == value));
+    // console.log(value);
   }
 
   return (
     <NewSeriesUI
       post={post}
+      imgRef={imgRef}
+      thumbnail={thumbnail}
+      TextArea={TextArea}
+      postOptions={postOptions}
+      categoryOptions={categoryOptions}
+      isClickPrice={isClickPrice}
+      setIsClickPrice={setIsClickPrice}
       handleSubmitForm={handleSubmitForm}
       handleChangeFile={handleChangeFile}
       handleClickUploadThumbnail={handleClickUploadThumbnail}
-      postOptions={postOptions}
-      categoryOptions={categoryOptions}
-      thumbnail={thumbnail}
-      imgRef={imgRef}
-      setInput={setInput}
-      input={input}
-      TextArea={TextArea}
       tagRender={tagRender}
       onCheckPost={onCheckPost}
     />
