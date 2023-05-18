@@ -16,3 +16,9 @@ export const FETCH_SHOPPING_CART = gql`
     }
   }
 `
+
+export const DELETE_SERIES_IN_CART = gql`
+  mutation deleteSeriesInCart($seriesId: String!) {
+    deleteSeriesInCart(seriesId: $seriesId)
+  }
+`

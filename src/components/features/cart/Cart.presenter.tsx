@@ -28,12 +28,12 @@ export default function CartUI(props: ICartUIProps) {
                 />
                 <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
               </div>
-              <MyButton onClick={props.onClickRemoveChecked} disabled={props.checkList.length === 0}>
+              {/* <MyButton onClick={props.onClickRemoveChecked} disabled={props.checkList.length === 0}>
                 선택 삭제하기
-              </MyButton>
+              </MyButton> */}
             </S.AllCheckWrapper>
             <S.CheckListWrapper>
-              {props.data?.fetchShoppingCart.map((list: any) => (
+              {props.data?.fetchShoppingCart.map(list => (
                 <S.CardWrapper key={list.seriesId} className="card-wrapper">
                   <Checkbox
                     type="checkbox"
