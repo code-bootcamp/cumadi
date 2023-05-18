@@ -29,6 +29,7 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
                 className="horizontal-card-cover"
                 src={props.data?.fetchSeries.image}
                 alt={`${props.data?.fetchSeries.title} 이미지`}
+                onError={props.imageErrorVisible}
               />
               <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                 <FlexColumnContainer gap={'0.5rem'}>

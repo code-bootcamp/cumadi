@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import PurchaseUI from './purchase.presenter'
 import { useRouter } from 'next/router'
 import { purchaseProduct } from '@/common/libraries/payment'
@@ -43,6 +43,10 @@ export default function Purchase() {
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
   )
+
+  const imageErrorVisible = (event: ChangeEvent<HTMLImageElement>) => {
+    event.target.src = '/images/no-image.jpeg'
+  }
 
   //  const [checkList] = useState(seriesItem) // 체크리스트 array일 때
   // const [checkList] = useState<Array<any>>([seriesItem]); // 체크리스트 object일 때 => object로 받은 데이터를 array로 변경
@@ -90,5 +94,5 @@ export default function Purchase() {
     )
   }
 
-  return <PurchaseUI data={data} onClickPayment={onClickPayment} />
+  return <PurchaseUI data={data} imageErrorVisible={imageErrorVisible} onClickPayment={onClickPayment} />
 }
