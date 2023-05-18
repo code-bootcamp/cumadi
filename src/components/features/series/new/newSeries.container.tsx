@@ -48,11 +48,11 @@ export default function NewSeries() {
     return { value: el.name, label: el.name, id: el.categoryId }
   })
 
-  const handleClickUploadThumbnail = () => {
+  const onClickUploadThumbnail = () => {
     imgRef.current?.click()
   }
 
-  const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return;
       const reader = new FileReader()
@@ -64,7 +64,7 @@ export default function NewSeries() {
       }
   }
 
-  const handleSubmitForm = (values: any) => {
+  const onSubmitForm = (values: any) => {
     console.log(values);
     alert("시리즈 작성이 완료되었습니다.")
     router.push("/");
@@ -85,9 +85,9 @@ export default function NewSeries() {
       categoryOptions={categoryOptions}
       isClickPrice={isClickPrice}
       setIsClickPrice={setIsClickPrice}
-      handleSubmitForm={handleSubmitForm}
-      handleChangeFile={handleChangeFile}
-      handleClickUploadThumbnail={handleClickUploadThumbnail}
+      onSubmitForm={onSubmitForm}
+      onChangeFile={onChangeFile}
+      onClickUploadThumbnail={onClickUploadThumbnail}
       tagRender={tagRender}
       onCheckPost={onCheckPost}
     />

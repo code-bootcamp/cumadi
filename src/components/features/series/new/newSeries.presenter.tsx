@@ -9,7 +9,7 @@ export default function NewSeriesUI(props : any) {
         <S.Title>새 시리즈 만들기</S.Title>
       </S.TitleWrapper>
 
-      <S.PostForm onFinish={props.handleSubmitForm}>
+      <S.PostForm onFinish={props.onSubmitForm}>
         <S.Name>이름</S.Name>
         <Form.Item name="title" rules={[{ required: true, message: '시리즈 이름을 지어주세요.' }]}>
           <Input type="primary" placeholder="시리즈 이름을 지어주세요." />
@@ -17,14 +17,14 @@ export default function NewSeriesUI(props : any) {
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">
         <Form.Item name="title" rules={[{ required: true, message: '썸네일을 추가해주세요.' }]}>
-            <S.Thumbnail onClick={props.handleClickUploadThumbnail} thumbnail={props.thumbnail}>
+            <S.Thumbnail onClick={props.onClickUploadThumbnail} thumbnail={props.thumbnail}>
               <MyButton>썸네일 업로드</MyButton>
             </S.Thumbnail>
             <input
               ref={props.imgRef}
               type="file"
               style={{ display: 'none' }}
-              onChange={props.handleChangeFile}
+              onChange={props.onChangeFile}
               accept="image/*"
             />
         </Form.Item>
