@@ -4,26 +4,27 @@ import { FETCH_SERIES_ALL, FETCH_SERIES_BY_CATEGORY, FETCH_SERIES_CATEGORIES } f
 import { useState } from "react";
 
 export default function SeriesList() {
-  const { data, refetch } = useQuery(FETCH_SERIES_ALL);
-  const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [seriesMenu, setSeriesMenu] = useState("");
-  const [allSeries, setAllSeries] = useState(true);
-  const [countIndex, setCountIndex] = useState(1000);
+  const [isShowAll, setIsShowAll] = useState(true);
+  const [countIndex, setCountIndex] = useState(-1);
+
+  const { data } = useQuery(FETCH_SERIES_ALL);
+  const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
+  const { data: menu } = useQuery(FETCH_SERIES_BY_CATEGORY, {
+    variables: { categoryId: seriesMenu },
+  })
 
   const onClickAllSeries = () => {
     setSeriesMenu("");
-    setAllSeries(true);
-    setCountIndex(1000)
+    setIsShowAll(true);
+    setCountIndex(-1)
   }
 
   const onClickCategory = (value: any, index: number) => () => {
     setSeriesMenu(value)
-    setAllSeries(false);
+    setIsShowAll(false);
     setCountIndex(index);
   }
-  const { data: menu } = useQuery(FETCH_SERIES_BY_CATEGORY, {
-    variables: { categoryId: seriesMenu },
-  })
 
   return (
     <>
@@ -31,7 +32,7 @@ export default function SeriesList() {
           category={category}
           data={data}
           menu={menu}
-          allSeries={allSeries}
+          isShowAll={isShowAll}
           seriesMenu={seriesMenu}
           countIndex={countIndex}
           onClickCategory={onClickCategory}
