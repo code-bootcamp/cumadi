@@ -32,11 +32,6 @@ export default function Home() {
               시리즈
             </MyTag>
           </S.TagWrapper>
-          <S.TagWrapper>
-            {categories?.fetchSeriesCategories?.map((category: any) => (
-              <MyTag isChecked={false}>{category.name}</MyTag>
-            ))}
-          </S.TagWrapper>
         </S.TitleWrapper>
         <PostList />
       </S.Main>

@@ -9,7 +9,6 @@ import {
   DELETE_POST,
   FETCH_LIKE_COUNT_BY_POST,
   FETCH_POST,
-  FETCH_POST2,
   FETCH_USER_LOGGED_IN,
   TOGGLE_POST_PICK,
 } from './postDetail.queries'

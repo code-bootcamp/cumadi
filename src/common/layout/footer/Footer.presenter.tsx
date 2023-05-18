@@ -12,6 +12,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { getCreateDate } from '@/common/libraries/utils'
 
 export default function LayoutFooterUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -44,8 +45,8 @@ export default function LayoutFooterUI(props: any) {
                   <ProfileContainer>
                     <Avatar>E</Avatar>
                     <ProfileTextDataContainer>
-                      {/* <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm> */}
-                      <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                      <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
                   <ReactionsContainer>

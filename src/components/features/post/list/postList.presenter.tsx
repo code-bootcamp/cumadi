@@ -11,6 +11,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { getCreateDate } from '@/common/libraries/utils'
 
 interface IPostListUIProps {
   data?: any
@@ -21,7 +22,7 @@ export default function PostListUI(props: any) {
 
   return (
     <S.Body>
-      {props.data?.fetchPosts.map(el => (
+      {props.data?.fetchPosts.map((el: any) => (
         <S.StyledCard
           key={el.postId}
           cover={
@@ -44,7 +45,7 @@ export default function PostListUI(props: any) {
                 <Avatar>E</Avatar>
                 <ProfileTextDataContainer>
                   <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
-                  <BodyTextSm color={Colors.gray1}>{el.createDate ?? '2023.05.16'}</BodyTextSm>
+                  <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
               <ReactionsContainer>
