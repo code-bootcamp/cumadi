@@ -1,16 +1,15 @@
 import { gql } from '@apollo/client'
 
-// 포스트 질문 댓글들 조회
-export const FETCH_POST_QUESTIONS = gql`
-  query fetchPostQuestions($postId: ID!) {
-    fetchPostQuestions(postId: $postId) {
-      _id
-      contents
-      createdAt
+// **** 포스트 댓글들 조회
+export const FETCH_POST_COMMENTS = gql`
+  query fetchPostComments($postId: String!) {
+    fetchPostComments(postId: $postId) {
+      commentId
+      content
+      updatedAt
       user {
-        _id
-        name
-        picture
+        userId
+        nickname
       }
     }
   }
