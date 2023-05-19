@@ -2,14 +2,26 @@ import { Modal } from 'antd'
 import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import CartUI from './Cart.presenter'
-import { DELETE_SERIES_IN_CART, FETCH_SHOPPING_CART } from './Cart.queries'
+import { CREATE_PAYMENT_SERIES, DELETE_SERIES_IN_CART, FETCH_SHOPPING_CART } from './Cart.queries'
 import { IList } from './Cart.types'
-import { IMutation, IMutationDeleteSeriesInCartArgs, IQuery, ISeries } from '@/common/types/generated/types'
+import {
+  IMutation,
+  IMutationCreatePaymentSeriesArgs,
+  IMutationDeleteSeriesInCartArgs,
+  IQuery,
+  ISeries,
+} from '@/common/types/generated/types'
+import { useRouter } from 'next/router'
 
 // checkList 가 빈배열 => 최종 결제할 데이터가 담긴 배열 => 최초 []  =>  length는 0
 // productList 는 로컬스토리지에 저장된 데이터가 담긴 배열 => 삭제, 구매 등 목록에서 삭제될때 변경되는 배열
 
+declare const window: typeof globalThis & {
+  IMP: any
+}
+
 export default function Cart() {
+  const router = useRouter()
   const [totalPrice, setTotalPrice] = useState(0) // 최종 결제 금액
   const [checkList, setCheckList] = useState<Array<ISeries>>([]) // 체크리스트 배열
 
@@ -18,10 +30,13 @@ export default function Cart() {
   const [deleteSeriesInCart] = useMutation<Pick<IMutation, 'deleteSeriesInCart'>, IMutationDeleteSeriesInCartArgs>(
     DELETE_SERIES_IN_CART,
   )
-  console.log('렌더링')
+  const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
+    CREATE_PAYMENT_SERIES,
+  )
+  console.log('렌더링') //  ***로그삭제
 
-  console.log(data)
-  console.log(data?.fetchShoppingCart) // [{…}, {…}, {…}, {…}, {…}, {…}, {…}]
+  console.log(data) //  ***로그삭제
+  console.log(data?.fetchShoppingCart) // [{…}, {…}, {…}, {…}, {…}, {…}, {…}] //  ***로그삭제
 
   useEffect(() => {
     let sumPrice = 0
@@ -54,7 +69,7 @@ export default function Cart() {
     return checkList.some(item => item.seriesId === list.seriesId)
   }
 
-  console.log(checkList)
+  console.log(checkList) //  ***로그삭제
 
   // const onClickRemoveChecked = () => {
   //   Modal.confirm({
@@ -72,7 +87,7 @@ export default function Cart() {
   // }
 
   const onClickRemoveList = (seriesId: string) => {
-    console.log(seriesId)
+    console.log(seriesId) //  ***로그삭제
 
     Modal.confirm({
       content: '삭제하시겠습니까?',
@@ -97,6 +112,46 @@ export default function Cart() {
       alert('시리즈를 선택해주세요.')
       return
     }
+
+    const seriesIdList = checkList.map(series => series.seriesId)
+    console.log(seriesIdList) //  ***로그삭제
+
+    const IMP = window.IMP
+    IMP.init('imp71265174')
+
+    // 결제창 호출
+    IMP.request_pay(
+      {
+        pg: 'nice.nictest04m',
+        pay_method: 'card',
+        name: `시리즈 ${checkList.length}개 구매`,
+        amount: Number(totalPrice),
+        // buyer_email: data?.fetchSeries.user.email,
+        // buyer_name: data?.fetchSeries.user.nickname,
+        m_redirect_url: `http://localhost:3000/cart`, // 모바일에서는 결제시, 결제페이지로 사이트가 이동되므로 돌아올시 주소입력
+      },
+      async (rsp: any) => {
+        if (rsp.success) {
+          console.log(rsp) //  ***로그삭제
+
+          const result = await createPaymentSeries({
+            variables: {
+              createPaymentInput: {
+                impUid: rsp.imp_uid,
+                amount: totalPrice,
+                seriesList: seriesIdList,
+              },
+            },
+          })
+          console.log(result) // {data} //  ***로그삭제
+          alert('결제에 성공했습니다.')
+          router.push('/')
+        } else {
+          // 결제 취소 시 로직,
+          alert('결제가 종료되었습니다. 다시 시도해 주세요.')
+        }
+      },
+    )
   }
 
   return (

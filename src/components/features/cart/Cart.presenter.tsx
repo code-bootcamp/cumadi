@@ -10,10 +10,12 @@ import {
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { MyButton } from '@/components/common/customComponent.styles'
+import Script from 'next/script'
 
 export default function CartUI(props: ICartUIProps) {
   return (
     <>
+      <Script src="https://cdn.iamport.kr/v1/iamport.js" />
       <S.Body>
         {props.data?.fetchShoppingCart && props.data.fetchShoppingCart.length === 0 ? (
           <S.EmptyCart>장바구니에 담긴 상품이 없습니다</S.EmptyCart>

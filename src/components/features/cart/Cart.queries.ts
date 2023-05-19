@@ -22,3 +22,11 @@ export const DELETE_SERIES_IN_CART = gql`
     deleteSeriesInCart(seriesId: $seriesId)
   }
 `
+
+export const CREATE_PAYMENT_SERIES = gql`
+  mutation createPaymentSeries($createPaymentInput: CreatePaymentInput!) {
+    createPaymentSeries(createPaymentInput: $createPaymentInput) {
+      paymentId
+    }
+  }
+`
