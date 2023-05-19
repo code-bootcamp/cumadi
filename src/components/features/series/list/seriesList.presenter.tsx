@@ -39,9 +39,7 @@ export default function SeriesListUI(props: any) {
           <S.ToggleWrapper>
             <S.FreeToggle>무료 시리즈만 보기</S.FreeToggle>
             <S.FreeSwitch checked={props.isfreeOn}
-              onChange={() => {
-                props.setIsFreeOn(!props.isfreeOn);
-              }}
+              onChange={props.onClickFreeSeries}
             />
           </S.ToggleWrapper>
         </S.categoryWrapper>

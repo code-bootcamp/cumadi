@@ -18,6 +18,10 @@ export default function SeriesList() {
     variables: { categoryId: seriesMenu },
   })
 
+  const onClickFreeSeries = () => {
+    setIsFreeOn(!isfreeOn)
+  }
+  
   const onClickAllSeries = () => {
     setSeriesMenu("");
     setIsShowAll(true);
@@ -40,10 +44,10 @@ export default function SeriesList() {
           seriesMenu={seriesMenu}
           countIndex={countIndex}
           isfreeOn={isfreeOn}
-          setIsFreeOn={setIsFreeOn}
           onClickCategory={onClickCategory}
           onClickAllSeries={onClickAllSeries}
           onClickMoveToPage={onClickMoveToPage}
+          onClickFreeSeries={onClickFreeSeries}
         />
     </>
   ) 
