@@ -2,8 +2,8 @@ import { ChangeEvent, useRef, useState } from 'react'
 import NewSeriesUI from './newSeries.presenter'
 import { useRouter } from 'next/router'
 import { Input, Tag } from 'antd'
-import { useQuery } from '@apollo/client'
-import { FETCH_POSTS_OF_MINE, FETCH_SERIES_CATEGORIES } from './newSeries.query'
+import { useMutation, useQuery } from '@apollo/client'
+import { CREATE_SERIES, FETCH_POSTS_OF_MINE, FETCH_SERIES_CATEGORIES } from './newSeries.query'
 
 const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
@@ -40,6 +40,7 @@ export default function NewSeries() {
   
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
+  const [createSeries] = useMutation(CREATE_SERIES);
 
   const postOptions = post?.fetchPostsOfMine.map(el => {
     return { value: el.title, id: el.postId }
@@ -64,7 +65,23 @@ export default function NewSeries() {
       }
   }
 
-  const onSubmitForm = (values: any) => {
+  const onSubmitForm = async (values: any) => {
+    try {
+      const result = await createSeries({
+        variables: {
+          createSeriesInput: {
+            
+          }
+        }
+      })
+      console.log(result.data?.createSeries.seriesId);
+      if (result.data?.createSeries.seriesId === undefined) {
+        alert("요청에 문제가 있습니다.");
+        return;
+      }
+    } catch (error) {
+      
+    }
     console.log(values);
     alert("시리즈 작성이 완료되었습니다.")
     router.push("/");
