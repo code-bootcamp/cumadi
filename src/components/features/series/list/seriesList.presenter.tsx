@@ -48,7 +48,7 @@ export default function SeriesListUI(props: any) {
       {props.isShowAll ? (
         <>
           {props.data?.fetchSeriesAll.map(el => (
-            <S.StyledCard isfree={props.isfreeOn} cover={
+            <S.StyledCard isfree={props.isfreeOn} itemPrice={el.price} cover={
               <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
@@ -79,7 +79,7 @@ export default function SeriesListUI(props: any) {
       ) : (
         <>
           {props.menu?.fetchSeriesByCategory.map(el => (
-            <S.StyledCard cover={
+            <S.StyledCard isfree={props.isfreeOn} itemPrice={el.price} cover={
               <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>

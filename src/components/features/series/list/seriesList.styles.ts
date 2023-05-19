@@ -42,8 +42,8 @@ export const Body = styled.div`
   }
 `
 
-export const StyledCard = styled(Card)<{ isfree: boolean }>`
-  display: ${props => (props.isfree ? "none" : "" )};
+export const StyledCard = styled(Card)<{ isfree: boolean, itemPrice: number }>`
+  display: ${props => (props.isfree && (props.itemPrice !== 0)  ? "none" : "" )};
   width: 25rem;
   border: unset;
   cursor: pointer;
