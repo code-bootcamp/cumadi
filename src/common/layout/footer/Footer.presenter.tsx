@@ -12,6 +12,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { getCreateDate } from '@/common/libraries/utils'
 
 export default function LayoutFooterUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -21,7 +22,7 @@ export default function LayoutFooterUI(props: any) {
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {props.data?.fetchPosts.slice(0, 6).map(el => (
+          {props.data?.fetchPosts.slice(0, 6).map((el: any) => (
             <S.StyledCard
               key={el.postId}
               style={{ width: 400, border: 'unset' }}
@@ -34,7 +35,7 @@ export default function LayoutFooterUI(props: any) {
               }>
               <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
-                  카테고리명
+                  {el.series?.title ?? 'NO SERIES'}
                 </BodyTextSm>
                 <BodyTextLg>{el.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>
@@ -44,18 +45,18 @@ export default function LayoutFooterUI(props: any) {
                   <ProfileContainer>
                     <Avatar>E</Avatar>
                     <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                      <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
                   <ReactionsContainer>
                     <ReactionContainer>
                       <img src="/images/heart-outlined.svg" alt="관심 수" />
-                      <span>3</span>
+                      <span>{el.likes.length}</span>
                     </ReactionContainer>
                     <ReactionContainer>
                       <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                      <span>3</span>
+                      <span>{el.comments.length}</span>
                     </ReactionContainer>
                   </ReactionsContainer>
                 </InfoSectionContainer>

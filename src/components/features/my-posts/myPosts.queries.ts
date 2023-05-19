@@ -11,6 +11,10 @@ export const FETCH_POSTS_OF_MINE = gql`
         userId
         nickname
       }
+      series {
+        seriesId
+        title
+      }
     }
   }
 `
