@@ -1,7 +1,7 @@
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
-import { Card, Tag } from 'antd'
+import { Card, Switch, Tag } from 'antd'
 
 export const Footer = styled.footer`
   width: 100%;
@@ -94,4 +94,34 @@ export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   cursor: pointer;
   color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
 }
+`
+
+export const categoryWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  margin: 1rem 0;
+`
+
+export const TagBar = styled.div`
+
+`
+
+export const ToggleWrapper = styled.div`
+
+`
+
+export const FreeToggle = styled.span`
+  font-size: 0.7rem;
+  padding-right: 0.7rem;
+
+}
+`
+
+export const FreeSwitch = styled(Switch)`
+  
+`
+
+export const EmptySpace = styled.div`
+  opacity: 0;
 `

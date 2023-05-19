@@ -10,6 +10,7 @@ export default function SeriesList() {
   const [seriesMenu, setSeriesMenu] = useState("");
   const [isShowAll, setIsShowAll] = useState(true);
   const [countIndex, setCountIndex] = useState(-1);
+  const [isfreeOn, setIsFreeOn] = useState(false);
 
   const { data } = useQuery(FETCH_SERIES_ALL);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
@@ -38,6 +39,8 @@ export default function SeriesList() {
           isShowAll={isShowAll}
           seriesMenu={seriesMenu}
           countIndex={countIndex}
+          isfreeOn={isfreeOn}
+          setIsFreeOn={setIsFreeOn}
           onClickCategory={onClickCategory}
           onClickAllSeries={onClickAllSeries}
           onClickMoveToPage={onClickMoveToPage}
