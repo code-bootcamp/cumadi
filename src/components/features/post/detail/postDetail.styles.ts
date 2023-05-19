@@ -131,8 +131,14 @@ export const Like = styled(ElevatedCard)`
   cursor: pointer;
 `
 
-export const PostInSeriesWrapper = styled.ul``
-export const PostsInSeries = styled.li``
+export const PostInSeriesWrapper = styled.ul`
+  color: var(--color-gray-1);
+`
+export const PostsInSeries = styled.li`
+  &:hover {
+    color: var(--color-primary);
+  }
+`
 
 // **** 포스트인시리즈 뷰
 export const PostInSeriesView = styled.p`

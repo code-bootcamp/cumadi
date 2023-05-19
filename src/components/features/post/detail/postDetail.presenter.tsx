@@ -61,6 +61,7 @@ export default function PostDetailUI(props: any) {
                 <img src="/images/book.svg" alt="시리즈북 아이콘" />
                 {props.seriesData?.fetchSeries.title}
               </S.TitleOfPostInSeries>
+              {/* 포스트 in 시리즈 리스트들 */}
               {props.isPostInSeriesView && (
                 <S.PostInSeriesWrapper>
                   {props.seriesData?.fetchSeries.post.map((el: any) => (
@@ -70,7 +71,7 @@ export default function PostDetailUI(props: any) {
                   ))}
                 </S.PostInSeriesWrapper>
               )}
-
+              {/* 포스트 in 시리즈 버튼 */}
               <S.PostInSeriesView onClick={props.onClickPostInSeriesView}>
                 {props.isPostInSeriesView ? (
                   <>
