@@ -18,6 +18,12 @@ export const FETCH_POSTS = gql`
         nickname
       }
       createdAt
+      likes {
+        likeId
+      }
+      comments {
+        commentId
+      }
     }
   }
 `
