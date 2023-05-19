@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import PurchaseUI from './purchase.presenter'
 import { useRouter } from 'next/router'
 import { purchaseProduct } from '@/common/libraries/payment'
@@ -9,23 +9,7 @@ import {
   IQuery,
   IQueryFetchSeriesArgs,
 } from '@/common/types/generated/types'
-import { CREATE_PAYMENT_SERIES, FETCH_SERIES } from './purchase.queries'
-
-// 시리즈 상세페이지에서 바로구매를 클릭했을 때 불러온 해당 시리즈 데이터 => 페이지단에서 fetch 여부 확인
-// const seriesItem = [
-//   {
-//     seriesId: '622d9455-16f8-4ea5-91e5-c30bc488a591',
-//     user: {
-//       userId: 'c5a3577d-31bf-4547-a646-420a11cbdc23',
-//       nickname: '죠르디',
-//     },
-//     title: '디자인 패턴(4) - payment test',
-//     introduction: '디자인을 알면 개발이 쉬워진다',
-//     image: 'spring.jpg',
-//     price: 100,
-//     createDate: '2023-05-17T07:12:48.126Z',
-//   },
-// ]
+import { CREATE_PAYMENT_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN } from './purchase.queries'
 
 declare const window: typeof globalThis & {
   IMP: any
@@ -34,9 +18,27 @@ declare const window: typeof globalThis & {
 export default function Purchase() {
   const router = useRouter()
   console.log(router) //  ***로그삭제
+  // const [accessToken] = useRecoilState(accessTokenState)
+  // const [seriesId, setSeriesId] = useRecoilState(buyItemId)
+
+  const [seriesId, setSeriesId] = useState('')
+
+  useEffect(() => {
+    const buyNowSeries = localStorage.getItem('buySeriesId') || ''
+    if (!buyNowSeries) {
+      alert('상품을 찾을 수 없습니다. 메인페이지로 이동합니다.')
+      router.push('/')
+    }
+    setSeriesId(buyNowSeries)
+  }, [])
+
+  console.log(seriesId) //  ***로그삭제
+
+  const { data: loginData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+  console.log(loginData)
 
   const { data } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
-    variables: { seriesId: 'a410b539-376e-451f-ae81-35d97b5208a6' },
+    variables: { seriesId },
   })
   console.log(data?.fetchSeries) //  ***로그삭제
 
@@ -54,10 +56,11 @@ export default function Purchase() {
   //  console.log(checkList) //  ***로그삭제
 
   const onClickPayment = () => {
-    //  //  ***로그삭제 purchaseProduct(checkList, checkList[0].price, router, createPaymentSeries, checkList[0].seriesId)
+    console.log(seriesId)
+    localStorage.removeItem('buySeriesId')
 
     const IMP = window.IMP
-    IMP.init('imp71265174') // 나의 식별코드 imp06164883 imp71265174 imp49910675
+    IMP.init('imp71265174')
 
     // 결제창 호출
     IMP.request_pay(
@@ -66,8 +69,8 @@ export default function Purchase() {
         pay_method: 'card',
         name: `시리즈 ${data?.fetchSeries.title} 구매`,
         amount: Number(data?.fetchSeries.price),
-        buyer_email: data?.fetchSeries.user.email,
-        buyer_name: data?.fetchSeries.user.nickname,
+        buyer_email: loginData?.fetchUserLoggedIn.email,
+        buyer_name: loginData?.fetchUserLoggedIn.nickname,
         m_redirect_url: `http://localhost:3000${router.pathname}`, // 모바일에서는 결제시, 결제페이지로 사이트가 이동되므로 돌아올시 주소입력(바로구매 페이지 또는 장바구니 페이지)
       },
       async (rsp: any) => {
@@ -85,7 +88,8 @@ export default function Purchase() {
           })
           console.log(result) // {data} //  ***로그삭제
           alert('결제에 성공했습니다.')
-          router.push('/my/paymentHistory')
+          localStorage.removeItem('buySeriesId')
+          router.push('/')
         } else {
           // 결제 취소 시 로직,
           alert('결제가 종료되었습니다. 다시 시도해 주세요.')
