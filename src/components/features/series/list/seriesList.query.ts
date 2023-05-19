@@ -50,24 +50,3 @@ export const FETCH_SERIES_BY_CATEGORY = gql`
     }
   }
 `
-
-export const FETCH_FREE_SERIES = gql`
-  query fetchFreeSeries {
-    fetchFreeSeries {
-      seriesId
-      title
-      introduction
-      image
-      price
-      createdAt
-      category{
-        categoryId
-        name
-      }
-      user{
-        userId
-        nickname
-      }
-    }
-  }
-`
