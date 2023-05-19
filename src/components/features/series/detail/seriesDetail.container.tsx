@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SeriesDetailUI from './seriesDetail.presenter'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
-import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CART } from './seriesDetail.query'
 import { useRecoilState } from 'recoil'
 import { buyItemId } from '@/common/store'
+import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CART } from './seriesDetail.query'
 
 export default function SeriesDetail() {
   const router = useRouter()
@@ -40,7 +40,6 @@ export default function SeriesDetail() {
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
-    // 이미 장바구니에 담겼을때는?
   }
 
   const onClickBuy = () => {
