@@ -27,6 +27,7 @@ export const FETCH_POST = gql`
         name
       }
       series {
+        seriesId
         title
         introduction
       }
@@ -73,6 +74,19 @@ export const CREATE_POST_MEMO = gql`
       memoId
       parse
       createdAt
+    }
+  }
+`
+
+export const FETCH_SERIES = gql`
+  query fetchSeries($seriesId: String!) {
+    fetchSeries(seriesId: $seriesId) {
+      seriesId
+      title
+      post {
+        postId
+        title
+      }
     }
   }
 `

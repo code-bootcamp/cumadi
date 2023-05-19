@@ -1,14 +1,15 @@
 import { Modal } from 'antd'
 import { useState } from 'react'
-import PostDetailUI from './postDetail.presenter'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 
+import PostDetailUI from './postDetail.presenter'
 import {
   CREATE_POST_MEMO,
   DELETE_POST,
   FETCH_LIKE_COUNT_BY_POST,
   FETCH_POST,
+  FETCH_SERIES,
   FETCH_USER_LOGGED_IN,
   TOGGLE_POST_PICK,
 } from './postDetail.queries'
@@ -19,14 +20,14 @@ export default function PostDetail() {
 
   // **** 상태
   const [dragText, setDragText] = useState<string>('')
+  const [isPostInSeriesView, setIsPostInSeriesView] = useState(false)
 
   // **** PlayGround
   const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
-  const { data: likeData } = useQuery(FETCH_LIKE_COUNT_BY_POST, {
-    variables: { postId },
-  })
-  const { data } = useQuery(FETCH_POST, {
-    variables: { postId },
+  const { data } = useQuery(FETCH_POST, { variables: { postId } })
+  const { data: likeData } = useQuery(FETCH_LIKE_COUNT_BY_POST, { variables: { postId } })
+  const { data: seriesData } = useQuery(FETCH_SERIES, {
+    variables: { seriesId: String(data?.fetchPost?.series?.seriesId) },
   })
   const [deletePost] = useMutation(DELETE_POST)
   const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
@@ -102,15 +103,20 @@ export default function PostDetail() {
     }
   }
 
+  const onClickPostInSeriesView = () => setIsPostInSeriesView(prev => !prev)
+
   return (
     <PostDetailUI
       loginData={loginData}
       likeData={likeData}
       data={data}
+      seriesData={seriesData}
+      isPostInSeriesView={isPostInSeriesView}
       onClickDelete={onClickDelete}
       onMouseUpContentMemo={onMouseUpContentMemo}
       onClickMemoSave={onClickMemoSave}
       onClickPick={onClickPick}
+      onClickPostInSeriesView={onClickPostInSeriesView}
     />
   )
 }

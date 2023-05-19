@@ -6,6 +6,7 @@ import { postItem } from '@/common/dummyData/post'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getDate } from '@/common/libraries/utils'
+import { useRouter } from 'next/router'
 
 // interface IPostDetailUIProps {}
 
@@ -53,21 +54,38 @@ export default function PostDetailUI(props: any) {
             )}
           </S.Header>
 
-          {/* 시리즈에 속해있는지 여부 */}
-          <S.PostInSeries>
-            <S.TitleOfPostInSeries>
-              <img src="/images/book.svg" alt="시리즈북 아이콘" />
-              {PostDetail?.series?.title}
-            </S.TitleOfPostInSeries>
-            <S.PostInSeriesSelect
-              defaultValue="개발자로 살아남는 방법"
-              // style={{ width: 120 }}
-              options={[
-                { value: '개발자로 살아남는 방법', label: '개발자로 살아남는 방법' },
-                { value: '금쪽이는 왜 블로그 만드냐', label: '금쪽이는 왜 블로그 만드냐' },
-              ]}
-            />
-          </S.PostInSeries>
+          {/* 포스트가 시리즈에 속해있는지 여부 */}
+          {props.seriesData && (
+            <S.PostInSeries>
+              <S.TitleOfPostInSeries>
+                <img src="/images/book.svg" alt="시리즈북 아이콘" />
+                {props.seriesData?.fetchSeries.title}
+              </S.TitleOfPostInSeries>
+              {props.isPostInSeriesView && (
+                <S.PostInSeriesWrapper>
+                  {props.seriesData?.fetchSeries.post.map((el: any) => (
+                    <S.PostsInSeries key={el.postId} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
+                      {el.title}
+                    </S.PostsInSeries>
+                  ))}
+                </S.PostInSeriesWrapper>
+              )}
+
+              <S.PostInSeriesView onClick={props.onClickPostInSeriesView}>
+                {props.isPostInSeriesView ? (
+                  <>
+                    <S.UpArrowIcon />
+                    숨기기
+                  </>
+                ) : (
+                  <>
+                    <S.DownArrowIcon />
+                    목록보기
+                  </>
+                )}
+              </S.PostInSeriesView>
+            </S.PostInSeries>
+          )}
 
           <S.ImageWrapper>
             <S.Image src={postItem[0].image} />
