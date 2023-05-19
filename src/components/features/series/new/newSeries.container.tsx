@@ -37,7 +37,6 @@ export default function NewSeries() {
   const [thumbnail, setThumbnail] = useState<string>()
   const router = useRouter();
   const [input, setInput] = useState(false);
-  console.log(input)
   const { TextArea } = Input;
 
   const handleClickUploadThumbnail = () => {
