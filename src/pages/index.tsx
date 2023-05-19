@@ -7,6 +7,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function Home() {
   const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <>
       <Head>
@@ -27,12 +28,6 @@ export default function Home() {
             <MyTag isChecked={false} onClick={onClickMoveToPage('./series')}>
               시리즈
             </MyTag>
-          </S.TagWrapper>
-          <S.TagWrapper>
-            <MyTag isChecked={true}>전체</MyTag>
-            <MyTag isChecked={false}>개발</MyTag>
-            <MyTag isChecked={false}>에세이</MyTag>
-            <MyTag isChecked={false}>독서</MyTag>
           </S.TagWrapper>
         </S.TitleWrapper>
         <PostList />

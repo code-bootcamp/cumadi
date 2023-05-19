@@ -1,3 +1,5 @@
+import styled from '@emotion/styled'
+
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { MyButton } from '../../customComponent.styles'
 
