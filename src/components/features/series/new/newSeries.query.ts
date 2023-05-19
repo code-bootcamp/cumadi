@@ -17,3 +17,11 @@ export const FETCH_SERIES_CATEGORIES = gql`
     }
   }
 `
+
+export const CREATE_SERIES = gql`
+  mutation createSeries($createSeriesInput: CreateSeriesInput!) {
+    createSeries(createSeriesInput: $createSeriesInput) {
+      seriesId
+    }
+  }
+`
