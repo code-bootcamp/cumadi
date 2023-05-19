@@ -42,7 +42,8 @@ export const Body = styled.div`
   }
 `
 
-export const StyledCard = styled(Card)`
+export const StyledCard = styled(Card)<{ isfree: boolean }>`
+  display: ${props => (props.isfree ? "none" : "" )};
   width: 25rem;
   border: unset;
   cursor: pointer;

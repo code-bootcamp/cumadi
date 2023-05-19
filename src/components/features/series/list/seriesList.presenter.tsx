@@ -43,12 +43,12 @@ export default function SeriesListUI(props: any) {
             />
           </S.ToggleWrapper>
         </S.categoryWrapper>
-
       </S.TitleWrapper>
+
       {props.isShowAll ? (
         <>
           {props.data?.fetchSeriesAll.map(el => (
-            <S.StyledCard cover={
+            <S.StyledCard isfree={props.isfreeOn} cover={
               <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
