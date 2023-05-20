@@ -1,17 +1,7 @@
 import styled from '@emotion/styled'
 
-import { breakPoints } from '@/common/styles/media'
-
 export const Container = styled.section`
   width: auto;
-
-  @media ${breakPoints.tablet} {
-    width: 44rem;
-  }
-
-  @media ${breakPoints.mobile} {
-    width: 100%;
-  }
 `
 
 // **** 댓글 작성

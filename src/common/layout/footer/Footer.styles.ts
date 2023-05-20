@@ -1,6 +1,7 @@
-import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 import { Card } from 'antd'
+
+import { breakPoints } from '@/common/styles/media'
 
 export const Footer = styled.footer`
   width: 100%;
