@@ -5,19 +5,27 @@ import { purchaseProduct } from '@/common/libraries/payment'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import {
   IMutation,
+  IMutationCreatePaymentFreeSeriesArgs,
   IMutationCreatePaymentSeriesArgs,
   IQuery,
   IQueryFetchSeriesArgs,
 } from '@/common/types/generated/types'
-import { CREATE_PAYMENT_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN } from './purchase.queries'
+import {
+  CREATE_PAYMENT_FREE_SERIES,
+  CREATE_PAYMENT_SERIES,
+  FETCH_SERIES,
+  FETCH_USER_LOGGED_IN,
+} from './purchase.queries'
+import { useAuth } from '@/common/hooks/useAuth'
 
 declare const window: typeof globalThis & {
   IMP: any
 }
 
 export default function Purchase() {
+  // useAuth()
   const router = useRouter()
-  console.log(router) //  ***로그삭제
+  //  console.log(router) //  ***로그삭제
   // const [accessToken] = useRecoilState(accessTokenState)
   // const [seriesId, setSeriesId] = useRecoilState(buyItemId)
 
@@ -32,19 +40,24 @@ export default function Purchase() {
     setSeriesId(buyNowSeries)
   }, [])
 
-  console.log(seriesId) //  ***로그삭제
+  //  console.log(seriesId) //  ***로그삭제
 
   const { data: loginData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
-  console.log(loginData)
+  //  console.log(loginData)
 
   const { data } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
     variables: { seriesId },
   })
-  console.log(data?.fetchSeries) //  ***로그삭제
+  //  console.log(data?.fetchSeries) //  ***로그삭제
 
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
   )
+
+  const [createPaymentFreeSeries] = useMutation<
+    Pick<IMutation, 'createPaymentFreeSeries'>,
+    IMutationCreatePaymentFreeSeriesArgs
+  >(CREATE_PAYMENT_FREE_SERIES)
 
   const imageErrorVisible = (event: ChangeEvent<HTMLImageElement>) => {
     event.target.src = '/images/no-image.jpeg'
@@ -55,9 +68,26 @@ export default function Purchase() {
 
   //  console.log(checkList) //  ***로그삭제
 
-  const onClickPayment = () => {
-    console.log(seriesId)
-    localStorage.removeItem('buySeriesId')
+  const onClickPayment = async () => {
+    //  console.log(seriesId)
+
+    if (data?.fetchSeries.price === 0) {
+      try {
+        const result = await createPaymentFreeSeries({
+          variables: { seriesList: [data.fetchSeries.seriesId] },
+        })
+        console.log(result)
+
+        alert('결제에 성공했습니다.')
+        localStorage.removeItem('buySeriesId')
+        router.push('/')
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(error.message)
+        }
+      }
+      return //  리턴의위치
+    }
 
     const IMP = window.IMP
     IMP.init('imp71265174')
@@ -100,3 +130,6 @@ export default function Purchase() {
 
   return <PurchaseUI data={data} imageErrorVisible={imageErrorVisible} onClickPayment={onClickPayment} />
 }
+
+//  무료구매의 경우 같은 시리즈를 계속 구매해도 DB 구매내역에 중복으로 쌓임
+//  유료구매의 경우 => 테스트 필요

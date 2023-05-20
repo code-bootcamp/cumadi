@@ -8,6 +8,14 @@ export const CREATE_PAYMENT_SERIES = gql`
   }
 `
 
+export const CREATE_PAYMENT_FREE_SERIES = gql`
+  mutation createPaymentFreeSeries($seriesList: [String!]!) {
+    createPaymentFreeSeries(seriesList: $seriesList) {
+      paymentId
+    }
+  }
+`
+
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
     fetchSeries(seriesId: $seriesId) {
