@@ -17,7 +17,7 @@ export const FETCH_POST_COMMENTS = gql`
 
 // 포스트 질문 댓글 삭제
 export const DELETE_POST_QUESTION = gql`
-  mutation deletePostQuestion($postQuestionId: ID!) {
-    deletePostQuestion(postQuestionId: $postQuestionId)
+  mutation deletePostComment($commentId: String!) {
+    deletePostComment(commentId: $commentId)
   }
 `

@@ -20,30 +20,15 @@ export const CREATE_POST_COMMENT = gql`
   mutation createPostComment($postId: String!, $content: String!) {
     createPostComment(postId: $postId, content: $content) {
       commentId
-      content
-      user {
-        userId
-      }
-      post {
-        postId
-      }
     }
   }
 `
 
-// **** 포스트 질문 댓글 수정
-export const UPDATE_POST_QUESTION = gql`
-  mutation updatePostQuestion($updatePostQuestionInput: UpdatePostQuestionInput!, $postQuestionId: ID!) {
-    updatePostQuestion(updatePostQuestionInput: $updatePostQuestionInput, postQuestionId: $postQuestionId) {
-      _id
-      contents
-      createdAt
-      user {
-        _id
-        email
-        name
-        picture
-      }
+// **** 포스트 댓글 수정
+export const UPDATE_POST_COMMENT = gql`
+  mutation updatePostComment($commentId: String!, $updateContent: String!) {
+    updatePostComment(commentId: $commentId, updateContent: $updateContent) {
+      commentId
     }
   }
 `

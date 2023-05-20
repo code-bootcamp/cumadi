@@ -22,6 +22,27 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 0.5rem;
   color: var(--color-gray-1);
+`
+
+export const CommentContent = styled.textarea`
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  outline-color: var(--color-primary);
+`
+
+export const ColorButton = styled.button`
+  display: flex;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+`
+
+export const ContentsLength = styled.div`
+  width: 100%;
+  align-self: center;
+  padding-left: 1rem;
+  color: var(--color-gray-500);
 `

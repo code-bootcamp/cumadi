@@ -31,8 +31,7 @@ export const CommentCount = styled.div`
   color: var(--color-gray-2);
 `
 
-// **** 덧글 리스트 컨테이너
-export const CommentListWrapper = styled.div`
+export const CommentListContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,34 +48,33 @@ export const CommentList = styled.div`
   border-bottom: 1px solid var(--color-gray-3);
 `
 
-// **** 댓글리스트가 존재하지 않으면
-export const CommentListNoTitle = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-`
-export const CommentListNoSubTitle = styled.div`
-  font-size: 1rem;
-  color: var(--color-gray-1);
-`
-
-// **** 댓글리스트가 존재하면
-export const AvatarWrapper = styled.div`
+// **** 댓글 상단
+export const CommentTop = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
 `
 
+// **** 댓글 상단 - 유저 영역
+export const AvatarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+`
 export const Avatar = styled.img`
   width: 3rem;
 `
-
 export const AvatarIntro = styled.div``
-
 export const Date = styled.div`
   font-size: 0.9rem;
+  color: var(--color-gray-1);
+`
+
+// **** 댓글 상단 - 버튼 영역
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 0.8rem;
   color: var(--color-gray-1);
 `
 
@@ -84,4 +82,15 @@ export const Contents = styled.div`
   width: 100%;
   font-size: 1rem;
   color: var(--color-black);
+`
+
+// **** 댓글리스트가 존재하지 않으면
+export const CommentListNoTitle = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-top: 2rem;
+`
+export const CommentListNoSubTitle = styled.div`
+  font-size: 1rem;
+  color: var(--color-gray-1);
 `

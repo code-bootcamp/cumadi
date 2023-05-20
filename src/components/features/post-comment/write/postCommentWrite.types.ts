@@ -1,20 +1,14 @@
 import { ChangeEvent } from 'react'
 
-export interface IPostQuestionWriteProps {
-  // element?: IUseditemQuestion
-  // setIsEdit?: Dispatch<SetStateAction<boolean>>
-  // isEdit?: boolean
+export interface IPostCommentWriteUIProps {
+  onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  onClickCreateComment: () => void
+  onClickUpdateComment: () => void
+  content: string
+  isPostCommentEdit: boolean
+  comment: any
 }
 
-export interface IPostQuestionWriteUIProps {
-  // contents: string
-  // isEdit?: boolean
-  // element?: IUseditemQuestion
-  // onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void
-  // onClickCreateQuestion: () => void
-  // onClickUpdateQuestion: () => void
-}
-
-export interface IUpdatePostQuestionInput {
-  contents?: string
+export interface IUpdateContent {
+  content?: string
 }
