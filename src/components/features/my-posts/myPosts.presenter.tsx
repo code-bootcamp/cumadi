@@ -24,12 +24,8 @@ export default function MyPostsUI(props: any) {
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>
-          <MyTag isChecked={true} onClick={onClickMoveToPage('/my/posts')}>
-            포스트
-          </MyTag>
-          <MyTag isChecked={false} onClick={onClickMoveToPage('/my/series')}>
-            시리즈
-          </MyTag>
+          <button onClick={onClickMoveToPage('/my/posts')}>포스트</button>
+          <button onClick={onClickMoveToPage('/my/series')}>시리즈</button>
         </S.TagWrapper>
         <S.RegisterBtn onClick={onClickMoveToPage('/post/new')}>
           <S.PlusImg src="/images/plus.svg" alt="더하기 아이콘" />새 포스트 작성하기

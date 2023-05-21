@@ -29,9 +29,9 @@ export default function PostDetailUI(props: any) {
           <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWapper>
             {POST_DETAIL?.tags.map((tag: any) => (
-              <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
+              <span key={tag.tagId} id={tag.tagId}>
                 {tag.name}
-              </MyTag>
+              </span>
             ))}
           </S.PostTagWapper>
 
