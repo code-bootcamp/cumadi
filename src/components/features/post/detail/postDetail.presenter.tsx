@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 
 export default function PostDetailUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
-  const PostDetail = props.data?.fetchPost
-  const isWriterUser = PostDetail?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
+  const POST_DETAIL = props.data?.fetchPost
+  const isWriterUser = POST_DETAIL?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
 
   return (
     <>
@@ -26,9 +26,9 @@ export default function PostDetailUI(props: any) {
           likeData={props.likeData}
         />
         <div>
-          <S.PostTitle>{PostDetail?.title}</S.PostTitle>
+          <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWapper>
-            {PostDetail?.tags.map((tag: any) => (
+            {POST_DETAIL?.tags.map((tag: any) => (
               <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
                 {tag.name}
               </MyTag>
@@ -39,16 +39,15 @@ export default function PostDetailUI(props: any) {
             <S.AvatarWrapper>
               <S.Avatar src="/images/avatar.png" />
               <S.Info>
-                <S.Writer>{PostDetail?.user.nickname}</S.Writer>
-                <S.CreatedAt>{getDate(PostDetail?.createdAt)}</S.CreatedAt>
+                <S.Writer>{POST_DETAIL?.user.nickname}</S.Writer>
+                <S.CreatedAt>{getDate(POST_DETAIL?.createdAt)}</S.CreatedAt>
               </S.Info>
             </S.AvatarWrapper>
 
             {isWriterUser && (
               <S.PostUpdateBtnWrapper>
-                {/* <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/stats`)}>통계</button> */}
-                <button onClick={onClickMoveToPage(`/post/stats`)}>통계</button>
-                <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/edit`)}>수정</button>
+                <button onClick={onClickMoveToPage(`/post/${POST_DETAIL?.postId}/stats`)}>통계</button>
+                <button onClick={onClickMoveToPage(`/post/${POST_DETAIL?.postId}/edit`)}>수정</button>
                 <button onClick={props.onClickDelete}>삭제</button>
               </S.PostUpdateBtnWrapper>
             )}
@@ -93,7 +92,7 @@ export default function PostDetailUI(props: any) {
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
-          <div onMouseUp={props.onMouseUpContentMemo}>{PostDetail?.content}</div>
+          <div onMouseUp={props.onMouseUpContentMemo}>{POST_DETAIL?.content}</div>
         </div>
         {/* 포스트 댓글 */}
         <PostAnswerList />

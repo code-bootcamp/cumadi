@@ -8,7 +8,7 @@ import { ProfileTextDataContainer } from '@/components/common/customComponent.st
 import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
-import { Rate } from 'antd';
+import { Rate } from 'antd'
 import dayjs from 'dayjs'
 
 export default function SeriesListUI(props: any) {
@@ -26,21 +26,29 @@ export default function SeriesListUI(props: any) {
         </S.TagWrapper>
 
         <S.TagWrapper>
-          <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>전체</S.TopTag>
+          <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>
+            전체
+          </S.TopTag>
           {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
-              <S.TopTag
-                onClick={props.onClickCategory(category.categoryId, index)}
-                isClicked={props.countIndex === index ? true : false}
-              >{category.name}</S.TopTag>
+            <S.TopTag
+              onClick={props.onClickCategory(category.categoryId, index)}
+              isClicked={props.countIndex === index ? true : false}>
+              {category.name}
+            </S.TopTag>
           ))}
         </S.TagWrapper>
-
       </S.TitleWrapper>
       {props.isShowAll ? (
         <>
           {props.data?.fetchSeriesAll.map(el => (
-            <S.StyledCard cover={
-              <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
+            <S.StyledCard
+              cover={
+                <S.CardThumbnailImg
+                  alt="example"
+                  src={'/images/no-image.jpeg'}
+                  onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
+                />
+              }>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
                   {el.category.name}
@@ -70,8 +78,14 @@ export default function SeriesListUI(props: any) {
       ) : (
         <>
           {props.menu?.fetchSeriesByCategory.map(el => (
-            <S.StyledCard cover={
-              <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
+            <S.StyledCard
+              cover={
+                <S.CardThumbnailImg
+                  alt="example"
+                  src={'/images/no-image.jpeg'}
+                  onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
+                />
+              }>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
                   {el.category.name}
