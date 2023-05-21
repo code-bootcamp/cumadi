@@ -3,23 +3,26 @@ import { useQuery } from '@apollo/client'
 
 import PostStatsUI from './postStats.presenter'
 import { getDate, getToday } from '@/common/libraries/utils'
-import { FETCH_POST, FETCH_POST_VIEW_OF_MINE } from './postStats.queries'
+import { FETCH_POST_VIEW_OF_MINE } from './postStats.queries'
+import { IQuery } from '@/common/types/generated/types'
+import { IPostStatsProps } from './postStats.types'
 
-export default function PostStats(props: any) {
+export default function PostStats({ postData }: IPostStatsProps) {
   const router = useRouter()
   const postId = String(router.query.postId)
+  const startDate = getDate(postData?.fetchPost.createdAt)
+  const endDate = getToday()
 
   // **** PlayGround
-  const { data } = useQuery(FETCH_POST, { variables: { postId } })
-  // const { data: stateData } = useQuery(FETCH_POST_VIEW_OF_MINE, {
-  //   variables: {
-  //     fetchStatisticsInput: {
-  //       postId: data?.fetchPost.postId,
-  //       startDate: getDate(data?.fetchPost.createdAt),
-  //       endDate: getToday(),
-  //     },
-  //   },
-  // })
+  const { data: stateData } = useQuery<Pick<IQuery, 'fetchPostViewOfMine'>>(FETCH_POST_VIEW_OF_MINE, {
+    variables: {
+      fetchStatisticsInput: {
+        postId,
+        startDate,
+        endDate,
+      },
+    },
+  })
 
-  return <PostStatsUI />
+  return <PostStatsUI stateData={stateData} />
 }
