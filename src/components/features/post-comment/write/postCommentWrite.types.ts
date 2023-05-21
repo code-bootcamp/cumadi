@@ -5,7 +5,7 @@ export interface IPostCommentWriteUIProps {
   onClickCreateComment: () => void
   onClickUpdateComment: () => void
   content: string
-  isPostCommentEdit: boolean
+  isEditPostComment: boolean
   comment: any
 }
 

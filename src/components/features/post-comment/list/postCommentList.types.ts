@@ -1,9 +1,10 @@
-import { IQuery, IQueryFetchPostCommentsArgs } from '@/common/types/generated/types'
+import { IComment, IQuery } from '@/common/types/generated/types'
 
 export interface IPostCommentListUIProps {
-  data?: Pick<IQuery, 'fetchPostComments'>
+  commentsData?: Pick<IQuery, 'fetchPostComments'>
 }
 
 export interface IPostCommentListUIItemProps {
-  comment: any
+  key: any
+  comment: IComment
 }

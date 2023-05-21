@@ -16,8 +16,8 @@ export default function PostCommentWriteUI(props: IPostCommentWriteUIProps) {
         <S.ContentsLength>
           {(props.content ? props.content.length : props.comment?.content.length) ?? 0}/100
         </S.ContentsLength>
-        <S.ColorButton onClick={props.isPostCommentEdit ? props.onClickUpdateComment : props.onClickCreateComment}>
-          {props.isPostCommentEdit ? '수정' : '등록'}
+        <S.ColorButton onClick={props.isEditPostComment ? props.onClickUpdateComment : props.onClickCreateComment}>
+          {props.isEditPostComment ? '수정' : '등록'}
         </S.ColorButton>
       </S.ButtonWrapper>
     </S.Container>

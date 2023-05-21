@@ -16,7 +16,7 @@ export const Container = styled.section`
 `
 
 // **** 덧글 리스트 상단
-export const CommentWrapper = styled.div`
+export const CommentHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,7 +49,7 @@ export const CommentList = styled.div`
 `
 
 // **** 댓글 상단
-export const CommentTop = styled.div`
+export const CommentTopWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -93,4 +93,12 @@ export const CommentListNoTitle = styled.div`
 export const CommentListNoSubTitle = styled.div`
   font-size: 1rem;
   color: var(--color-gray-1);
+`
+
+// **** 포스트 댓글 답변
+export const PostCommentAnswerWrapper = styled.div`
+  width: 100%;
+  padding-left: 2rem;
+  font-size: 1rem;
+  color: var(--color-black);
 `

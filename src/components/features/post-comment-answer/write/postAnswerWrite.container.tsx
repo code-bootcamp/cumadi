@@ -4,75 +4,101 @@ import { ChangeEvent, useState } from 'react'
 
 import PostAnswerWriteUI from './postAnswerWrite.presenter'
 import {
-  FETCH_POST_QUESTION_ANSWERS,
-  CREATE_POST_QUESTION_ANSWER,
-  UPDATE_POST_QUESTION_ANSWER,
+  CREATE_POST_COMMENT_ANSWER,
+  FETCH_POST_COMMENT_ANSWER,
+  UPDATE_POST_COMMENT_ANSWER,
 } from './postAnswerWrite.queries'
+import {
+  IMutation,
+  IMutationCreatePostCommentAnswerArgs,
+  IMutationUpdatePostCommentAnswerArgs,
+} from '@/common/types/generated/types'
+import { IPostAnswerWriteProps } from './postAnswerWrite.types'
 
-export default function PostAnswerWrite(props: any) {
+export default function PostAnswerWrite({
+  onClickActiveCommentAnswer,
+  onClickEditAnswer,
+  comment,
+  isActivePostAnswer,
+  CommentAnswer,
+}: IPostAnswerWriteProps) {
+  const commentId = comment?.commentId
+  const answerId = CommentAnswer?.answerId
+
   // **** 상태
-  const [contents, setContents] = useState('')
+  const [content, setContent] = useState('')
 
   // **** PlayGround
-  // const [createPostQuestionAnswer] = useMutation(CREATE_POST_QUESTION_ANSWER)
-  // const [updatePostQuestionAnswer] = useMutation(UPDATE_POST_QUESTION_ANSWER)
+  const [createPostCommentAnswer] = useMutation<
+    Pick<IMutation, 'createPostCommentAnswer'>,
+    IMutationCreatePostCommentAnswerArgs
+  >(CREATE_POST_COMMENT_ANSWER)
+  const [updatePostCommentAnswer] = useMutation<
+    Pick<IMutation, 'updatePostCommentAnswer'>,
+    IMutationUpdatePostCommentAnswerArgs
+  >(UPDATE_POST_COMMENT_ANSWER)
 
   // **** 답변 생성
   const onClickCreateAnswer = async () => {
     try {
-      const result = await createPostQuestionAnswer({
+      const result = await createPostCommentAnswer({
         variables: {
-          createPostQuestionAnswerInput: {
-            contents,
-          },
-          postQuestionId: props.element._id,
+          commentId,
+          content,
         },
         refetchQueries: [
           {
-            query: FETCH_POST_QUESTION_ANSWERS,
-            variables: { postQuestionId: props.element._id },
+            query: FETCH_POST_COMMENT_ANSWER,
+            variables: { commentId },
           },
         ],
       })
-      setContents('')
-      props.setIsReply(false)
+      setContent('')
       Modal.success({ content: '답변 댓글이 등록되었습니다!' })
+      if (onClickActiveCommentAnswer !== undefined) onClickActiveCommentAnswer()
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: error.message })
+      if (error instanceof Error) Modal.error({ content: '1개의 댓글에는 1개의 답변만 등록가능합니다.' })
     }
   }
 
   // **** 답변 수정
   const onClickUpdateAnswer = async () => {
+    if (!content) {
+      alert('내용이 수정되지 않았습니다.')
+      return
+    }
     try {
-      const result = await updatePostQuestionAnswer({
+      const result = await updatePostCommentAnswer({
         variables: {
-          updatePostQuestionAnswerInput: {
-            contents,
-          },
-          postQuestionAnswerId: props.element._id,
+          answerId,
+          newContent: content,
         },
         refetchQueries: [
           {
-            query: FETCH_POST_QUESTION_ANSWERS,
-            variables: { postQuestionId: props.element._id },
+            query: FETCH_POST_COMMENT_ANSWER,
+            variables: { commentId },
           },
         ],
       })
-      setContents('')
-      Modal.success({ content: '댓글 수정이 완료되었습니다' })
+
+      setContent('')
+      Modal.success({ content: '답변 댓글 수정되었습니다' })
+      if (onClickEditAnswer !== undefined) onClickEditAnswer()
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
   }
 
-  // **** 답변 댓글 값 전달
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => setContents(event.target.value)
+  // **** 댓글 답변 값 전달
+  const onChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => setContent(event.target.value)
 
   return (
     <PostAnswerWriteUI
-      contents={contents}
-      onChangeContents={onChangeContents}
+      content={content}
+      comment={comment}
+      CommentAnswer={CommentAnswer}
+      isActivePostAnswer={isActivePostAnswer}
+      onChangeContent={onChangeContent}
       onClickCreateAnswer={onClickCreateAnswer}
       onClickUpdateAnswer={onClickUpdateAnswer}
     />

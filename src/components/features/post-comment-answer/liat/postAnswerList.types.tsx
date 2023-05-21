@@ -1,3 +1,13 @@
-import { ChangeEvent, MouseEvent } from 'react'
+import { IQuery } from '@/common/types/generated/types'
+import { MouseEvent } from 'react'
 
-export interface IPostAnswerListUIProps {}
+export interface IPostAnswerListProps {
+  onClickActiveCommentAnswer: () => void
+  commentId: string
+}
+
+export interface IPostAnswerListUIProps {
+  PostCommentAnswerData?: Pick<IQuery, 'fetchPostCommentAnswer'>
+  comment?: any
+  onClickDeleteAnswer: (event: MouseEvent<HTMLButtonElement>) => void
+}

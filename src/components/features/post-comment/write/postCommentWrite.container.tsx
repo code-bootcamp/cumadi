@@ -11,9 +11,16 @@ import {
   IMutationUpdatePostCommentArgs,
 } from '@/common/types/generated/types'
 
-export default function PostCommentWrite(props: any) {
+interface PostCommentWrite {
+  isEditPostComment: boolean
+  setIsEditPostComment: any
+  comment?: any
+}
+
+export default function PostCommentWrite({ comment, setIsEditPostComment, isEditPostComment }: PostCommentWrite) {
   const router = useRouter()
   const postId = String(router.query.postId)
+  const commentId = comment?.commentId
 
   // **** 상태
   const [content, setContent] = useState('')
@@ -59,8 +66,8 @@ export default function PostCommentWrite(props: any) {
     try {
       const result = await updatePostComment({
         variables: {
-          commentId: String(props.comment?.commentId),
-          updateContent: String(content),
+          commentId: commentId,
+          updateContent: content,
         },
         refetchQueries: [
           {
@@ -69,11 +76,9 @@ export default function PostCommentWrite(props: any) {
           },
         ],
       })
-
-      console.log(result)
-
+      Modal.success({ content: '댓글이 수정되었습니다!' })
       // ** 수정 버튼을 클릭하고 완료되면, 수정여부를 false로
-      props.setIsPostCommentEdit?.(false)
+      setIsEditPostComment(false)
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
@@ -84,12 +89,12 @@ export default function PostCommentWrite(props: any) {
 
   return (
     <PostCommentWriteUI
+      content={content}
+      isEditPostComment={isEditPostComment}
+      comment={comment}
       onChangeContent={onChangeContent}
       onClickCreateComment={onClickCreateComment}
       onClickUpdateComment={onClickUpdateComment}
-      content={content}
-      isPostCommentEdit={props.isPostCommentEdit}
-      comment={props.comment}
     />
   )
 }

@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { breakPoints } from '@/common/styles/media'
 
 export const Container = styled.section`
-  width: auto;
+  width: 100%;
   margin: 1rem 0;
   border: 1px solid var(--color-gray-3);
   border-radius: 0.4rem;

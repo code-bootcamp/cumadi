@@ -9,14 +9,16 @@ import { getCreateDate } from '@/common/libraries/utils'
 import PostCommentWrite from '../write/postCommentWrite.container'
 import { DELETE_POST_QUESTION, FETCH_POST_COMMENTS } from './postCommentList.queries'
 import { IPostCommentListUIItemProps } from './postCommentList.types'
+import PostAnswerList from '../../post-comment-answer/liat/postAnswerList.container'
+import PostAnswerWrite from '../../post-comment-answer/write/postAnswerWrite.container'
 
-export default function PostCommentListUIItem(props: IPostCommentListUIItemProps) {
+export default function PostCommentListUIItem({ comment }: IPostCommentListUIItemProps) {
   const router = useRouter()
   const postId = String(router.query.postId)
 
   // **** 상태
-  const [isPostCommentEdit, setIsPostCommentEdit] = useState(false)
-  const [isPostCommentAnswer, setIsPostCommentAnswer] = useState(false)
+  const [isEditPostComment, setIsEditPostComment] = useState(false)
+  const [isActivePostAnswer, setIsActivePostAnswer] = useState(false)
 
   // **** PlayGround
   const [deletePostComment] = useMutation(DELETE_POST_QUESTION)
@@ -27,7 +29,7 @@ export default function PostCommentListUIItem(props: IPostCommentListUIItemProps
     try {
       await deletePostComment({
         variables: {
-          commentId: props.comment?.commentId,
+          commentId: comment?.commentId,
         },
         refetchQueries: [
           {
@@ -42,42 +44,46 @@ export default function PostCommentListUIItem(props: IPostCommentListUIItemProps
     }
   }
 
-  const onClickUpdatePostCommentBtn = () => setIsPostCommentEdit(prev => !prev)
-  const onClickPostCommentAnswerBtn = () => setIsPostCommentAnswer(prev => !prev)
+  const onClickUpdatePostComment = () => setIsEditPostComment(prev => !prev)
+  const onClickActiveCommentAnswer = () => setIsActivePostAnswer(prev => !prev)
 
   return (
     <>
-      {/* (댓글수정) 수정 여부가 false면, 기존 내용을 조건렌더링 */}
-      {!isPostCommentEdit && (
-        <S.CommentList key={props.comment?.commentId}>
-          <S.CommentTop>
+      {/* 기본 렌더링 */}
+      {!isEditPostComment && (
+        <S.CommentList key={comment?.commentId}>
+          <S.CommentTopWrapper>
             <S.AvatarWrapper>
               <S.Avatar src="/images/avatar.png" />
               <S.AvatarIntro>
-                <div>{props.comment?.user.nickname}</div>
-                <S.Date>{getCreateDate(props.comment?.updatedAt)}</S.Date>
+                <div>{comment?.user.nickname}</div>
+                <S.Date>{getCreateDate(comment?.updatedAt)}</S.Date>
               </S.AvatarIntro>
             </S.AvatarWrapper>
             <S.ButtonWrapper>
-              <button onClick={onClickUpdatePostCommentBtn}>수정</button>
-              <button onClick={onClickPostCommentAnswerBtn}>답변</button>
+              <button onClick={onClickUpdatePostComment}>수정</button>
+              <button onClick={onClickActiveCommentAnswer}>답변</button>
               <button onClick={onClickDeletePostComment}>
                 <CloseOutlined />
               </button>
             </S.ButtonWrapper>
-          </S.CommentTop>
-          <S.Contents>{props.comment?.content}</S.Contents>
-          {/* (답변댓글) */}
+          </S.CommentTopWrapper>
+          <S.Contents>{comment?.content}</S.Contents>
         </S.CommentList>
       )}
-      {/* (댓글수정) 수정 여부가 true면, 수정할 내용을 조건렌더링 */}
-      {isPostCommentEdit && (
-        <PostCommentWrite
-          isPostCommentEdit={true}
-          setIsPostCommentEdit={setIsPostCommentEdit}
-          comment={props.comment}
+      {/* 댓글 수정 클릭 시 */}
+      {isEditPostComment && (
+        <PostCommentWrite isEditPostComment={true} setIsEditPostComment={setIsEditPostComment} comment={comment} />
+      )}
+      {/* 답변댓글 */}
+      {isActivePostAnswer && (
+        <PostAnswerWrite
+          isActivePostAnswer={true}
+          onClickActiveCommentAnswer={onClickActiveCommentAnswer}
+          comment={comment}
         />
       )}
+      <PostAnswerList onClickActiveCommentAnswer={onClickActiveCommentAnswer} commentId={comment.commentId} />
     </>
   )
 }
