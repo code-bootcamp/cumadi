@@ -32,41 +32,41 @@ export default function MyPostsUI(props: any) {
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {props.data?.fetchPostsOfMine.map(el => (
+        {props.data?.fetchPostsOfMine.map(postOfMine => (
           <S.StyledCard
-            key={el.postId}
+            key={postOfMine.postId}
             cover={
               <S.CardThumbnailImg
                 src={'/images/no-image.jpeg'}
                 alt="포스트 썸네일 이미지"
-                onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
               />
             }
-            onClick={onClickMoveToPage(`/post/${el.postId}`)}>
+            onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
-                {el?.series?.title}
+                {postOfMine?.series?.title}
               </BodyTextSm>
-              <BodyTextLg>{el.title}</BodyTextLg>
+              <BodyTextLg>{postOfMine.title}</BodyTextLg>
               <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{el.content}</TruncatedText>
+                <TruncatedText lines={4}>{postOfMine.content}</TruncatedText>
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
                   <Avatar>E</Avatar>
                   <ProfileTextDataContainer>
-                    <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                    <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                    <BodyTextSm weight={600}>{postOfMine.user.nickname}</BodyTextSm>
+                    <BodyTextSm color={Colors.gray1}>{postOfMine.createDate}</BodyTextSm>
                   </ProfileTextDataContainer>
                 </ProfileContainer>
                 <ReactionsContainer>
                   <ReactionContainer>
-                    <img src="/images/heart-outlined.svg" alt="관심 수" />
-                    <span>3</span>
+                    <img src="/images/heart-outlined.svg" alt="좋아요 수" />
+                    <span>{postOfMine.likes.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
-                    <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                    <span>3</span>
+                    <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                    <span>{postOfMine.likes.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </InfoSectionContainer>

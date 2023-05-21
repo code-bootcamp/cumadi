@@ -3,14 +3,11 @@ import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { postItem } from '@/common/dummyData/post'
-import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getDate } from '@/common/libraries/utils'
-import { useRouter } from 'next/router'
+import { IPostDetailUIProps } from './postDetail.types'
 
-// interface IPostDetailUIProps {}
-
-export default function PostDetailUI(props: any) {
+export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
   const POST_DETAIL = props.data?.fetchPost
   const isWriterUser = POST_DETAIL?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
@@ -28,7 +25,7 @@ export default function PostDetailUI(props: any) {
         <div>
           <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWapper>
-            {POST_DETAIL?.tags.map((tag: any) => (
+            {POST_DETAIL?.tags?.map((tag: any) => (
               <span key={tag.tagId} id={tag.tagId}>
                 {tag.name}
               </span>
@@ -63,7 +60,7 @@ export default function PostDetailUI(props: any) {
               {/* 포스트 in 시리즈 리스트들 */}
               {props.isPostInSeriesView && (
                 <S.PostInSeriesWrapper>
-                  {props.seriesData?.fetchSeries.post.map((el: any) => (
+                  {props.seriesData?.fetchSeries.post?.map((el: any) => (
                     <S.PostsInSeries key={el.postId} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                       {el.title}
                     </S.PostsInSeries>
