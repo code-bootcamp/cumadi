@@ -25,7 +25,7 @@ const tagRender = (props: any) => {
   );
 };
 
-export default function NewSeries() {
+export default function NewSeries(props) {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
 
@@ -73,8 +73,9 @@ export default function NewSeries() {
             title: values.title,
             introduction: values.intro,
             image: values.thumbnail,
+            paid: false,
             price: 3000,
-            category: "독서",
+            categoryId: "5964b7ae-ce1c-4428-a2fc-8224467fd3ce",
             posts: [
               "132602ed-0b1a-4b4b-abbb-d9bcde4d1388",
               "28e37608-f28d-4651-aefd-5446330d1489"
@@ -89,7 +90,8 @@ export default function NewSeries() {
       }
       console.log(values);
     } catch (error) {
-      
+      if (error instanceof Error) alert(error.message);
+      return;
     }
     console.log(values);
     alert("시리즈 작성이 완료되었습니다.")
@@ -103,6 +105,7 @@ export default function NewSeries() {
 
   return (
     <NewSeriesUI
+      isEdit={props.isEdit}
       post={post}
       imgRef={imgRef}
       thumbnail={thumbnail}

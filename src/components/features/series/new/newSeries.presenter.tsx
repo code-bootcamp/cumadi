@@ -1,4 +1,4 @@
-import { Form, Input, Select } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import * as S from './newSeries.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
 
@@ -6,7 +6,7 @@ export default function NewSeriesUI(props : any) {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>새 시리즈 만들기</S.Title>
+        <S.Title>{props.isEdit ? '새 시리즈 만들기' : '시리즈 수정'}</S.Title>
       </S.TitleWrapper>
 
       <S.PostForm onFinish={props.onSubmitForm}>
@@ -70,8 +70,11 @@ export default function NewSeriesUI(props : any) {
         </S.PriceToggle>
         <Form.Item>
           <S.ButtonWrapper>
+            <Button style={{ margin: 'auto' }}>
+              {props.isEdit ? '수정 취소' : ''}
+            </Button>
             <MyButton type="primary" htmlType="submit" style={{ margin: 'auto' }}>
-              시리즈 만들기
+              {props.isEdit ? '시리즈 수정하기' : '시리즈 만들기'}
             </MyButton>
           </S.ButtonWrapper>
         </Form.Item>
