@@ -3,7 +3,7 @@ import SeriesDetail from "@/components/features/series/detail/seriesDetail.conta
 export default function SeriesDetailPage() {
   return (
     <>
-      <SeriesDetail />
+      <SeriesDetail isEdit={true} />
     </>
   )
 }

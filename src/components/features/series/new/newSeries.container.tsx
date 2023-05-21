@@ -70,7 +70,15 @@ export default function NewSeries() {
       const result = await createSeries({
         variables: {
           createSeriesInput: {
-            
+            title: values.title,
+            introduction: values.intro,
+            image: values.thumbnail,
+            price: 3000,
+            category: "독서",
+            posts: [
+              "132602ed-0b1a-4b4b-abbb-d9bcde4d1388",
+              "28e37608-f28d-4651-aefd-5446330d1489"
+            ]
           }
         }
       })
@@ -79,6 +87,7 @@ export default function NewSeries() {
         alert("요청에 문제가 있습니다.");
         return;
       }
+      console.log(values);
     } catch (error) {
       
     }
