@@ -7,6 +7,7 @@ export const FETCH_POSTS = gql`
       postId
       title
       content
+      image
       series {
         seriesId
         title

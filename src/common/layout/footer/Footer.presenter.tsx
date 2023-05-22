@@ -28,7 +28,7 @@ export default function LayoutFooterUI(props: any) {
               style={{ width: 400, border: 'unset' }}
               cover={
                 <S.CardThumbnailImg
-                  src={'/images/no-image.jpeg'}
+                  src={el.image ? el.image : '/images/no-image.jpeg'}
                   alt="포스트 썸네일 이미지"
                   onClick={onClickMoveToPage(`/post/${el.postId}`)}
                 />

@@ -16,6 +16,7 @@ import {
   ISeries,
 } from '@/common/types/generated/types'
 import { FETCH_SERIES_BY_USER, UPLOAD_IMAGE } from './publishForm.queries'
+import { FETCH_POST } from '../detail/postDetail.queries'
 
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const router = useRouter()
@@ -48,6 +49,10 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
   })
 
   const [uploadImage] = useMutation<Pick<IMutation, 'uploadImage'>, IMutationUploadImageArgs>(UPLOAD_IMAGE)
+
+  useEffect(() => {
+    if (post.image) setThumbnailUrl(post.image)
+  }, [])
 
   useEffect(() => {
     setSeries(data?.fetchSeriesByUser)
@@ -97,6 +102,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
             postId: publishablePostData.postId,
             updatePostInput: postInput,
           },
+          refetchQueries: [{ query: FETCH_POST, variables: { postId: publishablePostData.postId } }],
         })
         messageApi.open({
           type: 'success',
@@ -108,6 +114,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
             postId: tempPostId,
             updatePostInput: postInput,
           },
+          refetchQueries: [{ query: FETCH_POST, variables: { postId: publishablePostData.postId } }],
         })
 
         messageApi.open({
@@ -127,7 +134,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     <PublishFormUI
       isEditMode={isEditMode}
       fileRef={fileRef}
-      thumbnailUrl={post.image ? post.image : thumbnailUrl}
+      thumbnailUrl={thumbnailUrl}
       TextArea={TextArea}
       handleSubmitForm={handleSubmitForm}
       handleClickUploadHandler={handleClickUploadHandler}
