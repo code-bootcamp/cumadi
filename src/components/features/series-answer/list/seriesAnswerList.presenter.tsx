@@ -1,6 +1,7 @@
 import { Rate } from 'antd'
 import * as S from './seriesAnswerList.styles'
 import { seriesItem } from '@/common/dummyData/series'
+import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'
 
 export default function SeriesAnswerListUI(props) {
   // const seriesRate = props.rate;
@@ -34,9 +35,11 @@ export default function SeriesAnswerListUI(props) {
                         <button>삭제</button>
                       </S.ButtonWrapper>
                     <S.Contents>{el.contents}</S.Contents>
-                    {/* 댓글수정시 */}
                   </S.ReviewListTopWrapper>
                 </S.ReviewList>
+                {props.isEditReview && (
+                  <SeriesAnswerWrite isEditReview={true} setIsEditReview={props.setIsEditReview} reviewId={el.reviewId} />
+                )}
               </>
             )}
           </>

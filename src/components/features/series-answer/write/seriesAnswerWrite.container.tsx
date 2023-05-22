@@ -5,7 +5,7 @@ import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REV
 import { useState } from 'react'
 import { Modal } from 'antd'
 
-export default function SeriesAnswerWrite() {
+export default function SeriesAnswerWrite(props) {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
 
