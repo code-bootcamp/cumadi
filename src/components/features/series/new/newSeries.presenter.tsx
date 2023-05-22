@@ -41,6 +41,7 @@ export default function NewSeriesUI(props : any) {
           <Select
               placeholder="카테고리"
               style={{ width: '100%' }}
+              onChange={props.onCheckCategory}
               options={props.categoryOptions}
             />
         </Form.Item>

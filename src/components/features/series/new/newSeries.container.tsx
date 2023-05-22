@@ -49,6 +49,10 @@ export default function NewSeries(props) {
   })
   const seriesPrice = (isClickPrice ? 3000 : 0)
 
+  const onCheckCategory = (value) => {
+    setCateState(value);
+  }
+
   const onCheckPost = (value) => {
     setPostState(value);
   }
@@ -79,11 +83,8 @@ export default function NewSeries(props) {
             image: values.thumbnail,
             paid: false,
             price: seriesPrice,
-            categoryId: "5964b7ae-ce1c-4428-a2fc-8224467fd3ce",
-            posts: [
-              "132602ed-0b1a-4b4b-abbb-d9bcde4d1388",
-              "28e37608-f28d-4651-aefd-5446330d1489"
-            ]
+            categoryId: cateState,
+            posts: postState,
           }
         }
       })
@@ -118,6 +119,7 @@ export default function NewSeries(props) {
       onClickUploadThumbnail={onClickUploadThumbnail}
       tagRender={tagRender}
       onCheckPost={onCheckPost}
+      onCheckCategory={onCheckCategory}
     />
   )
 }
