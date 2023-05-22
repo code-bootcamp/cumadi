@@ -21,7 +21,7 @@ export default function SeriesAnswerWrite(props) {
         variables: {
           createSeriesReviewInput: {
             seriesId,
-            // rating,
+            rating,
             content,
           },
           refetchQueries: [
@@ -48,7 +48,7 @@ export default function SeriesAnswerWrite(props) {
     try {
       await updateSeriesReview({
         variables: {
-          // reviewId,
+          reviewId: props.reviewId,
           updateSeriesReviewInput: {
             content,
             rating,
@@ -62,7 +62,7 @@ export default function SeriesAnswerWrite(props) {
         ],
       })
       Modal.success({ content: "리뷰가 수정되었습니다." })
-      // 수정창 닫기
+      props.setIsEditReview(false)
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
