@@ -27,7 +27,7 @@ export default function SeriesDetailUI(props: any) {
           </S.AvatarWrapper>
             {props.isWriterData ? (
               <S.PostUpdateBtnWrapper>
-                <S.SeriesButton>수정</S.SeriesButton>
+                <S.SeriesButton onChange={props.onClickToUpdate()}>수정</S.SeriesButton>
                 <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
               </S.PostUpdateBtnWrapper>
             ) : (

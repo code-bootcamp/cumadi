@@ -28,6 +28,7 @@ const tagRender = (props: any) => {
 export default function NewSeries(props) {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
+  const seriesData = router.query;
 
   const [title, setTitle] = useState("")
   const [thumbnail, setThumbnail] = useState<string>("")
@@ -105,6 +106,7 @@ export default function NewSeries(props) {
 
   return (
     <NewSeriesUI
+      seriesData={seriesData}
       isEdit={props.isEdit}
       post={post}
       imgRef={imgRef}

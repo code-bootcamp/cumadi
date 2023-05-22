@@ -31,6 +31,10 @@ export default function SeriesDetail() {
     }
   }
 
+  const onClickToUpdate = () => {
+    router.push(`/series/${data?.fetchSeries?.seriesId}/edit`)
+  }
+
   const onClickCart = async () => {
     try {
       await addCart({
@@ -55,6 +59,7 @@ export default function SeriesDetail() {
       onClickDelete={onClickDelete}
       onClickCart={onClickCart}
       onClickBuy={onClickBuy}
+      onClickToUpdate={onClickToUpdate}
     />
   )
 }

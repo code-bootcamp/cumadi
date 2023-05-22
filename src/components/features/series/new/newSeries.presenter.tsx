@@ -12,7 +12,10 @@ export default function NewSeriesUI(props : any) {
       <S.PostForm onFinish={props.onSubmitForm}>
         <S.Name>이름</S.Name>
         <Form.Item name="title" rules={[{ required: true, message: '시리즈 이름을 지어주세요.' }]}>
-          <Input type="primary" placeholder="시리즈 이름을 지어주세요." />
+          <Input
+            type="primary"
+            placeholder="시리즈 이름을 지어주세요."
+          />
         </Form.Item>
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">
