@@ -1,5 +1,4 @@
-import { ICartUIProps } from './Cart.types'
-import * as S from './Cart.styles'
+import Script from 'next/script'
 import { Checkbox } from 'antd'
 import {
   HorizontalCardSm,
@@ -10,7 +9,8 @@ import {
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { MyButton } from '@/components/common/customComponent.styles'
-import Script from 'next/script'
+import { ICartUIProps } from './Cart.types'
+import * as S from './Cart.styles'
 
 export default function CartUI(props: ICartUIProps) {
   return (
@@ -30,9 +30,6 @@ export default function CartUI(props: ICartUIProps) {
                 />
                 <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
               </div>
-              {/* <MyButton onClick={props.onClickRemoveChecked} disabled={props.checkList.length === 0}>
-                선택 삭제하기
-              </MyButton> */}
             </S.AllCheckWrapper>
             <S.CheckListWrapper>
               {props.data?.fetchShoppingCart.map(list => (

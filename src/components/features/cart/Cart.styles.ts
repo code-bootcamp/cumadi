@@ -7,7 +7,6 @@ export const Body = styled.section`
   gap: 1rem;
   width: 83rem;
   padding: 1rem;
-  background-color: beige;
 
   @media ${breakPoints.tablet} {
     width: 60rem;
@@ -44,10 +43,7 @@ export const AllCheckTitle = styled.span`
   font-weight: 500;
 `
 
-// 나중에 적용!!!
-export const CheckListWrapper = styled.div`
-  /* height: 52rem; */
-`
+export const CheckListWrapper = styled.div``
 
 export const CardWrapper = styled.div`
   display: inline-flex;
