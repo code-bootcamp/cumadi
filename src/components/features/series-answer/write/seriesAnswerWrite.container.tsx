@@ -10,6 +10,7 @@ export default function SeriesAnswerWrite() {
   const seriesId = String(router.query.seriesId)
 
   const [content, setContent] = useState("")
+  const [rating, setRating] = useState(0);
 
   const [createSeriesReview] = useMutation(CREATE_SERIES_REVIEW)
   const [updateSeriesReview] = useMutation(UPDATE_SERIES_REVIEW)
@@ -38,5 +39,51 @@ export default function SeriesAnswerWrite() {
     setContent("")
   }
 
-  return <SeriesAnswerWriteUI />
+  const onUpdateReview = async () => {
+    if (!content) {
+      alert("내용이 수정되지 않았습니다ㅏ.")
+      return;
+    }
+
+    try {
+      await updateSeriesReview({
+        variables: {
+          // reviewId,
+          updateSeriesReviewInput: {
+            content,
+            rating,
+          }
+        },
+        refetchQueries: [
+          {
+            query: FETCH_SERIES_REVIEWS_BY_SERIES,
+            variables: { seriesId },
+          },
+        ],
+      })
+      Modal.success({ content: "리뷰가 수정되었습니다." })
+      // 수정창 닫기
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
+    }
+  }
+
+  const onChangeContent = (event) => {
+    setContent(event.target.value);
+  }
+  
+  const onChangeRating = (event) => {
+    setRating(event.target.value);
+  }
+
+  return (
+    <SeriesAnswerWriteUI
+      content={content}
+      rating={rating}
+      onChangeContent={onChangeContent}
+      onChangeRating={onChangeRating}
+      onSubmitReview={onSubmitReview}
+      onUpdateReview={onUpdateReview}
+    />
+  )
 }

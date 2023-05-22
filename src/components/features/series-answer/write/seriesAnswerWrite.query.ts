@@ -37,7 +37,7 @@ export const CREATE_SERIES_REVIEW = gql`
 `
 
 export const UPDATE_SERIES_REVIEW = gql`
-    updateSeriesReview($reviewId: String!, $updateSeriesReviewInput: UpdateSeriesReviewInput!){
+    mutation updateSeriesReview($reviewId: String!, $updateSeriesReviewInput: UpdateSeriesReviewInput!){
         updateSeriesReview(reviewId: $reviewId, updateSeriesReviewInput: $updateSeriesReviewInput){
             reviewId
         }
