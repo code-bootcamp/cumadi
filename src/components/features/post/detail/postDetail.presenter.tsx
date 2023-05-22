@@ -1,12 +1,14 @@
 import * as S from './postDetail.styles'
-import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
-import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
+
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { postItem } from '@/common/dummyData/post'
 import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+
 import { getDate } from '@/common/libraries/utils'
 import { useRouter } from 'next/router'
+import PostCommentList from '../../post-comment/list/postCommentList.container'
+import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
 
 // interface IPostDetailUIProps {}
 
@@ -96,8 +98,8 @@ export default function PostDetailUI(props: any) {
           <div onMouseUp={props.onMouseUpContentMemo}>{PostDetail?.content}</div>
         </div>
         {/* 포스트 댓글 */}
-        <PostAnswerList />
-        <PostAnswerWrite />
+        <PostCommentList />
+        <PostCommentWrite />
       </S.Container>
     </>
   )
