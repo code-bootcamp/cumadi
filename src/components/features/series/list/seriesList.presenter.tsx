@@ -25,21 +25,30 @@ export default function SeriesListUI(props: any) {
           </MyTag>
         </S.TagWrapper>
 
-        <S.TagWrapper>
-          <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>전체</S.TopTag>
-          {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
-              <S.TopTag
-                onClick={props.onClickCategory(category.categoryId, index)}
-                isClicked={props.countIndex === index ? true : false}
-              >{category.name}</S.TopTag>
-          ))}
-        </S.TagWrapper>
-
+        <S.categoryWrapper>
+          <S.EmptySpace>공간 채우기용 임다용</S.EmptySpace>
+          <S.TagBar>
+            <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>전체</S.TopTag>
+            {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
+                <S.TopTag
+                  onClick={props.onClickCategory(category.categoryId, index)}
+                  isClicked={props.countIndex === index ? true : false}
+                >{category.name}</S.TopTag>
+            ))}
+          </S.TagBar>
+          <S.ToggleWrapper>
+            <S.FreeToggle>무료 시리즈만 보기</S.FreeToggle>
+            <S.FreeSwitch checked={props.isfreeOn}
+              onChange={props.onClickFreeSeries}
+            />
+          </S.ToggleWrapper>
+        </S.categoryWrapper>
       </S.TitleWrapper>
+
       {props.isShowAll ? (
         <>
           {props.data?.fetchSeriesAll.map(el => (
-            <S.StyledCard cover={
+            <S.StyledCard isfree={props.isfreeOn} itemPrice={el.price} cover={
               <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
@@ -70,7 +79,7 @@ export default function SeriesListUI(props: any) {
       ) : (
         <>
           {props.menu?.fetchSeriesByCategory.map(el => (
-            <S.StyledCard cover={
+            <S.StyledCard isfree={props.isfreeOn} itemPrice={el.price} cover={
               <S.CardThumbnailImg alt="example" src={'/images/no-image.jpeg'} onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)} />}>
               <FlexColumnContainer gap={'0.5rem'}>
                 <BodyTextSm color={Colors.primary} weight={600}>
