@@ -46,7 +46,7 @@ export default function NewSeries(props) {
     return { value: el.title, id: el.postId }
   })
   const categoryOptions = category?.fetchSeriesCategories.map(el => {
-    return { value: el.name, label: el.name, id: el.categoryId }
+    return { value: el.name, id: el.categoryId }
   })
 
   const onClickUploadThumbnail = () => {
@@ -100,7 +100,7 @@ export default function NewSeries(props) {
 
   const onCheckPost = (value) => {
     // console.log(postOptions.filter(el => el.value == value));
-    // console.log(value);
+    console.log(value);
   }
 
   return (
