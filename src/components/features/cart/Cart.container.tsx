@@ -2,10 +2,17 @@ import { Modal } from 'antd'
 import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import CartUI from './Cart.presenter'
-import { CREATE_PAYMENT_SERIES, DELETE_SERIES_IN_CART, FETCH_SHOPPING_CART } from './Cart.queries'
+import {
+  CREATE_PAYMENT_FREE_SERIES,
+  CREATE_PAYMENT_SERIES,
+  DELETE_SERIES_IN_CART,
+  FETCH_SHOPPING_CART,
+  FETCH_USER_LOGGED_IN,
+} from './Cart.queries'
 import { IList } from './Cart.types'
 import {
   IMutation,
+  IMutationCreatePaymentFreeSeriesArgs,
   IMutationCreatePaymentSeriesArgs,
   IMutationDeleteSeriesInCartArgs,
   IQuery,
@@ -25,6 +32,7 @@ export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0) // 최종 결제 금액
   const [checkList, setCheckList] = useState<Array<ISeries>>([]) // 체크리스트 배열
 
+  const { data: userData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
   const { data } = useQuery<Pick<IQuery, 'fetchShoppingCart'>>(FETCH_SHOPPING_CART)
   // const [productList, setProductList] = useState(data?.fetchShoppingCart) // 상품리스트 배열
   const [deleteSeriesInCart] = useMutation<Pick<IMutation, 'deleteSeriesInCart'>, IMutationDeleteSeriesInCartArgs>(
@@ -33,10 +41,14 @@ export default function Cart() {
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
   )
-  console.log('렌더링') //  ***로그삭제
+  const [createPaymentFreeSeries] = useMutation<
+    Pick<IMutation, 'createPaymentFreeSeries'>,
+    IMutationCreatePaymentFreeSeriesArgs
+  >(CREATE_PAYMENT_FREE_SERIES)
+  // console.log('렌더링') //  ***로그삭제
 
   console.log(data) //  ***로그삭제
-  console.log(data?.fetchShoppingCart) // [{…}, {…}, {…}, {…}, {…}, {…}, {…}] //  ***로그삭제
+  // console.log(data?.fetchShoppingCart) // [{…}, {…}, {…}, {…}, {…}, {…}, {…}] //  ***로그삭제
 
   useEffect(() => {
     let sumPrice = 0
@@ -65,7 +77,7 @@ export default function Cart() {
   }
 
   // 현재 체크리스트에 해당 seriesId가 있다면 true, 없으면 false를 반환
-  const isChecked = (list: ISeries) => {
+  const ischecked = (list: ISeries) => {
     return checkList.some(item => item.seriesId === list.seriesId)
   }
 
@@ -87,7 +99,7 @@ export default function Cart() {
   // }
 
   const onClickRemoveList = (seriesId: string) => {
-    console.log(seriesId) //  ***로그삭제
+    // console.log(seriesId) //  ***로그삭제
 
     Modal.confirm({
       content: '삭제하시겠습니까?',
@@ -98,8 +110,9 @@ export default function Cart() {
           variables: { seriesId }, //  shorthand-property
           refetchQueries: [{ query: FETCH_SHOPPING_CART }],
         })
-        const result = data?.fetchShoppingCart?.filter(list => list.seriesId !== seriesId) // 클릭한 seriesId가 아닌 상품을 다시 배열로 저장
-        if (result) setCheckList(result) //  체크리스트를 장바구니와 동일하게 설정 => 체크상태 유지
+        const result = checkList.filter(list => list.seriesId !== seriesId)
+        if (result) setCheckList(result) //  삭제해도 다른 리스트는 체크상태 유지
+        console.log(result)
       },
       onCancel() {
         return
@@ -107,7 +120,7 @@ export default function Cart() {
     })
   }
 
-  const onClickPayment = () => {
+  const onClickPayment = async () => {
     if (checkList.length === 0) {
       alert('시리즈를 선택해주세요.')
       return
@@ -115,6 +128,21 @@ export default function Cart() {
 
     const seriesIdList = checkList.map(series => series.seriesId)
     console.log(seriesIdList) //  ***로그삭제
+
+    if (totalPrice === 0) {
+      try {
+        const result = await createPaymentFreeSeries({
+          variables: { seriesList: seriesIdList },
+          refetchQueries: [{ query: FETCH_SHOPPING_CART }],
+        })
+        console.log(result)
+        alert('결제에 성공했습니다.')
+        router.push('/')
+      } catch (error) {
+        if (error instanceof Error) alert(error.message)
+      }
+      return
+    }
 
     const IMP = window.IMP
     IMP.init('imp71265174')
@@ -126,8 +154,8 @@ export default function Cart() {
         pay_method: 'card',
         name: `시리즈 ${checkList.length}개 구매`,
         amount: Number(totalPrice),
-        // buyer_email: data?.fetchSeries.user.email,
-        // buyer_name: data?.fetchSeries.user.nickname,
+        buyer_email: userData?.fetchUserLoggedIn.email,
+        buyer_name: userData?.fetchUserLoggedIn.nickname,
         m_redirect_url: `http://localhost:3000/cart`, // 모바일에서는 결제시, 결제페이지로 사이트가 이동되므로 돌아올시 주소입력
       },
       async (rsp: any) => {
@@ -142,6 +170,7 @@ export default function Cart() {
                 seriesList: seriesIdList,
               },
             },
+            refetchQueries: [{ query: FETCH_SHOPPING_CART }],
           })
           console.log(result) // {data} //  ***로그삭제
           alert('결제에 성공했습니다.')
@@ -157,7 +186,7 @@ export default function Cart() {
   return (
     <CartUI
       data={data}
-      ischecked={isChecked}
+      ischecked={ischecked}
       // productList={productList}
       checkList={checkList}
       totalPrice={totalPrice}
