@@ -12,3 +12,9 @@ export interface IPostCommentWriteUIProps {
 export interface IUpdateContent {
   content?: string
 }
+
+export interface PostCommentWriteProps {
+  isEditPostComment: boolean
+  setIsEditPostComment: any
+  comment?: any
+}

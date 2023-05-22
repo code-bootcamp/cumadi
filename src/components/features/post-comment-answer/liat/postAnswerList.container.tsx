@@ -12,7 +12,7 @@ import {
 } from '@/common/types/generated/types'
 import { IPostAnswerListProps } from './postAnswerList.types'
 
-export default function PostAnswerList({ onClickActiveCommentAnswer, commentId }: IPostAnswerListProps) {
+export default function PostAnswerList({ commentId }: IPostAnswerListProps) {
   // **** PlayGround
   const { data: PostCommentAnswerData } = useQuery<
     Pick<IQuery, 'fetchPostCommentAnswer'>,

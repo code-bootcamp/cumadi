@@ -1,15 +1,5 @@
-import { ChangeEvent, MouseEvent } from 'react'
 import * as S from './postAnswerWrite.styles'
-
-interface IPostAnserWriteUIProps {
-  content?: String
-  comment?: any
-  CommentAnswer?: any
-  isActivePostAnswer?: boolean
-  onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void
-  onClickCreateAnswer: (event: MouseEvent<HTMLButtonElement>) => void
-  onClickUpdateAnswer: (event: MouseEvent<HTMLButtonElement>) => void
-}
+import { IPostAnserWriteUIProps } from './postAnswerWrite.types'
 
 export default function PostAnswerWriteUI(props: IPostAnserWriteUIProps) {
   return (

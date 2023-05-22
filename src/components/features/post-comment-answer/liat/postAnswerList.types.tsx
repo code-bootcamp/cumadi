@@ -2,7 +2,6 @@ import { IQuery } from '@/common/types/generated/types'
 import { MouseEvent } from 'react'
 
 export interface IPostAnswerListProps {
-  onClickActiveCommentAnswer: () => void
   commentId: string
 }
 

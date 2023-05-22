@@ -11,8 +11,9 @@ export interface IPostAnswerWriteProps {
 
 export interface IPostAnserWriteUIProps {
   content?: string
-  isActivePostAnswer: boolean
-  reComment?: any
+  comment?: any
+  CommentAnswer?: any
+  isActivePostAnswer?: boolean
   onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void
   onClickCreateAnswer: (event: MouseEvent<HTMLButtonElement>) => void
   onClickUpdateAnswer: (event: MouseEvent<HTMLButtonElement>) => void

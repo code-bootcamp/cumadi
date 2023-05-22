@@ -12,9 +12,7 @@ export default function PostCommentList() {
   // **** PlayGorund
   const { data: commentsData, fetchMore } = useQuery<Pick<IQuery, 'fetchPostComments'>, IQueryFetchPostCommentsArgs>(
     FETCH_POST_COMMENTS,
-    {
-      variables: { postId },
-    },
+    { variables: { postId } },
   )
 
   // **** 무한스크롤

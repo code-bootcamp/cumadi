@@ -83,7 +83,7 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
           comment={comment}
         />
       )}
-      <PostAnswerList onClickActiveCommentAnswer={onClickActiveCommentAnswer} commentId={comment.commentId} />
+      <PostAnswerList commentId={comment.commentId} />
     </>
   )
 }

@@ -10,14 +10,9 @@ import {
   IMutationCreatePostCommentArgs,
   IMutationUpdatePostCommentArgs,
 } from '@/common/types/generated/types'
+import { PostCommentWriteProps } from './postCommentWrite.types'
 
-interface PostCommentWrite {
-  isEditPostComment: boolean
-  setIsEditPostComment: any
-  comment?: any
-}
-
-export default function PostCommentWrite({ comment, setIsEditPostComment, isEditPostComment }: PostCommentWrite) {
+export default function PostCommentWrite({ comment, setIsEditPostComment, isEditPostComment }: PostCommentWriteProps) {
   const router = useRouter()
   const postId = String(router.query.postId)
   const commentId = comment?.commentId
