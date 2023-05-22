@@ -18,6 +18,7 @@ export type IComment = {
   __typename?: 'Comment';
   commentId: Scalars['String'];
   content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   post: IPost;
   updatedAt: Scalars['DateTime'];
   user: IUser;
@@ -73,6 +74,12 @@ export type IIAnswerServiceReturn = {
   comment: IComment;
   content: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+};
+
+export type IICheckPaymentListReturn = {
+  __typename?: 'ICheckPaymentListReturn';
+  seriesId?: Maybe<Array<Scalars['String']>>;
+  status: Scalars['Boolean'];
 };
 
 export type IIFetchSeriesReturn = {
@@ -335,6 +342,7 @@ export type IPost = {
 
 export type IQuery = {
   __typename?: 'Query';
+  checkPaymentList: IICheckPaymentListReturn;
   fetchFreeSeries: Array<ISeries>;
   fetchLikeCountByPost: Scalars['Int'];
   fetchPaymentDetailByUser: Array<IPaymentDetail>;
@@ -361,6 +369,11 @@ export type IQuery = {
   fetchShoppingCart: Array<ISeries>;
   fetchUserLoggedIn: IUser;
   isVaildCreateReviewByUser: Scalars['Boolean'];
+};
+
+
+export type IQueryCheckPaymentListArgs = {
+  seriesId: Array<Scalars['String']>;
 };
 
 
