@@ -3,8 +3,8 @@ import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 
 export const Container = styled.section`
-  width: 74rem;
-  padding: 1rem;
+  width: auto;
+  margin-top: 3rem;
 
   @media ${breakPoints.tablet} {
     width: 44rem;
@@ -15,26 +15,49 @@ export const Container = styled.section`
   }
 `
 
-export const CommentWrapper = styled.div`
+export const ReviewHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-2);
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-gray-3);
+  border-radius: 0.5rem;
+  font-weight: bold;
+`
+export const ReviewTitle = styled.div``
+export const ReviewCount = styled.div`
+  color: var(--color-gray-2);
 `
 
-export const CommentTitle = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
+export const ReviewListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+
+export const ReviewList = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-gray-3);
+`
+
+// **** 댓글 상단
+export const ReviewListTopWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const CommentRate = styled.span`
   margin-left: 0.5rem;
-`
-
-export const CommentCount = styled.div`
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--color-gray-2);
 `
 
 export const CommentListWrapper = styled.div`
@@ -48,20 +71,6 @@ export const CommentListWrapper = styled.div`
 
 export const ListRate = styled.div`
   text-align: center;
-`
-
-export const CommentList = styled.div`
-  align-items: center;
-  width: 100%;
-`
-
-export const CommentListNoTitle = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-`
-export const CommentListNoSubTitle = styled.div`
-  font-size: 1rem;
-  color: var(--color-gray-1);
 `
 
 export const Header = styled.div`
@@ -90,12 +99,10 @@ export const CreatedAt = styled.div`
   color: #bdbdbd;
 `
 
-export const PostUpdateBtnWrapper = styled.div`
-  text-align: center;
-  cursor: pointer;
+export const ButtonWrapper = styled.div`
   display: flex;
-  gap: 1rem;
-  color: var(--color-gray-2);
+  gap: 0.8rem;
+  color: var(--color-gray-1);
 `
 
 export const Date = styled.div`
@@ -112,8 +119,12 @@ export const UserRate = styled.div`
   margin: 0.5rem 0 0 0.2rem;
 `
 
-export const LastWrapper = styled.div`
-  margin: 1.3rem 0;
-  border-bottom: 1px solid var(--color-gray-2);
+export const ReviewListNoTitle = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-top: 2rem;
 `
-
+export const ReviewListNoSubTitle = styled.div`
+  font-size: 1rem;
+  color: var(--color-gray-1);
+`
