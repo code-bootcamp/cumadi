@@ -29,13 +29,12 @@ export default function NewSeries(props) {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
 
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("")
   const [thumbnail, setThumbnail] = useState<string>("")
   const [introduction, setIntroduction] = useState("")
   const [cateState, setCateState] = useState("")
-  const [postState, setPostState] = useState([]);
+  const [postState, setPostState] = useState([])
   const [isClickPrice, setIsClickPrice] = useState(false)
-  // false일 경우 0원 true일 경우 3000
   const { TextArea } = Input
   
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
@@ -48,6 +47,11 @@ export default function NewSeries(props) {
   const categoryOptions = category?.fetchSeriesCategories.map(el => {
     return { label: el.name, value: el.categoryId }
   })
+  const seriesPrice = (isClickPrice ? 3000 : 0)
+
+  const onCheckPost = (value) => {
+    setPostState(value);
+  }
 
   const onClickUploadThumbnail = () => {
     imgRef.current?.click()
@@ -74,7 +78,7 @@ export default function NewSeries(props) {
             introduction: values.intro,
             image: values.thumbnail,
             paid: false,
-            price: 3000,
+            price: seriesPrice,
             categoryId: "5964b7ae-ce1c-4428-a2fc-8224467fd3ce",
             posts: [
               "132602ed-0b1a-4b4b-abbb-d9bcde4d1388",
@@ -96,11 +100,6 @@ export default function NewSeries(props) {
     console.log(values);
     alert("시리즈 작성이 완료되었습니다.")
     router.push("/");
-  }
-
-  const onCheckPost = (value) => {
-    // console.log(postOptions.filter(el => el.value == value));
-    console.log(value);
   }
 
   return (
