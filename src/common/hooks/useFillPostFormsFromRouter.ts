@@ -39,7 +39,6 @@ export const useFillPostFormsFromRouter = () => {
   })
 
   const postFromRouter = data?.fetchPost
-  console.log('postFromRouter', postFromRouter)
 
   if (postFromRouter) {
     setPost(postFromRouter)

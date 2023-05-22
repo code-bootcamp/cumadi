@@ -21,10 +21,11 @@ const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEd
 export default function PostForm({ isEditMode }: IPostFormProps) {
   const router = useRouter()
 
-  const [tags, setTags] = useRecoilState(tagsState)
+  // const [tags, setTags] = useRecoilState(tagsState)
   const [post, setPost] = useRecoilState(postFormState)
   const [, setTempPostId] = useRecoilState(tempPostIdState)
   const [searchString, setSearchString] = useState('')
+  const [myTags, setMyTags] = useState<any>([])
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
   const [isRouterChangable, setIsRouterChangable] = useState(false)
   const [accessToken] = useRecoilState(accessTokenState)
@@ -53,8 +54,12 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   useConfirmBeforeReroute()
 
   const uniqueTags = usePopulateTags()
-  if (uniqueTags) setTags(uniqueTags)
-  console.log(uniqueTags)
+  console.log('unique tags,', uniqueTags)
+  useEffect(() => {
+    setMyTags(uniqueTags)
+  }, [])
+
+  // if (uniqueTags) setTags(uniqueTags)
 
   useEffect(() => {
     if (isRouterChangable) {
@@ -69,7 +74,8 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   useEffect(() => {
     if (searchString.length === 0) setIsAddTagOptionVisible(false)
     else {
-      if (tags.filter(item => item.name.includes(searchString))) setIsAddTagOptionVisible(true)
+      if (myTags.filter((item: { name: string | string[] }) => item.name.includes(searchString)))
+        setIsAddTagOptionVisible(true)
     }
   }, [searchString])
 
@@ -82,10 +88,10 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   }
 
   const handleClickAddTag = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    const tempTags = uniqueTags ? [...uniqueTags] : []
     e.preventDefault()
-
-    setTags([...tags, { id: searchString, name: searchString }])
-    console.log('clicked', tags)
+    setMyTags([...tempTags, { id: searchString, name: searchString }])
+    console.log('clicked', [...tempTags, { id: searchString, name: searchString }], searchString)
     setSearchString('')
 
     setTimeout(() => {
@@ -150,7 +156,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
     <PostFormUI
       isEditMode={isEditMode}
       post={post}
-      tags={tags}
+      tags={myTags}
       inputRef={inputRef}
       handleSearchChange={handleSearchChange}
       filterOption={filterOption}

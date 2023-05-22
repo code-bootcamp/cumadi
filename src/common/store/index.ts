@@ -1,5 +1,6 @@
 import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
+import { ITag } from '../types/generated/types'
 // import { getAccessToken } from '../libraries/getAccessToken'
 // ** cf. https://velog.io/@sj_dev_js/Recoil-Duplicate-atom-key
 // [에러 해결] Recoil : Duplicate atom key
@@ -44,7 +45,7 @@ export const tempPostIdState = atom({
 // **** 태그 정보
 export const tagsState = atom({
   key: `tagsState/${v1()}`,
-  default: [],
+  default: <any>[],
 })
 
 export const restoreAccessTokenLoadable = selector({
