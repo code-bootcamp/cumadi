@@ -1,13 +1,13 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import { Input, message, Modal } from 'antd'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
-import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
-import PublishFormUI from './publishForm.presenter'
-import { IPublishFormProps } from './publishForm.types'
 import { useMutation, useQuery } from '@apollo/client'
-import { UPDATE_POST } from './postForm.queries'
+import { Input, message, Modal } from 'antd'
 import { useRouter } from 'next/router'
+import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
+import PublishFormUI from './publishForm.presenter'
+import { UPDATE_POST } from './postForm.queries'
+import { FETCH_SERIES_BY_USER, UPLOAD_IMAGE, FETCH_POST } from './publishForm.queries'
+import { IPublishFormProps } from './publishForm.types'
 import {
   IMutation,
   IMutationUpdatePostArgs,
@@ -15,21 +15,22 @@ import {
   IQuery,
   ISeries,
 } from '@/common/types/generated/types'
-import { FETCH_SERIES_BY_USER, UPLOAD_IMAGE } from './publishForm.queries'
-import { FETCH_POST } from '../detail/postDetail.queries'
+import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const router = useRouter()
-  const [tempPostId] = useRecoilState(tempPostIdState)
-  const [post, setPost] = useRecoilState(postFormState)
+
   const fileRef = useRef<HTMLInputElement>(null)
+
+  const [accessToken] = useRecoilState(accessTokenState)
+  const [post] = useRecoilState(postFormState)
+  const resetPost = useResetRecoilState(postFormState)
+  const [tempPostId] = useRecoilState(tempPostIdState)
+  const resetTempPostId = useResetRecoilState(tempPostIdState)
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [messageApi] = message.useMessage()
   const [isRouterChangable, setIsRouterChangable] = useState(false)
   const [series, setSeries] = useState<Array<ISeries>>()
-  const [accessToken] = useRecoilState(accessTokenState)
-  const resetPost = useResetRecoilState(postFormState)
-  const resetTempPostId = useResetRecoilState(tempPostIdState)
 
   const API_HEADERS = {
     authorization: typeof window !== undefined ? `Bearer ${accessToken}` : '',
@@ -86,11 +87,19 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     }
   }
 
+  const handleClickCancelEditPublish = () => {
+    setIsRouterChangable(true)
+    resetPost()
+    resetTempPostId()
+  }
+
   const handleSubmitForm = async (values: any) => {
+    const formattedTags = post.tags.map((tag: { name: any }) => tag.name)
     const publishablePostData = { ...post, ...values }
 
     try {
       const postInput = {
+        tags: formattedTags,
         image: thumbnailUrl,
         description: publishablePostData.description,
         seriesId: publishablePostData.seriesId,
@@ -104,6 +113,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
           },
           refetchQueries: [{ query: FETCH_POST, variables: { postId: publishablePostData.postId } }],
         })
+
         messageApi.open({
           type: 'success',
           content: '포스트가 성공적으로 수정되었습니다.',
@@ -136,9 +146,10 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
       fileRef={fileRef}
       thumbnailUrl={thumbnailUrl}
       TextArea={TextArea}
-      handleSubmitForm={handleSubmitForm}
       handleClickUploadHandler={handleClickUploadHandler}
       handleChangeFile={handleChangeFile}
+      handleClickCancelEditPublish={handleClickCancelEditPublish}
+      handleSubmitForm={handleSubmitForm}
       series={series}
       form={publishForm}
     />

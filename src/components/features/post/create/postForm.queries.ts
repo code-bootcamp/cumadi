@@ -39,3 +39,14 @@ export const UPDATE_POST = gql`
     }
   }
 `
+
+export const FETCH_POSTS = gql`
+  query fetchPosts {
+    fetchPosts {
+      tags {
+        tagId
+        name
+      }
+    }
+  }
+`

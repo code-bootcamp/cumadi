@@ -44,7 +44,7 @@ export const useFillPostFormsFromRouter = () => {
     setPost(postFromRouter)
     postForm.setFieldsValue({
       title: postFromRouter.title,
-      tags: postFromRouter.tags?.map(tag => tag.tagId),
+      tags: postFromRouter.tags?.map(tag => tag.name),
       content: postFromRouter.content,
     })
     publishForm.setFieldsValue({

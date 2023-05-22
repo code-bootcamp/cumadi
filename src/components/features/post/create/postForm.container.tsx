@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
+import { useMutation, useQuery } from '@apollo/client'
 import { InputRef } from 'antd'
+import dynamic from 'next/dynamic'
 import _ from 'lodash'
-import { accessTokenState, postFormState, tagsState, tempPostIdState } from '@/common/store'
+import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
 import PostFormUI from './postForm.presenter'
+import { CREATE_POST, FETCH_POSTS, UPDATE_POST } from './postForm.queries'
+import { IPostFormProps } from './postForm.types'
+import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
-import { IPostFormProps } from './postForm.types'
-import { gql, useMutation, useQuery } from '@apollo/client'
-import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
-import { CREATE_POST, UPDATE_POST } from './postForm.queries'
-import { usePopulateTags } from '@/common/hooks/usePopulateTags'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
@@ -21,19 +20,25 @@ const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEd
 export default function PostForm({ isEditMode }: IPostFormProps) {
   const router = useRouter()
 
-  // const [tags, setTags] = useRecoilState(tagsState)
+  const inputRef = useRef<InputRef>(null)
+  const editorRef = useRef<any>(null)
+
+  const [accessToken] = useRecoilState(accessTokenState)
   const [post, setPost] = useRecoilState(postFormState)
+  const resetPost = useResetRecoilState(postFormState)
   const [, setTempPostId] = useRecoilState(tempPostIdState)
+  const resetTempPostId = useResetRecoilState(tempPostIdState)
   const [searchString, setSearchString] = useState('')
-  const [myTags, setMyTags] = useState<any>([])
+  const [tags, setTags] = useState<any>([])
   const [isAddTagOptionVisible, setIsAddTagOptionVisible] = useState(false)
   const [isRouterChangable, setIsRouterChangable] = useState(false)
-  const [accessToken] = useRecoilState(accessTokenState)
 
   const API_HEADERS = {
     authorization: typeof window !== undefined ? `Bearer ${accessToken}` : '',
     'Content-Type': 'application/json',
   }
+
+  const { data } = useQuery(FETCH_POSTS)
 
   const [createPost] = useMutation<Pick<IMutation, 'createPost'>, IMutationCreatePostArgs>(CREATE_POST, {
     context: {
@@ -46,20 +51,17 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
       headers: API_HEADERS,
     },
   })
-  const inputRef = useRef<InputRef>(null)
-  const editorRef = useRef<any>(null)
 
   const { postForm } = useFillPostFormsFromRouter()
 
   useConfirmBeforeReroute()
 
-  const uniqueTags = usePopulateTags()
-  console.log('unique tags,', uniqueTags)
   useEffect(() => {
-    setMyTags(uniqueTags)
-  }, [])
-
-  // if (uniqueTags) setTags(uniqueTags)
+    const allTagsFromPosts = data?.fetchPosts.flatMap((post: { tags: any }) => post.tags)
+    const tagIds = allTagsFromPosts?.map(({ tagId }: any) => tagId)
+    const uniqueTags = allTagsFromPosts?.filter(({ tagId }: any, index: number) => !tagIds.includes(tagId, index + 1))
+    setTags(uniqueTags?.map((el: { name: any }) => el.name))
+  }, [data])
 
   useEffect(() => {
     if (isRouterChangable) {
@@ -74,8 +76,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   useEffect(() => {
     if (searchString.length === 0) setIsAddTagOptionVisible(false)
     else {
-      if (myTags.filter((item: { name: string | string[] }) => item.name.includes(searchString)))
-        setIsAddTagOptionVisible(true)
+      if (tags.filter((item: string) => item.includes(searchString))) setIsAddTagOptionVisible(true)
     }
   }, [searchString])
 
@@ -88,10 +89,9 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   }
 
   const handleClickAddTag = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-    const tempTags = uniqueTags ? [...uniqueTags] : []
+    const tempTags = [...tags]
     e.preventDefault()
-    setMyTags([...tempTags, { id: searchString, name: searchString }])
-    console.log('clicked', [...tempTags, { id: searchString, name: searchString }], searchString)
+    setTags([searchString, ...tempTags])
     setSearchString('')
 
     setTimeout(() => {
@@ -99,8 +99,15 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
     }, 0)
   }
 
+  const handleClickCancelEditPost = () => {
+    setIsRouterChangable(true)
+    resetPost()
+    resetTempPostId()
+  }
+
   const handleSubmitForm = async (values: any) => {
     let filledValuesFromPost = { ...values }
+
     if (post) {
       for (const [key, value] of Object.entries(filledValuesFromPost)) {
         if (!value) filledValuesFromPost[key as keyof typeof post] = post[key as keyof typeof post]
@@ -130,8 +137,6 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
             },
           },
         })
-
-        // router.push(`/post/${result.data?.updatePost.postId}/edit/publish`)
       } else {
         const result = await createPost({
           variables: {
@@ -145,7 +150,6 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
           },
         })
         setTempPostId(result.data?.createPost.postId as string)
-        // router.push('new/publish')
       }
     } catch (error) {
       if (error instanceof Error) alert(error.message)
@@ -156,13 +160,14 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
     <PostFormUI
       isEditMode={isEditMode}
       post={post}
-      tags={myTags}
+      tags={tags}
       inputRef={inputRef}
       handleSearchChange={handleSearchChange}
       filterOption={filterOption}
       isAddTagOptionVisible={isAddTagOptionVisible}
       handleClickAddTag={handleClickAddTag}
       searchString={searchString}
+      handleClickCancelEditPost={handleClickCancelEditPost}
       handleSubmitForm={handleSubmitForm}
       DynamicImportEditor={DynamicImportEditor}
       editorRef={editorRef}

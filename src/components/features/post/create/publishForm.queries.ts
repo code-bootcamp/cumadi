@@ -14,3 +14,28 @@ export const UPLOAD_IMAGE = gql`
     uploadImage(file: $file)
   }
 `
+export const FETCH_POST = gql`
+  query fetchPost($postId: String!) {
+    fetchPost(postId: $postId) {
+      postId
+      title
+      content
+      image
+      description
+      user {
+        userId
+        nickname
+      }
+      tags {
+        tagId
+        name
+      }
+      series {
+        seriesId
+        title
+        introduction
+      }
+      createdAt
+    }
+  }
+`

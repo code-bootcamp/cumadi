@@ -51,11 +51,11 @@ export default function PostListUI(props: any) {
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{el.likes.length}</span>
+                  <span>{el.likes?.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
                   <img src="images/comment-outlined.svg" alt="덧글 수" />
-                  <span>{el.comments.length}</span>
+                  <span>{el.comments?.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>

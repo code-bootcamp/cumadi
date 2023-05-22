@@ -49,7 +49,11 @@ export default function PublishFormUI(props: PublishFormUIProps) {
 
         <Form.Item>
           <S.ButtonWrapper>
-            {props.isEditMode ? <MyButton htmlType="submit">수정 취소하기</MyButton> : null}
+            {props.isEditMode ? (
+              <MyButton htmlType="button" onClick={props.handleClickCancelEditPublish}>
+                수정 취소하기
+              </MyButton>
+            ) : null}
             <MyButton type="primary" htmlType="submit">
               포스트 출간하기
             </MyButton>

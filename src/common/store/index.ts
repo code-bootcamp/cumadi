@@ -42,12 +42,6 @@ export const tempPostIdState = atom({
   default: '',
 })
 
-// **** 태그 정보
-export const tagsState = atom({
-  key: `tagsState/${v1()}`,
-  default: <any>[],
-})
-
 export const restoreAccessTokenLoadable = selector({
   key: `restoreAccessTokenLoadable/${v1()}`,
   get: async () => {

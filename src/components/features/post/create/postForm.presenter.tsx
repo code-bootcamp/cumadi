@@ -5,8 +5,6 @@ import { MyButton } from '@/components/common/customComponent.styles'
 import { PostFormUIProps } from './postForm.types'
 
 export default function PostFormUI(props: PostFormUIProps) {
-  console.log('tags', props.tags)
-
   return (
     <S.Container>
       <S.TitleWrapper>
@@ -41,7 +39,7 @@ export default function PostFormUI(props: PostFormUIProps) {
                 ) : null}
               </>
             )}
-            options={props.tags?.map(tag => ({ label: `#${tag.name}`, value: tag.tagId }))}
+            options={props.tags?.map(tag => ({ label: `#${tag}`, value: tag }))}
           />
         </Form.Item>
 
@@ -54,8 +52,13 @@ export default function PostFormUI(props: PostFormUIProps) {
 
         <Form.Item>
           <S.ButtonWrapper>
+            {props.isEditMode ? (
+              <MyButton htmlType="button" onClick={props.handleClickCancelEditPost}>
+                수정 취소하기
+              </MyButton>
+            ) : null}
             <MyButton type="primary" htmlType="submit">
-              포스트 저장하기
+              포스트 출간하기
             </MyButton>
           </S.ButtonWrapper>
         </Form.Item>
