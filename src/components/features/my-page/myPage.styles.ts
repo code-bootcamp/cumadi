@@ -54,4 +54,5 @@ export const MoveDeleteUser = styled(ElevatedCard)`
   align-items: center;
   font-size: 1rem;
   color: var(--color-error-red);
+  cursor: pointer;
 `
