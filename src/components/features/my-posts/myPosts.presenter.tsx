@@ -66,7 +66,7 @@ export default function MyPostsUI(props: any) {
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
-                  <Avatar>E</Avatar>
+                  <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                   <ProfileTextDataContainer>
                     <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                     <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>

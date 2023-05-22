@@ -73,7 +73,7 @@ export default function SeriesListUI(props: any) {
                   </InfoSectionContainer>
                   <InfoSectionContainer>
                     <ProfileContainer>
-                      <Avatar>{el.user.nickname[0]}</Avatar>
+                      <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                       <ProfileTextDataContainer>
                         <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                         <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>

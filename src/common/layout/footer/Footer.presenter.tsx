@@ -46,7 +46,7 @@ export default function LayoutFooterUI(props: any) {
                 </BodyText>
                 <InfoSectionContainer>
                   <ProfileContainer>
-                    <Avatar>E</Avatar>
+                    <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                     <ProfileTextDataContainer>
                       <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
                       <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
