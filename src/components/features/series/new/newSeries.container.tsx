@@ -43,10 +43,10 @@ export default function NewSeries(props) {
   const [createSeries] = useMutation(CREATE_SERIES);
 
   const postOptions = post?.fetchPostsOfMine.map(el => {
-    return { value: el.title, id: el.postId }
+    return { label: el.title, value: el.postId }
   })
   const categoryOptions = category?.fetchSeriesCategories.map(el => {
-    return { value: el.name, id: el.categoryId }
+    return { label: el.name, value: el.categoryId }
   })
 
   const onClickUploadThumbnail = () => {
