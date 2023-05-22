@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValueLoadable } from 'recoil'
 import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, fromPromise } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { createUploadLink } from 'apollo-upload-client'
-import { accessTokenState } from '@/common/store'
-import { getAccessToken } from '@/common/libraries/getAccessToken'
 
+import { accessTokenState, restoreAccessTokenLoadable } from '@/common/store'
+// import { getAccessToken } from '@/common/libraries/getAccessToken' // **** restoreAccessToken 나중에 사용할 예정
 import { IApolloSettingProps } from './apollo.types'
 
 const GLOBAL_STATE = new InMemoryCache()
@@ -13,42 +13,55 @@ const GLOBAL_STATE = new InMemoryCache()
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
 
+  // **** restoreAccessToken 나중에 사용할 예정
+  // const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable)
+
+  // useEffect(() => {
+  //   void restoreAccessToken.toPromise().then(newAccessToken => {
+  //     setAccessToken(newAccessToken ?? '')
+  //   })
+  // }, [])
+
+  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+  //   // 1. 에러를 캐치
+  //   if (typeof graphQLErrors !== 'undefined') {
+  //     for (const err of graphQLErrors) {
+  //       // 1-2. 해당 에러가 토큰만료 에러인지 체크(UNAUTHENTICATED)
+  //       if (err.extensions.code === 'UNAUTHENTICATED') {
+  //         return fromPromise(
+  //           // 2. refreshToken으로 accessToken을 재발급 받기
+  //           getAccessToken().then(newAccessToken => {
+  //             setAccessToken(newAccessToken ?? '')
+
+  //             // 3. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
+  //             operation.setContext({
+  //               headers: {
+  //                 ...operation.getContext().headers,
+  //                 Authorization: `Bearer ${newAccessToken}`, // 3-2. 토큰만 새걸로 바꿔치기
+  //               },
+  //             })
+  //           }),
+  //         ).flatMap(() => forward(operation)) // 3-3. 방금 수정한 쿼리 재요청하기
+  //       }
+  //     }
+  //   }
+  // })
+
+  // localstorage 나중에 지울 예정
   useEffect(() => {
-    void getAccessToken().then(newAccessToken => {
-      if (newAccessToken) setAccessToken(newAccessToken)
-    })
-  }, [])
-
-  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    if (graphQLErrors) {
-      for (const err of graphQLErrors) {
-        if (err.extensions.code === 'UNAUTHENTICATED') {
-          return fromPromise(
-            getAccessToken().then(newAccessToken => {
-              if (newAccessToken) setAccessToken(newAccessToken)
-
-              if (typeof newAccessToken !== 'string') return
-              operation.setContext({
-                headers: {
-                  ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken}`,
-                },
-              })
-            }),
-          ).flatMap(() => forward(operation))
-        }
-      }
-    }
+    const result = localStorage.getItem('accessToken')
+    setAccessToken(result ?? '')
   })
 
   const uploadLink = createUploadLink({
-    uri: 'http://34.64.43.6:3000/graphql',
-    headers: { Authorization: `Bearer ${accessToken}` },
+    uri: 'http://34.64.249.172:3000/graphql',
+    headers: { Authorization: `Bearer ${accessToken}`, 'X-Apollo-Operation-Name': 'true' },
     credentials: 'include',
   })
 
   const client = new ApolloClient({
-    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+    // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]), // **** restoreAccessToken 나중에 사용할 예정
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
     cache: GLOBAL_STATE,
     connectToDevTools: true,
   })

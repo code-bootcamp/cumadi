@@ -9,7 +9,7 @@ export default function PostList() {
   const [keyword, setKeyword] = useState('')
 
   // **** PlayGround
-  // const { data, fetchMore } = useQuery(FETCH_POSTS)
+  const { data, fetchMore } = useQuery(FETCH_POSTS)
 
-  return <PostListUI />
+  return <PostListUI data={data} />
 }

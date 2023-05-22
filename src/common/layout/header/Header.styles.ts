@@ -2,14 +2,13 @@ import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 
 export const Header = styled.header`
-  width: 100%;
-  height: 4.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--color-gray-3);
-  z-index: 99;
+  width: 100%;
+  height: 4.5rem;
+  background-color: var(--color-white);
 `
 
 export const Container = styled.div`
@@ -17,15 +16,20 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 83rem;
+  width: 90rem;
+  height: 4.5rem;
   font-size: 1rem;
+  position: fixed;
+  z-index: 99;
+  background-color: var(--color-white);
 
   @media ${breakPoints.tablet} {
     width: 55rem;
   }
 
   @media ${breakPoints.mobile} {
-    width: 40rem;
+    width: 100%;
+    margin: 0 1rem;
   }
 `
 
@@ -37,12 +41,12 @@ export const Logo = styled.img`
 
 // **** 헤더 오른쪽
 export const Profile = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
 `
 
 export const LoginMenu = styled.div`

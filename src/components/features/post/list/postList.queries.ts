@@ -1,15 +1,36 @@
 import { gql } from '@apollo/client'
 
+// 전체 포스트들 조회
 export const FETCH_POSTS = gql`
-  query fechPosts($page: Int) {
-    fechPosts(page: $page) {
-      _id
-      writer
-      contents
-      tag
-      category
-      likeCount
-      images
+  query fetchPosts {
+    fetchPosts {
+      postId
+      title
+      content
+      series {
+        seriesId
+        title
+      }
+      tags {
+        name
+      }
+      user {
+        nickname
+      }
+      createdAt
+      likes {
+        likeId
+      }
+      comments {
+        commentId
+      }
     }
+  }
+`
+
+// **** 포스트 좋아요 조회
+export const FETCH_LIKE_COUNT_BY_POST = gql`
+  query fetchLikeCountByPost($postId: String!) {
+    fetchLikeCountByPost(postId: $postId)
   }
 `

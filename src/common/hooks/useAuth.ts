@@ -1,12 +1,30 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Modal } from 'antd'
+import { useRecoilValueLoadable } from 'recoil'
+import { restoreAccessTokenLoadable } from '../store'
+
+// **** restoreAccessToken 나중에 사용할 예정
+// export const useAuth = () => {
+//   const router = useRouter()
+
+//   const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable)
+
+//   useEffect(() => {
+//     void restoreAccessToken.toPromise().then(newAccessToken => {
+//       if (newAccessToken === undefined) {
+//         Modal.error({ content: '로그인이 필요합니다' })
+//         router.push('/login')
+//       }
+//     })
+//   }, [])
+// }
 
 export const useAuth = () => {
   const router = useRouter()
+
   useEffect(() => {
-    // NOTE: localStorage에 저장할 시 accessToken : data.loginUser.... 의 string 형태로 저장해주시면 좋을 것 같습니다
-    if (!localStorage.getItem('accessToken')) {
+    if (localStorage.getItem('accessToken') === null) {
       Modal.error({ content: '로그인이 필요합니다' })
       router.push('/login')
     }

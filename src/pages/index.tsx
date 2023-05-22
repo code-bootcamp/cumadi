@@ -7,6 +7,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function Home() {
   const { onClickMoveToPage } = useMoveToPage()
+
   return (
     <>
       <Head>
@@ -28,12 +29,15 @@ export default function Home() {
               시리즈
             </MyTag>
           </S.TagWrapper>
+<<<<<<< HEAD
           <S.TagWrapper>
             <MyTagSecondary isChecked={true}>전체</MyTagSecondary>
             <MyTagSecondary isChecked={false}>개발</MyTagSecondary>
             <MyTagSecondary isChecked={false}>에세이</MyTagSecondary>
             <MyTagSecondary isChecked={false}>독서</MyTagSecondary>
           </S.TagWrapper>
+=======
+>>>>>>> main
         </S.TitleWrapper>
         <PostList />
       </S.Main>
