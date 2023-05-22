@@ -21,3 +21,21 @@ export const DELETE_POST_QUESTION = gql`
     deletePostComment(commentId: $commentId)
   }
 `
+
+// 포스트 댓글 답변 조회
+export const FETCH_POST_COMMENT_ANSWER = gql`
+  query fetchPostCommentAnswer($commentId: String!) {
+    fetchPostCommentAnswer(commentId: $commentId) {
+      answerId
+      content
+      updatedAt
+      comment {
+        commentId
+      }
+      answerAuthor {
+        userId
+        nickname
+      }
+    }
+  }
+`

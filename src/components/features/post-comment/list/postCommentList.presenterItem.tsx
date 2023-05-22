@@ -1,27 +1,42 @@
 import { Modal } from 'antd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { CloseOutlined } from '@ant-design/icons'
 
 import * as S from './postCommentList.styles'
 import { getCreateDate } from '@/common/libraries/utils'
 import PostCommentWrite from '../write/postCommentWrite.container'
-import { DELETE_POST_QUESTION, FETCH_POST_COMMENTS } from './postCommentList.queries'
+import { DELETE_POST_QUESTION, FETCH_POST_COMMENTS, FETCH_POST_COMMENT_ANSWER } from './postCommentList.queries'
 import { IPostCommentListUIItemProps } from './postCommentList.types'
 import PostAnswerList from '../../post-comment-answer/liat/postAnswerList.container'
 import PostAnswerWrite from '../../post-comment-answer/write/postAnswerWrite.container'
+import {
+  IMutation,
+  IMutationDeletePostCommentArgs,
+  IQuery,
+  IQueryFetchPostCommentAnswerArgs,
+} from '@/common/types/generated/types'
 
 export default function PostCommentListUIItem({ comment }: IPostCommentListUIItemProps) {
   const router = useRouter()
   const postId = String(router.query.postId)
+  const commentId = comment.commentId
 
   // **** 상태
   const [isEditPostComment, setIsEditPostComment] = useState(false)
   const [isActivePostAnswer, setIsActivePostAnswer] = useState(false)
 
   // **** PlayGround
-  const [deletePostComment] = useMutation(DELETE_POST_QUESTION)
+  const { data: PostCommentAnswerData } = useQuery<
+    Pick<IQuery, 'fetchPostCommentAnswer'>,
+    IQueryFetchPostCommentAnswerArgs
+  >(FETCH_POST_COMMENT_ANSWER, { variables: { commentId } })
+  const [deletePostComment] = useMutation<Pick<IMutation, 'deletePostComment'>, IMutationDeletePostCommentArgs>(
+    DELETE_POST_QUESTION,
+  )
+
+  const CommentAnswer = PostCommentAnswerData?.fetchPostCommentAnswer
 
   // **** 댓글 삭제
   const onClickDeletePostComment = async () => {
@@ -62,7 +77,8 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
             </S.AvatarWrapper>
             <S.ButtonWrapper>
               <button onClick={onClickUpdatePostComment}>수정</button>
-              <button onClick={onClickActiveCommentAnswer}>답변</button>
+              {!CommentAnswer && <button onClick={onClickActiveCommentAnswer}>답변</button>}
+
               <button onClick={onClickDeletePostComment}>
                 <CloseOutlined />
               </button>
