@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import 'chartjs-adapter-date-fns'
 
 import * as S from './postStats.styles'
 import { IPostStatsUIProps } from './postStats.types'
@@ -47,22 +48,19 @@ export default function PostStatsUI({ stateData }: IPostStatsUIProps) {
   let sumView = 0
   let todayView = 0
 
-  // =============================================================
-
   // console.log('StateData==========')
   // console.log(StateData)
 
-  // const sortStaetArr = [...StateData]
-  // sortStaetArr.sort((a, b) => new Date(a.date) - new Date(b.date))
-  // console.log('sortStaetArr================================')
-  // console.log(sortStaetArr)
+  const sortStaetArr = [...StateData]
+  sortStaetArr.sort((a, b) => new Date(b.date) - new Date(a.date))
+  console.log('sortStaetArr==========')
+  console.log(sortStaetArr)
 
-  // =============================================================
   StateData?.map(day => (sumView += day.view))
   StateData?.map(day => {
     if (getDate(day.date) === getToday()) todayView += day.view
   })
-  StateData?.map(day => newArr.push(day.view))
+  StateData?.map(day => newArr.unshift(day.view))
   // console.log(newArr)
 
   return (
