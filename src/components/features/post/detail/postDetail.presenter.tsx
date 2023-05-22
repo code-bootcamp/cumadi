@@ -1,9 +1,9 @@
 import * as S from './postDetail.styles'
-import PostAnswerList from '../../post-answer/liat/postAnswerList.container'
-import PostAnswerWrite from '../../post-answer/write/postAnswerWrite.container'
+
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { postItem } from '@/common/dummyData/post'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+
 import { getDate } from '@/common/libraries/utils'
 import { IPostDetailUIProps } from './postDetail.types'
 
@@ -92,8 +92,8 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           <div onMouseUp={props.onMouseUpContentMemo}>{POST_DETAIL?.content}</div>
         </div>
         {/* 포스트 댓글 */}
-        <PostAnswerList />
-        <PostAnswerWrite />
+        <PostCommentList />
+        <PostCommentWrite />
       </S.Container>
     </>
   )
