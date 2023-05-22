@@ -1,7 +1,9 @@
-import { breakPoints } from '@/common/styles/media'
-import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Select } from 'antd'
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons'
+
+import { breakPoints } from '@/common/styles/media'
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 
 export const Container = styled.section`
   width: 74rem;
@@ -46,7 +48,6 @@ export const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #bdbdbd;
   padding: 1rem 0;
 `
 
@@ -127,5 +128,28 @@ export const SaveTextBtn = styled.button`
 
 export const Like = styled(ElevatedCard)`
   font-weight: bold;
+  cursor: pointer;
+`
+
+export const PostInSeriesWrapper = styled.ul`
+  color: var(--color-gray-1);
+`
+export const PostsInSeries = styled.li`
+  &:hover {
+    color: var(--color-primary);
+  }
+`
+
+// **** 포스트인시리즈 뷰
+export const PostInSeriesView = styled.p`
+  margin-top: 1rem;
+  color: var(--color-gray-1);
+`
+export const DownArrowIcon = styled(CaretDownOutlined)`
+  font-size: 1rem;
+  cursor: pointer;
+`
+export const UpArrowIcon = styled(CaretUpOutlined)`
+  font-size: 1rem;
   cursor: pointer;
 `

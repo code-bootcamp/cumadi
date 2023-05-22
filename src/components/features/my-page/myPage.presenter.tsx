@@ -3,15 +3,23 @@ import { RightOutlined } from '@ant-design/icons'
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
-export default function MyPageUI() {
+export default function MyPageUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Container>
       <S.AvatarWrapper>
-        <S.Avatar src="/images/avatar.png" />
-        <S.Writer>개발자</S.Writer>
-        <S.Introduction>개발새발 개발자</S.Introduction>
+        <S.Avatar
+          src={
+            props.loginData?.fetchUserLoggedIn.image ? props.loginData?.fetchUserLoggedIn.image : '/images/avatar.png'
+          }
+        />
+        <S.Writer>{props.loginData?.fetchUserLoggedIn.nickname}</S.Writer>
+        <S.Introduction>
+          {props.loginData?.fetchUserLoggedIn.introduction
+            ? props.loginData?.fetchUserLoggedIn.introduction
+            : '자기소개를 입력하세요.'}
+        </S.Introduction>
       </S.AvatarWrapper>
       <S.Move onClick={onClickMoveToPage('/my/posts')}>
         <div>내가 쓴 포스트</div>

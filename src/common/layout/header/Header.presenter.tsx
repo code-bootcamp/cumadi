@@ -1,22 +1,26 @@
-import React from 'react'
-import * as S from './Header.styles'
+import { useEffect } from 'react'
 
+import * as S from './Header.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import BasicButton from '@/components/common/buttons/basic'
 import { MyButton } from '@/components/common/customComponent.styles'
-
-interface ILayoutHeaderUIProps {
-  loginData: any
-  onClickLogout: () => void
-}
+import { ILayoutHeaderUIProps } from './Header.types'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
+  // **** 스크롤이 발생할 때마다 handleScroll함수를 실행, 끝나면 리턴해주며 클린업 반복
+  useEffect(() => {
+    window.addEventListener('scroll', props.handleScroll)
+    return () => {
+      window.removeEventListener('scroll', props.handleScroll)
+    }
+  }, [])
+
   // prettier-ignore
   return (
     <S.Header>
-      <S.Container>
+      {props.isVisible && <S.Container>
         <S.Logo src="/images/Logo.svg" onClick={onClickMoveToPage('/')} />
         <S.LoginMenu>
           {props.loginData ? (
@@ -32,7 +36,8 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
             </>
           )}
         </S.LoginMenu>
-      </S.Container>
+      </S.Container>}
+      
     </S.Header>
   )
 }

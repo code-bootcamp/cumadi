@@ -25,7 +25,10 @@ export const AvatarWrapper = styled.div`
 `
 
 export const Avatar = styled.img`
-  width: 6rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 4rem;
+  margin-bottom: 0.5rem;
 `
 
 export const Writer = styled.div`

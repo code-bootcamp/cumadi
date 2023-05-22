@@ -18,6 +18,7 @@ export const FETCH_SERIES = gql`
       introduction
       price
       createdAt
+      updatedAt
       category {
         categoryId
         name
@@ -26,6 +27,19 @@ export const FETCH_SERIES = gql`
         userId
         nickname
       }
+      post {
+        postId
+        title
+        content
+        image
+        description
+        createdAt
+        user{
+          userId
+          email
+          nickname
+        }
+      }
     }
   }
 `
@@ -33,5 +47,13 @@ export const FETCH_SERIES = gql`
 export const DELETE_SERIES = gql`
   mutation deleteSeries($seriesId: String!) {
     deleteSeries(seriesId: $seriesId)
+  }
+`
+
+export const INSERT_SERIES_IN_CART = gql`
+  mutation insertSeriesInCart($seriesId: String!) {
+    insertSeriesInCart(seriesId: $seriesId) {
+      seriesId
+    }
   }
 `
