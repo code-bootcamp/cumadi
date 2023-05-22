@@ -13,11 +13,16 @@ export default function SeriesAnswerList() {
   const { data } = useQuery(FETCH_SERIES_REVIEWS_BY_SERIES, { variables: { seriesId }});
   // const { data: rate } = useQuery(FETCH_RATING_BY_SERIES, { variables: { seriesId }});
 
+  const onClickUpdateReview = () => {
+    setIsEditReview(prev => !prev)
+  }
+
   return (
     <SeriesAnswerListUI
       data={data}
       isEditReview={isEditReview}
       setIsEditReview={setIsEditReview}
+      onClickUpdateReview={onClickUpdateReview}
     />
   )
 }

@@ -4,13 +4,13 @@ import { seriesItem } from '@/common/dummyData/series'
 import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'
 
 export default function SeriesAnswerListUI(props) {
-  // const seriesRate = props.rate;
+  // const AllRate = props.rate;
   const reviews = props.data?.fetchSeriesReviewsBySeries
 
   return (
     <S.Container>
       <S.ReviewHeaderWrapper>
-        <S.ReviewTitle>리뷰<S.CommentRate><Rate disabled value={4}/></S.CommentRate></S.ReviewTitle>
+        {/* <S.ReviewTitle>리뷰<S.CommentRate><Rate disabled value={AllRate}/></S.CommentRate></S.ReviewTitle> */}
         <S.ReviewCount>{reviews?.length}개의 댓글</S.ReviewCount>
       </S.ReviewHeaderWrapper>
       <S.ReviewListContainer>
@@ -23,18 +23,18 @@ export default function SeriesAnswerListUI(props) {
                       <S.AvatarWrapper>
                         <S.Avatar src="/images/avatar.png" />
                         <S.Info>
-                          <S.Writer>{el.name}</S.Writer>
-                          <S.CreatedAt>{el.createDate}</S.CreatedAt>
+                          <S.Writer>{el.user.nickname}</S.Writer>
+                          {/* <S.CreatedAt>{el.createDate}</S.CreatedAt> */}
                         </S.Info>
                         <S.UserRate>
-                          <Rate disabled value={el.star} />
+                          <Rate disabled value={el.rating} />
                         </S.UserRate>
                       </S.AvatarWrapper>
                       <S.ButtonWrapper>
-                        <button>수정</button>
+                        <button onClick={props.onClickUpdateReview}>수정</button>
                         <button>삭제</button>
                       </S.ButtonWrapper>
-                    <S.Contents>{el.contents}</S.Contents>
+                    <S.Contents>{el.content}</S.Contents>
                   </S.ReviewListTopWrapper>
                 </S.ReviewList>
                 {props.isEditReview && (
