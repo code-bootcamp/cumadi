@@ -1,4 +1,4 @@
-import { Avatar } from 'antd'
+import { Avatar, Empty } from 'antd'
 
 import * as S from './myPosts.styles'
 import {
@@ -45,11 +45,15 @@ export default function MyPostsUI(props: any) {
           <StyledCardOutlined
             key={el.postId}
             cover={
-              <StyledCardCover
-                src={'/images/no-image.jpeg'}
-                alt="포스트 썸네일 이미지"
-                onClick={onClickMoveToPage(`/post/${el.postId}`)}
-              />
+              el.image ? (
+                <StyledCardCover
+                  src={el.image}
+                  alt="포스트 썸네일 이미지"
+                  onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                />
+              ) : (
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              )
             }
             onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>

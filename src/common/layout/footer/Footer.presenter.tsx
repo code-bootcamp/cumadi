@@ -1,7 +1,6 @@
-import { Avatar, Card } from 'antd'
+import { Avatar, Card, Empty } from 'antd'
 
 import * as S from './Footer.styles'
-import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer, StyledCard, StyledCardCover } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -27,11 +26,15 @@ export default function LayoutFooterUI(props: any) {
               key={el.postId}
               style={{ width: 400, border: 'unset' }}
               cover={
-                <StyledCardCover
-                  src={'/images/no-image.jpeg'}
-                  alt="포스트 썸네일 이미지"
-                  onClick={onClickMoveToPage(`/post/${el.postId}`)}
-                />
+                el.image ? (
+                  <StyledCardCover
+                    src={el.image}
+                    alt="포스트 썸네일 이미지"
+                    onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                  />
+                ) : (
+                  <Empty description={<span>이미지가 없습니다.</span>} />
+                )
               }>
               <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                 <BodyTextSm color={Colors.primary} weight={600}>
@@ -52,11 +55,11 @@ export default function LayoutFooterUI(props: any) {
                   <ReactionsContainer>
                     <ReactionContainer>
                       <img src="/images/heart-outlined.svg" alt="관심 수" />
-                      <span>{el.likes.length}</span>
+                      <span>{el.likes?.length}</span>
                     </ReactionContainer>
                     <ReactionContainer>
                       <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                      <span>{el.comments.length}</span>
+                      <span>{el.comments?.length}</span>
                     </ReactionContainer>
                   </ReactionsContainer>
                 </InfoSectionContainer>

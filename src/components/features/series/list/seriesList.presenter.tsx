@@ -1,4 +1,4 @@
-import { Avatar } from 'antd'
+import { Avatar, Empty } from 'antd'
 import * as S from './seriesList.styles'
 import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
@@ -13,7 +13,7 @@ import dayjs from 'dayjs'
 
 export default function SeriesListUI(props: any) {
   return (
-    <S.Body>
+    <>
       <S.TitleWrapper>
         <S.Title>내 맘대로. 내 입맛대로.</S.Title>
         <S.TagWrapper>
@@ -45,86 +45,95 @@ export default function SeriesListUI(props: any) {
           </S.ToggleWrapper>
         </S.categoryWrapper>
       </S.TitleWrapper>
-
-      {props.isShowAll ? (
-        <>
-          {props.data?.fetchSeriesAll.map(el => (
-            <S.StyledCard
-              isfree={props.isfreeOn}
-              itemPrice={el.price}
-              cover={
-                <S.CardThumbnailImg
-                  alt="example"
-                  src={'/images/no-image.jpeg'}
-                  onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
-                />
-              }>
-              <FlexColumnContainer gap={'0.5rem'}>
-                <BodyTextSm color={Colors.primary} weight={600}>
-                  {el.category.name}
-                </BodyTextSm>
-                <InfoSectionContainer>
-                  <BodyTextLg>{el.title}</BodyTextLg>
-                  {el.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{el.price}원</S.Price>}
-                </InfoSectionContainer>
-                <InfoSectionContainer>
-                  <ProfileContainer>
-                    <Avatar>{el.user.nickname[0]}</Avatar>
-                    <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
-                    </ProfileTextDataContainer>
-                  </ProfileContainer>
-                  <ReactionsContainer>
-                    <ReactionContainer>
-                      <Rate disabled value={el.star} />
-                    </ReactionContainer>
-                  </ReactionsContainer>
-                </InfoSectionContainer>
-              </FlexColumnContainer>
-            </S.StyledCard>
-          ))}
-        </>
-      ) : (
-        <>
-          {props.menu?.fetchSeriesByCategory.map(el => (
-            <S.StyledCard
-              isfree={props.isfreeOn}
-              itemPrice={el.price}
-              cover={
-                <S.CardThumbnailImg
-                  alt="example"
-                  src={'/images/no-image.jpeg'}
-                  onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
-                />
-              }>
-              <FlexColumnContainer gap={'0.5rem'}>
-                <BodyTextSm color={Colors.primary} weight={600}>
-                  {el.category.name}
-                </BodyTextSm>
-                <InfoSectionContainer>
-                  <BodyTextLg>{el.title}</BodyTextLg>
-                  {el.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{el.price}원</S.Price>}
-                </InfoSectionContainer>
-                <InfoSectionContainer>
-                  <ProfileContainer>
-                    <Avatar>{el.user.nickname[0]}</Avatar>
-                    <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
-                    </ProfileTextDataContainer>
-                  </ProfileContainer>
-                  <ReactionsContainer>
-                    <ReactionContainer>
-                      <Rate disabled value={el.star} />
-                    </ReactionContainer>
-                  </ReactionsContainer>
-                </InfoSectionContainer>
-              </FlexColumnContainer>
-            </S.StyledCard>
-          ))}
-        </>
-      )}
-    </S.Body>
+      <S.Body>
+        {props.isShowAll ? (
+          <>
+            {props.data?.fetchSeriesAll.map(el => (
+              <S.StyledCard
+                isfree={props.isfreeOn}
+                itemPrice={el.price}
+                cover={
+                  el.image ? (
+                    <S.CardThumbnailImg
+                      alt="example"
+                      src={el.image}
+                      onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
+                    />
+                  ) : (
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  )
+                }>
+                <FlexColumnContainer gap={'0.5rem'}>
+                  <BodyTextSm color={Colors.primary} weight={600}>
+                    {el.category.name}
+                  </BodyTextSm>
+                  <InfoSectionContainer>
+                    <BodyTextLg>{el.title}</BodyTextLg>
+                    {el.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{el.price}원</S.Price>}
+                  </InfoSectionContainer>
+                  <InfoSectionContainer>
+                    <ProfileContainer>
+                      <Avatar>{el.user.nickname[0]}</Avatar>
+                      <ProfileTextDataContainer>
+                        <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
+                        <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
+                      </ProfileTextDataContainer>
+                    </ProfileContainer>
+                    <ReactionsContainer>
+                      <ReactionContainer>
+                        <Rate disabled value={el.star} />
+                      </ReactionContainer>
+                    </ReactionsContainer>
+                  </InfoSectionContainer>
+                </FlexColumnContainer>
+              </S.StyledCard>
+            ))}
+          </>
+        ) : (
+          <>
+            {props.menu?.fetchSeriesByCategory.map(el => (
+              <S.StyledCard
+                isfree={props.isfreeOn}
+                itemPrice={el.price}
+                cover={
+                  el.image ? (
+                    <S.CardThumbnailImg
+                      alt="example"
+                      src={el.image}
+                      onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
+                    />
+                  ) : (
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  )
+                }>
+                <FlexColumnContainer gap={'0.5rem'}>
+                  <BodyTextSm color={Colors.primary} weight={600}>
+                    {el.category.name}
+                  </BodyTextSm>
+                  <InfoSectionContainer>
+                    <BodyTextLg>{el.title}</BodyTextLg>
+                    {el.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{el.price}원</S.Price>}
+                  </InfoSectionContainer>
+                  <InfoSectionContainer>
+                    <ProfileContainer>
+                      <Avatar>{el.user.nickname[0]}</Avatar>
+                      <ProfileTextDataContainer>
+                        <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
+                        <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
+                      </ProfileTextDataContainer>
+                    </ProfileContainer>
+                    <ReactionsContainer>
+                      <ReactionContainer>
+                        <Rate disabled value={el.star} />
+                      </ReactionContainer>
+                    </ReactionsContainer>
+                  </InfoSectionContainer>
+                </FlexColumnContainer>
+              </S.StyledCard>
+            ))}
+          </>
+        )}
+      </S.Body>
+    </>
   )
 }

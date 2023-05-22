@@ -4,10 +4,11 @@ import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.conta
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
+import { Empty } from 'antd'
 
 export default function SeriesDetailUI(props: any) {
-  const category = props.data?.fetchSeries.category.name;
-  
+  const category = props.data?.fetchSeries.category.name
+
   return (
     <S.Container>
       <div>
@@ -25,32 +26,43 @@ export default function SeriesDetailUI(props: any) {
               <S.CreatedAt>작성자 소개</S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
-            {props.isWriterData ? (
-              <S.PostUpdateBtnWrapper>
-                <S.SeriesButton>수정</S.SeriesButton>
-                <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
-              </S.PostUpdateBtnWrapper>
-            ) : (
-              <div></div>
-            )}
+          {props.isWriterData ? (
+            <S.PostUpdateBtnWrapper>
+              <S.SeriesButton>수정</S.SeriesButton>
+              <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
+            </S.PostUpdateBtnWrapper>
+          ) : (
+            <div></div>
+          )}
         </S.Header>
         <S.PriceWrapper>
-          <S.Sell>판매가 · {props.data?.fetchSeries.price === 0 ? <S.Price>무료</S.Price> : <S.Price>{props.data?.fetchSeries.price}원</S.Price>}</S.Sell>
-          
+          <S.Sell>
+            판매가 ·{' '}
+            {props.data?.fetchSeries.price === 0 ? (
+              <S.Price>무료</S.Price>
+            ) : (
+              <S.Price>{props.data?.fetchSeries.price}원</S.Price>
+            )}
+          </S.Sell>
+
           <S.ButtonWrapper>
             <S.CartButton onClick={props.onClickCart}>장바구니에 담기</S.CartButton>
-            <S.CartButton onClick={props.onClickBuy} type="primary">바로 구매하기</S.CartButton>
+            <S.CartButton onClick={props.onClickBuy} type="primary">
+              바로 구매하기
+            </S.CartButton>
           </S.ButtonWrapper>
         </S.PriceWrapper>
         <S.PostsSub>
-          
-          <S.PostCount>{props.data?.fetchSeries.post?.length}개의 포스트 <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update></S.PostCount>
+          <S.PostCount>
+            {props.data?.fetchSeries.post?.length}개의 포스트{' '}
+            <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update>
+          </S.PostCount>
           <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
-        {props.data?.fetchSeries.post?.map(el => 
+        {props.data?.fetchSeries.post?.map(el => (
           <S.PostWrapper>
             <S.ImageWrapper>
-              <S.Image src={'/images/no-image.jpeg'} />
+              {el.image ? <S.Image src={el.image} /> : <Empty description={<span>이미지가 없습니다.</span>} />}
             </S.ImageWrapper>
             <S.DescriptionWrapper>
               <S.PostCategory>{category}</S.PostCategory>
@@ -72,7 +84,7 @@ export default function SeriesDetailUI(props: any) {
               </S.PostsSub>
             </S.DescriptionWrapper>
           </S.PostWrapper>
-        )}
+        ))}
       </div>
       <SeriesAnswerList />
       <SeriesAnswerWrite />

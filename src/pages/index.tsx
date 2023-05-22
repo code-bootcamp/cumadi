@@ -4,8 +4,12 @@ import * as S from './index.styles'
 import { MyTag, MyTagSecondary } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
+  console.log(router)
+
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -20,7 +24,6 @@ export default function Home() {
       <S.Main>
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
-          <div>검색창</div>
           <S.TagWrapper>
             <MyTag isChecked={true} onClick={onClickMoveToPage('./')}>
               포스트
@@ -29,17 +32,8 @@ export default function Home() {
               시리즈
             </MyTag>
           </S.TagWrapper>
-<<<<<<< HEAD
-          <S.TagWrapper>
-            <MyTagSecondary isChecked={true}>전체</MyTagSecondary>
-            <MyTagSecondary isChecked={false}>개발</MyTagSecondary>
-            <MyTagSecondary isChecked={false}>에세이</MyTagSecondary>
-            <MyTagSecondary isChecked={false}>독서</MyTagSecondary>
-          </S.TagWrapper>
-=======
->>>>>>> main
         </S.TitleWrapper>
-        <PostList />
+        {<PostList />}
       </S.Main>
     </>
   )
