@@ -1,5 +1,4 @@
-import { IPurchaseUIProps } from './purchase.types'
-import * as S from './purchase.styles'
+import Script from 'next/script'
 import { Checkbox } from 'antd'
 import {
   HorizontalCardSm,
@@ -10,7 +9,8 @@ import {
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { MyButton } from '@/components/common/customComponent.styles'
-import Script from 'next/script'
+import { IPurchaseUIProps } from './purchase.types'
+import * as S from './purchase.styles'
 
 export default function PurchaseUI(props: IPurchaseUIProps) {
   return (

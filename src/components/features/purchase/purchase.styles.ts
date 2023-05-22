@@ -7,7 +7,6 @@ export const Body = styled.section`
   gap: 1rem;
   width: 83rem;
   padding: 1rem;
-  background-color: skyblue; //  삭제예정
 
   @media ${breakPoints.tablet} {
     width: 60rem;
