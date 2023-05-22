@@ -7,6 +7,7 @@ export const FETCH_PAYMENT_DETAIL_BY_USER = gql`
       series {
         seriesId
         title
+        image
         price
         createdAt
       }
@@ -15,6 +16,7 @@ export const FETCH_PAYMENT_DETAIL_BY_USER = gql`
         email
         nickname
       }
+      createdAt
     }
   }
 `

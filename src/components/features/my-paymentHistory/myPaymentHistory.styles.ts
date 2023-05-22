@@ -6,7 +6,7 @@ export const Body = styled.section`
   flex-direction: column;
   width: 83rem;
   padding: 1rem;
-  /* background-color: yellowgreen; */
+  background-color: yellowgreen;
 
   @media ${breakPoints.tablet} {
     width: 60rem;
@@ -35,4 +35,9 @@ export const CardWrapper = styled.div`
   width: 100%;
   margin: 0.5rem 0;
   align-items: center;
+`
+
+export const SeriesCard = styled.div`
+  width: 100%;
+  cursor: pointer;
 `
