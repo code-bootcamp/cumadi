@@ -22,6 +22,16 @@ export const FETCH_POST = gql`
         userId
         nickname
       }
+      tags {
+        tagId
+        name
+      }
+      series {
+        seriesId
+        title
+        introduction
+      }
+      createdAt
     }
   }
 `
@@ -43,20 +53,40 @@ export const DELETE_POST = gql`
   }
 `
 
-// **** 포스트 좋아요
+// **** 포스트 좋아요 생성
 export const TOGGLE_POST_PICK = gql`
   mutation togglePostPick($postId: String!) {
     togglePostPick(postId: $postId)
   }
 `
 
+// **** 포스트 좋아요 조회
+export const FETCH_LIKE_COUNT_BY_POST = gql`
+  query fetchLikeCountByPost($postId: String!) {
+    fetchLikeCountByPost(postId: $postId)
+  }
+`
+
 // **** 메모 저장
 export const CREATE_POST_MEMO = gql`
-  mutation createPostMemo($parse: String!) {
-    createPostMemo(parse: $parse) {
+  mutation createPostMemo($postId: String!, $parse: String!) {
+    createPostMemo(postId: $postId, parse: $parse) {
       memoId
       parse
       createdAt
+    }
+  }
+`
+
+export const FETCH_SERIES = gql`
+  query fetchSeries($seriesId: String!) {
+    fetchSeries(seriesId: $seriesId) {
+      seriesId
+      title
+      post {
+        postId
+        title
+      }
     }
   }
 `

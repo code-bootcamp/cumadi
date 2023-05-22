@@ -9,6 +9,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { Rate } from 'antd';
+import dayjs from 'dayjs'
 
 export default function SeriesListUI(props: any) {
   return (
@@ -53,7 +54,7 @@ export default function SeriesListUI(props: any) {
                     <Avatar>{el.user.nickname[0]}</Avatar>
                     <ProfileTextDataContainer>
                       <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{el.createdAt}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
                   <ReactionsContainer>
@@ -84,7 +85,7 @@ export default function SeriesListUI(props: any) {
                     <Avatar>{el.user.nickname[0]}</Avatar>
                     <ProfileTextDataContainer>
                       <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{el.createdAt}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
                   <ReactionsContainer>
