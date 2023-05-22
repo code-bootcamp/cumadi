@@ -62,11 +62,11 @@ export default function MyPostsUI(props: any) {
                 <ReactionsContainer>
                   <ReactionContainer>
                     <img src="/images/heart-outlined.svg" alt="좋아요 수" />
-                    <span>{postOfMine.likes.length}</span>
+                    <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
                     <img src="/images/comment-outlined.svg" alt="댓글 수" />
-                    <span>{postOfMine.likes.length}</span>
+                    <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </InfoSectionContainer>

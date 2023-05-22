@@ -13,13 +13,14 @@ import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPostListUIProps } from './postList.types'
+import { IPost } from '@/common/types/generated/types'
 
 export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
-      {data?.fetchPosts.map((post: any) => (
+      {data?.fetchPosts.map((post: IPost) => (
         <S.StyledCard
           key={post.postId}
           cover={
@@ -31,7 +32,7 @@ export default function PostListUI({ data }: IPostListUIProps) {
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
-              {post.series?.title ?? 'NO SERIES'}
+              {post.series?.title ?? 'X'}
             </BodyTextSm>
             <BodyTextLg>{post.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
@@ -48,11 +49,11 @@ export default function PostListUI({ data }: IPostListUIProps) {
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{post.likes.length}</span>
+                  <span>{post.likes?.length ?? '0'}</span>
                 </ReactionContainer>
                 <ReactionContainer>
                   <img src="images/comment-outlined.svg" alt="댓글 수" />
-                  <span>{post.comments.length}</span>
+                  <span>{post.comments?.length ?? '0'}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>

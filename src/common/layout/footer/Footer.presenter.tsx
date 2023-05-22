@@ -1,7 +1,6 @@
-import { Avatar, Card } from 'antd'
+import { Avatar } from 'antd'
 
 import * as S from './Footer.styles'
-import { postItem } from '@/common/dummyData/post'
 import { FlexColumnContainer } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -52,11 +51,11 @@ export default function LayoutFooterUI(props: any) {
                   <ReactionsContainer>
                     <ReactionContainer>
                       <img src="/images/heart-outlined.svg" alt="관심 수" />
-                      <span>{el.likes.length}</span>
+                      <span>{el.likes?.length}</span>
                     </ReactionContainer>
                     <ReactionContainer>
                       <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                      <span>{el.comments.length}</span>
+                      <span>{el.comments?.length}</span>
                     </ReactionContainer>
                   </ReactionsContainer>
                 </InfoSectionContainer>
