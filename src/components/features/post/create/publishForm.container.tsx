@@ -1,21 +1,21 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
-import { Input, message } from 'antd'
+import { Input, message, Modal } from 'antd'
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { accessTokenState, postFormState, tempPostIdState } from '@/common/store'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import PublishFormUI from './publishForm.presenter'
 import { IPublishFormProps } from './publishForm.types'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { UPDATE_POST } from './postForm.queries'
 import { useRouter } from 'next/router'
-import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
-
-const dummyDataSeries = [
-  { id: '', title: '시리즈 없음' },
-  { id: '1', title: 'series 1' },
-  { id: '2', title: 'series 2' },
-  { id: '3', title: 'series 3' },
-]
+import {
+  IMutation,
+  IMutationUpdatePostArgs,
+  IMutationUploadImageArgs,
+  IQuery,
+  ISeries,
+} from '@/common/types/generated/types'
+import { FETCH_SERIES_BY_USER, UPLOAD_IMAGE } from './publishForm.queries'
 
 export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const router = useRouter()
@@ -25,6 +25,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
   const [thumbnailUrl, setThumbnailUrl] = useState<string>()
   const [messageApi] = message.useMessage()
   const [isRouterChangable, setIsRouterChangable] = useState(false)
+  const [series, setSeries] = useState<Array<ISeries>>()
   const [accessToken] = useRecoilState(accessTokenState)
   const resetPost = useResetRecoilState(postFormState)
   const resetTempPostId = useResetRecoilState(tempPostIdState)
@@ -34,11 +35,23 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     'Content-Type': 'application/json',
   }
 
+  const { data } = useQuery<Pick<IQuery, 'fetchSeriesByUser'>>(FETCH_SERIES_BY_USER, {
+    context: {
+      headers: API_HEADERS,
+    },
+  })
+
   const [updatePost] = useMutation<Pick<IMutation, 'updatePost'>, IMutationUpdatePostArgs>(UPDATE_POST, {
     context: {
       headers: API_HEADERS,
     },
   })
+
+  const [uploadImage] = useMutation<Pick<IMutation, 'uploadImage'>, IMutationUploadImageArgs>(UPLOAD_IMAGE)
+
+  useEffect(() => {
+    setSeries(data?.fetchSeriesByUser)
+  }, [data])
 
   useEffect(() => {
     if (isRouterChangable) {
@@ -57,29 +70,25 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
     fileRef.current?.click()
   }
 
-  const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0]
 
-    if (!file) return
-
-    // TODO: try-catch with upload to Server
-
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = event => {
-      if (typeof event.target?.result === 'string') {
-        setThumbnailUrl(event.target?.result)
-      }
+    try {
+      const uploadimageResult = await uploadImage({ variables: { file } })
+      setThumbnailUrl(uploadimageResult.data?.uploadImage)
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message })
     }
   }
 
   const handleSubmitForm = async (values: any) => {
-    // TODO: replace thumbnail:thumbnailUrl with actual server url
     const publishablePostData = { ...post, ...values }
 
     try {
       const postInput = {
-        seriesId: publishablePostData.series,
+        image: thumbnailUrl,
+        description: publishablePostData.description,
+        seriesId: publishablePostData.seriesId,
       }
 
       if (isEditMode) {
@@ -123,7 +132,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
       handleSubmitForm={handleSubmitForm}
       handleClickUploadHandler={handleClickUploadHandler}
       handleChangeFile={handleChangeFile}
-      series={dummyDataSeries}
+      series={series}
       form={publishForm}
     />
   )

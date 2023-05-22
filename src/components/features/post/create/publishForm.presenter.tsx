@@ -37,10 +37,13 @@ export default function PublishFormUI(props: PublishFormUIProps) {
         </Form.Item>
 
         <h4>시리즈에 담기</h4>
-        <Form.Item name="series">
+        <Form.Item name="seriesId">
           <Select
             placeholder="시리즈 없음"
-            options={props.series.map((series: { title: any; id: any }) => ({ label: series.title, value: series.id }))}
+            options={props.series?.map((series: { title: any; seriesId: any }) => ({
+              label: series.title,
+              value: series.seriesId,
+            }))}
           />
         </Form.Item>
 

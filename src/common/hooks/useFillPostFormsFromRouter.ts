@@ -11,6 +11,8 @@ export const FETCH_POST_WITH_DETAILS = gql`
       postId
       title
       content
+      image
+      description
       series {
         seriesId
         title
@@ -37,17 +39,19 @@ export const useFillPostFormsFromRouter = () => {
   })
 
   const postFromRouter = data?.fetchPost
+  console.log('postFromRouter', postFromRouter)
+
   if (postFromRouter) {
     setPost(postFromRouter)
     postForm.setFieldsValue({
       title: postFromRouter.title,
-      tags: postFromRouter.tags?.map(tag => tag.name),
+      tags: postFromRouter.tags?.map(tag => tag.tagId),
       content: postFromRouter.content,
     })
     publishForm.setFieldsValue({
-      // thumbnail: postFromRouter.image,
-      // description: postFromRouter.description,
-      series: postFromRouter.series,
+      image: postFromRouter.image,
+      description: postFromRouter.description,
+      seriesId: postFromRouter.series?.seriesId,
     })
   }
 

@@ -1,6 +1,6 @@
-import { ComponentType, MutableRefObject } from 'react'
+import { ComponentType, MutableRefObject, RefObject } from 'react'
 import { MarkdownEditorProps } from '@/components/common/markdownEditor/markdownEditor.types'
-import { ISeries } from '@/common/types/generated/types'
+import { InputRef } from 'antd'
 export interface IPostFormProps {
   isEditMode: boolean
 }
@@ -21,7 +21,9 @@ export interface PostFormUIProps {
   isEditMode: boolean
   post: any
   tags: any[]
+  inputRef: RefObject<InputRef>
   handleSearchChange: (value: string) => void
+  filterOption: (input: string, option: any) => any
   isAddTagOptionVisible: boolean
   handleClickAddTag: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
   searchString: string

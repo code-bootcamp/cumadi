@@ -19,9 +19,11 @@ export default function PostFormUI(props: PostFormUIProps) {
         <Form.Item name="tags" rules={[{ required: props.post.tags ? false : true, message: '태그를 정해주세요.' }]}>
           <Select
             mode="multiple"
+            ref={props.inputRef}
             placeholder="태그를 정해주세요."
             allowClear
             onSearch={props.handleSearchChange}
+            filterOption={props.filterOption}
             dropdownRender={menu => (
               <>
                 {menu}
@@ -37,7 +39,7 @@ export default function PostFormUI(props: PostFormUIProps) {
                 ) : null}
               </>
             )}
-            options={props.tags.map(tag => ({ label: `#${tag}`, value: tag }))}
+            options={props.tags?.map(tag => ({ label: `#${tag.name}`, value: tag.tagId }))}
           />
         </Form.Item>
 

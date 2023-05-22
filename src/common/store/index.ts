@@ -1,4 +1,3 @@
-import { tags } from './../dummyData/tags'
 import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
 import { getAccessToken } from '../libraries/getAccessToken'
@@ -31,7 +30,9 @@ export const postFormState = atom({
     postId: '',
     title: '',
     content: '',
-    series: '',
+    image: '',
+    description: '',
+    seriesId: '',
     tags: [],
   },
 })

@@ -6,6 +6,16 @@ export const CREATE_POST = gql`
       postId
       title
       content
+      image
+      description
+      series {
+        seriesId
+        title
+      }
+      tags {
+        tagId
+        name
+      }
     }
   }
 `
@@ -16,6 +26,16 @@ export const UPDATE_POST = gql`
       postId
       title
       content
+      image
+      description
+      series {
+        seriesId
+        title
+      }
+      tags {
+        tagId
+        name
+      }
     }
   }
 `

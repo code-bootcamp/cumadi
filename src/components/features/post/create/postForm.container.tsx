@@ -9,9 +9,10 @@ import PostFormUI from './postForm.presenter'
 import { useConfirmBeforeReroute } from '@/common/hooks/useConfirmBeforeReroute'
 import { useFillPostFormsFromRouter } from '@/common/hooks/useFillPostFormsFromRouter'
 import { IPostFormProps } from './postForm.types'
-import { useMutation } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { IMutation, IMutationCreatePostArgs, IMutationUpdatePostArgs } from '@/common/types/generated/types'
 import { CREATE_POST, UPDATE_POST } from './postForm.queries'
+import { usePopulateTags } from '@/common/hooks/usePopulateTags'
 
 const DynamicImportEditor = dynamic(() => import('@/components/common/markdownEditor/markdownEditor.container'), {
   ssr: false,
@@ -51,9 +52,9 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
   useConfirmBeforeReroute()
 
-  useEffect(() => {
-    if (tags.filter(item => item.includes(searchString)).length === 0) setIsAddTagOptionVisible(true)
-  }, [searchString])
+  const uniqueTags = usePopulateTags()
+  if (uniqueTags) setTags(uniqueTags)
+  console.log(uniqueTags)
 
   useEffect(() => {
     if (isRouterChangable) {
@@ -65,13 +66,26 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
     }
   }, [isRouterChangable])
 
+  useEffect(() => {
+    if (searchString.length === 0) setIsAddTagOptionVisible(false)
+    else {
+      if (tags.filter(item => item.name.includes(searchString))) setIsAddTagOptionVisible(true)
+    }
+  }, [searchString])
+
   const handleSearchChange = (value: string) => {
     setSearchString(value)
   }
 
+  const filterOption = (input: string, option: any) => {
+    return option.label.includes(input)
+  }
+
   const handleClickAddTag = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
     e.preventDefault()
-    setTags([...tags, searchString])
+
+    setTags([...tags, { id: searchString, name: searchString }])
+    console.log('clicked', tags)
     setSearchString('')
 
     setTimeout(() => {
@@ -104,6 +118,9 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
               title: postData.title,
               content: postData.content,
               tags: postData.tags,
+              image: postData.image,
+              description: postData.description,
+              seriesId: postData.seriesId,
             },
           },
         })
@@ -112,7 +129,13 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
       } else {
         const result = await createPost({
           variables: {
-            createPostInput: { title: postData.title, content: postData.content, tags: postData.tags },
+            createPostInput: {
+              title: postData.title,
+              content: postData.content,
+              tags: postData.tags,
+              image: '',
+              description: '',
+            },
           },
         })
         setTempPostId(result.data?.createPost.postId as string)
@@ -128,7 +151,9 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
       isEditMode={isEditMode}
       post={post}
       tags={tags}
+      inputRef={inputRef}
       handleSearchChange={handleSearchChange}
+      filterOption={filterOption}
       isAddTagOptionVisible={isAddTagOptionVisible}
       handleClickAddTag={handleClickAddTag}
       searchString={searchString}

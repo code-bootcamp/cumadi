@@ -22,6 +22,8 @@ export type ICreatePaymentInput = {
 
 export type ICreatePostInput = {
   content: Scalars['String'];
+  description: Scalars['String'];
+  image: Scalars['String'];
   seriesId?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
   title: Scalars['String'];
@@ -53,6 +55,21 @@ export type IFetchStatisticsInput = {
   endDate: Scalars['String'];
   postId: Scalars['String'];
   startDate: Scalars['String'];
+};
+
+export type IIFetchSeriesReturn = {
+  __typename?: 'IFetchSeriesReturn';
+  category: ISeriesCategory;
+  createdAt: Scalars['DateTime'];
+  image: Scalars['String'];
+  introduction: Scalars['String'];
+  paid: Scalars['Boolean'];
+  post?: Maybe<Array<IPost>>;
+  price?: Maybe<Scalars['Int']>;
+  seriesId: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: IUser;
 };
 
 export type IMemo = {
@@ -228,11 +245,15 @@ export type IPaymentDetail = {
 export type IPost = {
   __typename?: 'Post';
   content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
   deletedAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  image: Scalars['String'];
   postId: Scalars['String'];
   series?: Maybe<ISeries>;
   tags?: Maybe<Array<ITag>>;
   title: Scalars['String'];
+  uodatedAt: Scalars['DateTime'];
   user: IUser;
 };
 
@@ -250,7 +271,7 @@ export type IQuery = {
   fetchPostsOfMine: Array<IPost>;
   fetchPostsViewOfMine: Array<IStatistics>;
   fetchRatingBySeries: Scalars['Float'];
-  fetchSeries: ISeries;
+  fetchSeries: IIFetchSeriesReturn;
   fetchSeriesAll: Array<ISeries>;
   fetchSeriesByCategory: Array<ISeries>;
   fetchSeriesByUser: Array<ISeries>;
@@ -365,6 +386,8 @@ export type ITag = {
 
 export type IUpdatePostInput = {
   content?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
   seriesId?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
   title?: InputMaybe<Scalars['String']>;

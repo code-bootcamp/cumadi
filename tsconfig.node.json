@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
+    "downlevelIteration": true,
     "module": "NodeNext",
     "jsx": "react",
     "esModuleInterop": true
