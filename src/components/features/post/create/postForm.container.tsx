@@ -65,7 +65,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
   useEffect(() => {
     if (isRouterChangable) {
-      if (isEditMode) router.push(`/post/${post.postId}/edit/publish`)
+      if (isEditMode) router.back()
       else router.push('new/publish')
     }
     return () => {
