@@ -6,6 +6,8 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 import { getDate } from '@/common/libraries/utils'
 import { IPostDetailUIProps } from './postDetail.types'
+import PostCommentList from '../../post-comment/list/postCommentList.container'
+import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -93,7 +95,7 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
         </div>
         {/* 포스트 댓글 */}
         <PostCommentList />
-        <PostCommentWrite />
+        <PostCommentWrite isEditPostComment={false} />
       </S.Container>
     </>
   )
