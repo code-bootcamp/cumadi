@@ -8,6 +8,7 @@ import {
   FETCH_POSTS_OF_MINE,
   FETCH_SERIES,
   FETCH_SERIES_CATEGORIES,
+  UPDATE_SERIES,
 } from "./newSeries.query";
 import { useRecoilState } from "recoil";
 import { editSeriesId } from "@/common/store";
@@ -35,7 +36,6 @@ const tagRender = (props: any) => {
 export default function NewSeries(props) {
   const router = useRouter();
   const imgRef = useRef<HTMLInputElement>(null);
-  const seriesData = router.query;
 
   const [editId] = useRecoilState(editSeriesId);
   const [thumbnail, setThumbnail] = useState<string>("");
@@ -44,10 +44,14 @@ export default function NewSeries(props) {
   const [isClickPrice, setIsClickPrice] = useState(false);
   const { TextArea } = Input;
 
-  const { data: previousData } = useQuery(FETCH_SERIES);
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
+  const { data: previousData } = useQuery(FETCH_SERIES, {
+    variables: { seriesId: editId },
+  });
+
   const [createSeries] = useMutation(CREATE_SERIES);
+  const [updateSeries] = useMutation(UPDATE_SERIES);
 
   const postOptions = post?.fetchPostsOfMine.map((el) => {
     return { label: el.title, value: el.postId };
@@ -112,7 +116,36 @@ export default function NewSeries(props) {
     router.push("/");
   };
 
-  const onSubmitUpdate = async () => {};
+  const onSubmitUpdate = async (values: any) => {
+    if (values.title === "" && values.introduction) {
+      alert("수정한 내용이 없습니다.");
+      return;
+    }
+
+    const updateSeriesInput = {};
+    if (values.title !== "") updateSeriesInput.title = values.title;
+    if (values.contents !== "")
+      updateSeriesInput.introduction = values.introduction;
+
+    try {
+      const result = await updateSeries({
+        variables: {
+          seriesId: editId,
+          updateSeriesInput,
+        },
+      });
+
+      if (result.data?.updateSeries.seriesid === undefined) {
+        alert("요청에 문제가 있습니다.");
+        return;
+      }
+
+      void router.push(`/series/${result.data?.updateSeries.seriesid}`);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+      return;
+    }
+  };
 
   return (
     <NewSeriesUI
@@ -127,6 +160,7 @@ export default function NewSeries(props) {
       isClickPrice={isClickPrice}
       setIsClickPrice={setIsClickPrice}
       onSubmitForm={onSubmitForm}
+      onSubmitUpdate={onSubmitUpdate}
       onChangeFile={onChangeFile}
       onClickUploadThumbnail={onClickUploadThumbnail}
       tagRender={tagRender}
