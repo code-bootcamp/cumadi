@@ -5,6 +5,7 @@ import { useMutation, useQuery } from '@apollo/client'
 
 import CartUI from './Cart.presenter'
 import {
+  // CHECK_PAYMENT_LIST,
   CREATE_PAYMENT_FREE_SERIES,
   CREATE_PAYMENT_SERIES,
   DELETE_SERIES_IN_CART,
@@ -17,6 +18,7 @@ import {
   IMutationCreatePaymentSeriesArgs,
   IMutationDeleteSeriesInCartArgs,
   IQuery,
+  // IQueryCheckPaymentListArgs,
   ISeries,
 } from '@/common/types/generated/types'
 
@@ -38,6 +40,10 @@ export default function Cart() {
     setTotalPrice(sumPrice)
   }, [checkList])
 
+  // const { data: isPaidData } = useQuery<Pick<IQuery, 'checkPaymentList'>, IQueryCheckPaymentListArgs>(
+  //   CHECK_PAYMENT_LIST,
+  //   { variables: { seriesId: [] } },
+  // )
   const { data: userData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
   const { data } = useQuery<Pick<IQuery, 'fetchShoppingCart'>>(FETCH_SHOPPING_CART)
 
@@ -75,6 +81,8 @@ export default function Cart() {
   }
 
   const onClickRemoveList = (seriesId: string) => {
+    console.log(seriesId)
+
     Modal.confirm({
       content: '삭제하시겠습니까?',
       okText: '확인',
@@ -82,7 +90,18 @@ export default function Cart() {
       async onOk() {
         await deleteSeriesInCart({
           variables: { seriesId },
-          refetchQueries: [{ query: FETCH_SHOPPING_CART }],
+          // refetchQueries: [{ query: FETCH_SHOPPING_CART }],
+          update(cache) {
+            cache.modify({
+              fields: {
+                fetchShoppingCart: (prev, { readField }) => {
+                  const deletedId = seriesId
+                  const filteredPrev = prev.filter((el: any) => readField('seriesId', el) !== deletedId)
+                  return [...filteredPrev]
+                },
+              },
+            })
+          },
         })
         const result = checkList.filter(list => list.seriesId !== seriesId)
         if (result) setCheckList(result) //  삭제해도 다른 리스트는 체크상태 유지
@@ -100,6 +119,12 @@ export default function Cart() {
     }
 
     const seriesIdList = checkList.map(series => series.seriesId) //  시리즈ID만 따로 배열 생성
+
+    //  false 이면 기존 구매 내역 존재하므로 결제 미진행
+    // if (!isPaidData?.checkPaymentList.status) {
+    //   alert('이미 구매하신 상품이 포함되어 있습니다. 구매를 원하시는 새로운 상품만 결제가 가능합니다.')
+    //   return
+    // }
 
     //  결제 할 금액이 총 0원일 때,
     if (totalPrice === 0) {
