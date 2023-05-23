@@ -78,10 +78,7 @@ export default function NewSeries(props) {
     const file = event.target.files?.[0];
     console.log(event.target.files);
     try {
-      console.log("들어왔다");
-      // const imageFile = await uploadImage({ variables: { file: file } });
       const imageFile = await uploadImage({ variables: { file } });
-      console.log(imageFile);
       setThumbnail(imageFile.data?.uploadImage);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
@@ -112,7 +109,7 @@ export default function NewSeries(props) {
       return;
     }
     alert("시리즈 작성이 완료되었습니다.");
-    router.push("/");
+    router.push("/series");
   };
 
   const onSubmitUpdate = async (values: any) => {

@@ -54,7 +54,7 @@ export default function SeriesListUI(props: any) {
               cover={
                 <S.CardThumbnailImg
                   alt="example"
-                  src={"/images/no-image.jpeg"}
+                  src={el.image}
                   onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
                 />
               }
