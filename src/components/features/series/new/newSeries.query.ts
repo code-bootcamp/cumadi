@@ -26,6 +26,15 @@ export const CREATE_SERIES = gql`
   }
 `;
 
+export const UPDATE_SERIES = gql`
+  mutation updateSeries(
+    $seriesId: String!
+    $updateSeriesInput: UpdateSeriesInput!
+  ) {
+    seriesId
+  }
+`;
+
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
     fetchSeries(seriesId: $seriesId) {
