@@ -45,7 +45,7 @@ export default function SeriesDetailUI(props: any) {
         <S.PostsSub>
           
           <S.PostCount>{props.data?.fetchSeries.post?.length}개의 포스트 <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update></S.PostCount>
-          <S.NewPostsButton>+ 새 포스트 작성하기</S.NewPostsButton>
+          <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')}>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
         {props.data?.fetchSeries.post?.map(el => 
           <S.PostWrapper>

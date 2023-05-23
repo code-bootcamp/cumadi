@@ -6,11 +6,13 @@ import { Modal } from 'antd'
 import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CART } from './seriesDetail.query'
 import { useRecoilState } from 'recoil'
 import { buyItemId } from '@/common/store'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function SeriesDetail() {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
   const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId);
+  const { onClickMoveToPage } = useMoveToPage()
 
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
   const { data } = useQuery(FETCH_SERIES, {variables: { seriesId }})
@@ -59,6 +61,7 @@ export default function SeriesDetail() {
       onClickCart={onClickCart}
       onClickBuy={onClickBuy}
       onClickUpdate={onClickUpdate}
+      onClickMoveToPage={onClickMoveToPage}
     />
   )
 }
