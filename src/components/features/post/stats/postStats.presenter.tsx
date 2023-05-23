@@ -56,7 +56,6 @@ export default function PostStatsUI({ stateData }: IPostStatsUIProps) {
 
 // **** 차트에 들어갈 데이터를 담고 있는 객체
 const data: any = {
-  // 데이터 관련 정보(값, 컬러, 라벨 등)을 담은 dataset 객체들을 가지고 있는 배열
   datasets: [
     {
       type: 'line',

@@ -43,16 +43,6 @@ export const PostTagWrapper = styled.div`
   }
 `
 
-export const PostTag = styled.span`
-  /* font-size: 1.2rem; */
-  /* font-weight: bold; */
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  margin-right: 0.5rem;
-`
-
 // **** 게시판 헤더
 export const Header = styled.div`
   display: flex;

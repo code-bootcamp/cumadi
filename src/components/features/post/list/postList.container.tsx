@@ -12,5 +12,20 @@ export default function PostList() {
   // **** PlayGround
   const { data, fetchMore } = useQuery<Pick<IQuery, 'fetchPosts'>, IQueryFetchPostArgs>(FETCH_POSTS)
 
+  // **** 포스트 무한스크롤
+  // const onLoadMore = () => {
+  //   if (!data) return
+
+  //   void fetchMore({
+  //     variables: { page: Math.ceil(data?.fetchPosts.length / 7) + 1 },
+  //     updateQuery: (prev, { fetchMoreResult }) => {
+  //       if (!fetchMoreResult?.fetchPosts) return { fetchPosts: [...prev.fetchPosts] }
+  //       return {
+  //         fetchPosts: [...prev.fetchPosts, ...fetchMoreResult.fetchPosts],
+  //       }
+  //     },
+  //   })
+  // }
+
   return <PostListUI data={data} />
 }

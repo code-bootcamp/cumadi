@@ -1,4 +1,5 @@
 import { Avatar, Empty } from 'antd'
+import InfiniteScroll from 'react-infinite-scroller'
 
 import * as S from './postList.styles'
 import { FlexColumnContainer, StyledCard } from '@/components/common/customComponent.styles'
