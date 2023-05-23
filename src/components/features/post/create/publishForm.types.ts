@@ -11,9 +11,10 @@ export interface PublishFormUIProps {
   fileRef: RefObject<HTMLInputElement>
   thumbnailUrl?: string
   TextArea: ForwardRefExoticComponent<TextAreaProps & RefAttributes<TextAreaRef>>
-  handleSubmitForm: (value: any) => void
   handleClickUploadHandler: () => void
   handleChangeFile: (event: ChangeEvent<HTMLInputElement>) => Promise<void>
+  handleClickCancelEditPublish: () => void
+  handleSubmitForm: (value: any) => void
   series: any
   form: any
 }

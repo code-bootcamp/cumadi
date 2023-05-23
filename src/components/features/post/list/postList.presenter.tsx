@@ -1,7 +1,7 @@
-import { Avatar } from 'antd'
+import { Avatar, Empty } from 'antd'
 
 import * as S from './postList.styles'
-import { FlexColumnContainer } from '@/components/common/customComponent.styles'
+import { FlexColumnContainer, StyledCard } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -20,27 +20,32 @@ export default function PostListUI({ data }: IPostListUIProps) {
 
   return (
     <S.Body>
-      {data?.fetchPosts.map((post: IPost) => (
-        <S.StyledCard
-          key={post.postId}
+      {props.data?.fetchPosts.map((el: any) => (
+        <StyledCard
+          bordered={false}
+          key={el.postId}
           cover={
-            <S.CardThumbnailImg
-              src={'/images/no-image.jpeg'}
-              alt="포스트 썸네일 이미지"
-              onClick={onClickMoveToPage(`/post/${post.postId}`)}
-            />
+            el.image ? (
+              <S.CardThumbnailImg
+                src={el.image}
+                alt="포스트 썸네일 이미지"
+                onClick={onClickMoveToPage(`/post/${el.postId}`)}
+              />
+            ) : (
+              <Empty description={<span>이미지가 없습니다.</span>} />
+            )
           }>
-          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <BodyTextSm color={Colors.primary} weight={600}>
-              {post.series?.title ?? 'X'}
+              {el.series?.title ?? 'NO SERIES'}
             </BodyTextSm>
-            <BodyTextLg>{post.title}</BodyTextLg>
+            <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
               <TruncatedText lines={4}>{post.content}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
-                <Avatar>E</Avatar>
+                <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                 <ProfileTextDataContainer>
                   <BodyTextSm weight={600}>{post.user?.nickname ?? '닉네임'}</BodyTextSm>
                   <BodyTextSm color={Colors.gray1}>{getCreateDate(post.createdAt) ?? '날짜'}</BodyTextSm>
@@ -49,16 +54,16 @@ export default function PostListUI({ data }: IPostListUIProps) {
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{post.likes?.length ?? '0'}</span>
+                  <span>{el.likes.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
-                  <img src="images/comment-outlined.svg" alt="댓글 수" />
-                  <span>{post.comments?.length ?? '0'}</span>
+                  <img src="images/comment-outlined.svg" alt="덧글 수" />
+                  <span>{el.comments.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>
           </FlexColumnContainer>
-        </S.StyledCard>
+        </StyledCard>
       ))}
     </S.Body>
   )

@@ -43,7 +43,6 @@ export default function Login() {
   // **** 로그인 요청
   const onClickLogin = async () => {
     try {
-      // 1. 로그인해서 accessToken 받아오기
       const result = await loginUser({
         variables: {
           password,
@@ -53,7 +52,6 @@ export default function Login() {
 
       const accessToken = result.data?.loginUser
 
-      // 2. accessToken을 globalState에 저장하기
       if (!accessToken) {
         Modal.error({ content: '로그인에 실패했습니다. 다시 시도해주세요.' })
         return
@@ -61,8 +59,6 @@ export default function Login() {
       setAccessToken(accessToken)
       localStorage.setItem('accessToken', accessToken) // localstorage 나중에 지울 예정
 
-      // 3. 로그인 성공 페이지로 이동하기
-      Modal.success({ content: '로그인 되었습니다' })
       void router.push('/')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })

@@ -87,7 +87,7 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           )}
 
           <S.ImageWrapper>
-            <S.Image src={postItem[0].image} />
+            <S.ThumbnailImage src={PostDetail?.image} />
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}

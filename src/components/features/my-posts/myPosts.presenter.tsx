@@ -1,7 +1,12 @@
-import { Avatar } from 'antd'
+import { Avatar, Empty } from 'antd'
 
 import * as S from './myPosts.styles'
-import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
+import {
+  FlexColumnContainer,
+  MyTag,
+  StyledCardCover,
+  StyledCardOutlined,
+} from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -11,6 +16,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { PlusOutlined } from '@ant-design/icons'
 
 export default function MyPostsUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -27,20 +33,24 @@ export default function MyPostsUI(props: any) {
           <button onClick={onClickMoveToPage('/my/posts')}>포스트</button>
           <button onClick={onClickMoveToPage('/my/series')}>시리즈</button>
         </S.TagWrapper>
-        <S.RegisterBtn onClick={onClickMoveToPage('/post/new')}>
-          <S.PlusImg src="/images/plus.svg" alt="더하기 아이콘" />새 포스트 작성하기
+        <S.RegisterBtn onClick={onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
+          포스트 작성하기
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {props.data?.fetchPostsOfMine.map(postOfMine => (
-          <S.StyledCard
+        {props.data?.fetchPostsOfMine.map((postOfMine: any) => (
+          <StyledCardOutlined
             key={postOfMine.postId}
             cover={
-              <S.CardThumbnailImg
-                src={'/images/no-image.jpeg'}
-                alt="포스트 썸네일 이미지"
-                onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
-              />
+              postOfMine.image ? (
+                <StyledCardCover
+                  src={postOfMine.image}
+                  alt="포스트 썸네일 이미지"
+                  onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
+                />
+              ) : (
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              )
             }
             onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
@@ -53,7 +63,7 @@ export default function MyPostsUI(props: any) {
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
-                  <Avatar>E</Avatar>
+                  <Avatar src={postOfMine.user.image ?? ''}>{postOfMine.user.nickname[0]}</Avatar>
                   <ProfileTextDataContainer>
                     <BodyTextSm weight={600}>{postOfMine.user.nickname}</BodyTextSm>
                     <BodyTextSm color={Colors.gray1}>{postOfMine.createDate}</BodyTextSm>
@@ -71,7 +81,7 @@ export default function MyPostsUI(props: any) {
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </S.StyledCard>
+          </StyledCardOutlined>
         ))}
       </S.Body>
     </>

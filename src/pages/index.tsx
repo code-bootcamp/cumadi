@@ -16,17 +16,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.svg" />
       </Head>
-      {/* TODO: Add PostsList inside body/main */}
       <S.Main>
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
-          <div>검색창</div>
           <S.TagWrapper>
             <button onClick={onClickMoveToPage('./')}>포스트</button>
             <button onClick={onClickMoveToPage('./series')}>시리즈</button>
           </S.TagWrapper>
         </S.TitleWrapper>
-        <PostList />
+        {<PostList />}
       </S.Main>
     </>
   )
