@@ -1,6 +1,7 @@
 import { breakPoints } from '@/common/styles/media'
 import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
+import { Avatar } from 'antd'
 
 export const Container = styled.section`
   width: 44rem;
@@ -24,8 +25,11 @@ export const AvatarWrapper = styled.div`
   margin: 3rem 0;
 `
 
-export const Avatar = styled.img`
-  width: 6rem;
+export const MyAvatar = styled(Avatar)`
+  width: 8rem;
+  height: 8rem;
+  border-radius: 4rem;
+  margin-bottom: 0.5rem;
 `
 
 export const Writer = styled.div`
@@ -50,5 +54,5 @@ export const MoveDeleteUser = styled(ElevatedCard)`
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
-  color: var(--color-error-red);
+  color: var(--color-gray-2);
 `

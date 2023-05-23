@@ -1,32 +1,43 @@
 import { Modal } from 'antd'
 import { useState } from 'react'
-import PostDetailUI from './postDetail.presenter'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 
+import PostDetailUI from './postDetail.presenter'
 import {
   CREATE_POST_MEMO,
   DELETE_POST,
+  FETCH_LIKE_COUNT_BY_POST,
   FETCH_POST,
-  FETCH_POST2,
+  FETCH_SERIES,
   FETCH_USER_LOGGED_IN,
   TOGGLE_POST_PICK,
 } from './postDetail.queries'
+import {
+  IMutation,
+  IMutationDeletePostArgs,
+  IQuery,
+  IQueryFetchPostArgs,
+  IQueryFetchSeriesArgs,
+} from '@/common/types/generated/types'
 
 export default function PostDetail() {
   const router = useRouter()
   const postId = String(router.query.postId)
 
   // **** 상태
-  const [dragText, setDragText] = useState('') // 드래그한 값
+  const [dragText, setDragText] = useState<string>('')
+  const [isPostInSeriesView, setIsPostInSeriesView] = useState(false)
 
   // **** PlayGround
   const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
-  const { data } = useQuery(FETCH_POST, {
-    variables: { postId },
+  const { data } = useQuery<Pick<IQuery, 'fetchPost'>, IQueryFetchPostArgs>(FETCH_POST, { variables: { postId } })
+  const { data: likeData } = useQuery(FETCH_LIKE_COUNT_BY_POST, { variables: { postId } })
+  const { data: seriesData } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
+    variables: { seriesId: String(data?.fetchPost?.series?.seriesId) },
   })
-  const [deletePost] = useMutation(DELETE_POST)
-  // const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
+  const [deletePost] = useMutation<Pick<IMutation, 'deletePost'>, IMutationDeletePostArgs>(DELETE_POST)
+  const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
   const [createPostMemo] = useMutation(CREATE_POST_MEMO)
 
   // **** 포스트 삭제
@@ -34,6 +45,7 @@ export default function PostDetail() {
     try {
       await deletePost({
         variables: { postId },
+        refetchQueries: [{ query: FETCH_POST }],
       })
       Modal.success({ content: '포스트가 삭제되었습니다.' })
       void router.push('/my/posts')
@@ -49,32 +61,30 @@ export default function PostDetail() {
         variables: {
           postId,
         },
-        // ** 옵티미스틱 UI -> 캐시를 바꾸고 캐시값을 받아오는걸 기다리지 않고 바로 바꿔줌
-        optimisticResponse: {
-          pickedCount: (data?.fetchPost.pickedCount ?? 0) + 1,
-        },
-        // ** apollo 캐시를 직접 수정을 할 수 있었습니다.(백엔드 캐시가 아닙니다.) -> 느리지만 효율적
-        // ** (백엔드에 요청은 안하지만, 받아올때까지 기다려줘야 함)
-        update(cache, { data }) {
-          // 이전 시간에는 modify를 사용했지만, 오늘은 writeQuery를 사용해보겠습니다.
-          cache.writeQuery({
-            query: FETCH_POST2,
+        // ** 응답을 받고난 후 받아온 응답을 다시 fetch -> 느리고 비효율적
+        refetchQueries: [
+          {
+            query: FETCH_LIKE_COUNT_BY_POST,
             variables: { postId },
-            // 어떻게 수정할 것인지는 아래에 적어줍니다.
-            data: {
-              // 기존값과 똑같이 받아오셔야 합니다.
-              fetchPost: {
-                _id: data?._id,
-                __typename: data?.__typename,
-                pickedCount: data?.pickedCount,
-              },
-            },
-          })
-        },
+          },
+        ],
+        // ** 옵티미스틱 UI
+        // optimisticResponse: {
+        //   togglePostPick: (likeData?.fetchLikeCountByPost ?? 0) + 1,
+        // },
+        // ** apollo 캐시를 직접 수정
+        // update(cache, { data }) {
+        //   cache.writeQuery({
+        //     query: FETCH_LIKE_COUNT_BY_POST,
+        //     variables: { postId },
+        //     data: {
+        //       fetchLikeCountByPost: data?.togglePostPick,
+        //     },
+        //   })
+        // },
       })
-      // Modal.success({ content: '상품찜 성공했습니다!' })
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: '로그인을 먼저해주세요.' })
+      if (error instanceof Error) Modal.error({ content: error.message })
     }
   }
 
@@ -88,9 +98,10 @@ export default function PostDetail() {
   // **** 포스트 메모값 저장
   const onClickMemoSave = async () => {
     try {
-      const result = await createPostMemo({
+      await createPostMemo({
         variables: {
-          parse: dragText,
+          postId,
+          parse: String(dragText),
         },
       })
       Modal.success({ content: '메모 저장이 완료되었습니다!' })
@@ -99,15 +110,20 @@ export default function PostDetail() {
     }
   }
 
+  const onClickPostInSeriesView = () => setIsPostInSeriesView(prev => !prev)
+
   return (
     <PostDetailUI
       loginData={loginData}
+      likeData={likeData}
       data={data}
+      seriesData={seriesData}
+      isPostInSeriesView={isPostInSeriesView}
       onClickDelete={onClickDelete}
       onMouseUpContentMemo={onMouseUpContentMemo}
       onClickMemoSave={onClickMemoSave}
-      // onClickPick={onClickPick}
-      // handleSaveText={handleSaveText}
+      onClickPick={onClickPick}
+      onClickPostInSeriesView={onClickPostInSeriesView}
     />
   )
 }

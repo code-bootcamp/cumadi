@@ -1,8 +1,7 @@
-import { tags } from './../dummyData/tags'
 import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
-import { getAccessToken } from '../libraries/getAccessToken'
-
+import { ITag } from '../types/generated/types'
+// import { getAccessToken } from '../libraries/getAccessToken'
 // ** cf. https://velog.io/@sj_dev_js/Recoil-Duplicate-atom-key
 // [에러 해결] Recoil : Duplicate atom key
 
@@ -27,20 +26,27 @@ export const memoPostDetail = atom({
 // **** 출판 전 포스트 정보
 export const postFormState = atom({
   key: `postFormState/${v1()}`,
-  default: {},
+  default: {
+    postId: '',
+    title: '',
+    content: '',
+    image: '',
+    description: '',
+    seriesId: '',
+    tags: [],
+  },
 })
 
-// **** 태그 정보
-export const tagsState = atom({
-  key: `tagsState/${v1()}`,
-  default: tags,
+export const tempPostIdState = atom({
+  key: `tempPostIdState/${v1()}`,
+  default: '',
 })
 
 export const restoreAccessTokenLoadable = selector({
-  key: 'restoreAccessTokenLoadable',
+  key: `restoreAccessTokenLoadable/${v1()}`,
   get: async () => {
-    const newAccessToken = await getAccessToken()
-    return newAccessToken
+    // const newAccessToken = await getAccessToken()
+    // return newAccessToken
   },
 })
 

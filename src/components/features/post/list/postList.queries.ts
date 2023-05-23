@@ -7,9 +7,31 @@ export const FETCH_POSTS = gql`
       postId
       title
       content
+      image
+      series {
+        seriesId
+        title
+      }
+      tags {
+        name
+      }
       user {
         nickname
       }
+      createdAt
+      likes {
+        likeId
+      }
+      comments {
+        commentId
+      }
     }
+  }
+`
+
+// **** 포스트 좋아요 조회
+export const FETCH_LIKE_COUNT_BY_POST = gql`
+  query fetchLikeCountByPost($postId: String!) {
+    fetchLikeCountByPost(postId: $postId)
   }
 `
