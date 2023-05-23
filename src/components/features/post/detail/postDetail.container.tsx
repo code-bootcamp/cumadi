@@ -13,6 +13,13 @@ import {
   FETCH_USER_LOGGED_IN,
   TOGGLE_POST_PICK,
 } from './postDetail.queries'
+import {
+  IMutation,
+  IMutationDeletePostArgs,
+  IQuery,
+  IQueryFetchPostArgs,
+  IQueryFetchSeriesArgs,
+} from '@/common/types/generated/types'
 
 export default function PostDetail() {
   const router = useRouter()
@@ -24,12 +31,12 @@ export default function PostDetail() {
 
   // **** PlayGround
   const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
-  const { data } = useQuery(FETCH_POST, { variables: { postId } })
+  const { data } = useQuery<Pick<IQuery, 'fetchPost'>, IQueryFetchPostArgs>(FETCH_POST, { variables: { postId } })
   const { data: likeData } = useQuery(FETCH_LIKE_COUNT_BY_POST, { variables: { postId } })
-  const { data: seriesData } = useQuery(FETCH_SERIES, {
+  const { data: seriesData } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
     variables: { seriesId: String(data?.fetchPost?.series?.seriesId) },
   })
-  const [deletePost] = useMutation(DELETE_POST)
+  const [deletePost] = useMutation<Pick<IMutation, 'deletePost'>, IMutationDeletePostArgs>(DELETE_POST)
   const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
   const [createPostMemo] = useMutation(CREATE_POST_MEMO)
 

@@ -50,15 +50,16 @@ export const BtnWrapper = styled.div`
 
 export const TagWrapper = styled.div`
   display: flex;
+  justify-content: center;
   gap: 1rem;
-  text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 
   button {
     padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    background-color: var(--color-primary);
     color: var(--color-white);
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+    cursor: pointer;
   }
 `
 

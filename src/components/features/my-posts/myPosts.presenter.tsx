@@ -33,45 +33,45 @@ export default function MyPostsUI(props: any) {
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {props.data?.fetchPostsOfMine.map((post: any) => (
+        {props.data?.fetchPostsOfMine.map((postOfMine: any) => (
           <StyledCardOutlined
-            key={post.postId}
+            key={postOfMine.postId}
             cover={
-              post.image ? (
+              postOfMine.image ? (
                 <StyledCardCover
-                  src={post.image}
+                  src={postOfMine.image}
                   alt="포스트 썸네일 이미지"
-                  onClick={onClickMoveToPage(`/post/${post.postId}`)}
+                  onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
                 />
               ) : (
                 <Empty description={<span>이미지가 없습니다.</span>} />
               )
             }
-            onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+            onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
-                {post?.series?.title}
+                {postOfMine?.series?.title}
               </BodyTextSm>
-              <BodyTextLg>{post.title}</BodyTextLg>
+              <BodyTextLg>{postOfMine.title}</BodyTextLg>
               <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{post.content}</TruncatedText>
+                <TruncatedText lines={4}>{postOfMine.content}</TruncatedText>
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
-                  <Avatar src={post.user.image ?? ''}>{post.user.nickname[0]}</Avatar>
+                  <Avatar src={postOfMine.user.image ?? ''}>{postOfMine.user.nickname[0]}</Avatar>
                   <ProfileTextDataContainer>
-                    <BodyTextSm weight={600}>{post.user.nickname}</BodyTextSm>
-                    <BodyTextSm color={Colors.gray1}>{post.createDate}</BodyTextSm>
+                    <BodyTextSm weight={600}>{postOfMine.user.nickname}</BodyTextSm>
+                    <BodyTextSm color={Colors.gray1}>{postOfMine.createDate}</BodyTextSm>
                   </ProfileTextDataContainer>
                 </ProfileContainer>
                 <ReactionsContainer>
                   <ReactionContainer>
                     <img src="/images/heart-outlined.svg" alt="좋아요 수" />
-                    <span>3</span>
+                    <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
-                    <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                    <span>3</span>
+                    <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                    <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </InfoSectionContainer>

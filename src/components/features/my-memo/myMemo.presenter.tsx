@@ -1,6 +1,6 @@
 import * as S from './myMemo.styles'
 import PaginationMemo from '@/components/common/pagination/PaginationMyMemo/PaginationMyMemo.container'
-import { MyButton, MyTag } from '@/components/common/customComponent.styles'
+import { MyButton } from '@/components/common/customComponent.styles'
 
 export default function MyMemoUI(props: any) {
   return (

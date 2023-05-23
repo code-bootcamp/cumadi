@@ -23,9 +23,10 @@ export const TagWrapper = styled.div`
   margin: 1rem 0;
 
   button {
-    border-radius: 1rem;
     padding: 0.5rem 1rem;
-    background: var(--color-primary);
     color: var(--color-white);
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+    cursor: pointer;
   }
 `

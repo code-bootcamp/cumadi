@@ -16,6 +16,12 @@ export const FETCH_POSTS_OF_MINE = gql`
         seriesId
         title
       }
+      likes {
+        likeId
+      }
+      comments {
+        commentId
+      }
     }
   }
 `
