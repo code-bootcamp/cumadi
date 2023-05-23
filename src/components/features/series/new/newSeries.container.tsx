@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import {
   CREATE_SERIES,
   FETCH_POSTS_OF_MINE,
+  FETCH_SERIES,
   FETCH_SERIES_CATEGORIES,
 } from "./newSeries.query";
 import { useRecoilState } from "recoil";
@@ -43,7 +44,7 @@ export default function NewSeries(props) {
   const [isClickPrice, setIsClickPrice] = useState(false);
   const { TextArea } = Input;
 
-  const { data: previousData } = useQuery();
+  const { data: previousData } = useQuery(FETCH_SERIES);
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [createSeries] = useMutation(CREATE_SERIES);
@@ -115,7 +116,7 @@ export default function NewSeries(props) {
 
   return (
     <NewSeriesUI
-      seriesData={seriesData}
+      previousData={previousData}
       isEdit={props.isEdit}
       post={post}
       imgRef={imgRef}

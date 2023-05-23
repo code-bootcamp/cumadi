@@ -20,7 +20,9 @@ export default function NewSeriesUI(props: any) {
           <Input
             type="primary"
             placeholder="시리즈 이름을 지어주세요."
-            // defaultValue={props.data?.fetchBoard.title}
+            defaultValue={
+              props.isEdit ? props.previousData?.fetchSeries.title : ""
+            }
           />
         </Form.Item>
         <S.Name>썸네일</S.Name>
@@ -52,6 +54,9 @@ export default function NewSeriesUI(props: any) {
           <props.TextArea
             style={{ width: "100%", minHeight: "6rem" }}
             placeholder="좋은 소개글은 사람들의 이목을 끌어모아요!"
+            defaultValue={
+              props.isEdit ? props.previousData?.fetchSeries.introduction : ""
+            }
           />
         </Form.Item>
         <S.Name>카테고리</S.Name>
@@ -64,6 +69,9 @@ export default function NewSeriesUI(props: any) {
             style={{ width: "100%" }}
             onChange={props.onCheckCategory}
             options={props.categoryOptions}
+            defaultValue={
+              props.isEdit ? props.previousData?.fetchSeries.category.name : ""
+            }
           />
         </Form.Item>
         <S.Name>포스트 추가하기</S.Name>
@@ -81,6 +89,11 @@ export default function NewSeriesUI(props: any) {
               width: "100%",
             }}
             options={props.postOptions}
+            defaultValue={
+              props.isEdit
+                ? props.previousData?.fetchSeries.post?.map((el) => el.title)
+                : ""
+            }
           />
         </Form.Item>
         <S.PriceToggle>
