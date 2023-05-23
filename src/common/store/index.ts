@@ -45,7 +45,7 @@ export const restoreAccessTokenLoadable = selector({
 });
 
 // **** 바로구매 시리즈 정보
-export const buyItemId = atom({
-  key: `buyItemId/${v1()}`,
+export const editSeriesId = atom({
+  key: `editSeriesId/${v1()}`,
   default: "",
 });

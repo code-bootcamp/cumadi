@@ -28,6 +28,7 @@ export default function NewSeriesUI(props: any) {
             defaultValue={
               props.isEdit ? props.previousData?.fetchSeries.title : ""
             }
+            value={props.isEdit ? props.previousData?.fetchSeries.title : ""}
           />
         </Form.Item>
         <S.Name>썸네일</S.Name>
@@ -42,8 +43,11 @@ export default function NewSeriesUI(props: any) {
             ]}
           >
             <S.Thumbnail
-              onClick={props.onClickUploadThumbnail}
+              onChange={props.onClickUploadThumbnail}
               thumbnail={props.thumbnail}
+              defaultValue={
+                props.isEdit ? props.previousData?.fetchSeries.introduction : ""
+              }
             >
               <MyButton>썸네일 업로드</MyButton>
             </S.Thumbnail>
@@ -72,6 +76,9 @@ export default function NewSeriesUI(props: any) {
             defaultValue={
               props.isEdit ? props.previousData?.fetchSeries.introduction : ""
             }
+            value={
+              props.isEdit ? props.previousData?.fetchSeries.introduction : ""
+            }
           />
         </Form.Item>
         <S.Name>카테고리</S.Name>
@@ -85,7 +92,14 @@ export default function NewSeriesUI(props: any) {
             onChange={props.onCheckCategory}
             options={props.categoryOptions}
             defaultValue={
-              props.isEdit ? props.previousData?.fetchSeries.category.name : ""
+              props.isEdit
+                ? props.previousData?.fetchSeries.category.name
+                : null
+            }
+            value={
+              props.isEdit
+                ? props.previousData?.fetchSeries.category.name
+                : null
             }
           />
         </Form.Item>
@@ -107,7 +121,7 @@ export default function NewSeriesUI(props: any) {
             defaultValue={
               props.isEdit
                 ? props.previousData?.fetchSeries.post?.map((el) => el.title)
-                : ""
+                : null
             }
           />
         </Form.Item>

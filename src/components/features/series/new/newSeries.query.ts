@@ -35,6 +35,12 @@ export const UPDATE_SERIES = gql`
   }
 `;
 
+export const UPLOAD_IMAGE = gql`
+  mutation uploadImage($file: Upload!) {
+    uploadImage(file: $file)
+  }
+`;
+
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
     fetchSeries(seriesId: $seriesId) {

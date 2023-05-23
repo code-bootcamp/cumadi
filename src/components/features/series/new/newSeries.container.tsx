@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 import NewSeriesUI from "./newSeries.presenter";
 import { useRouter } from "next/router";
-import { Input, Tag } from "antd";
+import { Input, Modal, Tag } from "antd";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   CREATE_SERIES,
@@ -9,6 +9,7 @@ import {
   FETCH_SERIES,
   FETCH_SERIES_CATEGORIES,
   UPDATE_SERIES,
+  UPLOAD_IMAGE,
 } from "./newSeries.query";
 import { useRecoilState } from "recoil";
 import { editSeriesId } from "@/common/store";
@@ -38,7 +39,7 @@ export default function NewSeries(props) {
   const imgRef = useRef<HTMLInputElement>(null);
 
   const [editId] = useRecoilState(editSeriesId);
-  const [thumbnail, setThumbnail] = useState<string>("");
+  const [thumbnail, setThumbnail] = useState("");
   const [cateState, setCateState] = useState("");
   const [postState, setPostState] = useState([]);
   const [isClickPrice, setIsClickPrice] = useState(false);
@@ -52,6 +53,7 @@ export default function NewSeries(props) {
 
   const [createSeries] = useMutation(CREATE_SERIES);
   const [updateSeries] = useMutation(UPDATE_SERIES);
+  const [uploadImage] = useMutation(UPLOAD_IMAGE);
 
   const postOptions = post?.fetchPostsOfMine.map((el) => {
     return { label: el.title, value: el.postId };
@@ -74,16 +76,14 @@ export default function NewSeries(props) {
     imgRef.current?.click();
   };
 
-  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeFile = async (event) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      if (typeof event.target?.result === "string") {
-        setThumbnail(event.target?.result);
-      }
-    };
+    try {
+      const image = await uploadImage({ variables: { file } });
+      setThumbnail(image.data?.uploadImage);
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message });
+    }
   };
 
   const onSubmitForm = async (values: any) => {
@@ -93,7 +93,7 @@ export default function NewSeries(props) {
           createSeriesInput: {
             title: values.title,
             introduction: values.intro,
-            image: "123",
+            image: thumbnail,
             paid,
             price: seriesPrice,
             categoryId: cateState,
@@ -117,7 +117,7 @@ export default function NewSeries(props) {
   };
 
   const onSubmitUpdate = async (values: any) => {
-    if (values.title === "" && values.introduction) {
+    if (values.title === "" && values.introduction === "") {
       alert("수정한 내용이 없습니다.");
       return;
     }
@@ -131,16 +131,16 @@ export default function NewSeries(props) {
       const result = await updateSeries({
         variables: {
           seriesId: editId,
-          updateSeriesInput,
+          updateSeriesInput: updateSeriesInput,
         },
       });
 
-      if (result.data?.updateSeries.seriesid === undefined) {
+      if (result.data?.updateSeries.seriesId === undefined) {
         alert("요청에 문제가 있습니다.");
         return;
       }
 
-      void router.push(`/series/${result.data?.updateSeries.seriesid}`);
+      void router.push(`/series/${result.data?.updateSeries.seriesId}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
       return;
