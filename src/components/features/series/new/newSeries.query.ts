@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+// prettier-ignore
+
 export const FETCH_POSTS_OF_MINE = gql`
   query fetchPostsOfMine {
     fetchPostsOfMine {
@@ -27,12 +29,11 @@ export const CREATE_SERIES = gql`
 `;
 
 export const UPDATE_SERIES = gql`
-  mutation updateSeries(
-    $seriesId: String!
-    $updateSeriesInput: UpdateSeriesInput!
-  ) {
-    seriesId
-  }
+  mutation updateSeries($seriesId: String!, $updateSeriesInput: UpdateSeriesInput!) {
+    updateSeries(seriesId: $seriesId, updateSeriesInput: $updateSeriesInput) {
+      seriesId
+    }
+  } 
 `;
 
 export const UPLOAD_IMAGE = gql`

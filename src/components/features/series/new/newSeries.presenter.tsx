@@ -6,7 +6,7 @@ export default function NewSeriesUI(props: any) {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>{props.isEdit ? "새 시리즈 만들기" : "시리즈 수정"}</S.Title>
+        <S.Title>{props.isEdit ? "시리즈 수정" : "새 시리즈 만들기"}</S.Title>
       </S.TitleWrapper>
 
       <S.PostForm

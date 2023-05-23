@@ -62,7 +62,7 @@ export default function NewSeries(props) {
     return { label: el.name, value: el.categoryId };
   });
   const seriesPrice = isClickPrice ? 3000 : 0;
-  const paid = isClickPrice ? true : false;
+  const paid = isClickPrice;
 
   const onCheckCategory = (value) => {
     setCateState(value);
