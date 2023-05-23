@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { Checkbox } from 'antd'
+import { Checkbox, Empty } from 'antd'
 import {
   HorizontalCardSm,
   FlexColumnContainer,
@@ -25,12 +25,16 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
           <S.CardWrapper className="card-wrapper">
             <Checkbox type="checkbox" checked />
             <HorizontalCardSm>
-              <img
-                className="horizontal-card-cover"
-                src={props.data?.fetchSeries.image}
-                alt={`${props.data?.fetchSeries.title} 이미지`}
-                onError={props.imageErrorVisible}
-              />
+              {props.data?.fetchSeries.image ? (
+                <img
+                  className="horizontal-card-cover"
+                  src={props.data?.fetchSeries.image}
+                  alt={`${props.data?.fetchSeries.title} 이미지`}
+                />
+              ) : (
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              )}
+
               <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                 <FlexColumnContainer gap={'0.5rem'}>
                   <BodyTextLg>
@@ -42,7 +46,9 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
                   </InfoSectionContainer>
                 </FlexColumnContainer>
                 <PriceContainer>
-                  <BodyTextLg>{`${props.data?.fetchSeries.price?.toLocaleString()}원`}</BodyTextLg>
+                  <BodyTextLg>
+                    {props.data?.fetchSeries.price ? `${props.data?.fetchSeries.price.toLocaleString()}원` : '무료'}
+                  </BodyTextLg>
                 </PriceContainer>
               </div>
             </HorizontalCardSm>

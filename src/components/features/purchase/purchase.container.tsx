@@ -1,6 +1,8 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { Modal } from 'antd'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
+
 import PurchaseUI from './purchase.presenter'
 import {
   IMutation,
@@ -27,17 +29,15 @@ export default function Purchase() {
   useEffect(() => {
     const buyNowSeries = localStorage.getItem('buySeriesId') || ''
     if (!buyNowSeries) {
-      alert('상품을 찾을 수 없습니다. 메인페이지로 이동합니다.')
+      Modal.warning({ content: '상품을 찾을 수 없습니다. 메인페이지로 이동합니다.' })
       router.push('/')
     }
     setSeriesId(buyNowSeries)
   }, [])
 
+  //  prettier-ignore
+  const { data } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, { variables: { seriesId } })
   const { data: userData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
-
-  const { data } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
-    variables: { seriesId },
-  })
 
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
@@ -48,23 +48,18 @@ export default function Purchase() {
     IMutationCreatePaymentFreeSeriesArgs
   >(CREATE_PAYMENT_FREE_SERIES)
 
-  const imageErrorVisible = (event: ChangeEvent<HTMLImageElement>) => {
-    event.target.src = '/images/no-image.jpeg'
-  }
-
   const onClickPayment = async () => {
     //  구매금액이 0원일 때,
     if (data?.fetchSeries.price === 0) {
       try {
-        const result = await createPaymentFreeSeries({
+        await createPaymentFreeSeries({
           variables: { seriesList: [data.fetchSeries.seriesId] },
         })
-        //  console.log(result)
-        alert('결제에 성공했습니다.')
+        Modal.success({ content: '결제에 성공했습니다.' })
         localStorage.removeItem('buySeriesId')
         router.push('/')
       } catch (error) {
-        if (error instanceof Error) alert(error.message)
+        if (error instanceof Error) Modal.error({ content: error.message })
       }
       return
     }
@@ -81,11 +76,11 @@ export default function Purchase() {
         amount: Number(data?.fetchSeries.price),
         buyer_email: userData?.fetchUserLoggedIn.email,
         buyer_name: userData?.fetchUserLoggedIn.nickname,
-        m_redirect_url: `http://localhost:3000${router.pathname}`, // 모바일에서는 결제시, 결제페이지로 사이트가 이동되므로 돌아올시 주소입력(바로구매 페이지 또는 장바구니 페이지)
+        m_redirect_url: 'http://localhost:3000/purchase', // 모바일에서는 결제시, 결제페이지로 사이트가 이동되므로 돌아올시 주소
       },
       async (rsp: any) => {
         if (rsp.success) {
-          const result = await createPaymentSeries({
+          await createPaymentSeries({
             variables: {
               createPaymentInput: {
                 impUid: rsp.imp_uid,
@@ -94,17 +89,16 @@ export default function Purchase() {
               },
             },
           })
-          //  console.log(result)
-          alert('결제에 성공했습니다.')
+          Modal.success({ content: '결제에 성공했습니다.' })
           localStorage.removeItem('buySeriesId')
           router.push('/')
         } else {
           // 결제 취소 시,
-          alert('결제가 종료되었습니다. 다시 시도해 주세요.')
+          Modal.info({ content: '결제가 종료되었습니다. 다시 시도해주세요.' })
         }
       },
     )
   }
 
-  return <PurchaseUI data={data} imageErrorVisible={imageErrorVisible} onClickPayment={onClickPayment} />
+  return <PurchaseUI data={data} onClickPayment={onClickPayment} />
 }
