@@ -12,17 +12,15 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
+import { IPostListUIProps } from './postList.types'
+import { IPost } from '@/common/types/generated/types'
 
-interface IPostListUIProps {
-  data?: any
-}
-
-export default function PostListUI(props: any) {
+export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <S.Body>
-      {props.data?.fetchPosts.map((el: any) => (
+      {data?.fetchPosts.map((el: any) => (
         <StyledCard
           bordered={false}
           key={el.postId}
@@ -38,7 +36,9 @@ export default function PostListUI(props: any) {
             )
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
-            {el.series?.title ? <BodyTextSm color={Colors.primary} weight={600} /> : null}
+            <BodyTextSm color={Colors.primary} weight={600}>
+              {el.series?.title ?? 'NO SERIES'}
+            </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
               <TruncatedText lines={4}>{el.content}</TruncatedText>
