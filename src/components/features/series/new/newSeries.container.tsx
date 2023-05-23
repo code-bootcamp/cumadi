@@ -114,21 +114,19 @@ export default function NewSeries(props) {
   };
 
   const onSubmitUpdate = async (values: any) => {
-    if (values.title === "" && values.introduction === "") {
-      alert("수정한 내용이 없습니다.");
-      return;
-    }
-
-    const updateSeriesInput = {};
-    if (values.title !== "") updateSeriesInput.title = values.title;
-    if (values.contents !== "")
-      updateSeriesInput.introduction = values.introduction;
-
     try {
       const result = await updateSeries({
         variables: {
           seriesId: editId,
-          updateSeriesInput: updateSeriesInput,
+          updateSeriesInput: {
+            title: values.title,
+            introduction: values.intro,
+            image: thumbnail,
+            paid,
+            price: seriesPrice,
+            categoryId: cateState,
+            posts: postState,
+          },
         },
       });
 
