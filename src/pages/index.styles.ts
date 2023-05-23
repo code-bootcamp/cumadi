@@ -17,6 +17,15 @@ export const Title = styled.div`
 `
 
 export const TagWrapper = styled.div`
-  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   margin: 1rem 0;
+
+  button {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
 `

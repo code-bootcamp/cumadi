@@ -1,12 +1,9 @@
 import * as S from './postDetail.styles'
 
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
-import { postItem } from '@/common/dummyData/post'
-import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 import { getDate } from '@/common/libraries/utils'
-import { useRouter } from 'next/router'
 import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
 
@@ -29,12 +26,11 @@ export default function PostDetailUI(props: any) {
         />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
-          <S.PostSubTitle>{PostDetail?.description}</S.PostSubTitle>
           <S.PostTagWapper>
             {PostDetail?.tags.map((tag: any) => (
-              <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
+              <S.PostTag key={tag.tagId} id={tag.tagId}>
                 {tag.name}
-              </MyTag>
+              </S.PostTag>
             ))}
           </S.PostTagWapper>
 
@@ -49,8 +45,7 @@ export default function PostDetailUI(props: any) {
 
             {isWriterUser && (
               <S.PostUpdateBtnWrapper>
-                {/* <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/stats`)}>통계</button> */}
-                <button onClick={onClickMoveToPage(`/post/stats`)}>통계</button>
+                <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/stats`)}>통계</button>
                 <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/edit`)}>수정</button>
                 <button onClick={props.onClickDelete}>삭제</button>
               </S.PostUpdateBtnWrapper>
@@ -100,7 +95,7 @@ export default function PostDetailUI(props: any) {
         </div>
         {/* 포스트 댓글 */}
         <PostCommentList />
-        <PostCommentWrite />
+        <PostCommentWrite isEditPostComment={false} />
       </S.Container>
     </>
   )

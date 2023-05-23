@@ -1,12 +1,8 @@
 import { Avatar, Empty } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 
 import * as S from './myPosts.styles'
-import {
-  FlexColumnContainer,
-  MyTag,
-  StyledCardCover,
-  StyledCardOutlined,
-} from '@/components/common/customComponent.styles'
+import { FlexColumnContainer, StyledCardCover, StyledCardOutlined } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -16,7 +12,6 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { PlusOutlined } from '@ant-design/icons'
 
 export default function MyPostsUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -30,52 +25,48 @@ export default function MyPostsUI(props: any) {
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>
-          <MyTag isChecked={true} onClick={onClickMoveToPage('/my/posts')}>
-            포스트
-          </MyTag>
-          <MyTag isChecked={false} onClick={onClickMoveToPage('/my/series')}>
-            시리즈
-          </MyTag>
+          <button onClick={onClickMoveToPage('/my/posts')}>포스트</button>
+          <button onClick={onClickMoveToPage('/my/series')}>시리즈</button>
         </S.TagWrapper>
         <S.RegisterBtn onClick={onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
           포스트 작성하기
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {props.data?.fetchPostsOfMine.map(el => (
+        {props.data?.fetchPostsOfMine.map((post: any) => (
           <StyledCardOutlined
-            key={el.postId}
+            key={post.postId}
             cover={
-              el.image ? (
+              post.image ? (
                 <StyledCardCover
-                  src={el.image}
+                  src={post.image}
                   alt="포스트 썸네일 이미지"
-                  onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                  onClick={onClickMoveToPage(`/post/${post.postId}`)}
                 />
               ) : (
                 <Empty description={<span>이미지가 없습니다.</span>} />
               )
             }
-            onClick={onClickMoveToPage(`/post/${el.postId}`)}>
+            onClick={onClickMoveToPage(`/post/${post.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
-                {el?.series?.title}
+                {post?.series?.title}
               </BodyTextSm>
-              <BodyTextLg>{el.title}</BodyTextLg>
+              <BodyTextLg>{post.title}</BodyTextLg>
               <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{el.content}</TruncatedText>
+                <TruncatedText lines={4}>{post.content}</TruncatedText>
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
-                  <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
+                  <Avatar src={post.user.image ?? ''}>{post.user.nickname[0]}</Avatar>
                   <ProfileTextDataContainer>
-                    <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
-                    <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
+                    <BodyTextSm weight={600}>{post.user.nickname}</BodyTextSm>
+                    <BodyTextSm color={Colors.gray1}>{post.createDate}</BodyTextSm>
                   </ProfileTextDataContainer>
                 </ProfileContainer>
                 <ReactionsContainer>
                   <ReactionContainer>
-                    <img src="/images/heart-outlined.svg" alt="관심 수" />
+                    <img src="/images/heart-outlined.svg" alt="좋아요 수" />
                     <span>3</span>
                   </ReactionContainer>
                   <ReactionContainer>

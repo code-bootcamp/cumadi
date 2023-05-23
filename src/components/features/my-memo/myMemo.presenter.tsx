@@ -10,7 +10,6 @@ export default function MyMemoUI(props: any) {
         {props.data?.fetchPostMemos.map((element: any) => (
           <S.List key={element.memoId}>
             <S.ListTop>
-              <MyTag isChecked={false}>카테고리</MyTag>
               <MyButton type="primary" id={element.memoId} onClick={props.onClickDeleteMemo}>
                 삭제
               </MyButton>

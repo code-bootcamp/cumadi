@@ -49,8 +49,17 @@ export const BtnWrapper = styled.div`
 `
 
 export const TagWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
   text-align: center;
   margin-bottom: 1rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
 `
 
 export const PlusImg = styled.img`
