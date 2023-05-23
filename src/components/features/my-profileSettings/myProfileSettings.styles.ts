@@ -17,6 +17,7 @@ export const ProfileWrapper = styled.div`
 export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `
 
 export const AvatarImg = styled.img`

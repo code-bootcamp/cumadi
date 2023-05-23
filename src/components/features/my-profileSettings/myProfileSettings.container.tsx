@@ -109,7 +109,7 @@ export default function MyProfileSettings() {
     try {
       await updateUser({
         variables: {
-          updateUserInput: { image: '/images/avatar.png' },
+          updateUserInput: { image: '' },
         },
         refetchQueries: [{ query: FETCH_USER_LOGGED_IN }],
       })

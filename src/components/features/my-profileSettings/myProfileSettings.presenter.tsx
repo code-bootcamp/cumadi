@@ -1,3 +1,5 @@
+import { Avatar } from 'antd'
+
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './myProfileSettings.styles'
 import { IMyProfileSettingsUIProps } from './myProfileSettiong.types'
@@ -9,8 +11,14 @@ export default function MyProfileSettingsUI(props: IMyProfileSettingsUIProps) {
     <>
       <S.ProfileSettingTitle>프로필 수정</S.ProfileSettingTitle>
       <S.ProfileWrapper>
-        <S.AvatarWrapper>
-          <S.AvatarImg src={props.loginData?.fetchUserLoggedIn.image ? props.loginData.fetchUserLoggedIn.image :'/images/avatar.png'} onClick={props.onClickImage} />
+        <S.AvatarWrapper onClick={props.onClickImage}>
+          {props.loginData?.fetchUserLoggedIn.image ?
+            <Avatar size={120} src={props.loginData?.fetchUserLoggedIn.image}  /> 
+            :
+            <Avatar size={120} style={{ fontSize: 60 }}>
+              {props.loginData?.fetchUserLoggedIn.nickname.substr(0, 1)}
+            </Avatar>
+          }
           <input style={{ display: 'none' }} type="file" onChange={props.onChangeImageFile} ref={props.fileRef} />
           <S.DeleteImgBtn onClick={props.onClickDeleteImgBtn}>이미지 제거</S.DeleteImgBtn>
         </S.AvatarWrapper>
