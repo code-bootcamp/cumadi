@@ -1,7 +1,12 @@
-import { Avatar } from 'antd'
+import { Avatar, Empty } from 'antd'
 
 import * as S from './myPosts.styles'
-import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
+import {
+  FlexColumnContainer,
+  MyTag,
+  StyledCardCover,
+  StyledCardOutlined,
+} from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -38,14 +43,18 @@ export default function MyPostsUI(props: any) {
       </S.BtnWrapper>
       <S.Body>
         {props.data?.fetchPostsOfMine.map(el => (
-          <S.StyledCard
+          <StyledCardOutlined
             key={el.postId}
             cover={
-              <S.CardThumbnailImg
-                src={el.image ? el.image : '/images/no-image.jpeg'}
-                alt="포스트 썸네일 이미지"
-                onClick={onClickMoveToPage(`/post/${el.postId}`)}
-              />
+              el.image ? (
+                <StyledCardCover
+                  src={el.image}
+                  alt="포스트 썸네일 이미지"
+                  onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                />
+              ) : (
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              )
             }
             onClick={onClickMoveToPage(`/post/${el.postId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
@@ -58,7 +67,7 @@ export default function MyPostsUI(props: any) {
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
-                  <Avatar>E</Avatar>
+                  <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                   <ProfileTextDataContainer>
                     <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                     <BodyTextSm color={Colors.gray1}>{el.createDate}</BodyTextSm>
@@ -76,7 +85,7 @@ export default function MyPostsUI(props: any) {
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </S.StyledCard>
+          </StyledCardOutlined>
         ))}
       </S.Body>
     </>

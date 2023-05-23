@@ -36,14 +36,6 @@ export const InputWrapper = styled.div`
   margin-top: 1rem;
 `
 
-export const BasicInput = styled(Input)`
-  width: 100%;
-  height: 1.4rem;
-  padding: 2rem 1rem;
-  border-radius: 1rem;
-  margin: 0.4rem 0;
-`
-
 export const ErrorMessage = styled.div`
   margin: 0.5rem 0;
   color: red;
@@ -54,26 +46,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
-`
-
-export const CancelBtn = styled.button`
-  width: 100%;
-  height: 4rem;
-  margin: 0.4rem 0;
-  padding: 1rem 1.5rem;
-  border-radius: 1rem;
-  color: var(--color-white);
-  background-color: var(--color-gray-2);
-`
-
-export const SignUpBtn = styled.button`
-  width: 100%;
-  height: 4rem;
-  margin: 0.4rem 0;
-  padding: 1rem 1.5rem;
-  border-radius: 1rem;
-  color: var(--color-white);
-  background-color: var(--color-primary);
 `
 
 export const SignupWrapper = styled.span`

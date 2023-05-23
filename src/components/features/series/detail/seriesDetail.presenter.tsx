@@ -4,6 +4,7 @@ import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.conta
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined, PlusOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
+import { Empty } from 'antd'
 
 export default function SeriesDetailUI(props: any) {
   const category = props.data?.fetchSeries.category.name
@@ -61,7 +62,7 @@ export default function SeriesDetailUI(props: any) {
         {props.data?.fetchSeries.post?.map(el => (
           <S.PostWrapper>
             <S.ImageWrapper>
-              <S.Image src={'/images/no-image.jpeg'} />
+              {el.image ? <S.Image src={el.image} /> : <Empty description={<span>이미지가 없습니다.</span>} />}
             </S.ImageWrapper>
             <S.DescriptionWrapper>
               <S.PostCategory>{category}</S.PostCategory>

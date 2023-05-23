@@ -50,6 +50,7 @@ export const BtnWrapper = styled.div`
 
 export const TagWrapper = styled.div`
   text-align: center;
+  margin-bottom: 1rem;
 `
 
 export const PlusImg = styled.img`
