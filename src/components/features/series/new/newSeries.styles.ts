@@ -30,7 +30,10 @@ export const PostForm = styled(Form)`
 `;
 
 export const ButtonWrapper = styled.section`
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  margin: 0 auto;
   margin-top: 3rem;
 `;
 

@@ -93,9 +93,11 @@ export default function NewSeriesUI(props: any) {
         </S.PriceToggle>
         <Form.Item>
           <S.ButtonWrapper>
-            <Button style={{ margin: "auto" }}>
-              {props.isEdit ? "수정 취소" : ""}
-            </Button>
+            {props.isEdit ? (
+              <MyButton style={{ margin: "auto" }}>수정 취소</MyButton>
+            ) : (
+              <div></div>
+            )}
             <MyButton
               type="primary"
               htmlType="submit"
