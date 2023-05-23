@@ -7,7 +7,7 @@ import { getDate } from '@/common/libraries/utils'
 import { IPostDetailUIProps } from './postDetail.types'
 import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
-import MarkdownView from '@/components/common/markdownViewer/markdownViwer.container'
+import MarkdownView from '@/components/common/markdownViewer/markdownViwer'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -91,7 +91,7 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           </S.ImageWrapper> */}
 
           {/* 포스트 본문 내용 */}
-          <MarkdownView onMouseUp={props.onMouseUpContentMemo} content={POST_DETAIL?.content} />
+          <MarkdownView content={POST_DETAIL?.content} />
           {/* <div onMouseUp={props.onMouseUpContentMemo}>{POST_DETAIL?.content}</div> */}
         </div>
         {/* 포스트 댓글 */}
