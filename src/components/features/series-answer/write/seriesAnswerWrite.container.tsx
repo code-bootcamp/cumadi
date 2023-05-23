@@ -72,8 +72,8 @@ export default function SeriesAnswerWrite(props) {
     setContent(event.target.value);
   }
   
-  const onChangeRating = (event) => {
-    setRating(event.target.value);
+  const onChangeRating = (value) => {
+    setRating(value);
   }
 
   return (
