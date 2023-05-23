@@ -4,7 +4,7 @@ import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.conta
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
 import { HeartOutlined, CommentOutlined, PlusOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
-import { Empty } from 'antd'
+import { Avatar, Empty } from 'antd'
 
 export default function SeriesDetailUI(props: any) {
   const category = props.data?.fetchSeries.category.name
@@ -20,7 +20,7 @@ export default function SeriesDetailUI(props: any) {
         </S.PostTagWapper>
         <S.Header>
           <S.AvatarWrapper>
-            <S.Avatar src="/images/avatar.png" />
+            <Avatar src={props.data?.fetchSeries.user.image ?? ''}>{props.data?.fetchSeries.user.nickname[0]}</Avatar>
             <S.Info>
               <S.Writer>{props.data?.fetchSeries.user.nickname}</S.Writer>
               <S.CreatedAt>작성자 소개</S.CreatedAt>

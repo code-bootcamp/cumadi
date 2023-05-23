@@ -24,8 +24,10 @@ export default function MyPostsUI(props: any) {
   return (
     <>
       <S.AvatarWrapper>
-        <S.Avatar src="/images/avatar.png" />
-        <S.Writer>개발자</S.Writer>
+        <Avatar size={64} src={props.data?.fetchPostsOfMine[0].user.image ?? ''}>
+          {props.data?.fetchPostsOfMine[0].user.nickname[0]}
+        </Avatar>
+        <S.Writer>{props.data?.fetchPostsOfMine[0].user.nickname}</S.Writer>
         <S.Introduction>개발새발 개발자</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>

@@ -10,12 +10,9 @@ export default function MyPageUI(props: any) {
   return (
     <S.Container>
       <S.AvatarWrapper>
-        {props.loginData?.fetchUserLoggedIn.image ? (
-          <Avatar src={props.loginData?.fetchUserLoggedIn.image} size={64} />
-        ) : (
-          <Avatar size={64} icon={<UserOutlined />} />
-        )}
-
+        <Avatar size={64} src={props.loginData?.fetchUserLoggedIn.image ?? ''}>
+          {props.loginData?.fetchUserLoggedIn.nickname[0]}
+        </Avatar>
         <S.Writer>{props.loginData?.fetchUserLoggedIn.nickname}</S.Writer>
         <S.Introduction>
           {props.loginData?.fetchUserLoggedIn.introduction

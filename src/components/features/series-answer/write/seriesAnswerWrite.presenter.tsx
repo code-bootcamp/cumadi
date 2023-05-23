@@ -8,7 +8,9 @@ export default function SeriesAnswerWriteUI() {
       <S.AvatarWrapper>
         <S.Avatar src="/images/avatar.png" />
         <span>개발자 A</span>
-        <S.CommentRate><Rate /></S.CommentRate>
+        <S.CommentRate>
+          <Rate />
+        </S.CommentRate>
       </S.AvatarWrapper>
       <S.CommentTextArea
         placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시

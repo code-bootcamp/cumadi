@@ -5,6 +5,7 @@ import * as S from './postAnswerList.styles'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPostAnswerListUIProps } from './postAnswerList.types'
 import PostAnswerWrite from '../write/postAnswerWrite.container'
+import { Avatar } from 'antd'
 
 export default function PostAnswerListUI({ PostCommentAnswerData, onClickDeleteAnswer }: IPostAnswerListUIProps) {
   const CommentAnswer = PostCommentAnswerData?.fetchPostCommentAnswer
@@ -20,7 +21,7 @@ export default function PostAnswerListUI({ PostCommentAnswerData, onClickDeleteA
         <S.CommentList key={CommentAnswer?.answerId}>
           <S.CommentTop>
             <S.AvatarWrapper>
-              <S.Avatar src="/images/avatar.png" />
+              <Avatar src={CommentAnswer?.answerAuthor.image ?? ''}>{CommentAnswer?.answerAuthor.nickname[0]}</Avatar>
               <S.AvatarIntro>
                 <div>{CommentAnswer?.answerAuthor.nickname}</div>
                 <S.Date>{getCreateDate(CommentAnswer?.updatedAt)}</S.Date>

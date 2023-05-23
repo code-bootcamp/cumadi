@@ -8,6 +8,7 @@ import { getDate } from '@/common/libraries/utils'
 import { IPostDetailUIProps } from './postDetail.types'
 import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
+import { Avatar } from 'antd'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -36,7 +37,7 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
 
           <S.Header>
             <S.AvatarWrapper>
-              <S.Avatar src="/images/avatar.png" />
+              <Avatar src={POST_DETAIL?.user.image ?? ''}>{POST_DETAIL?.user.nickname[0]}</Avatar>
               <S.Info>
                 <S.Writer>{POST_DETAIL?.user.nickname}</S.Writer>
                 <S.CreatedAt>{getDate(POST_DETAIL?.createdAt)}</S.CreatedAt>
