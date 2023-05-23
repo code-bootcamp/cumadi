@@ -77,7 +77,13 @@ export default function SeriesDetailUI(props: any) {
         {props.data?.fetchSeries.post?.map((el) => (
           <S.PostWrapper>
             <S.ImageWrapper>
-              <S.Image src={"/images/no-image.jpeg"} />
+              <S.Image
+                src={
+                  props.data?.fetchSeries.image
+                    ? props.data?.fetchSeries.image
+                    : "/images/no-image.jpeg"
+                }
+              />
             </S.ImageWrapper>
             <S.DescriptionWrapper>
               <S.PostCategory>{category}</S.PostCategory>
