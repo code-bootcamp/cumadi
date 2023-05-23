@@ -116,7 +116,8 @@ export const Contents = styled.div`
 `
 
 export const UserRate = styled.div`
-  margin: 0.5rem 0 0 0.2rem;
+  width: 10rem;
+  margin: 0.7rem 0 0 0.5rem;
 `
 
 export const ReviewListNoTitle = styled.div`

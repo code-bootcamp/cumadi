@@ -54,10 +54,13 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   })
 
   const uploadLink = createUploadLink({
-    uri: 'http://34.64.43.6:3000/graphql',
-    headers: { Authorization: `Bearer ${accessToken}`, 'X-Apollo-Operation-Name': 'true' },
-    credentials: 'include',
-  })
+    uri: "http://34.64.249.172:3000/graphql",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-Apollo-Operation-Name": "true",
+    },
+    credentials: "include",
+  });
 
   const client = new ApolloClient({
     // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]), // **** restoreAccessToken 나중에 사용할 예정
