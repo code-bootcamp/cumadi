@@ -25,7 +25,9 @@ export default function SeriesDetailUI(props: any) {
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
               <S.Writer>{props.data?.fetchSeries.user.nickname}</S.Writer>
-              <S.CreatedAt>작성자 소개</S.CreatedAt>
+              <S.CreatedAt>
+                {props.data?.fetchSeries.user.introduction}
+              </S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
           {props.isWriterData ? (
