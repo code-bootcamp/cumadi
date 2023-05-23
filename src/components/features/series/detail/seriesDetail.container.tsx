@@ -10,12 +10,15 @@ import {
   INSERT_SERIES_IN_CART,
 } from "./seriesDetail.query";
 import { useMoveToPage } from "@/common/hooks/useMoveToPage";
+import { useRecoilState } from "recoil";
+import { editSeriesId } from "@/common/store";
 
 export default function SeriesDetail() {
   const router = useRouter();
   const seriesId = String(router.query.seriesId);
   const { onClickMoveToPage } = useMoveToPage();
 
+  const [editId, setEditId] = useRecoilState(editSeriesId);
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN);
   const { data } = useQuery(FETCH_SERIES, { variables: { seriesId } });
   const [addCart] = useMutation(INSERT_SERIES_IN_CART);
@@ -39,6 +42,7 @@ export default function SeriesDetail() {
   };
 
   const onClickUpdate = () => {
+    setEditId(seriesId);
     router.push(`/series/${data?.fetchSeries?.seriesId}/edit`);
   };
 

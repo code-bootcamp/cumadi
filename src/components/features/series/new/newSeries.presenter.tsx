@@ -9,7 +9,9 @@ export default function NewSeriesUI(props: any) {
         <S.Title>{props.isEdit ? "새 시리즈 만들기" : "시리즈 수정"}</S.Title>
       </S.TitleWrapper>
 
-      <S.PostForm onFinish={props.onSubmitForm}>
+      <S.PostForm
+        onFinish={props.isEdit ? props.onSubmitUpdate : props.onSubmitForm}
+      >
         <S.Name>이름</S.Name>
         <Form.Item
           name="title"

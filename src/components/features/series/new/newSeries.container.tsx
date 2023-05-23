@@ -107,6 +107,8 @@ export default function NewSeries(props) {
     router.push("/");
   };
 
+  const onSubmitUpdate = async () => {};
+
   return (
     <NewSeriesUI
       seriesData={seriesData}
