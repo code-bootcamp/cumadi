@@ -1,17 +1,23 @@
-import { useEffect } from 'react'
-import { useRecoilState, useRecoilValueLoadable } from 'recoil'
-import { ApolloProvider, ApolloClient, InMemoryCache, ApolloLink, fromPromise } from '@apollo/client'
-import { onError } from '@apollo/client/link/error'
-import { createUploadLink } from 'apollo-upload-client'
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  ApolloLink,
+  fromPromise,
+} from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from "apollo-upload-client";
 
-import { accessTokenState, restoreAccessTokenLoadable } from '@/common/store'
+import { accessTokenState, restoreAccessTokenLoadable } from "@/common/store";
 // import { getAccessToken } from '@/common/libraries/getAccessToken' // **** restoreAccessToken 나중에 사용할 예정
-import { IApolloSettingProps } from './apollo.types'
+import { IApolloSettingProps } from "./apollo.types";
 
-const GLOBAL_STATE = new InMemoryCache()
+const GLOBAL_STATE = new InMemoryCache();
 
 export default function ApolloSetting(props: IApolloSettingProps) {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState)
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   // **** restoreAccessToken 나중에 사용할 예정
   // const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable)
@@ -49,27 +55,30 @@ export default function ApolloSetting(props: IApolloSettingProps) {
 
   // localstorage 나중에 지울 예정
   useEffect(() => {
-    const result = localStorage.getItem('accessToken')
-    setAccessToken(result ?? '')
-  })
+    const result = localStorage.getItem("accessToken");
+    setAccessToken(result ?? "");
+  });
 
   const uploadLink = createUploadLink({
-    uri: 'http://34.64.249.172:3000/graphql',
-    headers: { Authorization: `Bearer ${accessToken}` },
-    credentials: 'include',
-  })
+    uri: "http://34.64.249.172:3000/graphql",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-Apollo-Operation-Name": "true",
+    },
+    credentials: "include",
+  });
 
   const client = new ApolloClient({
     // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]), // **** restoreAccessToken 나중에 사용할 예정
     link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
     cache: GLOBAL_STATE,
     connectToDevTools: true,
-  })
+  });
 
   return (
     // prettier-ignore
     <ApolloProvider client={client}>
       {props.children}
     </ApolloProvider>
-  )
+  );
 }

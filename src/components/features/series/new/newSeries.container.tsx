@@ -72,14 +72,16 @@ export default function NewSeries(props) {
     setPostState(value);
   };
 
-  const onClickUploadThumbnail = () => {
-    imgRef.current?.click();
-  };
+  const onClickUploadThumbnail = () => imgRef.current?.click();
 
   const onChangeFile = async (event) => {
     const file = event.target.files?.[0];
+    console.log(event.target.files);
     try {
+      console.log("들어왔다");
+      // const imageFile = await uploadImage({ variables: { file: file } });
       const imageFile = await uploadImage({ variables: { file } });
+      console.log(imageFile);
       setThumbnail(imageFile.data?.uploadImage);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
