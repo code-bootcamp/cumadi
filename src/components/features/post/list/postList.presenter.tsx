@@ -36,9 +36,7 @@ export default function PostListUI({ data }: IPostListUIProps) {
             )
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
-            <BodyTextSm color={Colors.primary} weight={600}>
-              {el.series?.title ?? 'NO SERIES'}
-            </BodyTextSm>
+            {el.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
               <TruncatedText lines={4}>{el.content}</TruncatedText>
