@@ -12,6 +12,7 @@ import '@toast-ui/editor/dist/toastui-editor.css'
 import { MarkdownEditorProps } from './markdownEditor.types'
 import { gql, useMutation } from '@apollo/client'
 import { IMutation, IMutationUploadImageArgs } from '@/common/types/generated/types'
+import { Modal } from 'antd'
 
 const UPLOAD_IMAGE = gql`
   mutation uploadImage($file: Upload!) {
@@ -38,10 +39,15 @@ export default function MarkdownEditorUI({ editorRef, content, toolbarItems }: M
       hooks={{
         // addImageBlobHook: handleUploadImage,
         addImageBlobHook: async (blob, callback) => {
-          console.log('image', blob)
-          const resultFile = await uploadImage({ variables: { blob } })
-          // const url = await SERVER UPLOAD
-          // callback(url, '')
+          try {
+            console.log('image', blob)
+            const file = new File([blob], 'name')
+            const url = await uploadImage({ variables: { file } })
+            console.log('url', url)
+            callback(url as string, '사진')
+          } catch (error) {
+            if (error instanceof Error) Modal.error({ content: error.message })
+          }
         },
       }}
     />
