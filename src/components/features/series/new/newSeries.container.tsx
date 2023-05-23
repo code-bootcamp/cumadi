@@ -81,7 +81,7 @@ export default function NewSeries(props) {
           createSeriesInput: {
             title: values.title,
             introduction: values.intro,
-            image: values.thumbnail,
+            image: "123",
             paid: false,
             price: seriesPrice,
             categoryId: cateState,
