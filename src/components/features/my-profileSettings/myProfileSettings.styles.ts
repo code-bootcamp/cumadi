@@ -20,6 +20,8 @@ export const AvatarWrapper = styled.div`
   cursor: pointer;
 `
 
+export const Avatar = styled.div``
+
 export const AvatarImg = styled.img`
   width: 8rem;
   height: 8rem;

@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
 import { useRouter } from 'next/router'

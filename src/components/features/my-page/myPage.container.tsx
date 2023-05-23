@@ -22,6 +22,7 @@ export default function MyPage() {
   const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
   const [resignUser] = useMutation<Pick<IMutation, 'resignUser'>>(RESIGN_USER)
 
+  // **** 이벤트 핸들러 함수
   const showModal = () => setOpen(true)
 
   const onCancel = () => setOpen(false)

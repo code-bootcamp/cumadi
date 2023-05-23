@@ -1,4 +1,5 @@
 import { Avatar } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import * as S from './myProfileSettings.styles'
@@ -11,13 +12,11 @@ export default function MyProfileSettingsUI(props: IMyProfileSettingsUIProps) {
     <>
       <S.ProfileSettingTitle>프로필 수정</S.ProfileSettingTitle>
       <S.ProfileWrapper>
-        <S.AvatarWrapper onClick={props.onClickImage}>
+        <S.AvatarWrapper>
           {props.loginData?.fetchUserLoggedIn.image ?
-            <Avatar size={120} src={props.loginData?.fetchUserLoggedIn.image}  /> 
+            <S.Avatar onClick={props.onClickImage}><Avatar size={120} src={props.loginData?.fetchUserLoggedIn.image}  /> </S.Avatar>
             :
-            <Avatar size={120} style={{ fontSize: 60 }}>
-              {props.loginData?.fetchUserLoggedIn.nickname.substr(0, 1)}
-            </Avatar>
+            <S.Avatar onClick={props.onClickImage}><Avatar size={120} icon={<UserOutlined />} /></S.Avatar> 
           }
           <input style={{ display: 'none' }} type="file" onChange={props.onChangeImageFile} ref={props.fileRef} />
           <S.DeleteImgBtn onClick={props.onClickDeleteImgBtn}>이미지 제거</S.DeleteImgBtn>
