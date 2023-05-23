@@ -43,7 +43,7 @@ export default function PostFormUI(props: PostFormUIProps) {
           />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item style={{ backgroundColor: 'white' }}>
           <props.DynamicImportEditor
             editorRef={props.editorRef}
             content={props.post.content ? props.post.content : ''}

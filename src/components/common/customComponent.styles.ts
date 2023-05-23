@@ -126,3 +126,27 @@ export const ReactionContainer = styled.span`
 export const PriceContainer = styled.span`
   word-break: keep-all;
 `
+
+export const DotLeft = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  left: -30rem;
+  top: 8rem;
+  z-index: -2222;
+`
+
+export const DotBottom = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  right: -30rem;
+  bottom: -35rem;
+  z-index: -2222;
+`

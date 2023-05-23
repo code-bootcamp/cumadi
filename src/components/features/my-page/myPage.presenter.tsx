@@ -3,6 +3,7 @@ import { RightOutlined, UserOutlined } from '@ant-design/icons'
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { Avatar } from 'antd'
+import { DotBottom } from '@/components/common/customComponent.styles'
 
 export default function MyPageUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -46,8 +47,8 @@ export default function MyPageUI(props: any) {
       </S.Move>
       <S.MoveDeleteUser>
         <div>회원탈퇴</div>
-        <RightOutlined />
       </S.MoveDeleteUser>
+      <DotBottom />
     </S.Container>
   )
 }

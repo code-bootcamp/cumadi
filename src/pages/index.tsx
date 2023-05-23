@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import * as S from './index.styles'
-import { MyTag } from '@/components/common/customComponent.styles'
+import { DotLeft } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
@@ -25,6 +25,7 @@ export default function Home() {
           </S.TagWrapper>
         </S.TitleWrapper>
         {<PostList />}
+        <DotLeft />
       </S.Main>
     </>
   )

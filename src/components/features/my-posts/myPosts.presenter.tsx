@@ -2,6 +2,8 @@ import { Avatar, Empty } from 'antd'
 
 import * as S from './myPosts.styles'
 import {
+  DotBottom,
+  DotLeft,
   FlexColumnContainer,
   MyTag,
   StyledCardCover,
@@ -86,6 +88,7 @@ export default function MyPostsUI(props: any) {
           </StyledCardOutlined>
         ))}
       </S.Body>
+      <DotBottom />
     </>
   )
 }
