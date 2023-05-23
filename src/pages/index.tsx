@@ -1,15 +1,11 @@
 import Head from 'next/head'
 
 import * as S from './index.styles'
-import { MyTag, MyTagSecondary } from '@/components/common/customComponent.styles'
+import { MyTag } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { useRouter } from 'next/router'
 
 export default function Home() {
-  const router = useRouter()
-  console.log(router)
-
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -20,7 +16,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.svg" />
       </Head>
-      {/* TODO: Add PostsList inside body/main */}
       <S.Main>
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
