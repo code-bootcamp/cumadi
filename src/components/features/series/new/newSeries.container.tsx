@@ -1,9 +1,13 @@
-import { ChangeEvent, useRef, useState } from 'react'
-import NewSeriesUI from './newSeries.presenter'
-import { useRouter } from 'next/router'
-import { Input, Tag } from 'antd'
-import { useMutation, useQuery } from '@apollo/client'
-import { CREATE_SERIES, FETCH_POSTS_OF_MINE, FETCH_SERIES_CATEGORIES } from './newSeries.query'
+import { ChangeEvent, useRef, useState } from "react";
+import NewSeriesUI from "./newSeries.presenter";
+import { useRouter } from "next/router";
+import { Input, Tag } from "antd";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  CREATE_SERIES,
+  FETCH_POSTS_OF_MINE,
+  FETCH_SERIES_CATEGORIES,
+} from "./newSeries.query";
 
 const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
@@ -26,53 +30,53 @@ const tagRender = (props: any) => {
 };
 
 export default function NewSeries(props) {
-  const router = useRouter()
-  const imgRef = useRef<HTMLInputElement>(null)
+  const router = useRouter();
+  const imgRef = useRef<HTMLInputElement>(null);
   const seriesData = router.query;
 
-  const [title, setTitle] = useState("")
-  const [thumbnail, setThumbnail] = useState<string>("")
-  const [introduction, setIntroduction] = useState("")
-  const [cateState, setCateState] = useState("")
-  const [postState, setPostState] = useState([])
-  const [isClickPrice, setIsClickPrice] = useState(false)
-  const { TextArea } = Input
-  
-  const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
+  const [title, setTitle] = useState("");
+  const [thumbnail, setThumbnail] = useState<string>("");
+  const [introduction, setIntroduction] = useState("");
+  const [cateState, setCateState] = useState("");
+  const [postState, setPostState] = useState([]);
+  const [isClickPrice, setIsClickPrice] = useState(false);
+  const { TextArea } = Input;
+
+  const { data: post } = useQuery(FETCH_POSTS_OF_MINE);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [createSeries] = useMutation(CREATE_SERIES);
 
-  const postOptions = post?.fetchPostsOfMine.map(el => {
-    return { label: el.title, value: el.postId }
-  })
-  const categoryOptions = category?.fetchSeriesCategories.map(el => {
-    return { label: el.name, value: el.categoryId }
-  })
-  const seriesPrice = (isClickPrice ? 3000 : 0)
+  const postOptions = post?.fetchPostsOfMine.map((el) => {
+    return { label: el.title, value: el.postId };
+  });
+  const categoryOptions = category?.fetchSeriesCategories.map((el) => {
+    return { label: el.name, value: el.categoryId };
+  });
+  const seriesPrice = isClickPrice ? 3000 : 0;
 
   const onCheckCategory = (value) => {
     setCateState(value);
-  }
+  };
 
   const onCheckPost = (value) => {
     setPostState(value);
-  }
+  };
 
   const onClickUploadThumbnail = () => {
-    imgRef.current?.click()
-  }
+    imgRef.current?.click();
+  };
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
+    const file = event.target.files?.[0];
     if (!file) return;
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = event => {
-        if (typeof event.target?.result === 'string') {
-          setThumbnail(event.target?.result)
-        }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      if (typeof event.target?.result === "string") {
+        setThumbnail(event.target?.result);
       }
-  }
+    };
+  };
 
   const onSubmitForm = async (values: any) => {
     try {
@@ -86,9 +90,9 @@ export default function NewSeries(props) {
             price: seriesPrice,
             categoryId: cateState,
             posts: postState,
-          }
-        }
-      })
+          },
+        },
+      });
       console.log(result.data?.createSeries.seriesId);
       if (result.data?.createSeries.seriesId === undefined) {
         alert("요청에 문제가 있습니다.");
@@ -100,9 +104,9 @@ export default function NewSeries(props) {
       return;
     }
     console.log(values);
-    alert("시리즈 작성이 완료되었습니다.")
+    alert("시리즈 작성이 완료되었습니다.");
     router.push("/");
-  }
+  };
 
   return (
     <NewSeriesUI
@@ -123,5 +127,5 @@ export default function NewSeries(props) {
       onCheckPost={onCheckPost}
       onCheckCategory={onCheckCategory}
     />
-  )
+  );
 }

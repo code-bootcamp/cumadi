@@ -9,17 +9,17 @@ export const FETCH_SERIES_ALL = gql`
       image
       price
       createdAt
-      category{
+      category {
         categoryId
         name
       }
-      user{
+      user {
         userId
         nickname
       }
     }
   }
-`
+`;
 
 export const FETCH_SERIES_CATEGORIES = gql`
   query fetchSeriesCategories {
@@ -28,7 +28,7 @@ export const FETCH_SERIES_CATEGORIES = gql`
       name
     }
   }
-`
+`;
 
 export const FETCH_SERIES_BY_CATEGORY = gql`
   query fetchSeriesByCategory($categoryId: String!) {
@@ -39,14 +39,14 @@ export const FETCH_SERIES_BY_CATEGORY = gql`
       image
       price
       createdAt
-      category{
+      category {
         categoryId
         name
       }
-      user{
+      user {
         userId
         nickname
       }
     }
   }
-`
+`;

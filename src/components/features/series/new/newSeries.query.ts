@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_POSTS_OF_MINE = gql`
-    query fetchPostsOfMine {
-        fetchPostsOfMine {
-            postId
-            title
-        }
+  query fetchPostsOfMine {
+    fetchPostsOfMine {
+      postId
+      title
     }
-`
+  }
+`;
 
 export const FETCH_SERIES_CATEGORIES = gql`
   query fetchSeriesCategories {
@@ -16,7 +16,7 @@ export const FETCH_SERIES_CATEGORIES = gql`
       name
     }
   }
-`
+`;
 
 export const CREATE_SERIES = gql`
   mutation createSeries($createSeriesInput: CreateSeriesInput!) {
@@ -24,4 +24,4 @@ export const CREATE_SERIES = gql`
       seriesId
     }
   }
-`
+`;
