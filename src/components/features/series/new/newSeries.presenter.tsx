@@ -15,7 +15,12 @@ export default function NewSeriesUI(props: any) {
         <S.Name>이름</S.Name>
         <Form.Item
           name="title"
-          rules={[{ required: true, message: "시리즈 이름을 지어주세요." }]}
+          rules={[
+            {
+              required: props.isEdit ? false : true,
+              message: "시리즈 이름을 지어주세요.",
+            },
+          ]}
         >
           <Input
             type="primary"
@@ -29,7 +34,12 @@ export default function NewSeriesUI(props: any) {
         <Form.Item name="thumbnail">
           <Form.Item
             name="title"
-            rules={[{ required: true, message: "썸네일을 추가해주세요." }]}
+            rules={[
+              {
+                required: props.isEdit ? false : true,
+                message: "썸네일을 추가해주세요.",
+              },
+            ]}
           >
             <S.Thumbnail
               onClick={props.onClickUploadThumbnail}
@@ -49,7 +59,12 @@ export default function NewSeriesUI(props: any) {
         <S.Name>소개</S.Name>
         <Form.Item
           name="intro"
-          rules={[{ required: true, message: "시리즈 소개를 작성해주세요." }]}
+          rules={[
+            {
+              required: props.isEdit ? false : true,
+              message: "시리즈 소개를 작성해주세요.",
+            },
+          ]}
         >
           <props.TextArea
             style={{ width: "100%", minHeight: "6rem" }}
