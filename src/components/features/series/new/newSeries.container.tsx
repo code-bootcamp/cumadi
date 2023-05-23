@@ -34,9 +34,7 @@ export default function NewSeries(props) {
   const imgRef = useRef<HTMLInputElement>(null);
   const seriesData = router.query;
 
-  const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState<string>("");
-  const [introduction, setIntroduction] = useState("");
   const [cateState, setCateState] = useState("");
   const [postState, setPostState] = useState([]);
   const [isClickPrice, setIsClickPrice] = useState(false);
@@ -53,6 +51,7 @@ export default function NewSeries(props) {
     return { label: el.name, value: el.categoryId };
   });
   const seriesPrice = isClickPrice ? 3000 : 0;
+  const paid = isClickPrice ? true : false;
 
   const onCheckCategory = (value) => {
     setCateState(value);
@@ -86,7 +85,7 @@ export default function NewSeries(props) {
             title: values.title,
             introduction: values.intro,
             image: "123",
-            paid: false,
+            paid,
             price: seriesPrice,
             categoryId: cateState,
             posts: postState,
