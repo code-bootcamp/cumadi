@@ -7,6 +7,7 @@ export const FETCH_POSTS_OF_MINE = gql`
       postId
       title
       content
+      image
       user {
         userId
         nickname
@@ -14,6 +15,12 @@ export const FETCH_POSTS_OF_MINE = gql`
       series {
         seriesId
         title
+      }
+      likes {
+        likeId
+      }
+      comments {
+        commentId
       }
     }
   }

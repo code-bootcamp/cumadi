@@ -42,8 +42,8 @@ export const Body = styled.div`
   }
 `
 
-export const StyledCard = styled(Card)<{ isfree: boolean, itemPrice: number }>`
-  display: ${props => (props.isfree && (props.itemPrice !== 0)  ? "none" : "" )};
+export const StyledCard = styled(Card)<{ isfree: boolean; itemPrice: number }>`
+  display: ${props => (props.isfree && props.itemPrice !== 0 ? 'none' : '')};
   width: 25rem;
   border: unset;
   cursor: pointer;
@@ -94,7 +94,6 @@ export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   background-color: ${props => (props.isClicked ? Colors.muted : Colors.white)};
   cursor: pointer;
   color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
-}
 `
 
 export const categoryWrapper = styled.div`
@@ -104,24 +103,16 @@ export const categoryWrapper = styled.div`
   margin: 1rem 0;
 `
 
-export const TagBar = styled.div`
+export const TagBar = styled.div``
 
-`
-
-export const ToggleWrapper = styled.div`
-
-`
+export const ToggleWrapper = styled.div``
 
 export const FreeToggle = styled.span`
   font-size: 0.7rem;
   padding-right: 0.7rem;
-
-}
 `
 
-export const FreeSwitch = styled(Switch)`
-  
-`
+export const FreeSwitch = styled(Switch)``
 
 export const EmptySpace = styled.div`
   opacity: 0;

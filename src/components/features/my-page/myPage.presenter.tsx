@@ -1,8 +1,9 @@
-import { RightOutlined } from '@ant-design/icons'
+import { RightOutlined, UserOutlined } from '@ant-design/icons'
 import { Modal } from 'antd'
 
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { Avatar } from 'antd'
 
 export default function MyPageUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -10,16 +11,17 @@ export default function MyPageUI(props: any) {
   return (
     <S.Container>
       <S.AvatarWrapper>
-        <S.Avatar
-          src={
-            props.loginData?.fetchUserLoggedIn.image ? props.loginData?.fetchUserLoggedIn.image : '/images/avatar.png'
-          }
-        />
+        {props.loginData?.fetchUserLoggedIn.image ? (
+          <Avatar src={props.loginData?.fetchUserLoggedIn.image} size={64} />
+        ) : (
+          <Avatar size={64} icon={<UserOutlined />} />
+        )}
+
         <S.Writer>{props.loginData?.fetchUserLoggedIn.nickname}</S.Writer>
         <S.Introduction>
           {props.loginData?.fetchUserLoggedIn.introduction
             ? props.loginData?.fetchUserLoggedIn.introduction
-            : '자기소개를 입력하세요.'}
+            : '자기소개가 없습니다.'}
         </S.Introduction>
       </S.AvatarWrapper>
       <S.Move onClick={onClickMoveToPage('/my/posts')}>
