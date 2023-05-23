@@ -17,7 +17,11 @@ export default function NewSeriesUI(props: any) {
           name="title"
           rules={[{ required: true, message: "시리즈 이름을 지어주세요." }]}
         >
-          <Input type="primary" placeholder="시리즈 이름을 지어주세요." />
+          <Input
+            type="primary"
+            placeholder="시리즈 이름을 지어주세요."
+            // defaultValue={props.data?.fetchBoard.title}
+          />
         </Form.Item>
         <S.Name>썸네일</S.Name>
         <Form.Item name="thumbnail">

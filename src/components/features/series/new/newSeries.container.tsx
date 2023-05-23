@@ -8,6 +8,8 @@ import {
   FETCH_POSTS_OF_MINE,
   FETCH_SERIES_CATEGORIES,
 } from "./newSeries.query";
+import { useRecoilState } from "recoil";
+import { editSeriesId } from "@/common/store";
 
 const tagRender = (props: any) => {
   const { label, closable, onClose } = props;
@@ -34,12 +36,14 @@ export default function NewSeries(props) {
   const imgRef = useRef<HTMLInputElement>(null);
   const seriesData = router.query;
 
+  const [editId] = useRecoilState(editSeriesId);
   const [thumbnail, setThumbnail] = useState<string>("");
   const [cateState, setCateState] = useState("");
   const [postState, setPostState] = useState([]);
   const [isClickPrice, setIsClickPrice] = useState(false);
   const { TextArea } = Input;
 
+  const { data: previousData } = useQuery();
   const { data: post } = useQuery(FETCH_POSTS_OF_MINE);
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES);
   const [createSeries] = useMutation(CREATE_SERIES);

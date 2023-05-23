@@ -25,3 +25,37 @@ export const CREATE_SERIES = gql`
     }
   }
 `;
+
+export const FETCH_SERIES = gql`
+  query fetchSeries($seriesId: String!) {
+    fetchSeries(seriesId: $seriesId) {
+      seriesId
+      title
+      introduction
+      price
+      createdAt
+      updatedAt
+      category {
+        categoryId
+        name
+      }
+      user {
+        userId
+        nickname
+      }
+      post {
+        postId
+        title
+        content
+        image
+        description
+        createdAt
+        user {
+          userId
+          email
+          nickname
+        }
+      }
+    }
+  }
+`;
