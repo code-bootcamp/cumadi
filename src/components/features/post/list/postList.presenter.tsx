@@ -20,7 +20,7 @@ export default function PostListUI({ data }: IPostListUIProps) {
 
   return (
     <S.Body>
-      {props.data?.fetchPosts.map((el: any) => (
+      {data?.fetchPosts.map((el: any) => (
         <StyledCard
           bordered={false}
           key={el.postId}
@@ -41,24 +41,24 @@ export default function PostListUI({ data }: IPostListUIProps) {
             </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{post.content}</TruncatedText>
+              <TruncatedText lines={4}>{el.content}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
                 <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{post.user?.nickname ?? '닉네임'}</BodyTextSm>
-                  <BodyTextSm color={Colors.gray1}>{getCreateDate(post.createdAt) ?? '날짜'}</BodyTextSm>
+                  <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
+                  <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{el.likes.length}</span>
+                  <span>{el.likes?.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
                   <img src="images/comment-outlined.svg" alt="덧글 수" />
-                  <span>{el.comments.length}</span>
+                  <span>{el.comments?.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>
