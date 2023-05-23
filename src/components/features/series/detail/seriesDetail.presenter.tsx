@@ -27,7 +27,7 @@ export default function SeriesDetailUI(props: any) {
           </S.AvatarWrapper>
             {props.isWriterData ? (
               <S.PostUpdateBtnWrapper>
-                <S.SeriesButton onClick={props.onClickToUpdate}>수정</S.SeriesButton>
+                <S.SeriesButton onClick={props.onClickUpdate}>수정</S.SeriesButton>
                 <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
               </S.PostUpdateBtnWrapper>
             ) : (
@@ -62,11 +62,11 @@ export default function SeriesDetailUI(props: any) {
                 <ReactionsContainer>
                   <ReactionContainer>
                     <HeartOutlined />
-                    {/* <span>{el.pickedcount}</span> */}
+                    <span>{el.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
                     <CommentOutlined />
-                    {/* <span>{el.comment}</span> */}
+                    <span>{el.comments?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </S.PostsSub>

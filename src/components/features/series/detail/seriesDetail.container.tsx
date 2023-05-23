@@ -31,7 +31,7 @@ export default function SeriesDetail() {
     }
   }
 
-  const onClickToUpdate = () => {
+  const onClickUpdate = () => {
     router.push(`/series/${data?.fetchSeries?.seriesId}/edit`)
   }
 
@@ -44,7 +44,6 @@ export default function SeriesDetail() {
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
-    // 이미 장바구니에 담겼을때는?
   }
 
   const onClickBuy = () => {
@@ -59,7 +58,7 @@ export default function SeriesDetail() {
       onClickDelete={onClickDelete}
       onClickCart={onClickCart}
       onClickBuy={onClickBuy}
-      onClickToUpdate={onClickToUpdate}
+      onClickUpdate={onClickUpdate}
     />
   )
 }
