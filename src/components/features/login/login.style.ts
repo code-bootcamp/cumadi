@@ -30,16 +30,6 @@ export const LoginSubTitle = styled.p`
   font-size: 1.5rem;
 `
 
-// **** 로그인 입력
-export const BasicInput = styled(Input)`
-  width: 100%;
-  height: 1.4rem;
-  padding: 2rem 1rem;
-  border: 1px solid var(--color-gray-3);
-  border-radius: 1rem;
-  margin: 0.4rem 0;
-`
-
 export const ErrorMessage = styled.div`
   margin: 0.5rem 0;
   color: red;
@@ -53,24 +43,6 @@ export const LoginCheck = styled.div`
 export const LoginCheckInput = styled.input``
 export const LoginCheckText = styled.span`
   padding-left: 1rem;
-`
-
-// **** 로그인 버튼
-export const LoginBtn = styled.button`
-  display: flex;
-  width: 100%;
-  height: 2.5rem;
-  margin: 0.4rem 0;
-  padding: 1rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-`
-
-export const temp = styled.div`
-  width: 2rem;
-  height: 2rem;
 `
 
 export const SignupWrapper = styled.span`

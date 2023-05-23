@@ -33,6 +33,14 @@ export const PostSubTitle = styled.div`
 
 export const PostTagWapper = styled.div`
   padding: 1rem 0;
+
+  span {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+  }
 `
 
 export const PostTag = styled.span`
@@ -111,6 +119,12 @@ export const Image = styled.img`
   width: auto;
   height: auto;
   margin-bottom: 20px;
+`
+
+export const ThumbnailImage = styled(Image)`
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
 `
 
 export const LikeWrapper = styled.div`

@@ -18,6 +18,8 @@ export const FETCH_POST = gql`
       postId
       title
       content
+      image
+      description
       user {
         userId
         nickname

@@ -51,7 +51,7 @@ export const List = styled.div`
 // ** 리스트 상단
 export const ListTop = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 3.5rem;
   padding: 0.5rem 1rem;

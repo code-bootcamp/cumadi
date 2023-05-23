@@ -49,6 +49,7 @@ export const BtnWrapper = styled.div`
 
 export const TagWrapper = styled.div`
   text-align: center;
+  margin-bottom: 1rem;
 `
 
 export const PlusImg = styled.img`
@@ -78,10 +79,4 @@ export const Body = styled.div`
   @media ${breakPoints.mobile} {
     width: 50rem;
   }
-`
-
-export const StyledCard = styled(Card)`
-  width: 27rem;
-  border: 1px solid var(--color-gray-3);
-  cursor: pointer;
 `
