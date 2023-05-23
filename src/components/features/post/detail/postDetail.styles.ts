@@ -31,7 +31,7 @@ export const PostSubTitle = styled.div`
   color: var(--color-gray-2);
 `
 
-export const PostTagWapper = styled.div`
+export const PostTagWrapper = styled.div`
   padding: 1rem 0;
 
   span {
