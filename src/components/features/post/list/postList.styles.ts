@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Card } from 'antd'
+import { Avatar, Card } from 'antd'
 
 import { breakPoints } from '@/common/styles/media'
 
@@ -40,6 +40,12 @@ export const Body = styled.div`
   @media ${breakPoints.mobile} {
     width: 50rem;
   }
+`
+
+export const AvatarImg = styled(Avatar)`
+  width: auto;
+  height: auto;
+  border-radius: 50%;
 `
 
 export const StyledCard = styled(Card)`

@@ -10,6 +10,7 @@ export const FETCH_POST_COMMENTS = gql`
       user {
         userId
         nickname
+        image
       }
     }
   }
