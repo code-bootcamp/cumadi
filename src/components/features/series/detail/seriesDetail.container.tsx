@@ -9,14 +9,11 @@ import {
   FETCH_USER_LOGGED_IN,
   INSERT_SERIES_IN_CART,
 } from "./seriesDetail.query";
-import { useRecoilState } from "recoil";
-import { buyItemId } from "@/common/store";
 import { useMoveToPage } from "@/common/hooks/useMoveToPage";
 
 export default function SeriesDetail() {
   const router = useRouter();
   const seriesId = String(router.query.seriesId);
-  const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId);
   const { onClickMoveToPage } = useMoveToPage();
 
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN);
@@ -57,7 +54,7 @@ export default function SeriesDetail() {
   };
 
   const onClickBuy = () => {
-    setBuySeriesId(seriesId);
+    localStorage.setItem("buySeriesId", seriesId);
     void router.push("/purchase");
   };
 
