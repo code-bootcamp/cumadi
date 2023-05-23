@@ -20,12 +20,8 @@ export default function Home() {
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
           <S.TagWrapper>
-            <MyTag isChecked={true} onClick={onClickMoveToPage('./')}>
-              포스트
-            </MyTag>
-            <MyTag isChecked={false} onClick={onClickMoveToPage('./series')}>
-              시리즈
-            </MyTag>
+            <button onClick={onClickMoveToPage('./')}>포스트</button>
+            <button onClick={onClickMoveToPage('./series')}>시리즈</button>
           </S.TagWrapper>
         </S.TitleWrapper>
         {<PostList />}

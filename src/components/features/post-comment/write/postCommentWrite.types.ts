@@ -15,6 +15,6 @@ export interface IUpdateContent {
 
 export interface PostCommentWriteProps {
   isEditPostComment: boolean
-  setIsEditPostComment: any
+  setIsEditPostComment?: any
   comment?: any
 }

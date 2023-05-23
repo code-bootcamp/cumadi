@@ -12,12 +12,10 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
+import { IPostListUIProps } from './postList.types'
+import { IPost } from '@/common/types/generated/types'
 
-interface IPostListUIProps {
-  data?: any
-}
-
-export default function PostListUI(props: any) {
+export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -38,27 +36,29 @@ export default function PostListUI(props: any) {
             )
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
-            {el.series?.title ? <BodyTextSm color={Colors.primary} weight={600} /> : null}
+            <BodyTextSm color={Colors.primary} weight={600}>
+              {el.series?.title ?? 'NO SERIES'}
+            </BodyTextSm>
             <BodyTextLg>{el.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{el.content}</TruncatedText>
+              <TruncatedText lines={4}>{post.content}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
                 <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
-                  <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
+                  <BodyTextSm weight={600}>{post.user?.nickname ?? '닉네임'}</BodyTextSm>
+                  <BodyTextSm color={Colors.gray1}>{getCreateDate(post.createdAt) ?? '날짜'}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{el.likes?.length}</span>
+                  <span>{el.likes.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
                   <img src="images/comment-outlined.svg" alt="덧글 수" />
-                  <span>{el.comments?.length}</span>
+                  <span>{el.comments.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>
