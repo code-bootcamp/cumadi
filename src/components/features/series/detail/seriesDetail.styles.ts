@@ -1,6 +1,6 @@
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
-import { ElevatedCard } from '@/components/common/customComponent.styles'
+import { ElevatedCard, MyButton } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Button, Tag } from 'antd'
 
@@ -177,7 +177,7 @@ export const TopTag = styled(Tag)`
 `
 
 export const Update = styled.span`
-  color: ${Colors.gray1}
+  color: ${Colors.gray1};
 `
 
 export const Date = styled.div`
@@ -195,7 +195,7 @@ export const PostCount = styled.div`
   margin-top: 2.5rem;
 `
 
-export const NewPostsButton = styled(Button)`
+export const NewPostsButton = styled(MyButton)`
   margin-top: 2.5rem;
   border-radius: 1rem;
   font-weight: bold;

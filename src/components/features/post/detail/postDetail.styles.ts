@@ -113,6 +113,12 @@ export const Image = styled.img`
   margin-bottom: 20px;
 `
 
+export const ThumbnailImage = styled(Image)`
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+`
+
 export const LikeWrapper = styled.div`
   display: flex;
   justify-content: center;

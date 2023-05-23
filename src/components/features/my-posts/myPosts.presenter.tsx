@@ -16,6 +16,7 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { PlusOutlined } from '@ant-design/icons'
 
 export default function MyPostsUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -36,8 +37,8 @@ export default function MyPostsUI(props: any) {
             시리즈
           </MyTag>
         </S.TagWrapper>
-        <S.RegisterBtn onClick={onClickMoveToPage('/post/new')}>
-          <S.PlusImg src="/images/plus.svg" alt="더하기 아이콘" />새 포스트 작성하기
+        <S.RegisterBtn onClick={onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
+          포스트 작성하기
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>

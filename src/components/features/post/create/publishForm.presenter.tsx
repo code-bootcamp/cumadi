@@ -37,16 +37,23 @@ export default function PublishFormUI(props: PublishFormUIProps) {
         </Form.Item>
 
         <h4>시리즈에 담기</h4>
-        <Form.Item name="series">
+        <Form.Item name="seriesId">
           <Select
             placeholder="시리즈 없음"
-            options={props.series.map((series: { title: any; id: any }) => ({ label: series.title, value: series.id }))}
+            options={props.series?.map((series: { title: any; seriesId: any }) => ({
+              label: series.title,
+              value: series.seriesId,
+            }))}
           />
         </Form.Item>
 
         <Form.Item>
           <S.ButtonWrapper>
-            {props.isEditMode ? <MyButton htmlType="submit">수정 취소하기</MyButton> : null}
+            {props.isEditMode ? (
+              <MyButton htmlType="button" onClick={props.handleClickCancelEditPublish}>
+                수정 취소하기
+              </MyButton>
+            ) : null}
             <MyButton type="primary" htmlType="submit">
               포스트 출간하기
             </MyButton>

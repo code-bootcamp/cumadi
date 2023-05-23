@@ -29,6 +29,7 @@ export default function PostDetailUI(props: any) {
         />
         <div>
           <S.PostTitle>{PostDetail?.title}</S.PostTitle>
+          <S.PostSubTitle>{PostDetail?.description}</S.PostSubTitle>
           <S.PostTagWapper>
             {PostDetail?.tags.map((tag: any) => (
               <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
@@ -91,7 +92,7 @@ export default function PostDetailUI(props: any) {
           )}
 
           <S.ImageWrapper>
-            <S.Image src={postItem[0].image} />
+            <S.ThumbnailImage src={PostDetail?.image} />
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
