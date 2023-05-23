@@ -43,7 +43,7 @@ export default function NewSeriesUI(props: any) {
             ]}
           >
             <S.Thumbnail
-              onChange={props.onClickUploadThumbnail}
+              onClick={props.onClickUploadThumbnail}
               thumbnail={props.thumbnail}
               defaultValue={
                 props.isEdit ? props.previousData?.fetchSeries.introduction : ""

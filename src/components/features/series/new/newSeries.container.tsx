@@ -79,8 +79,8 @@ export default function NewSeries(props) {
   const onChangeFile = async (event) => {
     const file = event.target.files?.[0];
     try {
-      const image = await uploadImage({ variables: { file } });
-      setThumbnail(image.data?.uploadImage);
+      const imageFile = await uploadImage({ variables: { file } });
+      setThumbnail(imageFile.data?.uploadImage);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
@@ -101,17 +101,14 @@ export default function NewSeries(props) {
           },
         },
       });
-      console.log(result.data?.createSeries.seriesId);
       if (result.data?.createSeries.seriesId === undefined) {
         alert("요청에 문제가 있습니다.");
         return;
       }
-      console.log(values);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
       return;
     }
-    console.log(values);
     alert("시리즈 작성이 완료되었습니다.");
     router.push("/");
   };
