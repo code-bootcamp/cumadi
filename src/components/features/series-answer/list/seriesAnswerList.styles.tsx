@@ -1,6 +1,7 @@
+import styled from '@emotion/styled'
+
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
-import styled from '@emotion/styled'
 
 export const Container = styled.section`
   width: auto;

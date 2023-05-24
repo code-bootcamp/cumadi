@@ -10,26 +10,10 @@ export default function PostCommentList() {
   const postId = String(router.query.postId)
 
   // **** PlayGorund
-  const { data: commentsData, fetchMore } = useQuery<Pick<IQuery, 'fetchPostComments'>, IQueryFetchPostCommentsArgs>(
+  const { data: commentsData } = useQuery<Pick<IQuery, 'fetchPostComments'>, IQueryFetchPostCommentsArgs>(
     FETCH_POST_COMMENTS,
     { variables: { postId } },
   )
-
-  // **** 무한스크롤
-  // const loadComment = () => {
-  //   if (!data) return
-  //   fetchMore({
-  //     variables: {
-  //       page: Math.ceil(data.fetchUseditemQuestions.length / 10) + 1,
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult.fetchUseditemQuestions) return { fetchUseditemQuestions: [...prev.fetchUseditemQuestions] }
-  //       return {
-  //         fetchUseditemQuestions: [...prev.fetchUseditemQuestions, ...fetchMoreResult?.fetchUseditemQuestions],
-  //       }
-  //     },
-  //   })
-  // }
 
   return <PostCommentListUI commentsData={commentsData} />
 }

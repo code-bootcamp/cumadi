@@ -1,6 +1,7 @@
-import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 import { Form, Switch } from 'antd'
+
+import { breakPoints } from '@/common/styles/media'
 
 export const Container = styled.section`
   width: 100%;

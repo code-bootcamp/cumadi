@@ -1,8 +1,9 @@
-import { Avatar, Rate } from 'antd'
+import { Rate } from 'antd'
+
 import * as S from './seriesAnswerList.styles'
 import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'
 
-export default function SeriesAnswerListUI(props) {
+export default function SeriesAnswerListUI(props: any) {
   const reviews = props.data?.fetchSeriesReviewsBySeries
 
   return (

@@ -1,7 +1,5 @@
 import { gql } from '@apollo/client'
 
-// prettier-ignore
-
 export const FETCH_POSTS_OF_MINE = gql`
   query fetchPostsOfMine {
     fetchPostsOfMine {
@@ -9,7 +7,7 @@ export const FETCH_POSTS_OF_MINE = gql`
       title
     }
   }
-`;
+`
 
 export const FETCH_SERIES_CATEGORIES = gql`
   query fetchSeriesCategories {

@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select } from 'antd'
+import { Form, Input, Select } from 'antd'
 import * as S from './newSeries.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
 

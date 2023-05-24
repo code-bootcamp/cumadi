@@ -1,5 +1,6 @@
-import { IQuery } from '@/common/types/generated/types'
 import { MouseEvent } from 'react'
+
+import { IQuery } from '@/common/types/generated/types'
 
 export interface IPostAnswerListProps {
   commentId: string

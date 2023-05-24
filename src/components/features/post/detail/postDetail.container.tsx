@@ -68,20 +68,6 @@ export default function PostDetail() {
             variables: { postId },
           },
         ],
-        // ** 옵티미스틱 UI
-        // optimisticResponse: {
-        //   togglePostPick: (likeData?.fetchLikeCountByPost ?? 0) + 1,
-        // },
-        // ** apollo 캐시를 직접 수정
-        // update(cache, { data }) {
-        //   cache.writeQuery({
-        //     query: FETCH_LIKE_COUNT_BY_POST,
-        //     variables: { postId },
-        //     data: {
-        //       fetchLikeCountByPost: data?.togglePostPick,
-        //     },
-        //   })
-        // },
       })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
@@ -92,6 +78,8 @@ export default function PostDetail() {
   const onMouseUpContentMemo = async () => {
     if (!window.getSelection()?.toString().length) return
     const onMousUpText = String(window.getSelection()?.toString())
+    console.log(onMousUpText)
+
     setDragText(onMousUpText)
   }
 

@@ -1,8 +1,10 @@
-import { ChangeEvent, useRef, useState } from 'react'
-import NewSeriesUI from './newSeries.presenter'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Input, Modal, Tag } from 'antd'
 import { useMutation, useQuery } from '@apollo/client'
+import { useRecoilState } from 'recoil'
+
+import NewSeriesUI from './newSeries.presenter'
 import {
   CREATE_SERIES,
   FETCH_POSTS_OF_MINE,
@@ -11,7 +13,7 @@ import {
   UPDATE_SERIES,
   UPLOAD_IMAGE,
 } from './newSeries.query'
-import { useRecoilState } from 'recoil'
+
 import { editSeriesId } from '@/common/store'
 
 const tagRender = (props: any) => {
@@ -33,7 +35,7 @@ const tagRender = (props: any) => {
   )
 }
 
-export default function NewSeries(props) {
+export default function NewSeries(props: any) {
   const router = useRouter()
   const imgRef = useRef<HTMLInputElement>(null)
 
@@ -54,26 +56,26 @@ export default function NewSeries(props) {
   const [updateSeries] = useMutation(UPDATE_SERIES)
   const [uploadImage] = useMutation(UPLOAD_IMAGE)
 
-  const postOptions = post?.fetchPostsOfMine.map(el => {
+  const postOptions = post?.fetchPostsOfMine.map((el: any) => {
     return { label: el.title, value: el.postId }
   })
-  const categoryOptions = category?.fetchSeriesCategories.map(el => {
+  const categoryOptions = category?.fetchSeriesCategories.map((el: any) => {
     return { label: el.name, value: el.categoryId }
   })
   const seriesPrice = isClickPrice ? 3000 : 0
   const paid = isClickPrice
 
-  const onCheckCategory = value => {
+  const onCheckCategory = (value: any) => {
     setCateState(value)
   }
 
-  const onCheckPost = value => {
+  const onCheckPost = (value: any) => {
     setPostState(value)
   }
 
   const onClickUploadThumbnail = () => imgRef.current?.click()
 
-  const onChangeFile = async event => {
+  const onChangeFile = async (event: any) => {
     const file = event.target.files?.[0]
     try {
       const imageFile = await uploadImage({ variables: { file } })

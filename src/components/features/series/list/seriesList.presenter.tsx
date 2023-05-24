@@ -5,7 +5,6 @@ import {
   EmptyStateContainer,
   FlexColumnContainer,
   MyButton,
-  MyTag,
 } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -53,7 +52,7 @@ export default function SeriesListUI(props: any) {
       <S.Body>
         {props.isShowAll ? (
           <>
-            {props.data?.fetchSeriesAll.map(el => (
+            {props.data?.fetchSeriesAll.map((el: any) => (
               <S.StyledCard
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
@@ -98,7 +97,7 @@ export default function SeriesListUI(props: any) {
           </>
         ) : (
           <>
-            {props.menu?.fetchSeriesByCategory.map(el => (
+            {props.menu?.fetchSeriesByCategory.map((el: any) => (
               <S.StyledCard
                 isfree={props.isfreeOn}
                 itemPrice={el.price}

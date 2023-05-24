@@ -14,7 +14,7 @@ export default function LoginUI(props: ILoginPresenter) {
           로그인
           <S.LoginSubTitle>다시 오셨네요!</S.LoginSubTitle>
         </S.LoginTitle>
-        <Form onFinish={props.onClickLogIn}>
+        <Form>
           <Input onChange={props.onChangeEmail} type="text" placeholder="이메일을 입력해주세요." />
           <S.ErrorMessage>{props.emailError}</S.ErrorMessage>
           <Input onChange={props.onChangePassword} type="password" placeholder="비밀번호를 입력해주세요." />

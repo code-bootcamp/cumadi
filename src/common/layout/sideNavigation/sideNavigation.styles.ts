@@ -8,6 +8,7 @@ export const sideNavWrapper = styled.div`
   position: absolute;
   left: -8rem;
   top: 30rem;
+  background-color: var(--color-white);
 `
 
 export const SideNav = styled.nav`
@@ -19,6 +20,7 @@ export const SideNav = styled.nav`
   position: fixed;
   padding: 0.3rem;
   border: 1px solid var(--color-gray-3);
+  background-color: var(--color-white);
   border-radius: 5rem;
 
   @media ${breakPoints.tablet} {

@@ -1,7 +1,7 @@
 import * as S from './seriesAnswerWrite.styles'
-import { Avatar, Rate } from 'antd'
+import { Rate } from 'antd'
 
-export default function SeriesAnswerWriteUI(props) {
+export default function SeriesAnswerWriteUI(props: any) {
   return (
     <>
       <S.AvatarWrapper>
