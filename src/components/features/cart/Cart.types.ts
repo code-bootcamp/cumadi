@@ -1,29 +1,12 @@
+import { IQuery, ISeries } from '@/common/types/generated/types'
+
 export interface ICartUIProps {
-  isChecked: (list: IList) => boolean
-  productList: {
-    id: string
-    name: string
-    title: string
-    contents: string
-    image: string
-    price: number
-    createDate: string
-  }[]
-  checkList: any[]
+  data?: Pick<IQuery, 'fetchShoppingCart'>
+  ischecked: (list: ISeries) => boolean
+  checkList: Array<any>
   totalPrice: number
   onClickCheckAll: () => void
-  onClickCheckList: (list: IList) => void
-  onClickRemoveChecked: () => void
-  onClickRemoveList: (id: string) => void
+  onClickCheckList: (list: ISeries) => void
+  onClickRemoveList: (seriesId: string) => void
   onClickPayment: () => void
-}
-
-export interface IList {
-  id: string
-  name: string
-  title: string
-  contents: string
-  image: string
-  price: number
-  createDate: string
 }

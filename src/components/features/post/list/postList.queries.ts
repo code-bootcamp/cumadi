@@ -17,6 +17,7 @@ export const FETCH_POSTS = gql`
       }
       user {
         nickname
+        image
       }
       createdAt
       likes {

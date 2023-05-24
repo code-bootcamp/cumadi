@@ -1,17 +1,18 @@
 import * as S from './postDetail.styles'
 
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
-import { postItem } from '@/common/dummyData/post'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 import { getDate } from '@/common/libraries/utils'
 import { IPostDetailUIProps } from './postDetail.types'
 import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
+import MarkdownView from '@/components/common/markdownViewer/markdownViwer.container'
 import { Avatar } from 'antd'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
+
   const POST_DETAIL = props.data?.fetchPost
   const isWriterUser = POST_DETAIL?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
 
@@ -27,17 +28,19 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
         />
         <div>
           <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
-          <S.PostTagWapper>
+          <S.PostTagWrapper>
             {POST_DETAIL?.tags?.map((tag: any) => (
               <span key={tag.tagId} id={tag.tagId}>
                 {tag.name}
               </span>
             ))}
-          </S.PostTagWapper>
+          </S.PostTagWrapper>
 
           <S.Header>
             <S.AvatarWrapper>
-              <Avatar src={POST_DETAIL?.user.image ?? ''}>{POST_DETAIL?.user.nickname[0]}</Avatar>
+              <Avatar src={POST_DETAIL?.user.image ?? ''} style={{ width: '2.5rem', height: '2.5rem' }}>
+                {POST_DETAIL?.user.nickname[0]}
+              </Avatar>
               <S.Info>
                 <S.Writer>{POST_DETAIL?.user.nickname}</S.Writer>
                 <S.CreatedAt>{getDate(POST_DETAIL?.createdAt)}</S.CreatedAt>
@@ -87,12 +90,8 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
             </S.PostInSeries>
           )}
 
-          <S.ImageWrapper>
-            <S.ThumbnailImage src={POST_DETAIL?.image} />
-          </S.ImageWrapper>
-
           {/* 포스트 본문 내용 */}
-          <div onMouseUp={props.onMouseUpContentMemo}>{POST_DETAIL?.content}</div>
+          {POST_DETAIL && <MarkdownView onMouseUp={props.onMouseUpContentMemo} content={POST_DETAIL?.content} />}
         </div>
         {/* 포스트 댓글 */}
         <PostCommentList />

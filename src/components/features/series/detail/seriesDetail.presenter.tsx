@@ -2,7 +2,7 @@ import * as S from './seriesDetail.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
 import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
-import { HeartOutlined, CommentOutlined, PlusOutlined } from '@ant-design/icons'
+import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { Avatar, Empty } from 'antd'
 
@@ -23,12 +23,12 @@ export default function SeriesDetailUI(props: any) {
             <Avatar src={props.data?.fetchSeries.user.image ?? ''}>{props.data?.fetchSeries.user.nickname[0]}</Avatar>
             <S.Info>
               <S.Writer>{props.data?.fetchSeries.user.nickname}</S.Writer>
-              <S.CreatedAt>작성자 소개</S.CreatedAt>
+              <S.CreatedAt>{props.data?.fetchSeries.user.introduction}</S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
           {props.isWriterData ? (
             <S.PostUpdateBtnWrapper>
-              <S.SeriesButton>수정</S.SeriesButton>
+              <S.SeriesButton onClick={props.onClickUpdate}>수정</S.SeriesButton>
               <S.SeriesButton onClick={props.onClickDelete}>삭제</S.SeriesButton>
             </S.PostUpdateBtnWrapper>
           ) : (
@@ -57,12 +57,16 @@ export default function SeriesDetailUI(props: any) {
             {props.data?.fetchSeries.post?.length}개의 포스트{' '}
             <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update>
           </S.PostCount>
-          <S.NewPostsButton icon={<PlusOutlined />}>새 포스트 작성하기</S.NewPostsButton>
+          <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')}>+ 새 포스트 작성하기</S.NewPostsButton>
         </S.PostsSub>
         {props.data?.fetchSeries.post?.map(el => (
           <S.PostWrapper>
             <S.ImageWrapper>
-              {el.image ? <S.Image src={el.image} /> : <Empty description={<span>이미지가 없습니다.</span>} />}
+              {props.data?.fetchSeries.image ? (
+                <S.Image src={props.data?.fetchSeries.image} />
+              ) : (
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              )}
             </S.ImageWrapper>
             <S.DescriptionWrapper>
               <S.PostCategory>{category}</S.PostCategory>
@@ -74,11 +78,11 @@ export default function SeriesDetailUI(props: any) {
                 <ReactionsContainer>
                   <ReactionContainer>
                     <HeartOutlined />
-                    {/* <span>{el.pickedcount}</span> */}
+                    <span>{el.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
                     <CommentOutlined />
-                    {/* <span>{el.comment}</span> */}
+                    <span>{el.comments?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </S.PostsSub>

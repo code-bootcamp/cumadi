@@ -69,7 +69,9 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
         <S.CommentList key={comment?.commentId}>
           <S.CommentTopWrapper>
             <S.AvatarWrapper>
-              <Avatar src={comment?.user.image ?? ''}>{comment?.user.nickname[0]}</Avatar>
+              <Avatar src={comment?.user.image ?? ''} style={{ width: '2.5rem', height: '2.5rem' }}>
+                {comment?.user.nickname[0]}
+              </Avatar>
               <S.AvatarIntro>
                 <div>{comment?.user.nickname}</div>
                 <S.Date>{getCreateDate(comment?.updatedAt)}</S.Date>

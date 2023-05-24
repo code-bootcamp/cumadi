@@ -1,9 +1,9 @@
-import SeriesDetail from "@/components/features/series/detail/seriesDetail.container";
+import NewSeries from "@/components/features/series/new/newSeries.container";
 
 export default function SeriesDetailPage() {
   return (
     <>
-      <SeriesDetail />
+      <NewSeries isEdit={true} />
     </>
   )
 }

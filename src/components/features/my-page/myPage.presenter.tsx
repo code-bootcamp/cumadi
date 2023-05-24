@@ -1,4 +1,5 @@
 import { RightOutlined, UserOutlined } from '@ant-design/icons'
+import { Modal } from 'antd'
 
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
@@ -45,9 +46,13 @@ export default function MyPageUI(props: any) {
         <div>프로필 수정하기</div>
         <RightOutlined />
       </S.Move>
-      <S.MoveDeleteUser>
-        <div>회원탈퇴</div>
+      <S.MoveDeleteUser onClick={props.showModal}>
+        <div>회원 탈퇴</div>
+        <RightOutlined />
       </S.MoveDeleteUser>
+      <Modal title="회원 탈퇴" open={props.open} onOk={props.onClickResignUser} onCancel={props.onCancel}>
+        <p>정말로 탈퇴 하시겠습니까?</p>
+      </Modal>
       <DotBottom />
     </S.Container>
   )

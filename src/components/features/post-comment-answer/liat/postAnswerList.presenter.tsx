@@ -21,7 +21,9 @@ export default function PostAnswerListUI({ PostCommentAnswerData, onClickDeleteA
         <S.CommentList key={CommentAnswer?.answerId}>
           <S.CommentTop>
             <S.AvatarWrapper>
-              <Avatar src={CommentAnswer?.answerAuthor.image ?? ''}>{CommentAnswer?.answerAuthor.nickname[0]}</Avatar>
+              <Avatar src={CommentAnswer?.answerAuthor.image ?? ''} style={{ width: '2.5rem', height: '2.5rem' }}>
+                {CommentAnswer?.answerAuthor.nickname[0]}
+              </Avatar>
               <S.AvatarIntro>
                 <div>{CommentAnswer?.answerAuthor.nickname}</div>
                 <S.Date>{getCreateDate(CommentAnswer?.updatedAt)}</S.Date>

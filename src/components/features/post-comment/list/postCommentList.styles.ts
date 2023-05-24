@@ -6,10 +6,6 @@ export const Container = styled.section`
   width: auto;
   margin-top: 3rem;
 
-  @media ${breakPoints.tablet} {
-    width: 44rem;
-  }
-
   @media ${breakPoints.mobile} {
     width: 100%;
   }

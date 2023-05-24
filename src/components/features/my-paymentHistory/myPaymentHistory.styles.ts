@@ -1,15 +1,39 @@
 import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 
-// **** 아바타 상단
 export const Body = styled.section`
+  display: inline-flex;
+  flex-direction: column;
   width: 83rem;
+  padding: 1rem;
 
   @media ${breakPoints.tablet} {
-    width: 55rem;
+    width: 60rem;
   }
 
   @media ${breakPoints.mobile} {
-    width: 30rem;
+    width: 35rem;
+
+    .card-wrapper .horizontal-card-cover {
+      width: 10rem;
+    }
+    .card-wrapper .horizontal-card-body {
+      padding: 0.5rem;
+    }
   }
+`
+
+export const CheckListWrapper = styled.div``
+
+export const CardWrapper = styled.div`
+  display: inline-flex;
+  gap: 1rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  align-items: center;
+`
+
+export const SeriesCard = styled.div`
+  width: 100%;
+  cursor: pointer;
 `
