@@ -11,6 +11,7 @@ import { IMarkdownViewProps } from './markdownViwer.type'
 export default function MarkdownView({ content }: IMarkdownViewProps) {
   return (
     <ReactMarkdown
+      className={'reactMarkDown'}
       remarkPlugins={[remarkGfm]}
       components={{
         code({ node, inline, className, children, ...props }) {

@@ -9,6 +9,7 @@ import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
 import MarkdownView from '@/components/common/markdownViewer/markdownViwer.container'
 import { Avatar } from 'antd'
+import { CaretDownFilled, CaretUpFilled, ReadOutlined } from '@ant-design/icons'
 
 export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -26,7 +27,8 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           onClickPick={props.onClickPick}
           likeData={props.likeData}
         />
-        <div>
+
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
           <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWrapper>
             {POST_DETAIL?.tags?.map((tag: any) => (
@@ -60,7 +62,7 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           {props.seriesData && (
             <S.PostInSeries>
               <S.TitleOfPostInSeries>
-                <img src="/images/book.svg" alt="시리즈북 아이콘" />
+                <ReadOutlined />
                 {props.seriesData?.fetchSeries.title}
               </S.TitleOfPostInSeries>
               {/* 포스트 in 시리즈 리스트들 */}
@@ -77,12 +79,12 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
               <S.PostInSeriesView onClick={props.onClickPostInSeriesView}>
                 {props.isPostInSeriesView ? (
                   <>
-                    <S.UpArrowIcon />
+                    <CaretUpFilled style={{ marginRight: '0.5rem' }} />
                     숨기기
                   </>
                 ) : (
                   <>
-                    <S.DownArrowIcon />
+                    <CaretDownFilled style={{ marginRight: '0.5rem' }} />
                     목록보기
                   </>
                 )}

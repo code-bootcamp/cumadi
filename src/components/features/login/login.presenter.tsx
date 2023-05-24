@@ -2,7 +2,7 @@ import { ILoginPresenter } from './login.types'
 import * as S from './login.style'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { Form, Input } from 'antd'
-import { MyButton } from '@/components/common/customComponent.styles'
+import { DotBottom, MyButton } from '@/components/common/customComponent.styles'
 
 export default function LoginUI(props: ILoginPresenter) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -42,6 +42,7 @@ export default function LoginUI(props: ILoginPresenter) {
           </S.GoogleBtn>
         </S.SNSWrapper>
       </S.Wrapper>
+      <DotBottom />
     </S.LoginSection>
   )
 }

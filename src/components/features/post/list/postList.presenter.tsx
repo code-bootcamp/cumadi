@@ -14,6 +14,8 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPostListUIProps } from './postList.types'
 import { IPost } from '@/common/types/generated/types'
+import removeMd from 'remove-markdown'
+import { CommentOutlined, HeartOutlined } from '@ant-design/icons'
 
 export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -41,7 +43,7 @@ export default function PostListUI({ data }: IPostListUIProps) {
             {post.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
             <BodyTextLg>{post.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{post.content}</TruncatedText>
+              <TruncatedText lines={4}>{removeMd(post.content)}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
@@ -53,11 +55,11 @@ export default function PostListUI({ data }: IPostListUIProps) {
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
-                  <img src="images/heart-outlined.svg" alt="좋아요 수" />
+                  <HeartOutlined />
                   <span>{post.likes?.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
-                  <img src="images/comment-outlined.svg" alt="댓글 수" />
+                  <CommentOutlined />
                   <span>{post.comments?.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>

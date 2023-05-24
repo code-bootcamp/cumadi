@@ -1,13 +1,7 @@
 import { Avatar, Card, Empty } from 'antd'
 
 import * as S from './Footer.styles'
-import {
-  DotBottom,
-  EmptyStateContainer,
-  FlexColumnContainer,
-  StyledCard,
-  StyledCardCover,
-} from '@/components/common/customComponent.styles'
+import { EmptyStateContainer, FlexColumnContainer, StyledCard } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -74,7 +68,6 @@ export default function LayoutFooterUI(props: any) {
             </StyledCard>
           ))}
         </S.Body>
-        <DotBottom />
       </S.Container>
     </S.Footer>
   )

@@ -5,6 +5,7 @@ import { breakPoints } from '@/common/styles/media'
 export const Container = styled.section`
   width: auto;
   margin-top: 3rem;
+  background-color: var(--color-white);
 
   @media ${breakPoints.mobile} {
     width: 100%;
@@ -18,8 +19,7 @@ export const CommentHeaderWrapper = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  border: 1px solid var(--color-gray-3);
-  border-radius: 0.5rem;
+  border-bottom: 1px solid var(--color-gray-3);
   font-weight: bold;
 `
 export const CommentTitle = styled.div``
@@ -41,7 +41,6 @@ export const CommentList = styled.div`
   align-items: center;
   width: 100%;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-3);
 `
 
 // **** 댓글 상단
