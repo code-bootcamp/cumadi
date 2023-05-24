@@ -57,7 +57,7 @@ export default function PostAnswerWrite({
       Modal.success({ content: '답변 댓글이 등록되었습니다!' })
       if (onClickActiveCommentAnswer !== undefined) onClickActiveCommentAnswer()
     } catch (error) {
-      if (error instanceof Error) Modal.error({ content: '1개의 댓글에는 1개의 답변만 등록가능합니다.' })
+      if (error instanceof Error) Modal.error({ content: error.message })
     }
   }
 
