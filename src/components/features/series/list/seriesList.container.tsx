@@ -9,22 +9,33 @@ import {
   FETCH_SERIES_CATEGORIES,
 } from './seriesList.query'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import {
+  IQuery,
+  IQueryFetchSeriesArgs,
+  IQueryFetchSeriesByCategoryArgs,
+  IQueryFetchSeriesCategoryArgs,
+} from '@/common/types/generated/types'
 
 export default function SeriesList() {
   const { onClickMoveToPage } = useMoveToPage()
 
-  const [seriesMenu, setSeriesMenu] = useState('')
+  const [seriesMenu, setSeriesMenu] = useState<string>('')
+  const [countIndex, setCountIndex] = useState<number>(-1)
   const [isShowAll, setIsShowAll] = useState(true)
-  const [countIndex, setCountIndex] = useState(-1)
   const [isfreeOn, setIsFreeOn] = useState(false)
 
-  const { data } = useQuery(FETCH_SERIES_ALL)
+  const { data } = useQuery<Pick<IQuery, 'fetchSeriesAll'>, IQueryFetchSeriesArgs>(FETCH_SERIES_ALL)
   const { data: rate } = useQuery(FETCH_RATING_BY_SERIES)
 
-  const { data: category } = useQuery(FETCH_SERIES_CATEGORIES)
-  const { data: menu } = useQuery(FETCH_SERIES_BY_CATEGORY, {
-    variables: { categoryId: seriesMenu },
-  })
+  const { data: category } = useQuery<Pick<IQuery, 'fetchSeriesCategories'>, IQueryFetchSeriesCategoryArgs>(
+    FETCH_SERIES_CATEGORIES,
+  )
+  const { data: menu } = useQuery<Pick<IQuery, 'fetchSeriesByCategory'>, IQueryFetchSeriesByCategoryArgs>(
+    FETCH_SERIES_BY_CATEGORY,
+    {
+      variables: { categoryId: seriesMenu },
+    },
+  )
 
   const onClickFreeSeries = () => {
     setIsFreeOn(!isfreeOn)
@@ -36,7 +47,7 @@ export default function SeriesList() {
     setCountIndex(-1)
   }
 
-  const onClickCategory = (value: any, index: number) => () => {
+  const onClickCategory = (value: string, index: number) => () => {
     setSeriesMenu(value)
     setIsShowAll(false)
     setCountIndex(index)

@@ -8,6 +8,14 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { useRecoilState } from 'recoil'
 import { editSeriesId } from '@/common/store'
 import { FETCH_SHOPPING_CART } from '../../cart/Cart.queries'
+import {
+  IMutation,
+  IMutationDeleteSeriesArgs,
+  IMutationInsertSeriesInCartArgs,
+  IQuery,
+  IQueryFetchSeriesArgs,
+  IUser,
+} from '@/common/types/generated/types'
 
 export default function SeriesDetail() {
   const router = useRouter()
@@ -15,10 +23,14 @@ export default function SeriesDetail() {
 
   const { onClickMoveToPage } = useMoveToPage()
   const [editId, setEditId] = useRecoilState(editSeriesId)
-  const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
-  const { data } = useQuery(FETCH_SERIES, { variables: { seriesId } })
-  const [addCart] = useMutation(INSERT_SERIES_IN_CART)
-  const [deleteSeries] = useMutation(DELETE_SERIES)
+  const { data: user } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>, IUser>(FETCH_USER_LOGGED_IN)
+  const { data } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
+    variables: { seriesId },
+  })
+  const [addCart] = useMutation<Pick<IMutation, 'insertSeriesInCart'>, IMutationInsertSeriesInCartArgs>(
+    INSERT_SERIES_IN_CART,
+  )
+  const [deleteSeries] = useMutation<Pick<IMutation, 'deleteSeries'>, IMutationDeleteSeriesArgs>(DELETE_SERIES)
 
   const isWriterData = data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId ? true : false
 
