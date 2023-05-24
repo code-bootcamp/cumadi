@@ -13,6 +13,7 @@ import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPost } from '@/common/types/generated/types'
+import { CommentOutlined, HeartOutlined } from '@ant-design/icons'
 
 export default function LayoutFooterUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -55,11 +56,11 @@ export default function LayoutFooterUI(props: any) {
                   </ProfileContainer>
                   <ReactionsContainer>
                     <ReactionContainer>
-                      <img src="/images/heart-outlined.svg" alt="좋아요 수" />
+                      <HeartOutlined />
                       <span>{post.likes?.length}</span>
                     </ReactionContainer>
                     <ReactionContainer>
-                      <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                      <CommentOutlined />
                       <span>{post.comments?.length}</span>
                     </ReactionContainer>
                   </ReactionsContainer>

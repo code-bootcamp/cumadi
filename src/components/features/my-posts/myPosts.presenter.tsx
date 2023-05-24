@@ -1,5 +1,5 @@
 import { Avatar, Empty } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { CommentOutlined, HeartOutlined, PlusOutlined } from '@ant-design/icons'
 
 import * as S from './myPosts.styles'
 import {
@@ -7,6 +7,7 @@ import {
   EmptyStateContainer,
   FlexColumnContainer,
   MyButton,
+  StyledCard,
   StyledCardCover,
   StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
@@ -20,6 +21,7 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IMyPostsUIProps } from './myPosts.types'
+import RemoveMarkdown from 'remove-markdown'
 
 export default function MyPostsUI(props: IMyPostsUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -48,7 +50,8 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
       </S.BtnWrapper>
       <S.Body>
         {props.data?.fetchPostsOfMine.map((postOfMine: any) => (
-          <StyledCardOutlined
+          <StyledCard
+            bordered={false}
             key={postOfMine.postId}
             cover={
               postOfMine.image ? (
@@ -58,19 +61,18 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
                   onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
                 />
               ) : (
-                <EmptyStateContainer>
+                <EmptyStateContainer onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
                   <Empty description={<span>이미지가 없습니다.</span>} />
                 </EmptyStateContainer>
               )
-            }
-            onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
-            <FlexColumnContainer gap={'0.5rem'}>
+            }>
+            <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
               <BodyTextSm color={Colors.primary} weight={600}>
                 {postOfMine?.series?.title}
               </BodyTextSm>
               <BodyTextLg>{postOfMine.title}</BodyTextLg>
               <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{postOfMine.content}</TruncatedText>
+                <TruncatedText lines={4}>{RemoveMarkdown(postOfMine.content)}</TruncatedText>
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
@@ -82,17 +84,17 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
                 </ProfileContainer>
                 <ReactionsContainer>
                   <ReactionContainer>
-                    <img src="/images/heart-outlined.svg" alt="좋아요 수" />
+                    <HeartOutlined />
                     <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
-                    <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                    <CommentOutlined />
                     <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </StyledCardOutlined>
+          </StyledCard>
         ))}
       </S.Body>
       <DotBottom />

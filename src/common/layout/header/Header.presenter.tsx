@@ -1,11 +1,5 @@
 import { useEffect } from 'react'
-import { Avatar, Dropdown } from 'antd'
-import type { MenuProps } from 'antd'
-import * as S from './Header.styles'
-import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import BasicButton from '@/components/common/buttons/basic'
-import { MyButton } from '@/components/common/customComponent.styles'
-import { ILayoutHeaderUIProps } from './Header.types'
+import { Dropdown } from 'antd'
 import {
   ReadOutlined,
   DownOutlined,
@@ -15,6 +9,13 @@ import {
   FileTextOutlined,
 } from '@ant-design/icons'
 import { useRouter } from 'next/router'
+
+import type { MenuProps } from 'antd'
+import * as S from './Header.styles'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import BasicButton from '@/components/common/buttons/basic'
+import { MyButton } from '@/components/common/customComponent.styles'
+import { ILayoutHeaderUIProps } from './Header.types'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   const router = useRouter()

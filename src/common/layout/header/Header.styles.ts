@@ -16,12 +16,13 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90rem;
+  width: 85rem;
   height: 4.5rem;
   padding: 0 1rem;
   font-size: 1rem;
   position: fixed;
   z-index: 99;
+  background-color: var(--color-white);
 
   @media ${breakPoints.tablet} {
     width: 55rem;
