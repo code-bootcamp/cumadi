@@ -1,4 +1,3 @@
-import BasicButton from '@/components/common/buttons/basic'
 import * as S from './seriesAnswerWrite.styles'
 import { Avatar, Rate } from 'antd'
 
