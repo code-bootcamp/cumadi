@@ -1,10 +1,8 @@
 # Md.
 
-* 주소
+* 프로덕트명 : 커마디
 * 개발기간 : `2023년 5월 1일 ~ 진행중`
-* 기능 요약
-  * 마크다운으로 작성한 글을 유저가 디자인 커스텀
-  * 마크다운으로 작성한 블로그 글들을 시리즈로 엮어서 판매
+* 기능 요약 : 마크다운으로 작성한 블로그 글들을 시리즈로 엮어서 판매
 
 ------
 
@@ -50,13 +48,23 @@
 | GraphQL & ApolloClient | REST-API의 POST 메소드를 응용해 만든 데이터 통신 기술로 모든 데이터를 받아오는 REST API와 달리, 필요한 데이터만 불러오는 식으로 동작해, 불필요한 데이터 전송을 막을 수 있습니다. |
 |       TypeScript       | JavaScript는 따로 타입을 지정하지 않아도 알아서 인식하고, 호이스팅 등의 기능을 통해 선언과 초기화의 위치가 바뀌어도 문제없이 동작합니다. 이는 브레이브와 파이어폭스, JavaScript 창시자인 브랜든 아이크가 자기가 만든 언어가 이렇게 널리 쓰일줄 모른채 10일만에 개발했기 때문입니다. <br />이런 관대함은 디버깅을 어렵게하는 단점이 존재합니다. 그래서 MS사에서 다른 언어처럼 타임의 엄격함을 쓰기 위해 JavaScript 확장판격인 TypeScript를 쓰는 것이 유지보수 관점에서 더 좋기 때문에 선택했습니다. |
 
-* 기타 라이브러리
+* 기타 주요 라이브러리
   * [TOAST UI](https://ui.toast.com/)
-  * [React Color](https://casesandberg.github.io/react-color/)
+  * [React-Markdown](https://github.com/remarkjs/react-markdown)
   * [I’mPort (portone)](https://portone.io/korea/ko?utm_source=google&utm_medium=google_sa&utm_campaign=pf_conversion_2302_kr&utm_content=homepage&gclid=Cj0KCQjw0tKiBhC6ARIsAAOXutlMBCAYcUxS81oGxjWOzfpZIzER3O0xBCwwKMcaLqD334rNd6s5NacaArhAEALw_wcB)
   * [Chart.js](https://www.chartjs.org/)
 
 ------
+
+# ⚙️ User Flow
+
+
+
+
+
+------
+
+# ⚙️ ER 다이어그램
 
 
 
@@ -66,7 +74,45 @@
 
 # 🔮 기능 시연자료
 
+## 회원 - 회원가입, 로그인
 
+
+
+------
+
+## 마이페이지 - 비밀번호 수정, 작성포스트, 작성시리즈
+
+
+
+------
+
+## 포스트 - 생성, 조회, 수정, 삭제, 
+
+
+
+
+
+------
+
+## 포스트 댓글, 답변 - 생성, 조회, 수정, 삭제, 
+
+
+
+------
+
+## 포스트 통계
+
+
+
+------
+
+## 시리즈 - 생성, 조회, 수정, 삭제
+
+
+
+------
+
+## 시리즈 결제
 
 
 
@@ -74,11 +120,13 @@
 
 # 😂 팀원
 
-|  팀원  |   역할   | 담당                       |                 GitHub                 |         이메일         |
-| :----: | :------: | -------------------------- | :------------------------------------: | :--------------------: |
-| 박예림 | 팀장, FE | 포스트 작성, 통계          |    https://github.com/yerimpark103     | yerimpark103@gmail.com |
-| 유승우 |    FE    | 포스트 상세, 질문답변 댓글 |      https://github.com/berenickt      | berenickt99@gmail.com  |
-| 박소현 |    FE    | 결제, 장바구니             |    https://github.com/ParkSohyunee     | sohyunee016@gmail.com  |
-| 전필성 |    FE    | 로그인, 마이페이지 수정    |    https://github.com/jeonpilseong     |  abcabc3502@gmail.com  |
-| 김세환 |    FE    | 시리즈 목록, 리뷰          | https://github.com/dragonfruitlemonade |  tpghks9245@gmail.com  |
+|  이름  |   역할   | 담당                                         |                            GitHub                            |         이메일         |
+| :----: | :------: | :------------------------------------------- | :----------------------------------------------------------: | :--------------------: |
+| 박예림 | 팀장, FE | 포스트 작성, <br />수정                      | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yerimpark103) | yerimpark103@gmail.com |
+| 유승우 |    FE    | 포스트 상세, <br />질문답변 댓글, <br />통계 | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/berenickt) |  dhktjdyd12@naver.com  |
+| 박소현 |    FE    | 결제, <br />장바구니                         | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ParkSohyunee) | sohyunee016@gmail.com  |
+| 전필성 |    FE    | 로그인, <br />마이페이지 수정                | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jeonpilseong) |  abcabc3502@gmail.com  |
+| 김세환 |    FE    | 시리즈 목록, <br />리뷰                      | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dragonfruitlemonade) |  tpghks9245@gmail.com  |
+
+
 
