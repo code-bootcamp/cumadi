@@ -8,29 +8,31 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 import * as S from './markdownViwer.stypes'
 import { IMarkdownViewProps } from './markdownViwer.type'
 
-export default function MarkdownView({ content }: IMarkdownViewProps) {
+export default function MarkdownView({ content, onMouseUpContentMemo }: IMarkdownViewProps) {
   return (
-    <ReactMarkdown
-      className={'reactMarkDown'}
-      remarkPlugins={[remarkGfm]}
-      components={{
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || '')
-          return !inline && match ? (
-            <SyntaxHighlighter {...props} style={vscDarkPlus} language={match[1]} PreTag="div">
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          )
-        },
-        // img 태그가 오면
-        img: image => <S.PostDetailImg src={image.src || ''} alt={image.alt || ''} />,
-      }}>
-      {content}
-    </ReactMarkdown>
+    <div onMouseUp={onMouseUpContentMemo}>
+      <ReactMarkdown
+        className={'reactMarkDown'}
+        remarkPlugins={[remarkGfm]}
+        components={{
+          code({ node, inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '')
+            return !inline && match ? (
+              <SyntaxHighlighter {...props} style={vscDarkPlus} language={match[1]} PreTag="div">
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            )
+          },
+          // img 태그가 오면
+          img: image => <S.PostDetailImg src={image.src || ''} alt={image.alt || ''} />,
+        }}>
+        {content}
+      </ReactMarkdown>
+    </div>
   )
 }
 
