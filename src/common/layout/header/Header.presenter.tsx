@@ -50,9 +50,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   ]
 
   const handleMenuClick: MenuProps['onClick'] = e => {
-    // message.info('Click on menu item.');
     router.push(`/${e.key}/new`)
-    console.log(`/${e.key}/new`, e)
   }
 
   const menuProps = {

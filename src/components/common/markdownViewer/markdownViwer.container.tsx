@@ -7,10 +7,12 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 
 import * as S from './markdownViwer.stypes'
 import { IMarkdownViewProps } from './markdownViwer.type'
+import style from '@/common/styles/markdown-styles.module.css'
 
 export default function MarkdownView({ content }: IMarkdownViewProps) {
   return (
     <ReactMarkdown
+      className={'reactMarkDown'}
       remarkPlugins={[remarkGfm]}
       components={{
         code({ node, inline, className, children, ...props }) {

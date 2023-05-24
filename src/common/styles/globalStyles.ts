@@ -124,6 +124,40 @@ export const globalStyles = css`
     font-weight: 700;
     font-style: normal;
   }
+
+  /* prettier-ignore */
+  .reactMarkDown h1, h2, h3, h4, h5, h6, p, code, pre {
+    margin: 1.25rem 0;
+  }
+
+  .reactMarkDown a {
+    color: var(--color-primary);
+    ::after {
+      content: ' 🔗';
+      font-size: 0.8rem;
+    }
+  }
+
+  .reactMarkDown p {
+    line-height: 1.25rem;
+  }
+
+  .reactMarkDown ul {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    list-style: disc outside none;
+  }
+
+  .reactMarkDown ul li {
+    margin: 0.25rem 0;
+    margin-left: 2rem;
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+
+  .reactMarkDown hr {
+    border: 1px solid var(--color-gray-3);
+  }
 `
 export const BodyTextSm = styled.span<{ color?: string; weight?: number }>`
   font-size: 12px;
