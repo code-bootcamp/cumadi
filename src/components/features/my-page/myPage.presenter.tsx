@@ -1,9 +1,8 @@
-import { RightOutlined, UserOutlined } from '@ant-design/icons'
-import { Modal } from 'antd'
+import { RightOutlined } from '@ant-design/icons'
+import { Modal, Avatar } from 'antd'
 
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { Avatar } from 'antd'
 import { DotBottom } from '@/components/common/customComponent.styles'
 
 export default function MyPageUI(props: any) {
@@ -23,23 +22,19 @@ export default function MyPageUI(props: any) {
         </S.Introduction>
       </S.AvatarWrapper>
       <S.Move onClick={onClickMoveToPage('/my/posts')}>
-        <div>내가 쓴 포스트</div>
+        <div>내가 작성한 포스트</div>
         <RightOutlined />
       </S.Move>
       <S.Move onClick={onClickMoveToPage('/my/series')}>
-        <div>내가 쓴 시리즈</div>
+        <div>내가 작성한 시리즈</div>
         <RightOutlined />
       </S.Move>
       <S.Move onClick={onClickMoveToPage('/my/paymentHistory')}>
-        <div>결제내역(구매한 시리즈)</div>
+        <div>구매한 시리즈</div>
         <RightOutlined />
       </S.Move>
       <S.Move onClick={onClickMoveToPage('/my/memo')}>
         <div>메모 목록</div>
-        <RightOutlined />
-      </S.Move>
-      <S.Move onClick={onClickMoveToPage('/my/posts')}>
-        <div>인터페이스 커스텀하기</div>
         <RightOutlined />
       </S.Move>
       <S.Move onClick={onClickMoveToPage('/my/profileSettings')}>

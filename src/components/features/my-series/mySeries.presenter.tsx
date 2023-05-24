@@ -1,4 +1,4 @@
-import { Avatar, Rate } from 'antd'
+import { Avatar } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
 import * as S from './mySeries.styles'
@@ -8,8 +8,7 @@ import {
   StyledCardCover,
   StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
-import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
-import { InfoSectionContainer } from '@/components/common/customComponent.styles'
+import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IMySeriesUIProps } from './mySeries.types'

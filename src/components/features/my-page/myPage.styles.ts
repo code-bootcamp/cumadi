@@ -1,7 +1,8 @@
-import { breakPoints } from '@/common/styles/media'
-import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Avatar } from 'antd'
+
+import { breakPoints } from '@/common/styles/media'
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 
 export const Container = styled.section`
   width: 44rem;

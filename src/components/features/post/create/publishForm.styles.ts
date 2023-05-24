@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+
 import { Colors } from '@/common/styles/colors'
 
 export const ThumbnailUploadHandler = styled.div<{ backgroundUrl?: string }>`

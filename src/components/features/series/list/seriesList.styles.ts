@@ -1,7 +1,8 @@
-import { Colors } from '@/common/styles/colors'
-import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 import { Card, Switch, Tag } from 'antd'
+
+import { Colors } from '@/common/styles/colors'
+import { breakPoints } from '@/common/styles/media'
 
 export const Footer = styled.footer`
   width: 100%;
@@ -101,7 +102,6 @@ export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   background-color: ${props => (props.isClicked ? Colors.muted : Colors.white)};
   cursor: pointer;
   color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
-}
 `
 
 export const ToggleWrapper = styled.div``

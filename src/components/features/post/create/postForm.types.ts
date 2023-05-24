@@ -1,6 +1,7 @@
 import { ComponentType, MutableRefObject, Ref, RefObject } from 'react'
-import { MarkdownEditorProps } from '@/components/common/markdownEditor/markdownEditor.types'
 import { InputRef } from 'antd'
+
+import { MarkdownEditorProps } from '@/components/common/markdownEditor/markdownEditor.types'
 export interface IPostFormProps {
   isEditMode: boolean
 }

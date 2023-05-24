@@ -1,6 +1,7 @@
+import styled from '@emotion/styled'
+
 import { breakPoints } from '@/common/styles/media'
 import { MyButton } from '@/components/common/customComponent.styles'
-import styled from '@emotion/styled'
 
 // **** 아바타 상단
 export const AvatarWrapper = styled.div`

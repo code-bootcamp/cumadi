@@ -1,5 +1,6 @@
 import { Avatar, Empty } from 'antd'
 import { CommentOutlined, HeartOutlined, PlusOutlined } from '@ant-design/icons'
+import RemoveMarkdown from 'remove-markdown'
 
 import * as S from './myPosts.styles'
 import {
@@ -9,7 +10,6 @@ import {
   MyButton,
   StyledCard,
   StyledCardCover,
-  StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -21,7 +21,6 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IMyPostsUIProps } from './myPosts.types'
-import RemoveMarkdown from 'remove-markdown'
 
 export default function MyPostsUI(props: IMyPostsUIProps) {
   const { onClickMoveToPage } = useMoveToPage()

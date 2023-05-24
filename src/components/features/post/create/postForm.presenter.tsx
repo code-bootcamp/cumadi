@@ -1,5 +1,6 @@
 import { Divider, Form, Input, Select } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+
 import * as S from './postForm.styles'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { PostFormUIProps } from './postForm.types'
