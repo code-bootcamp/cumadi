@@ -81,14 +81,14 @@ export const PostUpdateBtnWrapper = styled.div`
 // **** 포스트가 시리즈에 속해있는지 여부
 export const PostInSeries = styled.div`
   padding: 1rem;
+  padding-bottom: 0.125rem;
   margin: 0 0 1rem 0;
-  border: 1px solid var(--color-gray-2);
   border-radius: 1rem;
   font-weight: bold;
-  background-color: var(--color-white);
+  background-color: var(--color-gray-4);
 
   div {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
   }
 `
@@ -142,6 +142,8 @@ export const PostInSeriesWrapper = styled.ul`
   color: var(--color-gray-1);
 `
 export const PostsInSeries = styled.li`
+  margin: 0.5rem 0;
+  cursor: pointer;
   &:hover {
     color: var(--color-primary);
   }
@@ -151,12 +153,5 @@ export const PostsInSeries = styled.li`
 export const PostInSeriesView = styled.p`
   margin-top: 1rem;
   color: var(--color-gray-1);
-`
-export const DownArrowIcon = styled(CaretDownOutlined)`
-  font-size: 1rem;
-  cursor: pointer;
-`
-export const UpArrowIcon = styled(CaretUpOutlined)`
-  font-size: 1rem;
   cursor: pointer;
 `
