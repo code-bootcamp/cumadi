@@ -12,6 +12,7 @@ import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
+import { IPost } from '@/common/types/generated/types'
 
 export default function LayoutFooterUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -21,45 +22,45 @@ export default function LayoutFooterUI(props: any) {
       <S.Container>
         <S.FooterTitle>이 포스트들은 어때요?</S.FooterTitle>
         <S.Body>
-          {props.data?.fetchPosts.slice(0, 6).map((el: any) => (
+          {props.data?.fetchPosts.slice(0, 6).map((post: IPost) => (
             <StyledCard
-              key={el.postId}
+              key={post.postId}
               style={{ width: 400, border: 'unset' }}
               cover={
-                el.image ? (
-                  <StyledCardCover
-                    src={el.image}
+                post.image ? (
+                  <S.CardThumbnailImg
+                    src={post.image}
                     alt="포스트 썸네일 이미지"
-                    onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                    onClick={onClickMoveToPage(`/post/${post.postId}`)}
                   />
                 ) : (
-                  <Empty description={<span>이미지가 없습니다.</span>} />
+                  <div onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  </div>
                 )
               }>
-              <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
-                <BodyTextSm color={Colors.primary} weight={600}>
-                  {el.series?.title ?? 'NO SERIES'}
-                </BodyTextSm>
-                <BodyTextLg>{el.title}</BodyTextLg>
+              <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+                {post.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
+                <BodyTextLg>{post.title}</BodyTextLg>
                 <BodyText color={Colors.gray1}>
-                  <TruncatedText lines={4}>{el.content}</TruncatedText>
+                  <TruncatedText lines={4}>{post.content}</TruncatedText>
                 </BodyText>
                 <InfoSectionContainer>
                   <ProfileContainer>
-                    <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
+                    <Avatar src={post.user.image ?? ''}>{post.user.nickname[0]}</Avatar>
                     <ProfileTextDataContainer>
-                      <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
-                      <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
+                      <BodyTextSm weight={600}>{post.user?.nickname ?? '닉네임'}</BodyTextSm>
+                      <BodyTextSm color={Colors.gray1}>{getCreateDate(post.createdAt) ?? '날짜'}</BodyTextSm>
                     </ProfileTextDataContainer>
                   </ProfileContainer>
                   <ReactionsContainer>
                     <ReactionContainer>
-                      <img src="/images/heart-outlined.svg" alt="관심 수" />
-                      <span>{el.likes?.length}</span>
+                      <img src="/images/heart-outlined.svg" alt="좋아요 수" />
+                      <span>{post.likes?.length}</span>
                     </ReactionContainer>
                     <ReactionContainer>
-                      <img src="/images/comment-outlined.svg" alt="덧글 수" />
-                      <span>{el.comments?.length}</span>
+                      <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                      <span>{post.comments?.length}</span>
                     </ReactionContainer>
                   </ReactionsContainer>
                 </InfoSectionContainer>

@@ -31,7 +31,7 @@ export const PostSubTitle = styled.div`
   color: var(--color-gray-2);
 `
 
-export const PostTagWapper = styled.div`
+export const PostTagWrapper = styled.div`
   padding: 1rem 0;
 
   span {
@@ -41,13 +41,6 @@ export const PostTagWapper = styled.div`
     margin-right: 0.5rem;
     border-radius: 1rem;
   }
-`
-
-export const PostTag = styled.span`
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--color-main);
-  margin-right: 1rem;
 `
 
 // **** 게시판 헤더

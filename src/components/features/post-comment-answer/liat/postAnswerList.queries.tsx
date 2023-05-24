@@ -13,6 +13,7 @@ export const FETCH_POST_COMMENT_ANSWERS = gql`
       answerAuthor {
         userId
         nickname
+        image
       }
     }
   }
@@ -31,6 +32,7 @@ export const FETCH_POST_COMMENT_ANSWER = gql`
       answerAuthor {
         userId
         nickname
+        image
       }
     }
   }

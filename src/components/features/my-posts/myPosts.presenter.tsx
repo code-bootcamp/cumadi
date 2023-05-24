@@ -1,12 +1,8 @@
 import { Avatar, Empty } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 
 import * as S from './myPosts.styles'
-import {
-  FlexColumnContainer,
-  MyTag,
-  StyledCardCover,
-  StyledCardOutlined,
-} from '@/components/common/customComponent.styles'
+import { FlexColumnContainer, StyledCardCover, StyledCardOutlined } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -16,7 +12,6 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { PlusOutlined } from '@ant-design/icons'
 
 export default function MyPostsUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()

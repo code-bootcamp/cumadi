@@ -20,43 +20,45 @@ export default function PostListUI({ data }: IPostListUIProps) {
 
   return (
     <S.Body>
-      {data?.fetchPosts.map((el: any) => (
+      {data?.fetchPosts.map((post: IPost) => (
         <StyledCard
           bordered={false}
-          key={el.postId}
+          key={post.postId}
           cover={
-            el.image ? (
+            post.image ? (
               <S.CardThumbnailImg
-                src={el.image}
+                src={post.image}
                 alt="포스트 썸네일 이미지"
-                onClick={onClickMoveToPage(`/post/${el.postId}`)}
+                onClick={onClickMoveToPage(`/post/${post.postId}`)}
               />
             ) : (
-              <Empty description={<span>이미지가 없습니다.</span>} />
+              <div onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+                <Empty description={<span>이미지가 없습니다.</span>} />
+              </div>
             )
           }>
-          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
-            {el.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
-            <BodyTextLg>{el.title}</BodyTextLg>
+          <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+            {post.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
+            <BodyTextLg>{post.title}</BodyTextLg>
             <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{el.content}</TruncatedText>
+              <TruncatedText lines={4}>{post.content}</TruncatedText>
             </BodyText>
             <InfoSectionContainer>
               <ProfileContainer>
-                <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
+                <Avatar src={post.user.image ?? ''}>{post.user.nickname[0]}</Avatar>
                 <ProfileTextDataContainer>
-                  <BodyTextSm weight={600}>{el.user?.nickname ?? '닉네임'}</BodyTextSm>
-                  <BodyTextSm color={Colors.gray1}>{getCreateDate(el.createdAt) ?? '날짜'}</BodyTextSm>
+                  <BodyTextSm weight={600}>{post.user?.nickname ?? '닉네임'}</BodyTextSm>
+                  <BodyTextSm color={Colors.gray1}>{getCreateDate(post.createdAt) ?? '날짜'}</BodyTextSm>
                 </ProfileTextDataContainer>
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
                   <img src="images/heart-outlined.svg" alt="좋아요 수" />
-                  <span>{el.likes?.length}</span>
+                  <span>{post.likes?.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
-                  <img src="images/comment-outlined.svg" alt="덧글 수" />
-                  <span>{el.comments?.length}</span>
+                  <img src="images/comment-outlined.svg" alt="댓글 수" />
+                  <span>{post.comments?.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>
             </InfoSectionContainer>
