@@ -109,3 +109,12 @@ export const FreeSwitch = styled(Switch)``
 export const EmptySpace = styled.div`
   opacity: 0;
 `
+
+export const categoryWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  margin: 1rem 0;
+`
+
+export const TagBar = styled.div``
