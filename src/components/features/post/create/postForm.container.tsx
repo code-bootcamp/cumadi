@@ -65,7 +65,7 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
 
   useEffect(() => {
     if (isRouterChangable) {
-      if (isEditMode) router.back()
+      if (isEditMode) router.push(`/post/${post.postId}/edit/publish`)
       else router.push('new/publish')
     }
     return () => {
@@ -100,9 +100,9 @@ export default function PostForm({ isEditMode }: IPostFormProps) {
   }
 
   const handleClickCancelEditPost = () => {
-    setIsRouterChangable(true)
     resetPost()
     resetTempPostId()
+    router.back()
   }
 
   const handleSubmitForm = async (values: any) => {
