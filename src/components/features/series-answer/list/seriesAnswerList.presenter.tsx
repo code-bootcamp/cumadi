@@ -21,7 +21,7 @@ export default function SeriesAnswerListUI(props: any) {
         <>
           {reviews?.length ? (
             <>
-              {reviews.map(el => (
+              {reviews.map((el: any) => (
                 <>
                   {!props.isEditReview && (
                     <S.ReviewList>

@@ -9,18 +9,29 @@ import {
 } from './seriesAnswerWrite.query'
 import { useState } from 'react'
 import { Modal } from 'antd'
+import {
+  IMutation,
+  IMutationCreateSeriesReviewArgs,
+  IMutationUpdateSeriesReviewArgs,
+  IQuery,
+  IUser,
+} from '@/common/types/generated/types'
 
 export default function SeriesAnswerWrite(props: any) {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
 
-  const [content, setContent] = useState('')
-  const [rating, setRating] = useState(0)
+  const [content, setContent] = useState<string>('')
+  const [rating, setRating] = useState<number>(1)
 
-  const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
+  const { data: user } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>, IUser>(FETCH_USER_LOGGED_IN)
 
-  const [createSeriesReview] = useMutation(CREATE_SERIES_REVIEW)
-  const [updateSeriesReview] = useMutation(UPDATE_SERIES_REVIEW)
+  const [createSeriesReview] = useMutation<Pick<IMutation, 'createSeriesReview'>, IMutationCreateSeriesReviewArgs>(
+    CREATE_SERIES_REVIEW,
+  )
+  const [updateSeriesReview] = useMutation<Pick<IMutation, 'updateSeriesReview'>, IMutationUpdateSeriesReviewArgs>(
+    UPDATE_SERIES_REVIEW,
+  )
 
   const onSubmitReview = async () => {
     try {
