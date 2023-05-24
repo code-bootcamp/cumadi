@@ -9,8 +9,8 @@ export default function SeriesAnswerWrite(props) {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
 
-  const [content, setContent] = useState("")
-  const [rating, setRating] = useState(0);
+  const [content, setContent] = useState('')
+  const [rating, setRating] = useState(0)
 
   const [createSeriesReview] = useMutation(CREATE_SERIES_REVIEW)
   const [updateSeriesReview] = useMutation(UPDATE_SERIES_REVIEW)
@@ -30,19 +30,19 @@ export default function SeriesAnswerWrite(props) {
               variables: { seriesId },
             },
           ],
-        }
+        },
       })
       Modal.success({ content: '리뷰가 등록되었습니다!' })
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
-    setContent("")
+    setContent('')
   }
 
   const onUpdateReview = async () => {
     if (!content) {
-      alert("내용이 수정되지 않았습니다ㅏ.")
-      return;
+      alert('내용이 수정되지 않았습니다ㅏ.')
+      return
     }
 
     try {
@@ -52,7 +52,7 @@ export default function SeriesAnswerWrite(props) {
           updateSeriesReviewInput: {
             content,
             rating,
-          }
+          },
         },
         refetchQueries: [
           {
@@ -61,23 +61,24 @@ export default function SeriesAnswerWrite(props) {
           },
         ],
       })
-      Modal.success({ content: "리뷰가 수정되었습니다." })
+      Modal.success({ content: '리뷰가 수정되었습니다.' })
       props.setIsEditReview(false)
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }
   }
 
-  const onChangeContent = (event) => {
-    setContent(event.target.value);
+  const onChangeContent = event => {
+    setContent(event.target.value)
   }
-  
-  const onChangeRating = (value) => {
-    setRating(value);
+
+  const onChangeRating = value => {
+    setRating(value)
   }
 
   return (
     <SeriesAnswerWriteUI
+      isEditReview={props.isEditReview}
       content={content}
       rating={rating}
       onChangeContent={onChangeContent}

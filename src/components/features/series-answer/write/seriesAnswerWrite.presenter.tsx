@@ -5,15 +5,20 @@ import { Avatar, Rate } from 'antd'
 export default function SeriesAnswerWriteUI(props) {
   return (
     <>
-      <S.AvatarWrapper>
-        <S.Avatar src="/images/avatar.png" />
-        <S.Info>
-          <S.Writer>sehwan</S.Writer>
-        </S.Info>
-        <S.UserRate>
-          <Rate onChange={props.onChangeRating} />
-        </S.UserRate>
-      </S.AvatarWrapper>
+      {props.isEditReview ? (
+        <div></div>
+      ) : (
+        <S.AvatarWrapper>
+          <S.Avatar src="/images/avatar.png" />
+          <S.Info>
+            <S.Writer>sehwan</S.Writer>
+          </S.Info>
+          <S.UserRate>
+            <Rate onChange={props.onChangeRating} />
+          </S.UserRate>
+        </S.AvatarWrapper>
+      )}
+
       <S.Container>
         <S.ReviewContent
           placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시

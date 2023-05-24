@@ -41,14 +41,14 @@ export default function SeriesAnswerListUI(props) {
                       <button onClick={props.onClickDeleteReview(el.reviewId)}>삭제</button>
                     </S.ButtonWrapper>
                   </S.ReviewListTopWrapper>
+                  {props.isEditReview && (
+                    <SeriesAnswerWrite
+                      isEditReview={true}
+                      setIsEditReview={props.setIsEditReview}
+                      reviewId={el.reviewId}
+                    />
+                  )}
                 </S.ReviewList>
-                {props.isEditReview && (
-                  <SeriesAnswerWrite
-                    isEditReview={true}
-                    setIsEditReview={props.setIsEditReview}
-                    reviewId={el.reviewId}
-                  />
-                )}
               </>
             ))}
           </>
