@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Input, Modal, Tag } from 'antd'
 import { useMutation, useQuery } from '@apollo/client'
 import { useRecoilState } from 'recoil'
+import type { CustomTagProps } from 'rc-select/lib/BaseSelect'
 
 import NewSeriesUI from './newSeries.presenter'
 import {
@@ -15,10 +16,21 @@ import {
 } from './newSeries.query'
 
 import { editSeriesId } from '@/common/store'
+import {
+  IMutation,
+  IMutationCreateSeriesArgs,
+  IMutationUpdateSeriesArgs,
+  IMutationUploadImageArgs,
+  IPost,
+  IQuery,
+  IQueryFetchPostArgs,
+  IQueryFetchSeriesArgs,
+  IQueryFetchSeriesCategoryArgs,
+} from '@/common/types/generated/types'
 
-const tagRender = (props: any) => {
+const tagRender = (props: CustomTagProps) => {
   const { label, closable, onClose } = props
-  const onPreventMouseDown = (event: any) => {
+  const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.preventDefault()
     event.stopPropagation()
   }
@@ -40,20 +52,22 @@ export default function NewSeries(props: any) {
   const imgRef = useRef<HTMLInputElement>(null)
 
   const [editId] = useRecoilState(editSeriesId)
-  const [thumbnail, setThumbnail] = useState('')
-  const [cateState, setCateState] = useState('')
+  const [thumbnail, setThumbnail] = useState<string>('')
+  const [cateState, setCateState] = useState<string>('')
   const [postState, setPostState] = useState([])
   const [isClickPrice, setIsClickPrice] = useState(false)
   const { TextArea } = Input
 
-  const { data: post } = useQuery(FETCH_POSTS_OF_MINE)
-  const { data: category } = useQuery(FETCH_SERIES_CATEGORIES)
-  const { data: previousData } = useQuery(FETCH_SERIES, {
+  const { data: post } = useQuery<Pick<IQuery, 'fetchPostsOfMine'>, IQueryFetchPostArgs>(FETCH_POSTS_OF_MINE)
+  const { data: category } = useQuery<Pick<IQuery, 'fetchSeriesCategories'>, IQueryFetchSeriesCategoryArgs>(
+    FETCH_SERIES_CATEGORIES,
+  )
+  const { data: previousData } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
     variables: { seriesId: editId },
   })
 
-  const [createSeries] = useMutation(CREATE_SERIES)
-  const [updateSeries] = useMutation(UPDATE_SERIES)
+  const [createSeries] = useMutation<Pick<IMutation, 'createSeries'>, IMutationCreateSeriesArgs>(CREATE_SERIES)
+  const [updateSeries] = useMutation<Pick<IMutation, 'updateSeries'>, IMutationUpdateSeriesArgs>(UPDATE_SERIES)
   const [uploadImage] = useMutation(UPLOAD_IMAGE)
 
   const postOptions = post?.fetchPostsOfMine.map((el: any) => {
