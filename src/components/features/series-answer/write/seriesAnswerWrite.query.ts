@@ -38,3 +38,13 @@ export const UPDATE_SERIES_REVIEW = gql`
     }
   }
 `
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      userId
+      email
+      nickname
+    }
+  }
+`

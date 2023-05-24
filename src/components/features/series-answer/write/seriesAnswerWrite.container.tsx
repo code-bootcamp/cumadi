@@ -1,7 +1,12 @@
 import { useRouter } from 'next/router'
 import SeriesAnswerWriteUI from './seriesAnswerWrite.presenter'
-import { useMutation } from '@apollo/client'
-import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REVIEW } from './seriesAnswerWrite.query'
+import { useMutation, useQuery } from '@apollo/client'
+import {
+  CREATE_SERIES_REVIEW,
+  FETCH_SERIES_REVIEWS_BY_SERIES,
+  FETCH_USER_LOGGED_IN,
+  UPDATE_SERIES_REVIEW,
+} from './seriesAnswerWrite.query'
 import { useState } from 'react'
 import { Modal } from 'antd'
 
@@ -11,6 +16,8 @@ export default function SeriesAnswerWrite(props: any) {
 
   const [content, setContent] = useState('')
   const [rating, setRating] = useState(0)
+
+  const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
 
   const [createSeriesReview] = useMutation(CREATE_SERIES_REVIEW)
   const [updateSeriesReview] = useMutation(UPDATE_SERIES_REVIEW)
@@ -78,6 +85,7 @@ export default function SeriesAnswerWrite(props: any) {
 
   return (
     <SeriesAnswerWriteUI
+      user={user}
       isEditReview={props.isEditReview}
       content={content}
       rating={rating}
