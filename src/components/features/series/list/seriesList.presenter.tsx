@@ -1,11 +1,6 @@
 import { Avatar, Empty } from 'antd'
 import * as S from './seriesList.styles'
-import {
-  DotLeft,
-  EmptyStateContainer,
-  FlexColumnContainer,
-  MyButton,
-} from '@/components/common/customComponent.styles'
+import { DotLeft, EmptyStateContainer, FlexColumnContainer, MyButton } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
 import { ProfileContainer } from '@/components/common/customComponent.styles'
@@ -85,11 +80,6 @@ export default function SeriesListUI(props: any) {
                         <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
                       </ProfileTextDataContainer>
                     </ProfileContainer>
-                    <ReactionsContainer>
-                      <ReactionContainer>
-                        <Rate disabled value={el.star} />
-                      </ReactionContainer>
-                    </ReactionsContainer>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
               </S.StyledCard>

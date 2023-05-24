@@ -25,7 +25,6 @@ export default function SeriesList() {
   const [isfreeOn, setIsFreeOn] = useState(false)
 
   const { data } = useQuery<Pick<IQuery, 'fetchSeriesAll'>, IQueryFetchSeriesArgs>(FETCH_SERIES_ALL)
-  const { data: rate } = useQuery(FETCH_RATING_BY_SERIES)
 
   const { data: category } = useQuery<Pick<IQuery, 'fetchSeriesCategories'>, IQueryFetchSeriesCategoryArgs>(
     FETCH_SERIES_CATEGORIES,
