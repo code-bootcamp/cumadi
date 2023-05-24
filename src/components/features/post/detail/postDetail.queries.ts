@@ -7,6 +7,7 @@ export const FETCH_USER_LOGGED_IN = gql`
       userId
       email
       nickname
+      image
     }
   }
 `
@@ -23,6 +24,7 @@ export const FETCH_POST = gql`
       user {
         userId
         nickname
+        image
       }
       tags {
         tagId

@@ -18,10 +18,10 @@ export const Container = styled.div`
   align-items: center;
   width: 90rem;
   height: 4.5rem;
+  padding: 0 1rem;
   font-size: 1rem;
   position: fixed;
   z-index: 99;
-  background-color: var(--color-white);
 
   @media ${breakPoints.tablet} {
     width: 55rem;
@@ -29,7 +29,7 @@ export const Container = styled.div`
 
   @media ${breakPoints.mobile} {
     width: 100%;
-    margin: 0 1rem;
+    padding: 0 1rem;
   }
 `
 
