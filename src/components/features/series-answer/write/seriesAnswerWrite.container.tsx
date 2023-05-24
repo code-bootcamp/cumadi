@@ -5,9 +5,6 @@ import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REV
 import { FETCH_SERIES } from '../../post/detail/postDetail.queries'
 import { useState } from 'react'
 import { Modal } from 'antd'
-import { useMutation } from '@apollo/client'
-import SeriesAnswerWriteUI from './seriesAnswerWrite.presenter'
-import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REVIEW } from './seriesAnswerWrite.query'
 
 export default function SeriesAnswerWrite(props: any) {
   const router = useRouter()
