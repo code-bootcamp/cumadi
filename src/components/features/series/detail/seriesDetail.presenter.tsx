@@ -28,9 +28,7 @@ export default function SeriesDetailUI(props: any) {
         </S.PostTagWapper>
         <S.Header>
           <S.AvatarWrapper>
-            <Avatar src={props.data?.fetchSeries.user.image ?? ""}>
-              {props.data?.fetchSeries.user.nickname[0]}
-            </Avatar>
+            <Avatar>{props.data?.fetchSeries.user.nickname[0]}</Avatar>
             <S.Info>
               <S.Writer>{props.data?.fetchSeries.user.nickname}</S.Writer>
               <S.CreatedAt>
