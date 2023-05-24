@@ -41,7 +41,6 @@ export const CommentList = styled.div`
   align-items: center;
   width: 100%;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-3);
 `
 
 // **** 댓글 상단

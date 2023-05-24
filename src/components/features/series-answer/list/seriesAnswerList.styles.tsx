@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 export const Container = styled.section`
   width: auto;
   margin-top: 3rem;
+  background-color: var(--color-white);
 
   @media ${breakPoints.tablet} {
     width: 44rem;
@@ -21,8 +22,7 @@ export const ReviewHeaderWrapper = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  border: 1px solid var(--color-gray-3);
-  border-radius: 0.5rem;
+  border-bottom: 1px solid var(--color-gray-3);
   font-weight: bold;
 `
 export const ReviewTitle = styled.div``
@@ -45,7 +45,6 @@ export const ReviewList = styled.div`
   align-items: center;
   width: 100%;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-3);
 `
 
 // **** 댓글 상단
