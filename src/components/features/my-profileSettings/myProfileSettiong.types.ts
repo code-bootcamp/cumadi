@@ -1,5 +1,4 @@
-import { IUser } from '@/common/types/generated/types'
-import { ChangeEvent, MouseEvent, MouseEventHandler } from 'react'
+import { ChangeEvent, MouseEvent } from 'react'
 
 export interface IMyProfileSettingsUIProps {
   currentPasswordError: string
