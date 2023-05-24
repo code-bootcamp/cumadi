@@ -15,6 +15,7 @@ import { getCreateDate } from '@/common/libraries/utils'
 import { IPostListUIProps } from './postList.types'
 import { IPost } from '@/common/types/generated/types'
 import removeMd from 'remove-markdown'
+import { CommentOutlined, HeartOutlined } from '@ant-design/icons'
 
 export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -54,11 +55,11 @@ export default function PostListUI({ data }: IPostListUIProps) {
               </ProfileContainer>
               <ReactionsContainer>
                 <ReactionContainer>
-                  <img src="images/heart-outlined.svg" alt="좋아요 수" />
+                  <HeartOutlined />
                   <span>{post.likes?.length}</span>
                 </ReactionContainer>
                 <ReactionContainer>
-                  <img src="images/comment-outlined.svg" alt="댓글 수" />
+                  <CommentOutlined />
                   <span>{post.comments?.length}</span>
                 </ReactionContainer>
               </ReactionsContainer>

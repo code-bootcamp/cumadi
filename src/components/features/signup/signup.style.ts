@@ -1,3 +1,4 @@
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Input } from 'antd'
 
@@ -6,15 +7,14 @@ export const SignUpSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(ElevatedCard)`
   width: 50rem;
-  height: 50rem;
+  height: fit-content;
   margin: 1rem auto;
-  padding: 5rem;
+  padding: 2rem 4rem;
+  background-color: var(--color-white);
 `
 
 // 로그인 타이틀
