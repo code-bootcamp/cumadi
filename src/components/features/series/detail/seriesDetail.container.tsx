@@ -10,16 +10,17 @@ import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CAR
 export default function SeriesDetail() {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
-  const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId);
+  const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId)
 
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
-  const { data } = useQuery(FETCH_SERIES, {variables: { seriesId }})
-  const [addCart] = useMutation(INSERT_SERIES_IN_CART);
+  const { data } = useQuery(FETCH_SERIES, { variables: { seriesId } })
+  const [addCart] = useMutation(INSERT_SERIES_IN_CART)
   const [deleteSeries] = useMutation(DELETE_SERIES)
-  
-  const isWriterData = (data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId ? true : false);
-  
+
+  const isWriterData = data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId ? true : false
+
   const onClickDelete = async () => {
+    if (!confirm('정말로 삭제하시겠습니까?')) return false
     try {
       await deleteSeries({
         variables: { seriesId },
@@ -44,7 +45,7 @@ export default function SeriesDetail() {
 
   const onClickBuy = () => {
     setBuySeriesId(seriesId)
-    void router.push('/purchase');
+    void router.push('/purchase')
   }
 
   return (
