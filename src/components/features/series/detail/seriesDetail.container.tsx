@@ -11,8 +11,8 @@ import { editSeriesId } from '@/common/store'
 export default function SeriesDetail() {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
-  const { onClickMoveToPage } = useMoveToPage()
 
+  const { onClickMoveToPage } = useMoveToPage()
   const [editId, setEditId] = useRecoilState(editSeriesId)
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
   const { data } = useQuery(FETCH_SERIES, { variables: { seriesId } })
@@ -22,6 +22,7 @@ export default function SeriesDetail() {
   const isWriterData = data?.fetchSeries?.user.userId === user?.fetchUserLoggedIn?.userId ? true : false
 
   const onClickDelete = async () => {
+    if (!confirm('정말로 삭제하시겠습니까?')) return false
     try {
       await deleteSeries({
         variables: { seriesId },

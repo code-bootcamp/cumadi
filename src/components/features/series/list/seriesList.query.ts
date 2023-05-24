@@ -50,3 +50,9 @@ export const FETCH_SERIES_BY_CATEGORY = gql`
     }
   }
 `
+
+export const FETCH_RATING_BY_SERIES = gql`
+  query fetchRatingBySeries($seriesId: String!) {
+    fetchRatingBySeries(seriesId: $seriesId)
+  }
+`
