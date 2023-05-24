@@ -5,7 +5,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import BasicButton from '@/components/common/buttons/basic'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
-import { PlusOutlined, UserOutlined } from '@ant-design/icons'
+import { PlusOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   const { onClickMoveToPage } = useMoveToPage()

@@ -1,6 +1,12 @@
 import { Avatar, Empty } from 'antd'
 import * as S from './seriesList.styles'
-import { FlexColumnContainer, MyTag } from '@/components/common/customComponent.styles'
+import {
+  DotLeft,
+  EmptyStateContainer,
+  FlexColumnContainer,
+  MyButton,
+  MyTag,
+} from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
 import { ProfileContainer } from '@/components/common/customComponent.styles'
@@ -16,14 +22,14 @@ export default function SeriesListUI(props: any) {
     <>
       <S.TitleWrapper>
         <S.Title>내 맘대로. 내 입맛대로.</S.Title>
-        <S.TagWrapper>
-          <MyTag isChecked={false} onClick={props.onClickMoveToPage('./')}>
+        <S.ButtonWrapper>
+          <MyButton type="text" onClick={props.onClickMoveToPage('./')}>
             포스트
-          </MyTag>
-          <MyTag isChecked={true} onClick={props.onClickMoveToPage('./series')}>
+          </MyButton>
+          <MyButton type="primary" onClick={props.onClickMoveToPage('./series')}>
             시리즈
-          </MyTag>
-        </S.TagWrapper>
+          </MyButton>
+        </S.ButtonWrapper>
         <S.categoryWrapper>
           <S.EmptySpace>공간 채우기용 임다용</S.EmptySpace>
           <S.TagBar>
@@ -59,7 +65,9 @@ export default function SeriesListUI(props: any) {
                       onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
                     />
                   ) : (
-                    <Empty description={<span>이미지가 없습니다.</span>} />
+                    <EmptyStateContainer>
+                      <Empty description={<span>이미지가 없습니다.</span>} />
+                    </EmptyStateContainer>
                   )
                 }>
                 <FlexColumnContainer gap={'0.5rem'}>
@@ -102,7 +110,9 @@ export default function SeriesListUI(props: any) {
                       onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
                     />
                   ) : (
-                    <Empty description={<span>이미지가 없습니다.</span>} />
+                    <EmptyStateContainer>
+                      <Empty description={<span>이미지가 없습니다.</span>} />
+                    </EmptyStateContainer>
                   )
                 }>
                 <FlexColumnContainer gap={'0.5rem'}>
@@ -132,6 +142,7 @@ export default function SeriesListUI(props: any) {
             ))}
           </>
         )}
+        <DotLeft />
       </S.Body>
     </>
   )

@@ -8,7 +8,7 @@ export default function PostFormUI(props: PostFormUIProps) {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>{props.isEditMode ? '포스트 수정' : '새 포스트 작성'}</S.Title>
+        <S.Title>{props.isEditMode ? '포스트 수정' : '포스트 작성'}</S.Title>
       </S.TitleWrapper>
 
       <S.MyForm onFinish={props.handleSubmitForm} form={props.form}>
@@ -43,7 +43,7 @@ export default function PostFormUI(props: PostFormUIProps) {
           />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item style={{ backgroundColor: 'white' }}>
           <props.DynamicImportEditor
             editorRef={props.editorRef}
             content={props.post.content ? props.post.content : ''}

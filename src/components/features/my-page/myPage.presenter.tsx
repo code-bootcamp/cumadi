@@ -4,6 +4,7 @@ import { Modal } from 'antd'
 import * as S from './myPage.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { Avatar } from 'antd'
+import { DotBottom } from '@/components/common/customComponent.styles'
 
 export default function MyPageUI(props: any) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -11,12 +12,9 @@ export default function MyPageUI(props: any) {
   return (
     <S.Container>
       <S.AvatarWrapper>
-        {props.loginData?.fetchUserLoggedIn.image ? (
-          <Avatar src={props.loginData?.fetchUserLoggedIn.image} size={64} />
-        ) : (
-          <Avatar size={64} icon={<UserOutlined />} />
-        )}
-
+        <Avatar size={64} src={props.loginData?.fetchUserLoggedIn.image ?? ''}>
+          {props.loginData?.fetchUserLoggedIn.nickname[0]}
+        </Avatar>
         <S.Writer>{props.loginData?.fetchUserLoggedIn.nickname}</S.Writer>
         <S.Introduction>
           {props.loginData?.fetchUserLoggedIn.introduction
@@ -55,6 +53,7 @@ export default function MyPageUI(props: any) {
       <Modal title="회원 탈퇴" open={props.open} onOk={props.onClickResignUser} onCancel={props.onCancel}>
         <p>정말로 탈퇴 하시겠습니까?</p>
       </Modal>
+      <DotBottom />
     </S.Container>
   )
 }

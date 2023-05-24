@@ -5,6 +5,7 @@ import {
   FlexColumnContainer,
   InfoSectionContainer,
   PriceContainer,
+  EmptyStateContainer,
 } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
@@ -45,7 +46,9 @@ export default function CartUI(props: ICartUIProps) {
                     {list.image ? (
                       <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
                     ) : (
-                      <Empty description={<span>이미지가 없습니다.</span>} />
+                      <EmptyStateContainer>
+                        <Empty description={<span>이미지가 없습니다.</span>} />
+                      </EmptyStateContainer>
                     )}
                     <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                       <FlexColumnContainer gap={'0.5rem'}>

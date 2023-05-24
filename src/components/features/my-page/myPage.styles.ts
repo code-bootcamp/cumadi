@@ -47,6 +47,7 @@ export const Move = styled(ElevatedCard)`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background-color: white;
 `
 
 export const MoveDeleteUser = styled(ElevatedCard)`
@@ -54,5 +55,8 @@ export const MoveDeleteUser = styled(ElevatedCard)`
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
-  color: var(--color-gray-2);
+  background-color: white;
+  div {
+    color: var(--color-gray-2);
+  }
 `

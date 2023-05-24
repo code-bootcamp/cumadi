@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import * as S from './index.styles'
-import { MyTag } from '@/components/common/customComponent.styles'
+import { DotLeft, MyButton } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
@@ -20,11 +20,16 @@ export default function Home() {
         <S.TitleWrapper>
           <S.Title>내 맘대로. 내 입맛대로.</S.Title>
           <S.TagWrapper>
-            <button onClick={onClickMoveToPage('./')}>포스트</button>
-            <button onClick={onClickMoveToPage('./series')}>시리즈</button>
+            <MyButton type="primary" onClick={onClickMoveToPage('./')}>
+              포스트
+            </MyButton>
+            <MyButton type="text" onClick={onClickMoveToPage('./series')}>
+              시리즈
+            </MyButton>
           </S.TagWrapper>
         </S.TitleWrapper>
         {<PostList />}
+        <DotLeft />
       </S.Main>
     </>
   )

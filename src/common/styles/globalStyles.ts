@@ -5,7 +5,7 @@ import { Colors } from './colors'
 export const globalStyles = css`
   :root {
     --color-primary: ${Colors.primary};
-    --color-muted: #${Colors.muted};
+    --color-muted: ${Colors.muted};
     --color-black: ${Colors.black};
     --color-white: ${Colors.white};
     --color-gray-1: ${Colors.gray1};
