@@ -73,6 +73,7 @@ export const Info = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 10px;
+  width: 5rem;
 `
 export const Writer = styled.div``
 

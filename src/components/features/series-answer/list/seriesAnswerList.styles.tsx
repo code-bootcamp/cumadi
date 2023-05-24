@@ -88,6 +88,7 @@ export const Avatar = styled.img`
   width: 3rem;
 `
 export const Info = styled.div`
+  width: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
