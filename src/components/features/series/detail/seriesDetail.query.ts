@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -8,7 +8,7 @@ export const FETCH_USER_LOGGED_IN = gql`
       nickname
     }
   }
-`;
+`
 
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
@@ -48,13 +48,13 @@ export const FETCH_SERIES = gql`
       }
     }
   }
-`;
+`
 
 export const DELETE_SERIES = gql`
   mutation deleteSeries($seriesId: String!) {
     deleteSeries(seriesId: $seriesId)
   }
-`;
+`
 
 export const INSERT_SERIES_IN_CART = gql`
   mutation insertSeriesInCart($seriesId: String!) {
@@ -62,4 +62,4 @@ export const INSERT_SERIES_IN_CART = gql`
       seriesId
     }
   }
-`;
+`

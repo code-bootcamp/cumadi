@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const FETCH_SERIES_REVIEWS_BY_SERIES = gql`
   query fetchSeriesReviewsBySeries($seriesId: String!) {
@@ -16,12 +16,10 @@ export const FETCH_SERIES_REVIEWS_BY_SERIES = gql`
       }
     }
   }
-`;
+`
 
 export const CREATE_SERIES_REVIEW = gql`
-  mutation createSeriesReview(
-    $createSeriesReviewInput: CreateSeriesReviewInput!
-  ) {
+  mutation createSeriesReview($createSeriesReviewInput: CreateSeriesReviewInput!) {
     createSeriesReview(createSeriesReviewInput: $createSeriesReviewInput) {
       reviewId
       content
@@ -31,18 +29,12 @@ export const CREATE_SERIES_REVIEW = gql`
       }
     }
   }
-`;
+`
 
 export const UPDATE_SERIES_REVIEW = gql`
-  mutation updateSeriesReview(
-    $reviewId: String!
-    $updateSeriesReviewInput: UpdateSeriesReviewInput!
-  ) {
-    updateSeriesReview(
-      reviewId: $reviewId
-      updateSeriesReviewInput: $updateSeriesReviewInput
-    ) {
+  mutation updateSeriesReview($reviewId: String!, $updateSeriesReviewInput: UpdateSeriesReviewInput!) {
+    updateSeriesReview(reviewId: $reviewId, updateSeriesReviewInput: $updateSeriesReviewInput) {
       reviewId
     }
   }
-`;
+`

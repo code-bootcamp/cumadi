@@ -21,6 +21,7 @@ export const AvatarWrapper = styled.div`
   align-items: center;
   padding-top: 1rem;
 `
+
 export const Avatar = styled.img`
   width: 3rem;
 `
