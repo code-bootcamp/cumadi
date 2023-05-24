@@ -7,6 +7,7 @@ export const Container = styled.section`
   margin: 1rem 0;
   border: 1px solid var(--color-gray-3);
   border-radius: 0.4rem;
+  background-color: var(--color-white);
 
   @media ${breakPoints.mobile} {
     width: 100%;
