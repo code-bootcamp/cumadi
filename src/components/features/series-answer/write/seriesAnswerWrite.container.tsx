@@ -41,7 +41,7 @@ export default function SeriesAnswerWrite(props) {
 
   const onUpdateReview = async () => {
     if (!content) {
-      alert('내용이 수정되지 않았습니다ㅏ.')
+      alert('내용이 수정되지 않았습니다.')
       return
     }
 

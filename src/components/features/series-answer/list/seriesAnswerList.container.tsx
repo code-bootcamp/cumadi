@@ -19,7 +19,6 @@ export default function SeriesAnswerList() {
   const onClickUpdateReview = () => {
     setIsEditReview(prev => !prev)
   }
-  console.log(rate)
   const onClickDeleteReview = reviewId => async () => {
     if (!confirm('정말로 삭제하시겠습니까?')) return false
     try {
