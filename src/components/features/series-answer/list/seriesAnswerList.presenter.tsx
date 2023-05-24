@@ -1,4 +1,4 @@
-import { Rate } from 'antd'
+import { Avatar, Rate } from 'antd'
 
 import * as S from './seriesAnswerList.styles'
 import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'
@@ -21,13 +21,13 @@ export default function SeriesAnswerListUI(props: any) {
         <>
           {reviews?.length ? (
             <>
-              {reviews.map(el => (
+              {reviews.map((el: any) => (
                 <>
                   {!props.isEditReview && (
                     <S.ReviewList>
                       <S.ReviewListTopWrapper>
                         <S.AvatarWrapper>
-                          <S.Avatar src="/images/avatar.png" />
+                          <Avatar>{el.user.nickname[0]}</Avatar>
                           <S.Info>
                             <S.Writer>{el.user.nickname}</S.Writer>
                             <S.CreatedAt>{el.updatedAt}</S.CreatedAt>

@@ -1,13 +1,13 @@
 import * as S from './seriesAnswerWrite.styles'
-import { Rate } from 'antd'
+import { Avatar, Rate } from 'antd'
 
 export default function SeriesAnswerWriteUI(props: any) {
   return (
     <>
       <S.AvatarWrapper>
-        <S.Avatar src="/images/avatar.png" />
+        <Avatar>{props.user?.fetchUserLoggedIn?.nickname[0]}</Avatar>
         <S.Info>
-          <S.Writer>sehwan</S.Writer>
+          <S.Writer>{props.user?.fetchUserLoggedIn?.nickname}</S.Writer>
         </S.Info>
         <S.UserRate>
           <Rate onChange={props.onChangeRating} />

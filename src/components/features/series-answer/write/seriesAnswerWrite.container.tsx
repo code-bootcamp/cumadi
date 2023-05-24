@@ -1,20 +1,37 @@
 import { useRouter } from 'next/router'
 import SeriesAnswerWriteUI from './seriesAnswerWrite.presenter'
-import { useMutation } from '@apollo/client'
-import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REVIEW } from './seriesAnswerWrite.query'
-import { FETCH_SERIES } from '../../post/detail/postDetail.queries'
+import { useMutation, useQuery } from '@apollo/client'
+import {
+  CREATE_SERIES_REVIEW,
+  FETCH_SERIES_REVIEWS_BY_SERIES,
+  FETCH_USER_LOGGED_IN,
+  UPDATE_SERIES_REVIEW,
+} from './seriesAnswerWrite.query'
 import { useState } from 'react'
 import { Modal } from 'antd'
+import {
+  IMutation,
+  IMutationCreateSeriesReviewArgs,
+  IMutationUpdateSeriesReviewArgs,
+  IQuery,
+  IUser,
+} from '@/common/types/generated/types'
 
 export default function SeriesAnswerWrite(props: any) {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
 
-  const [content, setContent] = useState('')
-  const [rating, setRating] = useState(0)
+  const [content, setContent] = useState<string>('')
+  const [rating, setRating] = useState<number>(1)
 
-  const [createSeriesReview] = useMutation(CREATE_SERIES_REVIEW)
-  const [updateSeriesReview] = useMutation(UPDATE_SERIES_REVIEW)
+  const { data: user } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>, IUser>(FETCH_USER_LOGGED_IN)
+
+  const [createSeriesReview] = useMutation<Pick<IMutation, 'createSeriesReview'>, IMutationCreateSeriesReviewArgs>(
+    CREATE_SERIES_REVIEW,
+  )
+  const [updateSeriesReview] = useMutation<Pick<IMutation, 'updateSeriesReview'>, IMutationUpdateSeriesReviewArgs>(
+    UPDATE_SERIES_REVIEW,
+  )
 
   const onSubmitReview = async () => {
     try {
@@ -79,6 +96,7 @@ export default function SeriesAnswerWrite(props: any) {
 
   return (
     <SeriesAnswerWriteUI
+      user={user}
       isEditReview={props.isEditReview}
       content={content}
       rating={rating}
