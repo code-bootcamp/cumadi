@@ -7,6 +7,7 @@ export const FETCH_POSTS = gql`
       postId
       title
       content
+      image
       series {
         seriesId
         title
@@ -16,6 +17,7 @@ export const FETCH_POSTS = gql`
       }
       user {
         nickname
+        image
       }
       createdAt
       likes {

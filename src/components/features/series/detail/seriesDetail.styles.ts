@@ -177,7 +177,7 @@ export const TopTag = styled(Tag)`
 `
 
 export const Update = styled.span`
-  color: ${Colors.gray1}
+  color: ${Colors.gray1};
 `
 
 export const Date = styled.div`

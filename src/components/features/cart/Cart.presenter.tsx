@@ -1,21 +1,24 @@
-import { ICartUIProps } from './Cart.types'
-import * as S from './Cart.styles'
-import { Checkbox } from 'antd'
+import Script from 'next/script'
+import { Checkbox, Empty } from 'antd'
 import {
   HorizontalCardSm,
   FlexColumnContainer,
   InfoSectionContainer,
   PriceContainer,
+  EmptyStateContainer,
 } from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { MyButton } from '@/components/common/customComponent.styles'
+import { ICartUIProps } from './Cart.types'
+import * as S from './Cart.styles'
 
 export default function CartUI(props: ICartUIProps) {
   return (
     <>
+      <Script src="https://cdn.iamport.kr/v1/iamport.js" />
       <S.Body>
-        {props.productList && props.productList.length === 0 ? (
+        {props.data?.fetchShoppingCart && props.data.fetchShoppingCart.length === 0 ? (
           <S.EmptyCart>장바구니에 담긴 상품이 없습니다</S.EmptyCart>
         ) : (
           <>
@@ -23,27 +26,30 @@ export default function CartUI(props: ICartUIProps) {
               <div>
                 <Checkbox
                   type="checkbox"
-                  checked={props.checkList.length === props.productList.length}
+                  checked={props.checkList.length === props.data?.fetchShoppingCart.length}
                   onChange={props.onClickCheckAll}
                 />
                 <S.AllCheckTitle>전체 선택하기</S.AllCheckTitle>
               </div>
-              <MyButton onClick={props.onClickRemoveChecked} disabled={props.checkList.length === 0}>
-                선택 삭제하기
-              </MyButton>
             </S.AllCheckWrapper>
             <S.CheckListWrapper>
-              {props.productList.map(list => (
-                <S.CardWrapper key={list.id} className="card-wrapper">
+              {props.data?.fetchShoppingCart.map(list => (
+                <S.CardWrapper key={list.seriesId} className="card-wrapper">
                   <Checkbox
                     type="checkbox"
                     onChange={() => {
                       props.onClickCheckList(list)
                     }}
-                    checked={props.isChecked(list)}
+                    checked={props.ischecked(list)}
                   />
                   <HorizontalCardSm>
-                    <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
+                    {list.image ? (
+                      <img className="horizontal-card-cover" src={list.image} alt={`${list.title} 이미지`} />
+                    ) : (
+                      <EmptyStateContainer>
+                        <Empty description={<span>이미지가 없습니다.</span>} />
+                      </EmptyStateContainer>
+                    )}
                     <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                       <FlexColumnContainer gap={'0.5rem'}>
                         <BodyTextLg>
@@ -51,17 +57,17 @@ export default function CartUI(props: ICartUIProps) {
                           {list.title}
                         </BodyTextLg>
                         <InfoSectionContainer>
-                          <BodyTextSm color={Colors.gray1}>{list.name}</BodyTextSm>
+                          <BodyTextSm color={Colors.gray1}>{list.user.nickname}</BodyTextSm>
                         </InfoSectionContainer>
                       </FlexColumnContainer>
                       <PriceContainer>
-                        <BodyTextLg>{`${list.price.toLocaleString()}원`}</BodyTextLg>
+                        <BodyTextLg>{`${list.price?.toLocaleString()}원`}</BodyTextLg>
                       </PriceContainer>
                     </div>
                   </HorizontalCardSm>
                   <MyButton
                     onClick={() => {
-                      props.onClickRemoveList(list.id)
+                      props.onClickRemoveList(list.seriesId)
                     }}>
                     삭제
                   </MyButton>

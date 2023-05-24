@@ -9,14 +9,30 @@ export const MyButton = styled(Button)`
   border-radius: 1rem;
 `
 
+export const MyButtonText = styled(Button)`
+  padding: 1rem;
+  display: flex;
+  border-radius: 1rem;
+`
+
 export const MyTag = styled(Tag)<{ isChecked: boolean }>`
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   color: ${props => (props.isChecked ? Colors.white : Colors.black)};
   border-radius: 1.5rem;
   border: 1px solid var(--color-gray-3);
   border: unset;
   background-color: ${props => (props.isChecked ? Colors.primary : 'unset')};
   cursor: pointer;
+`
+
+export const MyTagSecondary = styled(MyTag)<{ isChecked: boolean }>`
+  color: ${props => (props.isChecked ? Colors.primary : Colors.black)};
+  background-color: ${props => (props.isChecked ? Colors.muted : 'unset')};
+`
+
+export const EmptyStateContainer = styled.div`
+  height: 208px;
+  padding-top: 3rem;
 `
 
 // Custom Card Component
@@ -55,6 +71,28 @@ export const ElevatedCard = styled.div`
   margin: 1rem;
   box-shadow: 0px 0px 8px 2px rgba(217, 217, 217, 0.6);
   border-radius: 1rem;
+`
+
+export const StyledCard = styled(Card)`
+  width: 27rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.12);
+  }
+`
+
+export const StyledCardOutlined = styled(Card)`
+  width: 27rem;
+  border: 1px solid var(--color-gray-3);
+  cursor: pointer;
+`
+
+export const StyledCardCover = styled.img`
+  height: 12.5rem;
+  object-fit: cover;
 `
 
 // Customization styles
@@ -98,4 +136,28 @@ export const ReactionContainer = styled.span`
 
 export const PriceContainer = styled.span`
   word-break: keep-all;
+`
+
+export const DotLeft = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  left: -30rem;
+  top: 8rem;
+  z-index: -2222;
+`
+
+export const DotBottom = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  right: -30rem;
+  bottom: -35rem;
+  z-index: -2222;
 `

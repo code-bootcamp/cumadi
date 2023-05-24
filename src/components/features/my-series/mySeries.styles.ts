@@ -47,8 +47,16 @@ export const BtnWrapper = styled.div`
   }
 `
 
+export const TypeButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+`
+
 export const TagWrapper = styled.div`
   text-align: center;
+  margin-bottom: 1rem;
 `
 
 export const PlusImg = styled.img`
@@ -78,10 +86,4 @@ export const Body = styled.div`
   @media ${breakPoints.mobile} {
     width: 50rem;
   }
-`
-
-export const StyledCard = styled(Card)`
-  width: 27rem;
-  border: 1px solid var(--color-gray-3);
-  cursor: pointer;
 `

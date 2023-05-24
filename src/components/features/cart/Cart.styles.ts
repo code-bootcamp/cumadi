@@ -43,10 +43,7 @@ export const AllCheckTitle = styled.span`
   font-weight: 500;
 `
 
-// 나중에 적용!!!
-export const CheckListWrapper = styled.div`
-  /* height: 52rem; */
-`
+export const CheckListWrapper = styled.div``
 
 export const CardWrapper = styled.div`
   display: inline-flex;

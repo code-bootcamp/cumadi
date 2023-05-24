@@ -1,36 +1,80 @@
-# Md.
+### Md.
 
-* 주소
+* 프로덕트명 : 커마디
 * 개발기간 : `2023년 5월 1일 ~ 진행중`
-* 기능 요약
-  * 마크다운으로 작성한 글을 유저가 디자인 커스텀
-  * 마크다운으로 작성한 블로그 글들을 시리즈로 엮어서 판매
+* 서비스 핵심 요약 : 마크다운으로 작성한 블로그 글들을 시리즈로 엮어서 판매하는 서비스
 
 ------
 
-# 💡 소개
+#### 📄 설치 및 실행 방법
 
-- `기존 시장의 문제점 및 개선 필요성 (기획의도)`
-  - 어떤 정보를 습득하고 배우기 위해 저는 어떤 분야이든 관련 책을 읽는 것이 가장 빠르다고 생각했었습니다.
-  - 과거부터 게임 블로그와 보고서 등을 썼을 떄, 글과 별개로 디자인이 가독성 좋지 않은 것이 불만이었습니다.
+```bash
+// Node v16 or later
+// npm install -g yarn
+```
+
+1. Cloning Source from Repository
+
+```bash
+$ git clone https://github.com/code-bootcamp/mcb2_team01_client.git
+```
+
+2. Initialize Workspace & Installing required packages
+
+```bash
+$ yarn install
+```
+
+3. Starting Server (ssr enabled)
+
+```bash
+$ yarn dev
+```
+
+4. (In case you want to build static resource and run) Build and Start Server
+
+```bash
+$ yarn build
+$ yarn start
+```
+
+
+------
+
+### 😂 팀원 소개
+
+|  이름  |   역할   | 담당                                                       |                            GitHub                            |         이메일         |
+| :----: | :------: | :--------------------------------------------------------- | :----------------------------------------------------------: | :--------------------: |
+| 박예림 | 팀장, FE | 포스트 작성, <br />수정                                    | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yerimpark103) | yerimpark103@gmail.com |
+| 유승우 |    FE    | 포스트 조회, <br />포스트 질문답변 댓글, <br />포스트 통계 | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/berenickt) |  dhktjdyd12@naver.com  |
+| 박소현 |    FE    | 시리즈 결제, <br />시리즈 장바구니                         | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ParkSohyunee) | sohyunee016@gmail.com  |
+| 전필성 |    FE    | 로그인, <br />유저 정보 수정                               | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jeonpilseong) |  abcabc3502@gmail.com  |
+| 김세환 |    FE    | 시리즈 목록, <br />시리즈 리뷰                             | [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dragonfruitlemonade) |  tpghks9245@gmail.com  |
+
+------
+
+### 💡 기획의도 및 서비스 소개
+
+![UserFlow-Miro](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/UserFlow-Miro.png)
+
+- `기획의도`
+  - 어떤 정보를 습득하고 배우기 위해 어떤 분야이든 관련 책을 읽는 것이 가장 빠르다고 생각했었습니다.
+  - 과거부터 일반 블로그와 보고서 등을 썼을 떄, 글과 별개로 디자인이 가독성 좋지 않은 것이 불만이었습니다.
   - 그러다 발견한 것이 마크다운이었고, 마크다운으로 글을 쓰는데만 집중할 수 있어 좋았습니다.
-  - 그렇지만 티스토리 블로그로 자신만의 블로그를 커스텀하는 디자인도 있었으면 했습니다.
-  - 현재 많은 개발자들이 사용하는 블로그 플랫폼인 Velog가 있지만, 개인이 디자인을 커스텀할 수 없어 불만이었습니다.
-  - 또 google, 알라딘, YES 24 등의 해당 플랫폼에서만 전자책을 읽게 제한했고, 
+  - 현재 많은 개발자들이 사용하는 블로그 플랫폼인 Velog가 있지만, 
+    작성한 글들을 책처럼 엮어서 판매도 할 수 있으면 좋겠다는 생각이 들었습니다.
+  - google books, 알라딘, YES 24 등의 해당 플랫폼에서만 전자책을 읽게 제한했고, 
     그 플랫폼들의 가독성들이 정말 불편하게 느껴졌고, 
-    이런 점이 몇몇 사람들이 ebook보다 종이책을 선호하게 되지 않았나 생각했습니다.
+    이런 점들이 몇몇 사람들이 ebook보다 종이책을 선호하게 되지 않았나 생각했습니다.
   - 그러다 ‘점프투파이썬’책을 만들어주신 위키독스를 운영하시는 박응용님의 플랫폼의 글들이 온라인 글임에도 오프라인 글과 다름없이 잘 읽히는 걸 알게되었고, 이 역시 마크다운으로 작성한 걸 알게되었습니다.
-  - 해외 개발자들이 유료 서비스 글을 읽을 수 있는 Medium 서비스와 커스텀마크다운 블로그를 잘 엮으면, 
-    독자가 더 나은 환경에서 글들을 읽을 수 있을 거 같아 이 서비스를 생각하게 되었습니다.
+  - 따라서 독자가 더 나은 환경에서 글들을 읽을 수 있을 거 같아 이 서비스를 생각하게 되었습니다.
   - 여러가지 블로그 포스트를 보면서 중요하다 생각하는 문장이나 문단을 캡쳐하여 저장하고, 
     사람들과 논의할 수 있는 플랫폼이 있었으면 좋겠다는 생각이 들었습니다.
 - `핵심 개선 포인트`
-  - 커스텀 가능한 마크다운 블로그 + ebook 책들을 내가 원하는 환경과 디자인에서 읽기
-  - 현재 메모 시장에서 Notion에만 익숙한 개발자가 아닌, 
-    일반 직종의 사람들도 마크다운의 유용함을 알게되었다고 생각합니다.
-    마크다운의 유용함을 다양한 직종의 사람들이 느낀 것은 최근 Notion의 행보가 이를 증명해줍니다.
-  - 그렇지만 Notion의 경우 무료든, 유료든 양이 많아지면 속도가 너무 느리고, 
-    이것 역시 Notion이 만들어준 디자인에서만 한정되어 있습니다.
+  - 마크다운 블로그 + ebook 책들을 내가 원하는 환경에서 읽기
+  - 현재 메모 시장에서 Notion으로 인해 개발자가 아닌 직종의 사람들도 마크다운의 유용함을 알게되었다고 생각합니다.
+    그렇지만 Notion의 경우 무료든, 유료든 양이 많아지면 속도가 너무 느리고, 따로 글들을 판매할 수는 없습니다.
+    - 책들을 더 빠른 시간 내 엮어서 출시 가능
     - 문장/문단 단위 포스트 스크랩 + 커뮤니티 공유 기능
     - 기억하고 싶은 글에 하이라이팅을 하고 사람들과 공유하여 논의할 수 있습니다.
 - `기대효과`
@@ -40,7 +84,7 @@
 
 ------
 
-# ⚙️ 사용한 Front-end 기술
+### ⚙️ 사용한 Front-end 기술
 
 |         기술명         | 사용이유                                                     |
 | :--------------------: | ------------------------------------------------------------ |
@@ -50,35 +94,77 @@
 | GraphQL & ApolloClient | REST-API의 POST 메소드를 응용해 만든 데이터 통신 기술로 모든 데이터를 받아오는 REST API와 달리, 필요한 데이터만 불러오는 식으로 동작해, 불필요한 데이터 전송을 막을 수 있습니다. |
 |       TypeScript       | JavaScript는 따로 타입을 지정하지 않아도 알아서 인식하고, 호이스팅 등의 기능을 통해 선언과 초기화의 위치가 바뀌어도 문제없이 동작합니다. 이는 브레이브와 파이어폭스, JavaScript 창시자인 브랜든 아이크가 자기가 만든 언어가 이렇게 널리 쓰일줄 모른채 10일만에 개발했기 때문입니다. <br />이런 관대함은 디버깅을 어렵게하는 단점이 존재합니다. 그래서 MS사에서 다른 언어처럼 타임의 엄격함을 쓰기 위해 JavaScript 확장판격인 TypeScript를 쓰는 것이 유지보수 관점에서 더 좋기 때문에 선택했습니다. |
 
-* 기타 라이브러리
+* 기타 주요 라이브러리
+  * Recoil : 전역 상태 관리
   * [TOAST UI](https://ui.toast.com/)
-  * [React Color](https://casesandberg.github.io/react-color/)
+  * [React-Markdown](https://github.com/remarkjs/react-markdown)
   * [I’mPort (portone)](https://portone.io/korea/ko?utm_source=google&utm_medium=google_sa&utm_campaign=pf_conversion_2302_kr&utm_content=homepage&gclid=Cj0KCQjw0tKiBhC6ARIsAAOXutlMBCAYcUxS81oGxjWOzfpZIzER3O0xBCwwKMcaLqD334rNd6s5NacaArhAEALw_wcB)
   * [Chart.js](https://www.chartjs.org/)
+  
 
 ------
 
+### ⚙️ User Flow
 
-
-
-
-------
-
-# 🔮 기능 시연자료
-
-
-
-
+![UserFlow](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/UserFlow.png)
 
 ------
 
-# 😂 팀원
+### ⚙️ ER 다이어그램
 
-|  팀원  |   역할   | 담당                       |                 GitHub                 |         이메일         |
-| :----: | :------: | -------------------------- | :------------------------------------: | :--------------------: |
-| 박예림 | 팀장, FE | 포스트 작성, 통계          |    https://github.com/yerimpark103     | yerimpark103@gmail.com |
-| 유승우 |    FE    | 포스트 상세, 질문답변 댓글 |      https://github.com/berenickt      | berenickt99@gmail.com  |
-| 박소현 |    FE    | 결제, 장바구니             |    https://github.com/ParkSohyunee     | sohyunee016@gmail.com  |
-| 전필성 |    FE    | 로그인, 마이페이지 수정    |    https://github.com/jeonpilseong     |  abcabc3502@gmail.com  |
-| 김세환 |    FE    | 시리즈 목록, 리뷰          | https://github.com/dragonfruitlemonade |  tpghks9245@gmail.com  |
+![mcb_ERD](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/mcb_ERD.png)
+
+------
+
+### 🔮 기능 시연자료
+
+#### 회원 - 회원가입, 로그인
+
+* 회원가입
+  * 이메일로 회원가입을 할 수 있으며, 등록한 이메일로 로그인이 가능합니다.
+
+------
+
+#### 마이페이지 - 비밀번호 수정, 
+
+* 로그인을 한 뒤에는 유저의 프로필 사진과 자기소개를 등록할 수 있으며,
+* 비밀번호를 수정할 수 있습니다.
+
+------
+
+#### 포스트 - 생성, 조회, 수정, 삭제
+
+* 포스트 조회
+  * 저희 사이트는 마크다운 형식으로 작성된 글들을 조회할 수 있으며, 
+    좋아요와 다시 보고 싶은 글들을 드래그하여 저장할 수 있습니다.
+
+------
+
+#### 포스트 댓글, 답변 - 생성, 조회, 수정, 삭제
+
+* 포스트를 조회하며 다른 유저들이 댓글을 달면, 작성자가 답변을 달아 서로 소통할 수 있습니다.
+
+------
+
+#### 포스트 통계
+
+* 작성자는 자기가 작성한 포스트의 조회 수를 확인할 수 있습니다.
+
+------
+
+#### 작성포스트, 작성시리즈
+
+* 작성자는 자기가 등록한 포스트들, 작성한 시리즈를 조회할 수 있습니다.
+
+------
+
+#### 시리즈 - 생성, 조회, 수정, 삭제
+
+* 작성자는 포스트들을 시리즈로 묶어서 판매가 가능합니다.
+
+------
+
+#### 시리즈 결제
+
+* 다른 유저들은 만들어진 시리지들을 구매할 수 있습니다.
 

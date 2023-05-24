@@ -6,6 +6,7 @@ import {
   FETCH_SERIES_BY_CATEGORY,
   FETCH_SERIES_CATEGORIES,
 } from './seriesList.query'
+
 import { useState } from 'react'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
@@ -19,6 +20,7 @@ export default function SeriesList() {
 
   const { data } = useQuery(FETCH_SERIES_ALL)
   const { data: rate } = useQuery(FETCH_RATING_BY_SERIES)
+
   const { data: category } = useQuery(FETCH_SERIES_CATEGORIES)
   const { data: menu } = useQuery(FETCH_SERIES_BY_CATEGORY, {
     variables: { categoryId: seriesMenu },

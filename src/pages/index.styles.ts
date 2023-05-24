@@ -17,6 +17,8 @@ export const Title = styled.div`
 `
 
 export const TagWrapper = styled.div`
-  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   margin: 1rem 0;
 `

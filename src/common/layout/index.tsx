@@ -16,28 +16,19 @@ interface ILayoutProps {
   children: JSX.Element
 }
 
-const HIDDEN_FOOTER = [
-  '/login',
-  '/signup',
-  '/my',
-  '/my/posts',
-  '/my/series',
-  '/my/highlight',
-  '/my/paymentHistory',
-  '/my/profileSettings',
-  '/post/stats',
-]
-
 export default function Layout(props: ILayoutProps) {
   const router = useRouter()
+  const postId = router.query.postId
 
-  const isHiddenFooter = HIDDEN_FOOTER.includes(router.asPath)
+  const SHOW_FOOTER = [`/post/${postId}`]
+
+  const isHiddenFooter = SHOW_FOOTER.includes(router.asPath)
 
   return (
     <>
       <LayoutHeader />
       <Body>{props.children}</Body>
-      {!isHiddenFooter && <LayoutFooter />}
+      {isHiddenFooter && <LayoutFooter />}
     </>
   )
 }

@@ -31,15 +31,16 @@ export const PostSubTitle = styled.div`
   color: var(--color-gray-2);
 `
 
-export const PostTagWapper = styled.div`
+export const PostTagWrapper = styled.div`
   padding: 1rem 0;
-`
 
-export const PostTag = styled.span`
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--color-main);
-  margin-right: 1rem;
+  span {
+    background-color: var(--color-muted);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+  }
 `
 
 // **** 게시판 헤더
@@ -111,6 +112,12 @@ export const Image = styled.img`
   width: auto;
   height: auto;
   margin-bottom: 20px;
+`
+
+export const ThumbnailImage = styled(Image)`
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
 `
 
 export const LikeWrapper = styled.div`

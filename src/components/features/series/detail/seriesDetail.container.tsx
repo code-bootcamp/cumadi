@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SeriesDetailUI from './seriesDetail.presenter'
 import { useRouter } from 'next/router'
 import { useMutation, useQuery } from '@apollo/client'
 import { Modal } from 'antd'
-import { useRecoilState } from 'recoil'
-import { buyItemId } from '@/common/store'
 import { DELETE_SERIES, FETCH_SERIES, FETCH_USER_LOGGED_IN, INSERT_SERIES_IN_CART } from './seriesDetail.query'
+import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { useRecoilState } from 'recoil'
+import { editSeriesId } from '@/common/store'
 
 export default function SeriesDetail() {
   const router = useRouter()
   const seriesId = String(router.query.seriesId)
-  const [buySeriesId, setBuySeriesId] = useRecoilState(buyItemId)
 
+  const { onClickMoveToPage } = useMoveToPage()
+  const [editId, setEditId] = useRecoilState(editSeriesId)
   const { data: user } = useQuery(FETCH_USER_LOGGED_IN)
   const { data } = useQuery(FETCH_SERIES, { variables: { seriesId } })
   const [addCart] = useMutation(INSERT_SERIES_IN_CART)
@@ -32,6 +34,11 @@ export default function SeriesDetail() {
     }
   }
 
+  const onClickUpdate = () => {
+    setEditId(seriesId)
+    router.push(`/series/${data?.fetchSeries?.seriesId}/edit`)
+  }
+
   const onClickCart = async () => {
     try {
       await addCart({
@@ -44,7 +51,7 @@ export default function SeriesDetail() {
   }
 
   const onClickBuy = () => {
-    setBuySeriesId(seriesId)
+    localStorage.setItem('buySeriesId', seriesId)
     void router.push('/purchase')
   }
 
@@ -55,6 +62,8 @@ export default function SeriesDetail() {
       onClickDelete={onClickDelete}
       onClickCart={onClickCart}
       onClickBuy={onClickBuy}
+      onClickUpdate={onClickUpdate}
+      onClickMoveToPage={onClickMoveToPage}
     />
   )
 }

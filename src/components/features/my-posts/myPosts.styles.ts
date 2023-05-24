@@ -1,4 +1,5 @@
 import { breakPoints } from '@/common/styles/media'
+import { MyButton } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Card } from 'antd'
 
@@ -48,14 +49,17 @@ export const BtnWrapper = styled.div`
 `
 
 export const TagWrapper = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
 `
 
 export const PlusImg = styled.img`
   width: 1rem;
 `
 
-export const RegisterBtn = styled.button`
+export const RegisterBtn = styled(MyButton)`
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-gray-3);
   border-radius: 1.5rem;

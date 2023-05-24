@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-
+import { Avatar } from 'antd'
 import * as S from './Header.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import BasicButton from '@/components/common/buttons/basic'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
+import { PlusOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -25,8 +26,10 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         <S.LoginMenu>
           {props.loginData ? (
             <>
-              <BasicButton movePage={'/my'} name={'마이페이지'} />
-              <MyButton type="primary" onClick={props.onClickLogout}>로그아웃</MyButton>
+              <BasicButton movePage={'/cart'} icon={<ShoppingCartOutlined />}/>
+              <BasicButton movePage={'/my'} icon={<UserOutlined />}/>
+              <MyButton  onClick={props.onClickLogout} >로그아웃</MyButton>
+              <BasicButton movePage={`/post/new`} name={'포스트 작성하기'}  type="primary" icon={<PlusOutlined />}/>
             </>
           ) : (
             <>

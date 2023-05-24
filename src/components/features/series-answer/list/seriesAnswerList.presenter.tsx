@@ -1,4 +1,4 @@
-import { Rate } from 'antd'
+import { Avatar, Rate } from 'antd'
 import * as S from './seriesAnswerList.styles'
 import { seriesItem } from '@/common/dummyData/series'
 import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'

@@ -1,4 +1,4 @@
-import { Modal } from 'antd'
+import { Avatar, Modal } from 'antd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
@@ -40,7 +40,7 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
 
   // **** 댓글 삭제
   const onClickDeletePostComment = async () => {
-    if (!confirm('삭제하시면 복구할수 없습니다. \n정말로 삭제하시겠습니까??')) return false
+    if (!confirm('덧글을 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')) return false
     try {
       await deletePostComment({
         variables: {
@@ -69,7 +69,9 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
         <S.CommentList key={comment?.commentId}>
           <S.CommentTopWrapper>
             <S.AvatarWrapper>
-              <S.Avatar src="/images/avatar.png" />
+              <Avatar src={comment?.user.image ?? ''} style={{ width: '2.5rem', height: '2.5rem' }}>
+                {comment?.user.nickname[0]}
+              </Avatar>
               <S.AvatarIntro>
                 <div>{comment?.user.nickname}</div>
                 <S.Date>{getCreateDate(comment?.updatedAt)}</S.Date>
