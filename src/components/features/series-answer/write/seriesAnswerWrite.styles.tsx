@@ -2,8 +2,10 @@ import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
 
 export const Container = styled.section`
-  width: 74rem;
-  /* border-top: 1px solid var(--color-gray-1); */
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--color-gray-3);
+  border-radius: 0.4rem;
 
   @media ${breakPoints.tablet} {
     width: 44rem;
@@ -17,7 +19,7 @@ export const Container = styled.section`
 export const AvatarWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 0.4rem;
+  padding-top: 1rem;
 `
 export const Avatar = styled.img`
   width: 3rem;
@@ -64,3 +66,15 @@ export const ContentsLength = styled.div`
   color: var(--color-gray-500);
 `
 
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+`
+export const Writer = styled.div``
+
+export const UserRate = styled.div`
+  width: 10rem;
+  margin-left: 1rem;
+`
