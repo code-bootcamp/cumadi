@@ -16,6 +16,14 @@ export const CREATE_PAYMENT_FREE_SERIES = gql`
   }
 `
 
+export const CHECK_PAYMENT_LIST = gql`
+  mutation checkPaymentList($seriesId: [String!]!) {
+    checkPaymentList(seriesId: $seriesId) {
+      status
+    }
+  }
+`
+
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
     fetchSeries(seriesId: $seriesId) {

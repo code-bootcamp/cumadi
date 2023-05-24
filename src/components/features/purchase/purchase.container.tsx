@@ -6,12 +6,14 @@ import { useMutation, useQuery } from '@apollo/client'
 import PurchaseUI from './purchase.presenter'
 import {
   IMutation,
+  IMutationCheckPaymentListArgs,
   IMutationCreatePaymentFreeSeriesArgs,
   IMutationCreatePaymentSeriesArgs,
   IQuery,
   IQueryFetchSeriesArgs,
 } from '@/common/types/generated/types'
 import {
+  CHECK_PAYMENT_LIST,
   CREATE_PAYMENT_FREE_SERIES,
   CREATE_PAYMENT_SERIES,
   FETCH_SERIES,
@@ -42,13 +44,29 @@ export default function Purchase() {
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
   )
-
+  const [checkPaymentList] = useMutation<Pick<IMutation, 'checkPaymentList'>, IMutationCheckPaymentListArgs>(
+    CHECK_PAYMENT_LIST,
+  )
   const [createPaymentFreeSeries] = useMutation<
     Pick<IMutation, 'createPaymentFreeSeries'>,
     IMutationCreatePaymentFreeSeriesArgs
   >(CREATE_PAYMENT_FREE_SERIES)
 
   const onClickPayment = async () => {
+    //  result가 true이면 구매 진행, false이면 기존 구매 내역 존재하므로 미진행
+    const result = await checkPaymentList({ variables: { seriesId: [`${data?.fetchSeries.seriesId}`] } })
+    if (!result.data?.checkPaymentList.status) {
+      Modal.warning({
+        content: (
+          <p>
+            이미 구매하신 상품이 포함되어 있습니다. <br />
+            구매를 원하시는 새로운 상품만 결제가 가능합니다.
+          </p>
+        ),
+      })
+      return
+    }
+
     //  구매금액이 0원일 때,
     if (data?.fetchSeries.price === 0) {
       try {

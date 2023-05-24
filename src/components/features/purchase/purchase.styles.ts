@@ -46,6 +46,10 @@ export const CardWrapper = styled.div`
   align-items: center;
 `
 
+export const TitleWrapper = styled.div`
+  display: flex;
+`
+
 export const BookImage = styled.img`
   width: 1rem;
   margin-right: 0.5rem;

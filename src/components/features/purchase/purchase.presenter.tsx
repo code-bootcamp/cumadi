@@ -41,8 +41,10 @@ export default function PurchaseUI(props: IPurchaseUIProps) {
               <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                 <FlexColumnContainer gap={'0.5rem'}>
                   <BodyTextLg>
-                    <S.BookImage src="/images/book.svg" />
-                    {props.data?.fetchSeries.title}
+                    <S.TitleWrapper>
+                      <S.BookImage src="/images/book.svg" />
+                      {props.data?.fetchSeries.title}
+                    </S.TitleWrapper>
                   </BodyTextLg>
                   <InfoSectionContainer>
                     <BodyTextSm color={Colors.gray1}>{props.data?.fetchSeries.user.nickname}</BodyTextSm>
