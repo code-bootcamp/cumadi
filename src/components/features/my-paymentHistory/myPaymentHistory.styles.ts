@@ -6,7 +6,6 @@ export const Body = styled.section`
   flex-direction: column;
   width: 83rem;
   padding: 1rem;
-  background-color: yellowgreen;
 
   @media ${breakPoints.tablet} {
     width: 60rem;
@@ -24,10 +23,7 @@ export const Body = styled.section`
   }
 `
 
-// 나중에 적용!!!
-export const CheckListWrapper = styled.div`
-  /* height: 52rem; */
-`
+export const CheckListWrapper = styled.div``
 
 export const CardWrapper = styled.div`
   display: inline-flex;
