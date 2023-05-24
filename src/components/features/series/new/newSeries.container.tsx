@@ -75,7 +75,6 @@ export default function NewSeries(props) {
 
   const onChangeFile = async event => {
     const file = event.target.files?.[0]
-    console.log(event.target.files)
     try {
       const imageFile = await uploadImage({ variables: { file } })
       setThumbnail(imageFile.data?.uploadImage)
