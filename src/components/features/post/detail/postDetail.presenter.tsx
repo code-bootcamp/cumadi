@@ -2,20 +2,17 @@ import * as S from './postDetail.styles'
 
 import SideNavigation from '@/common/layout/sideNavigation/sideNavigation.presenter'
 import { postItem } from '@/common/dummyData/post'
-import { MyTag } from '@/components/common/customComponent.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 import { getDate } from '@/common/libraries/utils'
-import { useRouter } from 'next/router'
+import { IPostDetailUIProps } from './postDetail.types'
 import PostCommentList from '../../post-comment/list/postCommentList.container'
 import PostCommentWrite from '../../post-comment/write/postCommentWrite.container'
 
-// interface IPostDetailUIProps {}
-
-export default function PostDetailUI(props: any) {
+export default function PostDetailUI(props: IPostDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
-  const PostDetail = props.data?.fetchPost
-  const isWriterUser = PostDetail?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
+  const POST_DETAIL = props.data?.fetchPost
+  const isWriterUser = POST_DETAIL?.user.nickname === props.loginData?.fetchUserLoggedIn?.nickname
 
   return (
     <>
@@ -28,12 +25,12 @@ export default function PostDetailUI(props: any) {
           likeData={props.likeData}
         />
         <div>
-          <S.PostTitle>{PostDetail?.title}</S.PostTitle>
+          <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWapper>
-            {PostDetail?.tags.map((tag: any) => (
-              <MyTag key={tag.tagId} id={tag.tagId} isChecked={true}>
+            {POST_DETAIL?.tags?.map((tag: any) => (
+              <span key={tag.tagId} id={tag.tagId}>
                 {tag.name}
-              </MyTag>
+              </span>
             ))}
           </S.PostTagWapper>
 
@@ -41,16 +38,15 @@ export default function PostDetailUI(props: any) {
             <S.AvatarWrapper>
               <S.Avatar src="/images/avatar.png" />
               <S.Info>
-                <S.Writer>{PostDetail?.user.nickname}</S.Writer>
-                <S.CreatedAt>{getDate(PostDetail?.createdAt)}</S.CreatedAt>
+                <S.Writer>{POST_DETAIL?.user.nickname}</S.Writer>
+                <S.CreatedAt>{getDate(POST_DETAIL?.createdAt)}</S.CreatedAt>
               </S.Info>
             </S.AvatarWrapper>
 
             {isWriterUser && (
               <S.PostUpdateBtnWrapper>
-                {/* <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/stats`)}>통계</button> */}
-                <button onClick={onClickMoveToPage(`/post/stats`)}>통계</button>
-                <button onClick={onClickMoveToPage(`/post/${PostDetail?.postId}/edit`)}>수정</button>
+                <button onClick={onClickMoveToPage(`/post/${POST_DETAIL?.postId}/stats`)}>통계</button>
+                <button onClick={onClickMoveToPage(`/post/${POST_DETAIL?.postId}/edit`)}>수정</button>
                 <button onClick={props.onClickDelete}>삭제</button>
               </S.PostUpdateBtnWrapper>
             )}
@@ -66,7 +62,7 @@ export default function PostDetailUI(props: any) {
               {/* 포스트 in 시리즈 리스트들 */}
               {props.isPostInSeriesView && (
                 <S.PostInSeriesWrapper>
-                  {props.seriesData?.fetchSeries.post.map((el: any) => (
+                  {props.seriesData?.fetchSeries.post?.map((el: any) => (
                     <S.PostsInSeries key={el.postId} onClick={onClickMoveToPage(`/post/${el.postId}`)}>
                       {el.title}
                     </S.PostsInSeries>
@@ -91,15 +87,15 @@ export default function PostDetailUI(props: any) {
           )}
 
           <S.ImageWrapper>
-            <S.Image src={postItem[0].image} />
+            <S.ThumbnailImage src={POST_DETAIL?.image} />
           </S.ImageWrapper>
 
           {/* 포스트 본문 내용 */}
-          <div onMouseUp={props.onMouseUpContentMemo}>{PostDetail?.content}</div>
+          <div onMouseUp={props.onMouseUpContentMemo}>{POST_DETAIL?.content}</div>
         </div>
         {/* 포스트 댓글 */}
         <PostCommentList />
-        <PostCommentWrite />
+        <PostCommentWrite isEditPostComment={false} />
       </S.Container>
     </>
   )
