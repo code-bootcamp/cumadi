@@ -1,27 +1,24 @@
-import { Button, Form, Input, Select } from "antd";
-import * as S from "./newSeries.styles";
-import { MyButton } from "@/components/common/customComponent.styles";
+import { Button, Form, Input, Select } from 'antd'
+import * as S from './newSeries.styles'
+import { MyButton } from '@/components/common/customComponent.styles'
 
 export default function NewSeriesUI(props: any) {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>{props.isEdit ? "시리즈 수정" : "새 시리즈 만들기"}</S.Title>
+        <S.Title>{props.isEdit ? '시리즈 수정' : '새 시리즈 만들기'}</S.Title>
       </S.TitleWrapper>
 
-      <S.PostForm
-        onFinish={props.isEdit ? props.onSubmitUpdate : props.onSubmitForm}
-      >
+      <S.PostForm onFinish={props.isEdit ? props.onSubmitUpdate : props.onSubmitForm}>
         <S.Name>이름</S.Name>
         <Form.Item
           name="title"
           rules={[
             {
               required: props.isEdit ? false : true,
-              message: "시리즈 이름을 지어주세요.",
+              message: '시리즈 이름을 지어주세요.',
             },
-          ]}
-        >
+          ]}>
           <Input
             type="primary"
             placeholder="시리즈 이름을 지어주세요."
@@ -38,10 +35,9 @@ export default function NewSeriesUI(props: any) {
             rules={[
               {
                 required: props.isEdit ? false : true,
-                message: "썸네일을 추가해주세요.",
+                message: '썸네일을 추가해주세요.',
               },
-            ]}
-          >
+            ]}>
             <S.Thumbnail
               onClick={props.onClickUploadThumbnail}
               thumbnail={props.thumbnail}
@@ -54,7 +50,7 @@ export default function NewSeriesUI(props: any) {
             <input
               ref={props.imgRef}
               type="file"
-              style={{ display: "none" }}
+              style={{ display: 'none' }}
               onChange={props.onChangeFile}
               accept="image/*"
             />
@@ -66,12 +62,11 @@ export default function NewSeriesUI(props: any) {
           rules={[
             {
               required: props.isEdit ? false : true,
-              message: "시리즈 소개를 작성해주세요.",
+              message: '시리즈 소개를 작성해주세요.',
             },
-          ]}
-        >
+          ]}>
           <props.TextArea
-            style={{ width: "100%", minHeight: "6rem" }}
+            style={{ width: '100%', minHeight: '6rem' }}
             placeholder="좋은 소개글은 사람들의 이목을 끌어모아요!"
             // defaultValue={
             //   props.isEdit ? props.previousData?.fetchSeries.introduction : ""
@@ -82,13 +77,10 @@ export default function NewSeriesUI(props: any) {
           />
         </Form.Item>
         <S.Name>카테고리</S.Name>
-        <Form.Item
-          name="category"
-          rules={[{ required: true, message: "카테고리를 정해주세요." }]}
-        >
+        <Form.Item name="category" rules={[{ required: true, message: '카테고리를 정해주세요.' }]}>
           <Select
             placeholder="카테고리"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             onChange={props.onCheckCategory}
             options={props.categoryOptions}
             // defaultValue={
@@ -104,10 +96,7 @@ export default function NewSeriesUI(props: any) {
           />
         </Form.Item>
         <S.Name>포스트 추가하기</S.Name>
-        <Form.Item
-          name="posts"
-          rules={[{ required: true, message: "포스트를 추가해주세요." }]}
-        >
+        <Form.Item name="posts" rules={[{ required: true, message: '포스트를 추가해주세요.' }]}>
           <Select
             placeholder="포스트 추가하기"
             mode="multiple"
@@ -115,7 +104,7 @@ export default function NewSeriesUI(props: any) {
             tagRender={props.tagRender}
             onChange={props.onCheckPost}
             style={{
-              width: "100%",
+              width: '100%',
             }}
             options={props.postOptions}
             // defaultValue={
@@ -130,32 +119,20 @@ export default function NewSeriesUI(props: any) {
           <S.PriceSwitch
             checked={props.isClickPrice}
             onChange={() => {
-              props.setIsClickPrice(!props.isClickPrice);
+              props.setIsClickPrice(!props.isClickPrice)
             }}
           />
-          {props.isClickPrice ? (
-            <div>유료로 출간하기 (3,000원)</div>
-          ) : (
-            <div>무료로 출간하기</div>
-          )}
+          {props.isClickPrice ? <div>유료로 출간하기 (3,000원)</div> : <div>무료로 출간하기</div>}
         </S.PriceToggle>
         <Form.Item>
           <S.ButtonWrapper>
-            {props.isEdit ? (
-              <MyButton style={{ margin: "auto" }}>수정 취소</MyButton>
-            ) : (
-              <div></div>
-            )}
-            <MyButton
-              type="primary"
-              htmlType="submit"
-              style={{ margin: "auto" }}
-            >
-              {props.isEdit ? "시리즈 수정하기" : "시리즈 만들기"}
+            {props.isEdit ? <MyButton style={{ margin: 'auto' }}>수정 취소</MyButton> : <div></div>}
+            <MyButton type="primary" htmlType="submit" style={{ margin: 'auto' }}>
+              {props.isEdit ? '시리즈 수정하기' : '시리즈 만들기'}
             </MyButton>
           </S.ButtonWrapper>
         </Form.Item>
       </S.PostForm>
     </S.Container>
-  );
+  )
 }

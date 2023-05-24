@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const FETCH_SERIES_ALL = gql`
   query fetchSeriesAll {
@@ -19,7 +19,7 @@ export const FETCH_SERIES_ALL = gql`
       }
     }
   }
-`;
+`
 
 export const FETCH_SERIES_CATEGORIES = gql`
   query fetchSeriesCategories {
@@ -28,7 +28,7 @@ export const FETCH_SERIES_CATEGORIES = gql`
       name
     }
   }
-`;
+`
 
 export const FETCH_SERIES_BY_CATEGORY = gql`
   query fetchSeriesByCategory($categoryId: String!) {
@@ -49,4 +49,4 @@ export const FETCH_SERIES_BY_CATEGORY = gql`
       }
     }
   }
-`;
+`

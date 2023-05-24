@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 // prettier-ignore
 
@@ -18,7 +18,7 @@ export const FETCH_SERIES_CATEGORIES = gql`
       name
     }
   }
-`;
+`
 
 export const CREATE_SERIES = gql`
   mutation createSeries($createSeriesInput: CreateSeriesInput!) {
@@ -26,21 +26,21 @@ export const CREATE_SERIES = gql`
       seriesId
     }
   }
-`;
+`
 
 export const UPDATE_SERIES = gql`
   mutation updateSeries($seriesId: String!, $updateSeriesInput: UpdateSeriesInput!) {
     updateSeries(seriesId: $seriesId, updateSeriesInput: $updateSeriesInput) {
       seriesId
     }
-  } 
-`;
+  }
+`
 
 export const UPLOAD_IMAGE = gql`
   mutation uploadImage($file: Upload!) {
     uploadImage(file: $file)
   }
-`;
+`
 
 export const FETCH_SERIES = gql`
   query fetchSeries($seriesId: String!) {
@@ -74,4 +74,4 @@ export const FETCH_SERIES = gql`
       }
     }
   }
-`;
+`
