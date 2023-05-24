@@ -5,7 +5,7 @@ import { useMutation, useQuery } from '@apollo/client'
 
 import CartUI from './Cart.presenter'
 import {
-  // CHECK_PAYMENT_LIST,
+  CHECK_PAYMENT_LIST,
   CREATE_PAYMENT_FREE_SERIES,
   CREATE_PAYMENT_SERIES,
   DELETE_SERIES_IN_CART,
@@ -14,11 +14,11 @@ import {
 } from './Cart.queries'
 import {
   IMutation,
+  IMutationCheckPaymentListArgs,
   IMutationCreatePaymentFreeSeriesArgs,
   IMutationCreatePaymentSeriesArgs,
   IMutationDeleteSeriesInCartArgs,
   IQuery,
-  // IQueryCheckPaymentListArgs,
   ISeries,
 } from '@/common/types/generated/types'
 
@@ -40,15 +40,14 @@ export default function Cart() {
     setTotalPrice(sumPrice)
   }, [checkList])
 
-  // const { data: isPaidData } = useQuery<Pick<IQuery, 'checkPaymentList'>, IQueryCheckPaymentListArgs>(
-  //   CHECK_PAYMENT_LIST,
-  //   { variables: { seriesId: [] } },
-  // )
   const { data: userData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
   const { data } = useQuery<Pick<IQuery, 'fetchShoppingCart'>>(FETCH_SHOPPING_CART)
 
   const [deleteSeriesInCart] = useMutation<Pick<IMutation, 'deleteSeriesInCart'>, IMutationDeleteSeriesInCartArgs>(
     DELETE_SERIES_IN_CART,
+  )
+  const [checkPaymentList] = useMutation<Pick<IMutation, 'checkPaymentList'>, IMutationCheckPaymentListArgs>(
+    CHECK_PAYMENT_LIST,
   )
   const [createPaymentSeries] = useMutation<Pick<IMutation, 'createPaymentSeries'>, IMutationCreatePaymentSeriesArgs>(
     CREATE_PAYMENT_SERIES,
@@ -118,11 +117,19 @@ export default function Cart() {
 
     const seriesIdList = checkList.map(series => series.seriesId) //  시리즈ID만 따로 배열 생성
 
-    //  false 이면 기존 구매 내역 존재하므로 결제 미진행
-    // if (!isPaidData?.checkPaymentList.status) {
-    //   alert('이미 구매하신 상품이 포함되어 있습니다. 구매를 원하시는 새로운 상품만 결제가 가능합니다.')
-    //   return
-    // }
+    //  result가 true이면 구매 진행, false이면 기존 구매 내역 존재하므로 미진행
+    const result = await checkPaymentList({ variables: { seriesId: seriesIdList } })
+    if (!result.data?.checkPaymentList.status) {
+      Modal.warning({
+        content: (
+          <p>
+            이미 구매하신 상품이 포함되어 있습니다. <br />
+            구매를 원하시는 새로운 상품만 결제가 가능합니다.
+          </p>
+        ),
+      })
+      return
+    }
 
     //  결제 할 금액이 총 0원일 때,
     if (totalPrice === 0) {

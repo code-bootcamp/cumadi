@@ -53,15 +53,17 @@ export default function CartUI(props: ICartUIProps) {
                     <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                       <FlexColumnContainer gap={'0.5rem'}>
                         <BodyTextLg>
-                          <S.BookImage src="/images/book.svg" />
-                          {list.title}
+                          <S.TitleWrapper>
+                            <S.BookImage src="/images/book.svg" />
+                            {list.title}
+                          </S.TitleWrapper>
                         </BodyTextLg>
                         <InfoSectionContainer>
                           <BodyTextSm color={Colors.gray1}>{list.user.nickname}</BodyTextSm>
                         </InfoSectionContainer>
                       </FlexColumnContainer>
                       <PriceContainer>
-                        <BodyTextLg>{`${list.price?.toLocaleString()}원`}</BodyTextLg>
+                        <BodyTextLg>{list.price ? `${list.price.toLocaleString()}원` : '무료'}</BodyTextLg>
                       </PriceContainer>
                     </div>
                   </HorizontalCardSm>
