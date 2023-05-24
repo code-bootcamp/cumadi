@@ -1,7 +1,13 @@
 import { Avatar, Card, Empty } from 'antd'
 
 import * as S from './Footer.styles'
-import { DotBottom, FlexColumnContainer, StyledCard, StyledCardCover } from '@/components/common/customComponent.styles'
+import {
+  DotBottom,
+  EmptyStateContainer,
+  FlexColumnContainer,
+  StyledCard,
+  StyledCardCover,
+} from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
@@ -34,9 +40,9 @@ export default function LayoutFooterUI(props: any) {
                     onClick={onClickMoveToPage(`/post/${post.postId}`)}
                   />
                 ) : (
-                  <div onClick={onClickMoveToPage(`/post/${post.postId}`)}>
+                  <EmptyStateContainer onClick={onClickMoveToPage(`/post/${post.postId}`)}>
                     <Empty description={<span>이미지가 없습니다.</span>} />
-                  </div>
+                  </EmptyStateContainer>
                 )
               }>
               <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>

@@ -8,7 +8,7 @@ export default function PostFormUI(props: PostFormUIProps) {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>{props.isEditMode ? '포스트 수정' : '새 포스트 작성'}</S.Title>
+        <S.Title>{props.isEditMode ? '포스트 수정' : '포스트 작성'}</S.Title>
       </S.TitleWrapper>
 
       <S.MyForm onFinish={props.handleSubmitForm} form={props.form}>

@@ -5,7 +5,7 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import BasicButton from '@/components/common/buttons/basic'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
-import { PlusOutlined, UserOutlined } from '@ant-design/icons'
+import { PlusOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
@@ -26,10 +26,10 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         <S.LoginMenu>
           {props.loginData ? (
             <>
-              <img src='/images/shopping-cart.svg' onClick={onClickMoveToPage('/cart')}/>
-              <BasicButton movePage={'/my'} icon={<Avatar src={props.loginData?.fetchUserLoggedIn.image}  icon={<UserOutlined />}/>}/>
-              <BasicButton movePage={`/post/new`} name={'새 포스트 작성하기'}  type="primary" icon={<PlusOutlined />}/>
-              <MyButton  onClick={props.onClickLogout}>로그아웃</MyButton>
+              <BasicButton movePage={'/cart'} icon={<ShoppingCartOutlined />}/>
+              <BasicButton movePage={'/my'} icon={<UserOutlined />}/>
+              <MyButton  onClick={props.onClickLogout} >로그아웃</MyButton>
+              <BasicButton movePage={`/post/new`} name={'포스트 작성하기'}  type="primary" icon={<PlusOutlined />}/>
             </>
           ) : (
             <>

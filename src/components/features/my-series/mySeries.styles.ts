@@ -47,6 +47,13 @@ export const BtnWrapper = styled.div`
   }
 `
 
+export const TypeButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+`
+
 export const TagWrapper = styled.div`
   text-align: center;
   margin-bottom: 1rem;

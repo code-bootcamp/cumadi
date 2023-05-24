@@ -53,14 +53,6 @@ export const TagWrapper = styled.div`
   justify-content: center;
   gap: 1rem;
   margin: 1rem 0;
-
-  button {
-    padding: 0.5rem 1rem;
-    color: var(--color-white);
-    background-color: var(--color-primary);
-    border-radius: 1rem;
-    cursor: pointer;
-  }
 `
 
 export const PlusImg = styled.img`

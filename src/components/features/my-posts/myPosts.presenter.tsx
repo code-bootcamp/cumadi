@@ -4,7 +4,9 @@ import { PlusOutlined } from '@ant-design/icons'
 import * as S from './myPosts.styles'
 import {
   DotBottom,
+  EmptyStateContainer,
   FlexColumnContainer,
+  MyButton,
   StyledCardCover,
   StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
@@ -32,8 +34,12 @@ export default function MyPostsUI(props: any) {
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>
-          <button onClick={onClickMoveToPage('/my/posts')}>포스트</button>
-          <button onClick={onClickMoveToPage('/my/series')}>시리즈</button>
+          <MyButton type="primary" onClick={onClickMoveToPage('/my/posts')}>
+            포스트
+          </MyButton>
+          <MyButton type="text" onClick={onClickMoveToPage('/my/series')}>
+            시리즈
+          </MyButton>
         </S.TagWrapper>
         <S.RegisterBtn onClick={onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
           포스트 작성하기
@@ -51,7 +57,9 @@ export default function MyPostsUI(props: any) {
                   onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
                 />
               ) : (
-                <Empty description={<span>이미지가 없습니다.</span>} />
+                <EmptyStateContainer>
+                  <Empty description={<span>이미지가 없습니다.</span>} />
+                </EmptyStateContainer>
               )
             }
             onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>

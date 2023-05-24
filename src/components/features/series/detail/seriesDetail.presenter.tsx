@@ -1,8 +1,8 @@
 import * as S from './seriesDetail.styles'
 import SeriesAnswerList from '../../series-answer/list/seriesAnswerList.container'
 import SeriesAnswerWrite from '../../series-answer/write/seriesAnswerWrite.container'
-import { ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
-import { HeartOutlined, CommentOutlined } from '@ant-design/icons'
+import { EmptyStateContainer, ReactionContainer, ReactionsContainer } from '@/components/common/customComponent.styles'
+import { HeartOutlined, CommentOutlined, PlusOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { Avatar, Empty } from 'antd'
 
@@ -57,7 +57,9 @@ export default function SeriesDetailUI(props: any) {
             {props.data?.fetchSeries.post?.length}개의 포스트{' '}
             <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update>
           </S.PostCount>
-          <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')}>+ 새 포스트 작성하기</S.NewPostsButton>
+          <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
+            포스트 작성하기
+          </S.NewPostsButton>
         </S.PostsSub>
         {props.data?.fetchSeries.post?.map(el => (
           <S.PostWrapper>
@@ -65,7 +67,9 @@ export default function SeriesDetailUI(props: any) {
               {props.data?.fetchSeries.image ? (
                 <S.Image src={props.data?.fetchSeries.image} />
               ) : (
-                <Empty description={<span>이미지가 없습니다.</span>} />
+                <EmptyStateContainer>
+                  <Empty description={<span>이미지가 없습니다.</span>} />
+                </EmptyStateContainer>
               )}
             </S.ImageWrapper>
             <S.DescriptionWrapper>

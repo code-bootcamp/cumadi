@@ -9,6 +9,12 @@ export const MyButton = styled(Button)`
   border-radius: 1rem;
 `
 
+export const MyButtonText = styled(Button)`
+  padding: 1rem;
+  display: flex;
+  border-radius: 1rem;
+`
+
 export const MyTag = styled(Tag)<{ isChecked: boolean }>`
   padding: 0.25rem 1rem;
   color: ${props => (props.isChecked ? Colors.white : Colors.black)};
@@ -22,6 +28,11 @@ export const MyTag = styled(Tag)<{ isChecked: boolean }>`
 export const MyTagSecondary = styled(MyTag)<{ isChecked: boolean }>`
   color: ${props => (props.isChecked ? Colors.primary : Colors.black)};
   background-color: ${props => (props.isChecked ? Colors.muted : 'unset')};
+`
+
+export const EmptyStateContainer = styled.div`
+  height: 208px;
+  padding-top: 3rem;
 `
 
 // Custom Card Component
