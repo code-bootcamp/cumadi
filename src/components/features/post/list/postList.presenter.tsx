@@ -1,4 +1,6 @@
 import { Avatar, Empty } from 'antd'
+import removeMd from 'remove-markdown'
+import { CommentOutlined, HeartOutlined } from '@ant-design/icons'
 
 import * as S from './postList.styles'
 import { EmptyStateContainer, FlexColumnContainer, StyledCard } from '@/components/common/customComponent.styles'
@@ -14,8 +16,6 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPostListUIProps } from './postList.types'
 import { IPost } from '@/common/types/generated/types'
-import removeMd from 'remove-markdown'
-import { CommentOutlined, HeartOutlined } from '@ant-design/icons'
 
 export default function PostListUI({ data }: IPostListUIProps) {
   const { onClickMoveToPage } = useMoveToPage()

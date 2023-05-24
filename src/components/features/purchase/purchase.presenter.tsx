@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import { Checkbox, Empty } from 'antd'
+
 import {
   HorizontalCardSm,
   FlexColumnContainer,

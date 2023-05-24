@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client'
+
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import MyPaymentHistoryUI from './myPaymentHistory.presenter'
 import { FETCH_PAYMENT_DETAIL_BY_USER } from './myPaymentHistory.queries'

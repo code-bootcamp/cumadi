@@ -11,6 +11,8 @@ export const FETCH_POSTS_OF_MINE = gql`
       user {
         userId
         nickname
+        image
+        introduction
       }
       series {
         seriesId

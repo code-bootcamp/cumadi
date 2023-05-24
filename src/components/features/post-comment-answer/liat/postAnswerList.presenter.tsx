@@ -1,11 +1,11 @@
 import { CloseOutlined } from '@ant-design/icons'
 import { useState } from 'react'
+import { Avatar } from 'antd'
 
 import * as S from './postAnswerList.styles'
 import { getCreateDate } from '@/common/libraries/utils'
 import { IPostAnswerListUIProps } from './postAnswerList.types'
 import PostAnswerWrite from '../write/postAnswerWrite.container'
-import { Avatar } from 'antd'
 
 export default function PostAnswerListUI({ PostCommentAnswerData, onClickDeleteAnswer }: IPostAnswerListUIProps) {
   const CommentAnswer = PostCommentAnswerData?.fetchPostCommentAnswer

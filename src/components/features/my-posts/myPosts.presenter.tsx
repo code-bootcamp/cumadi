@@ -1,5 +1,6 @@
 import { Avatar, Empty } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { CommentOutlined, HeartOutlined, PlusOutlined } from '@ant-design/icons'
+import RemoveMarkdown from 'remove-markdown'
 
 import * as S from './myPosts.styles'
 import {
@@ -7,8 +8,8 @@ import {
   EmptyStateContainer,
   FlexColumnContainer,
   MyButton,
+  StyledCard,
   StyledCardCover,
-  StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -19,8 +20,9 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { IMyPostsUIProps } from './myPosts.types'
 
-export default function MyPostsUI(props: any) {
+export default function MyPostsUI(props: IMyPostsUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -30,7 +32,7 @@ export default function MyPostsUI(props: any) {
           {props.data?.fetchPostsOfMine[0].user.nickname[0]}
         </Avatar>
         <S.Writer>{props.data?.fetchPostsOfMine[0].user.nickname}</S.Writer>
-        <S.Introduction>개발새발 개발자</S.Introduction>
+        <S.Introduction>{props.data?.fetchPostsOfMine[0].user.introduction}</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>
@@ -47,7 +49,8 @@ export default function MyPostsUI(props: any) {
       </S.BtnWrapper>
       <S.Body>
         {props.data?.fetchPostsOfMine.map((postOfMine: any) => (
-          <StyledCardOutlined
+          <StyledCard
+            bordered={false}
             key={postOfMine.postId}
             cover={
               postOfMine.image ? (
@@ -57,19 +60,18 @@ export default function MyPostsUI(props: any) {
                   onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}
                 />
               ) : (
-                <EmptyStateContainer>
+                <EmptyStateContainer onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
                   <Empty description={<span>이미지가 없습니다.</span>} />
                 </EmptyStateContainer>
               )
-            }
-            onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
-            <FlexColumnContainer gap={'0.5rem'}>
+            }>
+            <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
               <BodyTextSm color={Colors.primary} weight={600}>
                 {postOfMine?.series?.title}
               </BodyTextSm>
               <BodyTextLg>{postOfMine.title}</BodyTextLg>
               <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{postOfMine.content}</TruncatedText>
+                <TruncatedText lines={4}>{RemoveMarkdown(postOfMine.content)}</TruncatedText>
               </BodyText>
               <InfoSectionContainer>
                 <ProfileContainer>
@@ -81,17 +83,17 @@ export default function MyPostsUI(props: any) {
                 </ProfileContainer>
                 <ReactionsContainer>
                   <ReactionContainer>
-                    <img src="/images/heart-outlined.svg" alt="좋아요 수" />
+                    <HeartOutlined />
                     <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
-                    <img src="/images/comment-outlined.svg" alt="댓글 수" />
+                    <CommentOutlined />
                     <span>{postOfMine.likes?.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </StyledCardOutlined>
+          </StyledCard>
         ))}
       </S.Body>
       <DotBottom />

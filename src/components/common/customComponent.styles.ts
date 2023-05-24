@@ -108,7 +108,7 @@ export const InfoSectionContainer = styled.div`
   align-items: center;
   margin-top: 1rem;
   img {
-    height: 1.5rem;
+    height: 2rem;
   }
 `
 export const ProfileContainer = styled.span`

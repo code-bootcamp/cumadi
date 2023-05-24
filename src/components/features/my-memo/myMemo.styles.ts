@@ -1,5 +1,6 @@
-import { breakPoints } from '@/common/styles/media'
 import styled from '@emotion/styled'
+
+import { breakPoints } from '@/common/styles/media'
 
 export const Container = styled.section`
   width: 84rem;

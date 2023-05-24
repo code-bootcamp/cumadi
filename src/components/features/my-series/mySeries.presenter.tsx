@@ -1,56 +1,55 @@
-import { Rate } from 'antd'
+import { Avatar } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 
 import * as S from './mySeries.styles'
-import { postItem } from '@/common/dummyData/post'
 import {
   FlexColumnContainer,
   MyButton,
-  MyTag,
   StyledCardCover,
   StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
-import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
-import { InfoSectionContainer } from '@/components/common/customComponent.styles'
+import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { IMySeriesUIProps } from './mySeries.types'
+import { getDate } from '@/common/libraries/utils'
 
-export default function MySeriesUI() {
+export default function MySeriesUI({ data }: IMySeriesUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <>
       <S.AvatarWrapper>
-        <S.Avatar src="/images/avatar.png" />
-        <S.Writer>개발자</S.Writer>
-        <S.Introduction>개발새발 개발자</S.Introduction>
+        <Avatar size={64} src={data?.fetchSeriesByUser[0].user.image ?? ''}>
+          {data?.fetchSeriesByUser[0].user.nickname[0]}
+        </Avatar>
+        <S.Writer>{data?.fetchSeriesByUser[0].user.nickname}</S.Writer>
+        <S.Introduction>{data?.fetchSeriesByUser[0].user.introduction}</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>
-        <S.TypeButtonWrapper>
-          <MyButton type="primary" onClick={onClickMoveToPage('/my/posts')}>
+        <S.TagWrapper>
+          <MyButton type="text" onClick={onClickMoveToPage('/my/posts')}>
             포스트
           </MyButton>
-          <MyButton type="text" onClick={onClickMoveToPage('/my/series')}>
+          <MyButton type="primary" onClick={onClickMoveToPage('/my/series')}>
             시리즈
           </MyButton>
-        </S.TypeButtonWrapper>
-        <S.RegisterBtn onClick={onClickMoveToPage('/series/new')}>
-          <S.PlusImg src="/images/plus.svg" alt="더하기 아이콘" />새 시리즈 만들기
+        </S.TagWrapper>
+        <S.RegisterBtn onClick={onClickMoveToPage('/series/new')} icon={<PlusOutlined />}>
+          시리즈 작성하기
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {postItem.map(el => (
+        {data?.fetchSeriesByUser.map(series => (
           <StyledCardOutlined
-            cover={<StyledCardCover alt="example" src={el.image} />}
-            onClick={onClickMoveToPage(`/post/${el.id}`)}>
+            cover={<StyledCardCover alt="example" src={series.image} />}
+            onClick={onClickMoveToPage(`/series/${series.seriesId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>
               <BodyTextSm color={Colors.primary} weight={600}>
-                카테고리명
+                {series.category?.name}
               </BodyTextSm>
-              <BodyTextLg>{el.title}</BodyTextLg>
-              <InfoSectionContainer>
-                <BodyText>n 개의 포스트</BodyText>
-                <Rate />
-              </InfoSectionContainer>
+              <BodyTextLg>{series.title}</BodyTextLg>
+              <BodyTextSm color={Colors.gray1}>{getDate(series.createdAt)}</BodyTextSm>
             </FlexColumnContainer>
           </StyledCardOutlined>
         ))}

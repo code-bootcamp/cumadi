@@ -1,8 +1,9 @@
+import { Form, Input } from 'antd'
+
 import { ISignUpProps } from './signup.types'
 import * as S from './signup.style'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { DotBottom, MyButton } from '@/components/common/customComponent.styles'
-import { Form, Input } from 'antd'
 
 export default function SignUpUI(props: ISignUpProps) {
   const { onClickMoveToPage } = useMoveToPage()

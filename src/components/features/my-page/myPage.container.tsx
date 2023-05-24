@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { Modal } from 'antd'
+import { useRouter } from 'next/router'
+import { useRecoilState } from 'recoil'
 
 import MyPageUI from './myPage.presenter'
 import { FETCH_USER_LOGGED_IN } from '@/common/layout/header/Header.queries'
 import { RESIGN_USER } from './myPage.queries'
 import { IMutation } from '@/common/types/generated/types'
-import { Modal } from 'antd'
-import { useRouter } from 'next/router'
-import { useRecoilState } from 'recoil'
 import { accessTokenState } from '@/common/store'
 
 export default function MyPage() {

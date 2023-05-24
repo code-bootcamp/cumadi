@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { Select } from 'antd'
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons'
 
 import { breakPoints } from '@/common/styles/media'
 import { ElevatedCard } from '@/components/common/customComponent.styles'

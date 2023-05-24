@@ -1,4 +1,6 @@
 import { useQuery } from '@apollo/client'
+import { useState } from 'react'
+
 import SeriesListUI from './seriesList.presenter'
 import {
   FETCH_RATING_BY_SERIES,
@@ -6,8 +8,6 @@ import {
   FETCH_SERIES_BY_CATEGORY,
   FETCH_SERIES_CATEGORIES,
 } from './seriesList.query'
-
-import { useState } from 'react'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 
 export default function SeriesList() {
