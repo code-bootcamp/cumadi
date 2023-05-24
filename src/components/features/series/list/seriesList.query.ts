@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const FETCH_SERIES_ALL = gql`
   query fetchSeriesAll {
@@ -9,11 +9,11 @@ export const FETCH_SERIES_ALL = gql`
       image
       price
       createdAt
-      category{
+      category {
         categoryId
         name
       }
-      user{
+      user {
         userId
         nickname
       }
@@ -39,14 +39,20 @@ export const FETCH_SERIES_BY_CATEGORY = gql`
       image
       price
       createdAt
-      category{
+      category {
         categoryId
         name
       }
-      user{
+      user {
         userId
         nickname
       }
     }
+  }
+`
+
+export const FETCH_RATING_BY_SERIES = gql`
+  query fetchRatingBySeries($seriesId: String!) {
+    fetchRatingBySeries(seriesId: $seriesId)
   }
 `

@@ -13,13 +13,13 @@ export default function SeriesAnswerList() {
   const [isEditReview, setIsEditReview] = useState(false)
 
   const { data } = useQuery(FETCH_SERIES_REVIEWS_BY_SERIES, { variables: { seriesId } })
-  // const { data: rate } = useQuery(FETCH_RATING_BY_SERIES, { variables: { seriesId }});
+  const { data: rate } = useQuery(FETCH_RATING_BY_SERIES, { variables: { seriesId } })
   const [deleteReview] = useMutation(DELETE_SERIES_REVIEW, { variables: {} })
 
   const onClickUpdateReview = () => {
     setIsEditReview(prev => !prev)
   }
-
+  console.log(rate)
   const onClickDeleteReview = reviewId => async () => {
     if (!confirm('정말로 삭제하시겠습니까?')) return false
     try {
@@ -42,6 +42,7 @@ export default function SeriesAnswerList() {
 
   return (
     <SeriesAnswerListUI
+      rate={rate}
       data={data}
       isEditReview={isEditReview}
       setIsEditReview={setIsEditReview}

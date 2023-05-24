@@ -4,7 +4,6 @@ import { seriesItem } from '@/common/dummyData/series'
 import SeriesAnswerWrite from '../write/seriesAnswerWrite.container'
 
 export default function SeriesAnswerListUI(props) {
-  // const AllRate = props.rate;
   const reviews = props.data?.fetchSeriesReviewsBySeries
 
   return (
@@ -13,7 +12,7 @@ export default function SeriesAnswerListUI(props) {
         <S.ReviewTitle>
           리뷰
           <S.CommentRate>
-            <Rate disabled value={4} />
+            <Rate disabled value={props.rate.fetchRatingBySeries} />
           </S.CommentRate>
         </S.ReviewTitle>
         <S.ReviewCount>{reviews?.length}개의 댓글</S.ReviewCount>
