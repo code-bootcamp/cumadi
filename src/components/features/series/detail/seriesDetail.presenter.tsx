@@ -28,9 +28,7 @@ export default function SeriesDetailUI(props: any) {
         </S.PostTagWapper>
         <S.Header>
           <S.AvatarWrapper>
-            <Avatar src={props.data?.fetchSeries.user.image ?? ""}>
-              {props.data?.fetchSeries.user.nickname[0]}
-            </Avatar>
+            <Avatar>{props.data?.fetchSeries.user.nickname[0]}</Avatar>
             <S.Info>
               <S.Writer>{props.data?.fetchSeries.user.nickname}</S.Writer>
               <S.CreatedAt>
@@ -108,11 +106,11 @@ export default function SeriesDetailUI(props: any) {
                 <ReactionsContainer>
                   <ReactionContainer>
                     <HeartOutlined />
-                    <span>{el.likes?.length}</span>
+                    <span>{el.likes?.likeId.length}</span>
                   </ReactionContainer>
                   <ReactionContainer>
                     <CommentOutlined />
-                    <span>{el.comments?.length}</span>
+                    <span>{el.comments?.commentId.length}</span>
                   </ReactionContainer>
                 </ReactionsContainer>
               </S.PostsSub>
