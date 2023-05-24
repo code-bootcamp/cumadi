@@ -8,6 +8,16 @@ export const Body = styled.section`
   width: 83rem;
   padding: 1rem;
 
+  .ant-checkbox-inner {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &::after {
+      width: 0.5rem;
+      height: 0.8rem;
+    }
+  }
+
   @media ${breakPoints.tablet} {
     width: 60rem;
   }
