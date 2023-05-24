@@ -55,7 +55,7 @@ $ yarn start
 
 ### 💡 기획의도 및 서비스 소개
 
-![UserFlow-Miro](https://raw.githubusercontent.com/code-bootcamp/mcb2_team01_client/main/public/readme/UserFlow-Miro.png?token=GHSAT0AAAAAACCWEZDV4PTBTJQNST5YAMLIZDNUV5A)
+![UserFlow-Miro](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/UserFlow-Miro.png)
 
 - `기획의도`
   - 어떤 정보를 습득하고 배우기 위해 어떤 분야이든 관련 책을 읽는 것이 가장 빠르다고 생각했었습니다.
@@ -106,13 +106,13 @@ $ yarn start
 
 ### ⚙️ User Flow
 
-![UserFlow](https://raw.githubusercontent.com/code-bootcamp/mcb2_team01_client/main/public/readme/UserFlow.png?token=GHSAT0AAAAAACCWEZDVFHXS2EP74KZQZSWMZDNUW2Q)
+![UserFlow](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/UserFlow.png)
 
 ------
 
 ### ⚙️ ER 다이어그램
 
-![mcb_ERD](https://raw.githubusercontent.com/code-bootcamp/mcb2_team01_client/main/public/readme/mcb_ERD.png?token=GHSAT0AAAAAACCWEZDUZEIDLJ5MBJ2OJEKAZDNUXMA)
+![mcb_ERD](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/mcb_ERD.png)
 
 ------
 
