@@ -6,6 +6,13 @@ import { useMutation, useQuery } from '@apollo/client'
 import SeriesAnswerListUI from './seriesAnswerList.presenter'
 import { FETCH_RATING_BY_SERIES, FETCH_SERIES_REVIEWS_BY_SERIES } from './seriesAnswerList.query'
 import { DELETE_SERIES_REVIEW } from './seriesAnswerList.query'
+import {
+  IMutation,
+  IMutationDeleteSeriesReviewArgs,
+  IQuery,
+  IQueryFetchRatingBySeriesArgs,
+  IQueryFetchSeriesReviewsBySeriesArgs,
+} from '@/common/types/generated/types'
 
 export default function SeriesAnswerList() {
   const router = useRouter()
@@ -13,9 +20,17 @@ export default function SeriesAnswerList() {
 
   const [isEditReview, setIsEditReview] = useState(false)
 
-  const { data } = useQuery(FETCH_SERIES_REVIEWS_BY_SERIES, { variables: { seriesId } })
-  const { data: rate } = useQuery(FETCH_RATING_BY_SERIES, { variables: { seriesId } })
-  const [deleteReview] = useMutation(DELETE_SERIES_REVIEW, { variables: {} })
+  const { data } = useQuery<Pick<IQuery, 'fetchSeriesReviewsBySeries'>, IQueryFetchSeriesReviewsBySeriesArgs>(
+    FETCH_SERIES_REVIEWS_BY_SERIES,
+    { variables: { seriesId } },
+  )
+  const { data: rate } = useQuery<Pick<IQuery, 'fetchRatingBySeries'>, IQueryFetchRatingBySeriesArgs>(
+    FETCH_RATING_BY_SERIES,
+    { variables: { seriesId } },
+  )
+  const [deleteReview] = useMutation<Pick<IMutation, 'deleteSeriesReview'>, IMutationDeleteSeriesReviewArgs>(
+    DELETE_SERIES_REVIEW,
+  )
 
   const onClickUpdateReview = () => {
     setIsEditReview(prev => !prev)
