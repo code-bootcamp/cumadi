@@ -27,7 +27,8 @@ export default function PostDetailUI(props: IPostDetailUIProps) {
           onClickPick={props.onClickPick}
           likeData={props.likeData}
         />
-        <div>
+
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
           <S.PostTitle>{POST_DETAIL?.title}</S.PostTitle>
           <S.PostTagWrapper>
             {POST_DETAIL?.tags?.map((tag: any) => (

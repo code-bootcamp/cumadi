@@ -1,7 +1,7 @@
 import { ISignUpProps } from './signup.types'
 import * as S from './signup.style'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
-import { MyButton } from '@/components/common/customComponent.styles'
+import { DotBottom, MyButton } from '@/components/common/customComponent.styles'
 import { Form, Input } from 'antd'
 
 export default function SignUpUI(props: ISignUpProps) {
@@ -45,6 +45,7 @@ export default function SignUpUI(props: ISignUpProps) {
           <S.SignupPageMoveSpan onClick={onClickMoveToPage(`/login`)}>로그인</S.SignupPageMoveSpan>
         </S.SignupWrapper>
       </S.Wrapper>
+      <DotBottom />
     </S.SignUpSection>
   )
 }
