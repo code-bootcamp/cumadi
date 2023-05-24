@@ -61,7 +61,7 @@ export default function SeriesDetailUI(props: any) {
             포스트 작성하기
           </S.NewPostsButton>
         </S.PostsSub>
-        {props.data?.fetchSeries.post?.map(el => (
+        {props.data?.fetchSeries.post?.map((el: any) => (
           <S.PostWrapper>
             <S.ImageWrapper>
               {el.image ? (
