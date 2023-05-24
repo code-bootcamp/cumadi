@@ -1,4 +1,4 @@
-import { Avatar } from "antd";
+import { Avatar, Empty } from "antd";
 import * as S from "./seriesList.styles";
 import {
   FlexColumnContainer,
@@ -63,11 +63,17 @@ export default function SeriesListUI(props: any) {
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
                 cover={
-                  <S.CardThumbnailImg
-                    alt="example"
-                    src={el.image ? el.image : "/images/no-image.jpeg"}
-                    onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
-                  />
+                  el.image ? (
+                    <S.CardThumbnailImg
+                      alt="example"
+                      src={el.image}
+                      onClick={props.onClickMoveToPage(
+                        `/series/${el.seriesId}`
+                      )}
+                    />
+                  ) : (
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  )
                 }
               >
                 <FlexColumnContainer gap={"0.5rem"}>
@@ -109,11 +115,17 @@ export default function SeriesListUI(props: any) {
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
                 cover={
-                  <S.CardThumbnailImg
-                    alt="example"
-                    src={"/images/no-image.jpeg"}
-                    onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
-                  />
+                  el.image ? (
+                    <S.CardThumbnailImg
+                      alt="example"
+                      src={el.image}
+                      onClick={props.onClickMoveToPage(
+                        `/series/${el.seriesId}`
+                      )}
+                    />
+                  ) : (
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  )
                 }
               >
                 <FlexColumnContainer gap={"0.5rem"}>
