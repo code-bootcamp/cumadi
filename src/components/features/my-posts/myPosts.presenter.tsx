@@ -28,11 +28,11 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
   return (
     <>
       <S.AvatarWrapper>
-        <Avatar size={64} src={props.data?.fetchPostsOfMine[0].user.image ?? ''}>
-          {props.data?.fetchPostsOfMine[0].user.nickname[0]}
+        <Avatar size={64} src={props.loginData?.fetchUserLoggedIn.image ?? ''}>
+          {props.loginData?.fetchUserLoggedIn.nickname[0]}
         </Avatar>
-        <S.Writer>{props.data?.fetchPostsOfMine[0].user.nickname}</S.Writer>
-        <S.Introduction>{props.data?.fetchPostsOfMine[0].user.introduction}</S.Introduction>
+        <S.Writer>{props.loginData?.fetchUserLoggedIn?.nickname}</S.Writer>
+        <S.Introduction>{props.loginData?.fetchUserLoggedIn?.introduction}</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>

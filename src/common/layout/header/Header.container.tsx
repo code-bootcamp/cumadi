@@ -8,6 +8,7 @@ import { throttle } from 'lodash'
 import LayoutHeaderUI from './Header.presenter'
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from './Header.queries'
 import { accessTokenState } from '@/common/store'
+import { IMutation, IQuery } from '@/common/types/generated/types'
 
 export default function LayoutHeader() {
   const router = useRouter()
@@ -19,15 +20,15 @@ export default function LayoutHeader() {
   const client = useApolloClient()
 
   // **** playground
-  const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
-  const [logout] = useMutation(LOGOUT_USER)
+  const { data: loginData } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGGED_IN)
+  const [logout] = useMutation<Pick<IMutation, 'logoutUser'>>(LOGOUT_USER)
 
   // **** logout
   const onClickLogout = async () => {
     try {
       const result = await logout()
 
-      if (result.data.logoutUser) {
+      if (result.data?.logoutUser) {
         Modal.success({ content: '로그아웃되었습니다.' })
 
         // **** 토큰, 캐시 초기화

@@ -14,17 +14,17 @@ import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import { IMySeriesUIProps } from './mySeries.types'
 import { getDate } from '@/common/libraries/utils'
 
-export default function MySeriesUI({ data }: IMySeriesUIProps) {
+export default function MySeriesUI(props: IMySeriesUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
     <>
       <S.AvatarWrapper>
-        <Avatar size={64} src={data?.fetchSeriesByUser[0].user.image ?? ''}>
-          {data?.fetchSeriesByUser[0].user.nickname[0]}
+        <Avatar size={64} src={props.loginData?.fetchUserLoggedIn.image ?? ''}>
+          {props.loginData?.fetchUserLoggedIn.nickname[0]}
         </Avatar>
-        <S.Writer>{data?.fetchSeriesByUser[0].user.nickname}</S.Writer>
-        <S.Introduction>{data?.fetchSeriesByUser[0].user.introduction}</S.Introduction>
+        <S.Writer>{props.loginData?.fetchUserLoggedIn?.nickname}</S.Writer>
+        <S.Introduction>{props.loginData?.fetchUserLoggedIn?.introduction}</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>
@@ -40,7 +40,7 @@ export default function MySeriesUI({ data }: IMySeriesUIProps) {
         </S.RegisterBtn>
       </S.BtnWrapper>
       <S.Body>
-        {data?.fetchSeriesByUser.map(series => (
+        {props.data?.fetchSeriesByUser.map(series => (
           <StyledCardOutlined
             cover={<StyledCardCover alt="example" src={series.image} />}
             onClick={onClickMoveToPage(`/series/${series.seriesId}`)}>
