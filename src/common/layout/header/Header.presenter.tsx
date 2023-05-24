@@ -1,13 +1,23 @@
 import { useEffect } from 'react'
-import { Avatar } from 'antd'
+import { Avatar, Dropdown } from 'antd'
+import type { MenuProps } from 'antd'
 import * as S from './Header.styles'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
 import BasicButton from '@/components/common/buttons/basic'
 import { MyButton } from '@/components/common/customComponent.styles'
 import { ILayoutHeaderUIProps } from './Header.types'
-import { PlusOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
+import {
+  ReadOutlined,
+  DownOutlined,
+  PlusOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+  FileTextOutlined,
+} from '@ant-design/icons'
+import { useRouter } from 'next/router'
 
 export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
+  const router = useRouter()
   const { onClickMoveToPage } = useMoveToPage()
 
   // **** 스크롤이 발생할 때마다 handleScroll함수를 실행, 끝나면 리턴해주며 클린업 반복
@@ -18,6 +28,38 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
     }
   }, [])
 
+  const items: MenuProps['items'] = [
+    {
+      key: 'post',
+      label: (
+        <span>
+          <FileTextOutlined />
+          <span style={{ marginRight: '.5rem' }}></span>새 포스트
+        </span>
+      ),
+    },
+    {
+      key: 'series',
+      label: (
+        <span>
+          <ReadOutlined />
+          <span style={{ marginRight: '.5rem' }}></span>새 시리즈
+        </span>
+      ),
+    },
+  ]
+
+  const handleMenuClick: MenuProps['onClick'] = e => {
+    // message.info('Click on menu item.');
+    router.push(`/${e.key}/new`)
+    console.log(`/${e.key}/new`, e)
+  }
+
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  }
+
   // prettier-ignore
   return (
     <S.Header>
@@ -26,11 +68,15 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         <S.LoginMenu>
           {props.loginData ? (
             <>
-              <img src='/images/shopping-cart.svg' onClick={onClickMoveToPage('/cart')}/>
-              <BasicButton movePage={'/my'} icon={<Avatar src={props.loginData?.fetchUserLoggedIn.image}  icon={<UserOutlined />}/>}/>
-              <BasicButton movePage={`/post/new`} name={'새 포스트 작성하기'}  type="primary" icon={<PlusOutlined />}/>
-              <BasicButton movePage={`/series/new`} name={'새 시리즈 작성하기'} icon={<PlusOutlined />}/>
+              <MyButton icon={<ShoppingCartOutlined />} onClick={onClickMoveToPage('/cart')}/>
+              <BasicButton movePage={'/my'} icon={<UserOutlined />}/>
               <MyButton  onClick={props.onClickLogout}>로그아웃</MyButton>
+              <Dropdown menu={menuProps}>
+                <MyButton type='primary' icon={<PlusOutlined />}>
+                    추가하기
+                    <DownOutlined />
+                </MyButton>
+              </Dropdown>
             </>
           ) : (
             <>
