@@ -1,6 +1,6 @@
 import { breakPoints } from '@/common/styles/media'
+import { MyButton } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
-import { Card } from 'antd'
 
 // **** 아바타 상단
 export const AvatarWrapper = styled.div`
@@ -28,7 +28,7 @@ export const BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 26rem;
+  gap: 25rem;
   width: 83rem;
   padding: 1.5rem;
 
@@ -55,15 +55,17 @@ export const TypeButtonWrapper = styled.div`
 `
 
 export const TagWrapper = styled.div`
-  text-align: center;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
 `
 
 export const PlusImg = styled.img`
   width: 1rem;
 `
 
-export const RegisterBtn = styled.button`
+export const RegisterBtn = styled(MyButton)`
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-gray-3);
   border-radius: 1.5rem;

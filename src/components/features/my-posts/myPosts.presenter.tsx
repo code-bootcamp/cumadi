@@ -19,8 +19,9 @@ import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
+import { IMyPostsUIProps } from './myPosts.types'
 
-export default function MyPostsUI(props: any) {
+export default function MyPostsUI(props: IMyPostsUIProps) {
   const { onClickMoveToPage } = useMoveToPage()
 
   return (
@@ -30,7 +31,7 @@ export default function MyPostsUI(props: any) {
           {props.data?.fetchPostsOfMine[0].user.nickname[0]}
         </Avatar>
         <S.Writer>{props.data?.fetchPostsOfMine[0].user.nickname}</S.Writer>
-        <S.Introduction>개발새발 개발자</S.Introduction>
+        <S.Introduction>{props.data?.fetchPostsOfMine[0].user.introduction}</S.Introduction>
       </S.AvatarWrapper>
       <S.BtnWrapper>
         <S.TagWrapper>

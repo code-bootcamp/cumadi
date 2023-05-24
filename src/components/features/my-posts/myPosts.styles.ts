@@ -29,7 +29,7 @@ export const BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 24rem;
+  gap: 25rem;
   width: 83rem;
   padding: 1.5rem;
 
