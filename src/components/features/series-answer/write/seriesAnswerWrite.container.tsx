@@ -1,8 +1,11 @@
 import { useRouter } from 'next/router'
+import SeriesAnswerWriteUI from './seriesAnswerWrite.presenter'
+import { useMutation } from '@apollo/client'
+import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REVIEW } from './seriesAnswerWrite.query'
+import { FETCH_SERIES } from '../../post/detail/postDetail.queries'
 import { useState } from 'react'
 import { Modal } from 'antd'
 import { useMutation } from '@apollo/client'
-
 import SeriesAnswerWriteUI from './seriesAnswerWrite.presenter'
 import { CREATE_SERIES_REVIEW, FETCH_SERIES_REVIEWS_BY_SERIES, UPDATE_SERIES_REVIEW } from './seriesAnswerWrite.query'
 
@@ -25,13 +28,13 @@ export default function SeriesAnswerWrite(props: any) {
             rating,
             content,
           },
-          refetchQueries: [
-            {
-              query: FETCH_SERIES_REVIEWS_BY_SERIES,
-              variables: { seriesId },
-            },
-          ],
         },
+        refetchQueries: [
+          {
+            query: FETCH_SERIES_REVIEWS_BY_SERIES,
+            variables: { seriesId },
+          },
+        ],
       })
       Modal.success({ content: '리뷰가 등록되었습니다!' })
     } catch (error) {

@@ -27,10 +27,6 @@ export const CREATE_SERIES_REVIEW = gql`
       series {
         seriesId
       }
-      user {
-        userId
-        nickname
-      }
     }
   }
 `

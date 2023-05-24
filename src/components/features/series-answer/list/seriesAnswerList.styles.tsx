@@ -35,7 +35,6 @@ export const ReviewListContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 100%;
 `
 
@@ -117,7 +116,7 @@ export const Contents = styled.div`
 
 export const UserRate = styled.div`
   width: 10rem;
-  margin: 0.7rem 0 0 0.5rem;
+  margin: 0.7rem 0 0 1rem;
 `
 
 export const ReviewListNoTitle = styled.div`

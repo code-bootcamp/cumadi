@@ -1,9 +1,11 @@
 import { Avatar, Empty } from 'antd'
-import { Rate } from 'antd'
-import dayjs from 'dayjs'
-
 import * as S from './seriesList.styles'
-import { DotLeft, EmptyStateContainer, FlexColumnContainer, MyButton } from '@/components/common/customComponent.styles'
+import {
+  DotLeft,
+  EmptyStateContainer,
+  FlexColumnContainer,
+  MyButton,
+} from '@/components/common/customComponent.styles'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { InfoSectionContainer } from '@/components/common/customComponent.styles'
 import { ProfileContainer } from '@/components/common/customComponent.styles'
@@ -11,6 +13,8 @@ import { ProfileTextDataContainer } from '@/components/common/customComponent.st
 import { ReactionContainer } from '@/components/common/customComponent.styles'
 import { ReactionsContainer } from '@/components/common/customComponent.styles'
 import { Colors } from '@/common/styles/colors'
+import { Rate } from 'antd'
+import dayjs from 'dayjs'
 
 export default function SeriesListUI(props: any) {
   return (

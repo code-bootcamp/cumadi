@@ -4,19 +4,15 @@ import { Rate } from 'antd'
 export default function SeriesAnswerWriteUI(props: any) {
   return (
     <>
-      {props.isEditReview ? (
-        <div></div>
-      ) : (
-        <S.AvatarWrapper>
-          <S.Avatar src="/images/avatar.png" />
-          <S.Info>
-            <S.Writer>sehwan</S.Writer>
-          </S.Info>
-          <S.UserRate>
-            <Rate onChange={props.onChangeRating} />
-          </S.UserRate>
-        </S.AvatarWrapper>
-      )}
+      <S.AvatarWrapper>
+        <S.Avatar src="/images/avatar.png" />
+        <S.Info>
+          <S.Writer>sehwan</S.Writer>
+        </S.Info>
+        <S.UserRate>
+          <Rate onChange={props.onChangeRating} />
+        </S.UserRate>
+      </S.AvatarWrapper>
 
       <S.Container>
         <S.ReviewContent
@@ -28,7 +24,8 @@ export default function SeriesAnswerWriteUI(props: any) {
         />
         <S.ButtonWrapper>
           <S.ContentsLength>
-            {(props.content ? props.content.length : props.comment?.content.length) ?? 0}/100
+            {(props.content ? props.content.length : props.comment?.content.length) ?? 0}
+            /100
           </S.ContentsLength>
           <S.ColorButton onClick={props.isEditReview ? props.onUpdateReview : props.onSubmitReview}>
             {props.isEditReview ? '수정하기' : '등록하기'}
