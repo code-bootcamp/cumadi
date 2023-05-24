@@ -81,8 +81,6 @@ export default function Cart() {
   }
 
   const onClickRemoveList = (seriesId: string) => {
-    console.log(seriesId)
-
     Modal.confirm({
       content: '삭제하시겠습니까?',
       okText: '확인',
@@ -114,7 +112,7 @@ export default function Cart() {
 
   const onClickPayment = async () => {
     if (checkList.length === 0) {
-      alert('시리즈를 선택해주세요.')
+      Modal.warning({ content: '시리즈를 선택해주세요.' })
       return
     }
 
@@ -129,15 +127,14 @@ export default function Cart() {
     //  결제 할 금액이 총 0원일 때,
     if (totalPrice === 0) {
       try {
-        const result = await createPaymentFreeSeries({
+        await createPaymentFreeSeries({
           variables: { seriesList: seriesIdList },
           refetchQueries: [{ query: FETCH_SHOPPING_CART }],
         })
-        //  console.log(result)
-        alert('결제에 성공했습니다.')
+        Modal.success({ content: '결제에 성공했습니다.' })
         router.push('/')
       } catch (error) {
-        if (error instanceof Error) alert(error.message)
+        if (error instanceof Error) Modal.error({ content: error.message })
       }
       return
     }
@@ -158,7 +155,7 @@ export default function Cart() {
       },
       async (rsp: any) => {
         if (rsp.success) {
-          const result = await createPaymentSeries({
+          await createPaymentSeries({
             variables: {
               createPaymentInput: {
                 impUid: rsp.imp_uid,
@@ -168,12 +165,11 @@ export default function Cart() {
             },
             refetchQueries: [{ query: FETCH_SHOPPING_CART }],
           })
-          //  console.log(result) // {data} //  ***로그삭제
-          alert('결제에 성공했습니다.')
+          Modal.success({ content: '결제에 성공했습니다.' })
           router.push('/')
         } else {
           // 결제 취소 시,
-          alert('결제가 종료되었습니다. 다시 시도해 주세요.')
+          Modal.info({ content: '결제가 종료되었습니다. 다시 시도해 주세요.' })
         }
       },
     )
