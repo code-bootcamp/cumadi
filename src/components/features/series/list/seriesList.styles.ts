@@ -94,16 +94,8 @@ export const TopTag = styled(Tag)<{ isClicked: boolean }>`
   background-color: ${props => (props.isClicked ? Colors.muted : Colors.white)};
   cursor: pointer;
   color: ${props => (props.isClicked ? Colors.primary : Colors.gray1)};
+}
 `
-
-export const categoryWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  font-weight: bold;
-  margin: 1rem 0;
-`
-
-export const TagBar = styled.div``
 
 export const ToggleWrapper = styled.div``
 

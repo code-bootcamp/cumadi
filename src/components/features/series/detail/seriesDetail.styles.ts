@@ -1,6 +1,6 @@
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
-import { ElevatedCard, MyButton } from '@/components/common/customComponent.styles'
+import { ElevatedCard } from '@/components/common/customComponent.styles'
 import styled from '@emotion/styled'
 import { Button, Tag } from 'antd'
 
@@ -195,7 +195,7 @@ export const PostCount = styled.div`
   margin-top: 2.5rem;
 `
 
-export const NewPostsButton = styled(MyButton)`
+export const NewPostsButton = styled(Button)`
   margin-top: 2.5rem;
   border-radius: 1rem;
   font-weight: bold;

@@ -30,7 +30,10 @@ export const PostForm = styled(Form)`
 `
 
 export const ButtonWrapper = styled.section`
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  margin: 0 auto;
   margin-top: 3rem;
 `
 
@@ -48,10 +51,10 @@ export const Thumbnail = styled.div<{ thumbnail?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #7E7872;
+  border: 2px solid #7e7872;
   border-radius: 0.25rem;
   cursor: pointer;
-  background: #D9D9D9;
+  background: #d9d9d9;
   background-image: url(${props => props.thumbnail});
   background-size: 100%;
   background-position: center;

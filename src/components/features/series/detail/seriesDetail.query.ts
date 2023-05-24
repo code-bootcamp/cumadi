@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from '@apollo/client'
 
 export const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
@@ -34,7 +34,7 @@ export const FETCH_SERIES = gql`
         image
         description
         createdAt
-        user{
+        user {
           userId
           email
           nickname

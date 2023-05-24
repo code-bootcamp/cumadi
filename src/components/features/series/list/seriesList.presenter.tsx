@@ -25,25 +25,23 @@ export default function SeriesListUI(props: any) {
           </MyTag>
         </S.TagWrapper>
 
-        <S.categoryWrapper>
+        <S.TagWrapper>
           <S.EmptySpace>공간 채우기용 임다용</S.EmptySpace>
-          <S.TagBar>
-            <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>
-              전체
+          <S.TopTag isClicked={props.isShowAll ? true : false} onClick={props.onClickAllSeries}>
+            전체
+          </S.TopTag>
+          {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
+            <S.TopTag
+              onClick={props.onClickCategory(category.categoryId, index)}
+              isClicked={props.countIndex === index ? true : false}>
+              {category.name}
             </S.TopTag>
-            {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
-              <S.TopTag
-                onClick={props.onClickCategory(category.categoryId, index)}
-                isClicked={props.countIndex === index ? true : false}>
-                {category.name}
-              </S.TopTag>
-            ))}
-          </S.TagBar>
-          <S.ToggleWrapper>
-            <S.FreeToggle>무료 시리즈만 보기</S.FreeToggle>
-            <S.FreeSwitch checked={props.isfreeOn} onChange={props.onClickFreeSeries} />
-          </S.ToggleWrapper>
-        </S.categoryWrapper>
+          ))}
+        </S.TagWrapper>
+        <S.ToggleWrapper>
+          <S.FreeToggle>무료 시리즈만 보기</S.FreeToggle>
+          <S.FreeSwitch checked={props.isfreeOn} onChange={props.onClickFreeSeries} />
+        </S.ToggleWrapper>
       </S.TitleWrapper>
       <S.Body>
         {props.isShowAll ? (
@@ -73,7 +71,7 @@ export default function SeriesListUI(props: any) {
                   </InfoSectionContainer>
                   <InfoSectionContainer>
                     <ProfileContainer>
-                      <Avatar src={el.user.image ?? ''}>{el.user.nickname[0]}</Avatar>
+                      <Avatar>{el.user.nickname[0]}</Avatar>
                       <ProfileTextDataContainer>
                         <BodyTextSm weight={600}>{el.user.nickname}</BodyTextSm>
                         <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
