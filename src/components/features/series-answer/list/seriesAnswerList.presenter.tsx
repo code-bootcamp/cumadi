@@ -11,7 +11,7 @@ export default function SeriesAnswerListUI(props) {
         <S.ReviewTitle>
           리뷰
           <S.CommentRate>
-            <Rate disabled value={props.rate.fetchRatingBySeries} />
+            <Rate disabled value={props.rate?.fetchRatingBySeries} />
           </S.CommentRate>
         </S.ReviewTitle>
         <S.ReviewCount>{reviews?.length}개의 댓글</S.ReviewCount>
