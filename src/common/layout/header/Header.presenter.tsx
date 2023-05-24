@@ -26,6 +26,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
         <S.LoginMenu>
           {props.loginData ? (
             <>
+              <img src='/images/shopping-cart.svg' onClick={onClickMoveToPage('/cart')}/>
               <BasicButton movePage={'/my'} icon={<Avatar src={props.loginData?.fetchUserLoggedIn.image}  icon={<UserOutlined />}/>}/>
               <BasicButton movePage={`/post/new`} name={'새 포스트 작성하기'}  type="primary" icon={<PlusOutlined />}/>
               <MyButton  onClick={props.onClickLogout}>로그아웃</MyButton>
