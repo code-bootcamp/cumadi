@@ -82,6 +82,13 @@ export const Title = styled.div`
   margin-bottom: 2rem;
 `
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+`
+
 export const TagWrapper = styled.div`
   font-weight: bold;
   margin: 1rem 0;

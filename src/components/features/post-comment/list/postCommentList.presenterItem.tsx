@@ -40,7 +40,7 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
 
   // **** 댓글 삭제
   const onClickDeletePostComment = async () => {
-    if (!confirm('삭제하시면 복구할수 없습니다. \n정말로 삭제하시겠습니까??')) return false
+    if (!confirm('덧글을 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')) return false
     try {
       await deletePostComment({
         variables: {

@@ -9,6 +9,12 @@ export const MyButton = styled(Button)`
   border-radius: 1rem;
 `
 
+export const MyButtonText = styled(Button)`
+  padding: 1rem;
+  display: flex;
+  border-radius: 1rem;
+`
+
 export const MyTag = styled(Tag)<{ isChecked: boolean }>`
   padding: 0.25rem 1rem;
   color: ${props => (props.isChecked ? Colors.white : Colors.black)};
@@ -22,6 +28,11 @@ export const MyTag = styled(Tag)<{ isChecked: boolean }>`
 export const MyTagSecondary = styled(MyTag)<{ isChecked: boolean }>`
   color: ${props => (props.isChecked ? Colors.primary : Colors.black)};
   background-color: ${props => (props.isChecked ? Colors.muted : 'unset')};
+`
+
+export const EmptyStateContainer = styled.div`
+  height: 208px;
+  padding-top: 3rem;
 `
 
 // Custom Card Component
@@ -125,4 +136,28 @@ export const ReactionContainer = styled.span`
 
 export const PriceContainer = styled.span`
   word-break: keep-all;
+`
+
+export const DotLeft = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  left: -30rem;
+  top: 8rem;
+  z-index: -2222;
+`
+
+export const DotBottom = styled.span`
+  height: 60rem;
+  width: 60rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  right: -30rem;
+  bottom: -35rem;
+  z-index: -2222;
 `

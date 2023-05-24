@@ -4,6 +4,7 @@ import { Empty } from 'antd'
 import { Colors } from '@/common/styles/colors'
 import { BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import {
+  EmptyStateContainer,
   FlexColumnContainer,
   HorizontalCardSm,
   InfoSectionContainer,
@@ -24,7 +25,9 @@ export default function MyPaymentHistoryUI(props: IMyPaymentHistoryUIProps) {
                 {el.series.image ? (
                   <img className="horizontal-card-cover" alt={`${el.series.image} 이미지`} src={el.series.image} />
                 ) : (
-                  <Empty description={<span>이미지가 없습니다.</span>} />
+                  <EmptyStateContainer>
+                    <Empty description={<span>이미지가 없습니다.</span>} />
+                  </EmptyStateContainer>
                 )}
                 <div className="horizontal-card-body" style={{ display: 'flex', alignItems: 'center' }}>
                   <FlexColumnContainer gap={'0.5rem'}>
