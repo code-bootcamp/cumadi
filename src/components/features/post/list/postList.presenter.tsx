@@ -40,11 +40,15 @@ export default function PostListUI({ data }: IPostListUIProps) {
             )
           }>
           <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${post.postId}`)}>
-            {post.series?.title ?? <BodyTextSm color={Colors.primary} weight={600} />}
-            <BodyTextLg>{post.title}</BodyTextLg>
-            <BodyText color={Colors.gray1}>
-              <TruncatedText lines={4}>{removeMd(post.content)}</TruncatedText>
-            </BodyText>
+            <FlexColumnContainer gap={'0.5rem'} style={{ minHeight: '9.25rem' }}>
+              <BodyTextSm color={Colors.primary} weight={600}>
+                {post.series?.title || ''}
+              </BodyTextSm>
+              <BodyTextLg>{post.title}</BodyTextLg>
+              <BodyText color={Colors.gray1}>
+                <TruncatedText lines={4}>{removeMd(post.content)}</TruncatedText>
+              </BodyText>
+            </FlexColumnContainer>
             <InfoSectionContainer>
               <ProfileContainer>
                 <Avatar src={post.user.image ?? ''}>{post.user.nickname[0]}</Avatar>

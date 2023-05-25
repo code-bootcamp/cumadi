@@ -127,7 +127,7 @@ export const globalStyles = css`
 
   /* prettier-ignore */
   .reactMarkDown h1, h2, h3, h4, h5, h6, p, code, pre {
-    margin: 1.25rem 0;
+    margin: 1.5rem 0;
   }
 
   .reactMarkDown a {
@@ -139,12 +139,12 @@ export const globalStyles = css`
   }
 
   .reactMarkDown p {
-    line-height: 1.25rem;
+    line-height: 1.5rem;
   }
 
   .reactMarkDown ul {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     list-style: disc outside none;
   }
 
