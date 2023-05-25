@@ -42,6 +42,7 @@ export default function MySeriesUI(props: IMySeriesUIProps) {
       <S.Body>
         {props.data?.fetchSeriesByUser.map(series => (
           <StyledCardOutlined
+            key={series.seriesId}
             cover={<StyledCardCover alt="example" src={series.image} />}
             onClick={onClickMoveToPage(`/series/${series.seriesId}`)}>
             <FlexColumnContainer gap={'0.5rem'}>

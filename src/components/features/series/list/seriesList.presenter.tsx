@@ -32,6 +32,7 @@ export default function SeriesListUI(props: any) {
             </S.TopTag>
             {props.category?.fetchSeriesCategories?.map((category: any, index: number) => (
               <S.TopTag
+                key={index}
                 onClick={props.onClickCategory(category.categoryId, index)}
                 isClicked={props.countIndex === index ? true : false}>
                 {category.name}
@@ -49,6 +50,7 @@ export default function SeriesListUI(props: any) {
           <>
             {props.data?.fetchSeriesAll.map((el: any) => (
               <S.MyStyledCard
+                key={el.seriesId}
                 bordered={false}
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
@@ -87,6 +89,7 @@ export default function SeriesListUI(props: any) {
           <>
             {props.menu?.fetchSeriesByCategory.map((el: any) => (
               <S.MyStyledCard
+                key={el.seriesId}
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
                 cover={
@@ -118,11 +121,11 @@ export default function SeriesListUI(props: any) {
                         <BodyTextSm color={Colors.gray1}>{dayjs(el.createdAt).format('YYYY.MM.DD')}</BodyTextSm>
                       </ProfileTextDataContainer>
                     </ProfileContainer>
-                    <ReactionsContainer>
+                    {/* <ReactionsContainer>
                       <ReactionContainer>
                         <Rate disabled value={el.star} />
                       </ReactionContainer>
-                    </ReactionsContainer>
+                    </ReactionsContainer> */}
                   </InfoSectionContainer>
                 </FlexColumnContainer>
               </S.MyStyledCard>

@@ -69,7 +69,7 @@ export default function SeriesDetailUI(props: any) {
           <S.PostWrapper>
             <S.ImageWrapper>
               {el.image ? (
-                <S.Image src={el.image} />
+                <S.Image key={el.image} src={el.image} />
               ) : (
                 <EmptyStateContainer>
                   <Empty description={<span>이미지가 없습니다.</span>} />
