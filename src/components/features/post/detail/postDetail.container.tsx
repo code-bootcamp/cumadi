@@ -20,6 +20,7 @@ import {
   IQueryFetchPostArgs,
   IQueryFetchSeriesArgs,
 } from '@/common/types/generated/types'
+import { FETCH_POSTS } from '../list/postList.queries'
 
 export default function PostDetail() {
   const router = useRouter()
@@ -36,6 +37,7 @@ export default function PostDetail() {
   const { data: seriesData } = useQuery<Pick<IQuery, 'fetchSeries'>, IQueryFetchSeriesArgs>(FETCH_SERIES, {
     variables: { seriesId: String(data?.fetchPost?.series?.seriesId) },
   })
+  // const { data: posts } = useQuery<Pick<IQuery, 'fetchPosts'>, IQueryFetchPostArgs>(FETCH_POSTS)
   const [deletePost] = useMutation<Pick<IMutation, 'deletePost'>, IMutationDeletePostArgs>(DELETE_POST)
   const [togglePostPick] = useMutation(TOGGLE_POST_PICK)
   const [createPostMemo] = useMutation(CREATE_POST_MEMO)
@@ -45,10 +47,10 @@ export default function PostDetail() {
     try {
       await deletePost({
         variables: { postId },
-        refetchQueries: [{ query: FETCH_POST }],
+        refetchQueries: [{ query: FETCH_POSTS }],
       })
       Modal.success({ content: '포스트가 삭제되었습니다.' })
-      void router.push('/my/posts')
+      void router.push('/post')
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message })
     }

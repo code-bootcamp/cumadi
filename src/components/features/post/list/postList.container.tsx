@@ -6,7 +6,7 @@ import { IQuery, IQueryFetchPostArgs } from '@/common/types/generated/types'
 
 export default function PostList() {
   // **** PlayGround
-  const { data, fetchMore } = useQuery<Pick<IQuery, 'fetchPosts'>, IQueryFetchPostArgs>(FETCH_POSTS)
+  const { data } = useQuery<Pick<IQuery, 'fetchPosts'>, IQueryFetchPostArgs>(FETCH_POSTS)
 
   return <PostListUI data={data} />
 }
