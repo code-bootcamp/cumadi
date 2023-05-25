@@ -32,8 +32,6 @@ export const postFormState = atom({
     content: '',
     image: '',
     description: '',
-    seriesId: '',
-    tags: [],
   },
 })
 
