@@ -27,13 +27,13 @@ export const FETCH_USER_LOGGED_IN = gql`
   }
 `
 
-// export const CHECK_PAYMENT_LIST = gql`
-//   query checkPaymentList($seriesId: [String!]!) {
-//     checkPaymentList(seriesId: $seriesId) {
-//       status
-//     }
-//   }
-// `
+export const CHECK_PAYMENT_LIST = gql`
+  mutation checkPaymentList($seriesId: [String!]!) {
+    checkPaymentList(seriesId: $seriesId) {
+      status
+    }
+  }
+`
 
 export const DELETE_SERIES_IN_CART = gql`
   mutation deleteSeriesInCart($seriesId: String!) {
