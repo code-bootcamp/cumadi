@@ -54,7 +54,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   })
 
   const uploadLink = createUploadLink({
-    uri: 'http://34.64.249.172:3000/graphql',
+    uri: 'https://cumadi-backend.shop/graphql',
     headers: { Authorization: `Bearer ${accessToken}`, 'X-Apollo-Operation-Name': 'true' },
     credentials: 'include',
   })
