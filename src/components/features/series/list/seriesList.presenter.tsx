@@ -48,7 +48,8 @@ export default function SeriesListUI(props: any) {
         {props.isShowAll ? (
           <>
             {props.data?.fetchSeriesAll.map((el: any) => (
-              <S.StyledCard
+              <S.MyStyledCard
+                bordered={false}
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
                 cover={
@@ -82,13 +83,13 @@ export default function SeriesListUI(props: any) {
                     </ProfileContainer>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
-              </S.StyledCard>
+              </S.MyStyledCard>
             ))}
           </>
         ) : (
           <>
             {props.menu?.fetchSeriesByCategory.map((el: any) => (
-              <S.StyledCard
+              <S.MyStyledCard
                 isfree={props.isfreeOn}
                 itemPrice={el.price}
                 cover={
@@ -127,7 +128,7 @@ export default function SeriesListUI(props: any) {
                     </ReactionsContainer>
                   </InfoSectionContainer>
                 </FlexColumnContainer>
-              </S.StyledCard>
+              </S.MyStyledCard>
             ))}
           </>
         )}

@@ -3,6 +3,7 @@ import { Card, Switch, Tag } from 'antd'
 
 import { Colors } from '@/common/styles/colors'
 import { breakPoints } from '@/common/styles/media'
+import { StyledCard, StyledCardCover } from '@/components/common/customComponent.styles'
 
 export const Footer = styled.footer`
   width: 100%;
@@ -43,17 +44,8 @@ export const Body = styled.div`
   }
 `
 
-export const StyledCard = styled(Card)<{ isfree: boolean; itemPrice: number }>`
+export const MyStyledCard = styled(StyledCard)<{ isfree: boolean; itemPrice: number }>`
   display: ${props => (props.isfree && props.itemPrice !== 0 ? 'none' : '')};
-  width: 25rem;
-  border: unset;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-  &:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  }
 `
 
 export const Price = styled.div`
