@@ -63,7 +63,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderUIProps) {
   return (
     <S.Header>
       {props.isVisible && <S.Container>
-        <S.Logo src="/images/Logo.svg" onClick={onClickMoveToPage('/')} />
+        <S.Logo src="https://i.imgur.com/vmhsNCz.png" onClick={onClickMoveToPage('/')} />
         <S.LoginMenu>
           {props.loginData ? (
             <>
