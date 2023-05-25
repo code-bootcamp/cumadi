@@ -95,7 +95,7 @@ export default function PublishForm({ isEditMode }: IPublishFormProps) {
   }
 
   const handleSubmitForm = async (values: any) => {
-    const formattedTags = post.tags.map((tag: { name: any }) => tag.name)
+    const formattedTags = post.tags?.map((tag: { name: any }) => tag.name)
     const publishablePostData = { ...post, ...values }
 
     try {

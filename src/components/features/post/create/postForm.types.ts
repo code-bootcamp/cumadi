@@ -22,7 +22,7 @@ export interface PostFormUIProps {
   isEditMode: boolean
   post: any
   tags: any[]
-  inputRef: Ref<BaseSelectRef> | undefined
+  inputRef: any
   handleSearchChange: (value: string) => void
   filterOption: (input: string, option: any) => any
   isAddTagOptionVisible: boolean
