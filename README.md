@@ -3,7 +3,7 @@
 * 프로덕트명 : 커마디
 * 개발기간 : `2023년 5월 1일 ~ 진행중`
 * 서비스 핵심 요약 : 마크다운으로 작성한 블로그 글들을 시리즈로 엮어서 판매하는 서비스
-d
+
 ------
 
 #### 📄 설치 및 실행 방법
@@ -84,7 +84,7 @@ $ yarn start
 
 ------
 
-### ⚙️ 사용한 Front-end 기술
+### 사용한 Front-end 기술
 
 |         기술명         | 사용이유                                                     |
 | :--------------------: | ------------------------------------------------------------ |
@@ -114,11 +114,25 @@ $ yarn start
 
 ![mcb_ERD](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/mcb_ERD.png)
 
+
+------
+
+#### ⚙️ API 정의서
+
+![API-정의서-queries](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/API%EC%A0%95%EC%9D%98%EC%84%9C-queries.png)
+
+
+![API-정의서-mutation](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/API%EC%A0%95%EC%9D%98%EC%84%9C-mutation.png)
+
 ------
 
 ### 🔮 기능 시연자료
 
 #### 회원 - 회원가입, 로그인
+
+![회원가입](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.gif)
+
+![로그인](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
 
 * 회원가입
   * 이메일로 회원가입을 할 수 있으며, 등록한 이메일로 로그인이 가능합니다.
@@ -127,15 +141,26 @@ $ yarn start
 
 #### 마이페이지 - 비밀번호 수정, 
 
+![프로필수정](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%94%84%EB%A1%9C%ED%95%84%EC%88%98%EC%A0%95.gif)
+
+![비밀번호수정](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EC%88%98%EC%A0%95.gif)
+
 * 로그인을 한 뒤에는 마이페이지 > 프로필 수정하기에서 
 * 유저의 프로필 사진과 자기소개를 등록할 수 있으며,
 * 비밀번호를 수정할 수 있습니다.
 
+
 ------
 
-#### 포스트 - 생성, 조회, 수정, 삭제
+#### 포스트 - 생성, 조회, 수정, 삭제, 좋아요
 
-* 포스트 조회
+![포스트작성](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%9E%91%EC%84%B1.gif)
+
+![포스트수정](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%88%98%EC%A0%95.gif)
+
+![포스트조회좋아요](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%A1%B0%ED%9A%8C%EC%A2%8B%EC%95%84%EC%9A%94.gif)
+
+* 포스트 작성, 조회, 수정, 삭제
   * 저희 사이트는 마크다운 형식으로 작성된 글들을 조회할 수 있으며,
   * 좋아요를 누를 수 있고,
   * 다시 보고 싶은 글들을 드래그하여 저장할 수 있습니다.
@@ -144,6 +169,10 @@ $ yarn start
 ------
 
 #### 포스트 댓글, 답변 - 생성, 조회, 수정, 삭제
+
+![포스트댓글답변](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%8F%AC%EC%8A%A4%ED%8A%B8%EB%8C%93%EA%B8%80%EB%8B%B5%EB%B3%80%EC%9E%91%EC%84%B1.gif)
+
+![포스트댓글삭제](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%8F%AC%EC%8A%A4%ED%8A%B8%EB%8C%93%EA%B8%80%EC%82%AD%EC%A0%9C.gif)
 
 * 포스트를 조회하며 다른 유저들이 댓글을 달면, 작성자가 답변을 달아 서로 소통할 수 있습니다.
 
@@ -155,7 +184,17 @@ $ yarn start
 
 ------
 
+#### 포스트 메모
+
+![포스트메모](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8.gif)
+
+* 포스트의 글들을 따로 저장해 확인할 수 있습니다.
+
+------
+
 #### 작성포스트, 작성시리즈
+
+![내가작성한포스트-시리즈](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EB%82%B4%EA%B0%80%EC%9E%91%EC%84%B1%ED%95%9C%EB%AA%A9%EB%A1%9D.gif)
 
 * 작성자는 자기가 등록한 포스트들, 작성한 시리즈를 마이페이지에서 조회할 수 있습니다.
 
@@ -163,11 +202,33 @@ $ yarn start
 
 #### 시리즈 - 생성, 조회, 수정, 삭제
 
+![시리즈작성](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EC%8B%9C%EB%A6%AC%EC%A6%88%20%EC%9E%91%EC%84%B1.gif)
+
+![시리즈상세조회](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EC%8B%9C%EB%A6%AC%EC%A6%88%EC%83%81%EC%84%B8%EC%A1%B0%ED%9A%8C.gif)
+
+![시리즈카테고리](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EC%8B%9C%EB%A6%AC%EC%A6%88%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC.gif)
+
 * 작성자는 포스트들을 시리즈로 묶어서 판매가 가능합니다.
 
 ------
 
+#### 시리즈 리뷰
+
+![시리즈-리뷰작성](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EA%B5%AC%EB%A7%A4%ED%95%9C%EC%8B%9C%EB%A6%AC%EC%A6%88%EB%A6%AC%EB%B7%B0%EC%9E%91%EC%84%B1.gif)
+
+------
+
 #### 시리즈 장바구니, 결제
+
+![장바구니담기](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88%EB%8B%B4%EA%B8%B0.gif)
+
+![장바구니](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88.gif)
+
+![바로구매](https://github.com/code-bootcamp/cumadi/blob/main/public/readme/%EB%B0%94%EB%A1%9C%EA%B5%AC%EB%A7%A4.gif)
+
 * 다른 유저들은 만들어진 시리즈를 장바구니에 담을 수 있습니다.
 * 장바구니 아이콘을 클릭하여 유료 / 무료 시리즈를 구매할 수 있습니다.
 * 구매한 내역은 마이페이지 > 내가 구매한 시리즈에서 확인 가능합니다.
+
+
+
