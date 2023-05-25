@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 
 import PostStats from '@/components/features/post/stats/postStats.container'
-import { FETCH_POST } from './index.queries'
+import { FETCH_POST } from '../../../../components/features/post/stats/stats.queries'
 import { IQuery, IQueryFetchPostArgs } from '@/common/types/generated/types'
 
 export default function PostStatsPage() {

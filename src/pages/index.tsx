@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import * as S from './index.styles'
+import * as S from '../components/features/signup/index.styles'
 import { DotLeft, MyButton } from '@/components/common/customComponent.styles'
 import PostList from '@/components/features/post/list/postList.container'
 import { useMoveToPage } from '@/common/hooks/useMoveToPage'
