@@ -66,7 +66,7 @@ export default function SeriesDetailUI(props: any) {
         </S.PostsSub>
         <BodyTextSm>* 시리즈를 구매하신 후 열람하실 수 있습니다.</BodyTextSm>
         {props.data?.fetchSeries.post?.map((el: any) => (
-          <S.PostWrapper>
+          <S.PostWrapper key={el.seriesId}>
             <S.ImageWrapper>
               {el.image ? (
                 <S.Image key={el.image} src={el.image} />
