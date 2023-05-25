@@ -1,5 +1,5 @@
 import { IQuery } from '@/common/types/generated/types'
-import { ChangeEvent, MouseEvent } from 'react'
+import { ChangeEvent, MouseEvent, MouseEventHandler } from 'react'
 
 export interface IMyProfileSettingsUIProps {
   currentPasswordError: string
@@ -8,7 +8,7 @@ export interface IMyProfileSettingsUIProps {
   showProfileEdit: boolean
   loginData?: Pick<IQuery, 'fetchUserLoggedIn'>
   fileRef: React.ForwardedRef<HTMLInputElement>
-  onClickResetPassword: (event: MouseEvent<HTMLButtonElement>) => void
+  onClickResetPassword: (MouseEventHandler<HTMLAnchorElement> & MouseEventHandler<HTMLButtonElement>) | undefined
   onClickImage: (event: MouseEvent<HTMLImageElement>) => void
   onClickProfileEditBtn: (event: MouseEvent<HTMLSpanElement>) => void
   onClickSaveProfileBtn: (event: MouseEvent<HTMLSpanElement>) => void
