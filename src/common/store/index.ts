@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil'
 import { v1 } from 'uuid'
-import { ITag } from '../types/generated/types'
+import { IPost, ISeries, ITag, IUser } from '../types/generated/types'
 // import { getAccessToken } from '../libraries/getAccessToken'
 // ** cf. https://velog.io/@sj_dev_js/Recoil-Duplicate-atom-key
 // [에러 해결] Recoil : Duplicate atom key
@@ -24,7 +24,7 @@ export const memoPostDetail = atom({
 })
 
 // **** 출판 전 포스트 정보
-export const postFormState = atom({
+export const postFormState = atom<IPost>({
   key: `postFormState/${v1()}`,
   default: {
     postId: '',
@@ -32,6 +32,10 @@ export const postFormState = atom({
     content: '',
     image: '',
     description: '',
+    createdAt: '',
+    updatedAt: '',
+    deletedAt: '',
+    user: <IUser>{},
   },
 })
 
