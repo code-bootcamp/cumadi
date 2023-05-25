@@ -13,6 +13,7 @@ import {
   IQueryFetchRatingBySeriesArgs,
   IQueryFetchSeriesReviewsBySeriesArgs,
 } from '@/common/types/generated/types'
+import { FETCH_USER_LOGGED_IN } from '../../series/detail/seriesDetail.query'
 
 export default function SeriesAnswerList() {
   const router = useRouter()
@@ -31,6 +32,8 @@ export default function SeriesAnswerList() {
   const [deleteReview] = useMutation<Pick<IMutation, 'deleteSeriesReview'>, IMutationDeleteSeriesReviewArgs>(
     DELETE_SERIES_REVIEW,
   )
+
+  const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
 
   const onClickUpdateReview = () => {
     setIsEditReview(prev => !prev)
@@ -59,6 +62,7 @@ export default function SeriesAnswerList() {
     <SeriesAnswerListUI
       rate={rate}
       data={data}
+      loginData={loginData}
       isEditReview={isEditReview}
       setIsEditReview={setIsEditReview}
       onClickUpdateReview={onClickUpdateReview}

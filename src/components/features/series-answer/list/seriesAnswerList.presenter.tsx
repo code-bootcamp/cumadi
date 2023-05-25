@@ -37,10 +37,12 @@ export default function SeriesAnswerListUI(props: any) {
                           </S.UserRate>
                         </S.AvatarWrapper>
                         <S.Contents>{el.content}</S.Contents>
-                        <S.ButtonWrapper>
-                          <button onClick={props.onClickUpdateReview}>수정</button>
-                          <button onClick={props.onClickDeleteReview(el.reviewId)}>삭제</button>
-                        </S.ButtonWrapper>
+                        {el.user.userId === props.loginData?.fetchUserLoggedIn?.userId ? (
+                          <S.ButtonWrapper>
+                            <button onClick={props.onClickUpdateReview}>수정</button>
+                            <button onClick={props.onClickDeleteReview(el.reviewId)}>삭제</button>
+                          </S.ButtonWrapper>
+                        ) : null}
                       </S.ReviewListTopWrapper>
                     </S.ReviewList>
                   )}
@@ -56,8 +58,8 @@ export default function SeriesAnswerListUI(props: any) {
             </>
           ) : (
             <>
-              <S.ReviewListNoTitle>댓글이 없어요!</S.ReviewListNoTitle>
-              <S.ReviewListNoSubTitle>댓글을 달아 소통을 시작해보세요.</S.ReviewListNoSubTitle>
+              <S.ReviewListNoTitle style={{ marginBottom: '.5rem' }}>리뷰가 없어요!</S.ReviewListNoTitle>
+              <S.ReviewListNoSubTitle>시리즈를 구매하고 리뷰를 남겨주세요.</S.ReviewListNoSubTitle>
             </>
           )}
         </>

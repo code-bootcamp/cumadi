@@ -2,17 +2,12 @@ import styled from '@emotion/styled'
 import { Form, Switch } from 'antd'
 
 import { breakPoints } from '@/common/styles/media'
+import { Colors } from '@/common/styles/colors'
 
 export const Container = styled.section`
   width: 100%;
   height: 100%;
   padding: 0 12.5rem;
-  @media ${breakPoints.tablet} {
-    width: 44rem;
-  }
-  @media ${breakPoints.mobile} {
-    width: 100%;
-  }
 `
 
 export const TitleWrapper = styled.section`
@@ -52,10 +47,9 @@ export const Thumbnail = styled.div<{ thumbnail?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #7e7872;
+  border: 1px solid ${Colors.gray4};
   border-radius: 0.25rem;
   cursor: pointer;
-  background: #d9d9d9;
   background-image: url(${props => props.thumbnail});
   background-size: 100%;
   background-position: center;

@@ -10,6 +10,7 @@ import {
   MyButton,
   StyledCard,
   StyledCardCover,
+  StyledCardOutlined,
 } from '@/components/common/customComponent.styles'
 import { BodyText, BodyTextLg, BodyTextSm } from '@/common/styles/globalStyles'
 import { TruncatedText } from '@/common/styles/UI/util.styles'
@@ -49,7 +50,7 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
       </S.BtnWrapper>
       <S.Body>
         {props.data?.fetchPostsOfMine.map((postOfMine: any) => (
-          <StyledCard
+          <StyledCardOutlined
             bordered={false}
             key={postOfMine.postId}
             cover={
@@ -66,13 +67,16 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
               )
             }>
             <FlexColumnContainer gap={'0.5rem'} onClick={onClickMoveToPage(`/post/${postOfMine.postId}`)}>
-              <BodyTextSm color={Colors.primary} weight={600}>
-                {postOfMine?.series?.title}
-              </BodyTextSm>
-              <BodyTextLg>{postOfMine.title}</BodyTextLg>
-              <BodyText color={Colors.gray1}>
-                <TruncatedText lines={4}>{RemoveMarkdown(postOfMine.content)}</TruncatedText>
-              </BodyText>
+              <FlexColumnContainer gap={'0.5rem'} style={{ minHeight: '9.25rem' }}>
+                {' '}
+                <BodyTextSm color={Colors.primary} weight={600}>
+                  {postOfMine?.series?.title}
+                </BodyTextSm>
+                <BodyTextLg>{postOfMine.title}</BodyTextLg>
+                <BodyText color={Colors.gray1}>
+                  <TruncatedText lines={4}>{RemoveMarkdown(postOfMine.content)}</TruncatedText>
+                </BodyText>
+              </FlexColumnContainer>
               <InfoSectionContainer>
                 <ProfileContainer>
                   <Avatar src={postOfMine.user.image ?? ''}>{postOfMine.user.nickname[0]}</Avatar>
@@ -93,7 +97,7 @@ export default function MyPostsUI(props: IMyPostsUIProps) {
                 </ReactionsContainer>
               </InfoSectionContainer>
             </FlexColumnContainer>
-          </StyledCard>
+          </StyledCardOutlined>
         ))}
       </S.Body>
       <DotBottom />

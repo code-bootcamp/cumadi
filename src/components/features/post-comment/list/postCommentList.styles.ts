@@ -75,6 +75,7 @@ export const ButtonWrapper = styled.div`
 
 export const Contents = styled.div`
   width: 100%;
+  margin-top: 1rem;
   font-size: 1rem;
   color: var(--color-black);
 `

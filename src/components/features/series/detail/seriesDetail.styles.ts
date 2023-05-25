@@ -89,6 +89,11 @@ export const Category = styled.span`
   font-weight: bold;
   color: ${Colors.primary};
   padding-right: 0.5rem;
+  background-color: var(--color-muted);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 1rem;
 `
 
 export const PriceWrapper = styled.div`

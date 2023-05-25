@@ -19,7 +19,7 @@ export default function MyProfileSettingsUI(props: IMyProfileSettingsUIProps) {
             <S.Avatar onClick={props.onClickImage}><Avatar size={120} icon={<UserOutlined />} /></S.Avatar> 
           }
           <input style={{ display: 'none' }} type="file" onChange={props.onChangeImageFile} ref={props.fileRef} />
-          <S.DeleteImgBtn onClick={props.onClickDeleteImgBtn}>이미지 제거</S.DeleteImgBtn>
+          <S.DeleteImgBtn onClick={props.onClickDeleteImgBtn}style={{marginTop:'1rem'}} >이미지 제거</S.DeleteImgBtn>
         </S.AvatarWrapper>
         <S.ProfileLine />
         <S.ProfileEditWrapper>
@@ -84,7 +84,7 @@ export default function MyProfileSettingsUI(props: IMyProfileSettingsUIProps) {
         <S.Error color="red">{props.checkPasswordError}</S.Error>
       </S.ErrorWrapper>
       <S.PasswordBtnWrapper>
-        <S.PasswordBtn onClick={onClickMoveToPage('/my')}>다음에 변경하기</S.PasswordBtn>
+        {/* <S.PasswordBtn onClick={onClickMoveToPage('/my')}>다음에 변경하기</S.PasswordBtn> */}
         <S.PasswordBtn type="primary" onClick={props.onClickResetPassword}>
           비밀번호 변경하기
         </S.PasswordBtn>

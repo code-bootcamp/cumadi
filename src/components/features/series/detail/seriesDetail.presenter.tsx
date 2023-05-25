@@ -5,6 +5,7 @@ import { EmptyStateContainer, ReactionContainer, ReactionsContainer } from '@/co
 import { HeartOutlined, CommentOutlined, PlusOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { Avatar, Empty } from 'antd'
+import { BodyTextSm } from '@/common/styles/globalStyles'
 
 export default function SeriesDetailUI(props: any) {
   const category = props.data?.fetchSeries.category.name
@@ -16,7 +17,7 @@ export default function SeriesDetailUI(props: any) {
         <S.PostSubTitle>{props.data?.fetchSeries.introduction}</S.PostSubTitle>
         <S.PostTagWapper>
           <S.Category>{props.data?.fetchSeries.category.name}</S.Category>
-          <S.TopTag>주간 2위</S.TopTag>
+          {/* <S.TopTag>주간 2위</S.TopTag> */}
         </S.PostTagWapper>
         <S.Header>
           <S.AvatarWrapper>
@@ -57,10 +58,13 @@ export default function SeriesDetailUI(props: any) {
             {props.data?.fetchSeries.post?.length}개의 포스트{' '}
             <S.Update>마지막 업데이트 {dayjs(props.data?.fetchSeries.createdAt).format('YYYY.MM.DD')}</S.Update>
           </S.PostCount>
-          <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
-            포스트 작성하기
-          </S.NewPostsButton>
+          {props.isWriterData ? (
+            <S.NewPostsButton onClick={props.onClickMoveToPage('/post/new')} icon={<PlusOutlined />}>
+              포스트 작성하기
+            </S.NewPostsButton>
+          ) : null}
         </S.PostsSub>
+        <BodyTextSm>* 시리즈를 구매하신 후 열람하실 수 있습니다.</BodyTextSm>
         {props.data?.fetchSeries.post?.map((el: any) => (
           <S.PostWrapper>
             <S.ImageWrapper>

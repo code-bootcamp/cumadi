@@ -46,7 +46,7 @@ export const AllCheckTitle = styled.span`
 `
 
 export const CheckListWrapper = styled.div`
-  height: 52rem;
+  height: 40rem;
 `
 
 export const CardWrapper = styled.div`

@@ -25,7 +25,7 @@ export default function PostCommentListUI({ commentsData }: IPostCommentListUIPr
         ) : (
           <>
             {/* 댓글이 없다면 */}
-            <S.CommentListNoTitle>댓글이 없어요!</S.CommentListNoTitle>
+            <S.CommentListNoTitle style={{ marginBottom: '.5rem' }}>댓글이 없어요!</S.CommentListNoTitle>
             <S.CommentListNoSubTitle>댓글을 달아 소통을 시작해보세요.</S.CommentListNoSubTitle>
           </>
         )}

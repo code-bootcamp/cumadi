@@ -54,17 +54,14 @@ export default function SeriesListUI(props: any) {
                 itemPrice={el.price}
                 cover={
                   el.image ? (
-                    <S.CardThumbnailImg
-                      alt="example"
-                      src={el.image}
-                      onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}
-                    />
+                    <S.CardThumbnailImg alt="example" src={el.image} />
                   ) : (
                     <EmptyStateContainer onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}>
                       <Empty description={<span>이미지가 없습니다.</span>} />
                     </EmptyStateContainer>
                   )
-                }>
+                }
+                onClick={props.onClickMoveToPage(`/series/${el.seriesId}`)}>
                 <FlexColumnContainer gap={'0.5rem'}>
                   <BodyTextSm color={Colors.primary} weight={600}>
                     {el.category.name}

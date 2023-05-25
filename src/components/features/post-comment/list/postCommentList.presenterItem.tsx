@@ -17,6 +17,7 @@ import {
   IQuery,
   IQueryFetchPostCommentAnswerArgs,
 } from '@/common/types/generated/types'
+import { FETCH_USER_LOGGED_IN } from '../../post/detail/postDetail.queries'
 
 export default function PostCommentListUIItem({ comment }: IPostCommentListUIItemProps) {
   const router = useRouter()
@@ -28,6 +29,8 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
   const [isActivePostAnswer, setIsActivePostAnswer] = useState(false)
 
   // **** PlayGround
+  const { data: loginData } = useQuery(FETCH_USER_LOGGED_IN)
+
   const { data: PostCommentAnswerData } = useQuery<
     Pick<IQuery, 'fetchPostCommentAnswer'>,
     IQueryFetchPostCommentAnswerArgs
@@ -77,13 +80,18 @@ export default function PostCommentListUIItem({ comment }: IPostCommentListUIIte
                 <S.Date>{getCreateDate(comment?.updatedAt)}</S.Date>
               </S.AvatarIntro>
             </S.AvatarWrapper>
+
             <S.ButtonWrapper>
-              <button onClick={onClickUpdatePostComment}>수정</button>
+              {comment?.user.userId === loginData?.fetchUserLoggedIn?.userId ? (
+                <button onClick={onClickUpdatePostComment}>수정</button>
+              ) : null}
               {!CommentAnswer && <button onClick={onClickActiveCommentAnswer}>답변</button>}
 
-              <button onClick={onClickDeletePostComment}>
-                <CloseOutlined />
-              </button>
+              {comment?.user.userId === loginData?.fetchUserLoggedIn?.userId ? (
+                <button onClick={onClickDeletePostComment}>
+                  <CloseOutlined />
+                </button>
+              ) : null}
             </S.ButtonWrapper>
           </S.CommentTopWrapper>
           <S.Contents>{comment?.content}</S.Contents>

@@ -6,12 +6,12 @@ import { IMyMemoUIProps } from './myMemo.types'
 export default function MyMemoUI(props: IMyMemoUIProps) {
   return (
     <S.Container>
-      <S.NoteTitle>내 노트목록</S.NoteTitle>
+      <S.NoteTitle>내 노트</S.NoteTitle>
       <S.Body>
         {props.data?.fetchPostMemos.map((element: any) => (
           <S.List key={element.memoId}>
             <S.ListTop>
-              <MyButton type="primary" id={element.memoId} onClick={props.onClickDeleteMemo}>
+              <MyButton type="text" id={element.memoId} onClick={props.onClickDeleteMemo}>
                 삭제
               </MyButton>
             </S.ListTop>
@@ -21,7 +21,7 @@ export default function MyMemoUI(props: IMyMemoUIProps) {
           </S.List>
         ))}
       </S.Body>
-      <PaginationMemo />
+      {/* <PaginationMemo /> */}
     </S.Container>
   )
 }

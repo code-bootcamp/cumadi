@@ -31,7 +31,7 @@ export default function LoginUI(props: ILoginPresenter) {
           아직 계정이 없으신가요?
           <S.SignupPageMoveSpan onClick={onClickMoveToPage(`/signup`)}>회원가입</S.SignupPageMoveSpan>
         </S.SignupWrapper>
-        <S.Line />
+        {/* <S.Line />
         <S.SNSLogin>SNS 계정으로 로그인</S.SNSLogin>
         <S.SNSWrapper>
           <S.KakaoBtn>
@@ -40,7 +40,7 @@ export default function LoginUI(props: ILoginPresenter) {
           <S.GoogleBtn>
             <S.Logo src="/images/googleLogo.png" />
           </S.GoogleBtn>
-        </S.SNSWrapper>
+        </S.SNSWrapper> */}
       </S.Wrapper>
       <DotBottom />
     </S.LoginSection>
