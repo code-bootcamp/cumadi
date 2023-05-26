@@ -108,6 +108,8 @@ $ yarn start
 
 ![UserFlow](https://github.com/code-bootcamp/mcb2_team01_client/blob/main/public/readme/UserFlow.png)
 
+[Figma](https://www.figma.com/file/UcJCOUMxYDAOOXe2f9yt3h/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?type=design&node-id=19-4339&t=r7YAW1day9QVRR0S-0)
+
 ------
 
 ### ⚙️ ER 다이어그램
